@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Yogis Yoga Centre | Yoga Classes in Chennai</title>
+    <meta name="description" content="Professional yoga classes for ladies, gents, and kids in Chennai. Online & offline sessions, therapeutic wellness programs, weight loss yoga, and meditation.">
+
+    <!-- Structured Data - LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Happy Yogis Yoga Centre",
+      "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=80",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "SSM Nagar, New Perungalathur",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-9994247450",
+      "openingHours": ["Mo-Sa 05:30-18:00"],
+      "url": "https://happyyogis.com",
+      "sameAs": [
+        "https://instagram.com/happyyogis",
+        "https://facebook.com/happyyogis",
+        "https://youtube.com/happyyogis"
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#1F4E79',
+                        'sky-blue': '#4DA8DA',
+                        'soft-white': '#F8FBFD',
+                        'warm-gray': '#E8EEF2',
+                        'sunrise-gold': '#F4B942',
+                        'wellness-green': '#74C69D',
+                        'dark-charcoal': '#1C1C1C',
+                        'medium-gray': '#5F6B76',
+                    },
+                    fontFamily: {
+                        'heading': ['Cormorant Garamond', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8FBFD; }
+        ::-webkit-scrollbar-thumb { background: #4DA8DA; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1F4E79; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(77, 168, 218, 0.3); } 50% { box-shadow: 0 0 40px rgba(77, 168, 218, 0.6); } }
+        @keyframes scrollGallery { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scrollGalleryReverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+        .animate-fade-in-up { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .hero-gradient { background: linear-gradient(135deg, rgba(31, 78, 121, 0.85) 0%, rgba(77, 168, 218, 0.7) 50%, rgba(31, 78, 121, 0.85) 100%); }
+        .blue-gradient { background: linear-gradient(135deg, #1F4E79 0%, #4DA8DA 100%); }
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(31, 78, 121, 0.2); }
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s; }
+        .btn-shine:hover::after { left: 100%; }
+        .nav-scrolled { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(31, 78, 121, 0.1); border-bottom-color: transparent; }
+        .faq-glass.active .faq-glass-answer {
+            opacity: 1;
+        }
+
+        /* Smooth Mobile Menu - FIXED */
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0);
+            visibility: hidden;
+            transition: background 0.4s ease, visibility 0.4s ease;
+        }
+        .mobile-menu-overlay.open {
+            background: rgba(0, 0, 0, 0.4);
+            visibility: visible;
+        }
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            z-index: 51;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+        }
+        .mobile-menu-overlay.open .mobile-menu-panel {
+            transform: translateX(0);
+        }
+        .mobile-menu-panel .menu-item {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.4s ease;
+        }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(6) { transition-delay: 0.35s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(7) { transition-delay: 0.4s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(8) { transition-delay: 0.45s; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .testimonial-card { transition: all 0.3s ease; }
+        .testimonial-card:hover { transform: scale(1.02); }
+        .timing-row { transition: all 0.3s ease; }
+        .timing-row:hover { background: rgba(77, 168, 218, 0.1); transform: translateX(8px); }
+        .img-zoom { overflow: hidden; }
+        .img-zoom img { transition: transform 0.6s ease; }
+        .img-zoom:hover img { transform: scale(1.1); }
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; z-index: 50; animation: float 3s ease-in-out infinite; }
+        .star-filled { color: #F4B942; }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 100; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .parallax-bg { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+        @media (max-width: 768px) { .parallax-bg { background-attachment: scroll; } }
+        .scroll-gallery-track { display: flex; gap: 1rem; animation: scrollGallery 30s linear infinite; width: max-content; }
+        .scroll-gallery-track:hover { animation-play-state: paused; }
+        .scroll-gallery-track-reverse { display: flex; gap: 1rem; animation: scrollGalleryReverse 35s linear infinite; width: max-content; }
+        .scroll-gallery-track-reverse:hover { animation-play-state: paused; }
+        .scroll-gallery-container { overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .gallery-item { cursor: pointer; transition: all 0.3s ease; }
+        .gallery-item:hover { transform: scale(1.02); z-index: 10; }
+
+        /* CTA Button Styles */
+        .cta-primary {
+            background: linear-gradient(135deg, #1F4E79 0%, #4DA8DA 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(31, 78, 121, 0.3);
+        }
+        .cta-secondary {
+            background: white;
+            color: #1F4E79;
+            border: 2px solid #1F4E79;
+            transition: all 0.3s ease;
+        }
+        .cta-secondary:hover {
+            background: #1F4E79;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .cta-gold {
+            background: #F4B942;
+            color: #1C1C1C;
+            transition: all 0.3s ease;
+        }
+        .cta-gold:hover {
+            background: #e5a832;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(244, 185, 66, 0.3);
+        }
+        /* Glassmorphism FAQ Styles */
+        .faq-glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 24px rgba(31, 78, 121, 0.06), 0 1px 2px rgba(31, 78, 121, 0.04);
+            transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+        }
+        .faq-glass:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(31, 78, 121, 0.10), 0 2px 4px rgba(31, 78, 121, 0.06);
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(77, 168, 218, 0.3);
+        }
+        .faq-glass.faq-open {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(77, 168, 218, 0.45);
+            box-shadow: 0 16px 48px rgba(31, 78, 121, 0.12), 0 2px 6px rgba(31, 78, 121, 0.08);
+        }
+        .faq-glass-toggle {
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .faq-glass-toggle:hover {
+            background-color: rgba(77, 168, 218, 0.04);
+        }
+        .faq-glass-chevron {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-glass.faq-open .faq-glass-chevron {
+            transform: rotate(180deg);
+        }
+        .faq-glass-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease 0.1s;
+            will-change: max-height, opacity;
+        }
+        .faq-glass.faq-open .faq-glass-answer {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+    
+        
+
+        /* Mobile menu button specific */
+        .nav-hamburger-transparent i {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+</style>
+<base target="_blank">
+<base target="_blank">
+<base target="_blank">
+</head>
+<body class="font-body bg-soft-white text-dark-charcoal antialiased overflow-x-hidden">
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md shadow-sm border-b border-warm-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Mobile Layout: Single row -->
+            <div class="flex lg:hidden items-center h-20 relative">
+                <!-- Center: Logo + Name -->
+                <a href="#home" class="flex items-center space-x-3 group absolute left-1/2 -translate-x-1/2">
+                    <img src="logo.png" alt="Happy Yogis Logo" class="w-10 h-10 rounded-full object-cover group-hover:scale-110 transition-transform" />
+                    <div class="hidden sm:block">
+                        <span class="font-heading text-2xl font-bold text-deep-blue">Happy Yogis</span>
+                        <span class="block text-xs text-medium-gray -mt-1">Yoga Centre</span>
+                    </div>
+                </a>
+                <!-- Right: Mobile Menu Button -->
+                <div class="ml-auto">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-deep-blue hover:bg-warm-gray transition-colors" aria-label="Open menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Desktop Layout: Two rows -->
+            <div class="hidden lg:block">
+                <!-- Top Row: Logo centered, CTA on right -->
+                <div class="flex items-center justify-center h-20 relative">
+                    <a href="#home" class="flex items-center space-x-3 group">
+                        <img src="logo.png" alt="Happy Yogis Logo" class="w-10 h-10 rounded-full object-cover group-hover:scale-110 transition-transform" />
+                        <div>
+                            <span class="font-heading text-2xl font-bold text-deep-blue">Happy Yogis</span>
+                            <span class="block text-xs text-medium-gray -mt-1">Yoga Centre</span>
+                        </div>
+                    </a>
+                    <!-- CTA absolute right -->
+                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener noreferrer" class="absolute right-0 btn-shine cta-primary inline-flex items-center px-5 py-2.5 text-white text-sm font-semibold rounded-full hover:shadow-xl transition-all duration-300 whitespace-nowrap">
+                        <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>Book Free Class
+                    </a>
+                </div>
+                <!-- Bottom Row: Nav links centered -->
+                <div class="flex justify-center items-center pb-4 space-x-6 xl:space-x-8">
+                    <a href="#home" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#about" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#trainer" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Trainer<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#specializations" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Specializations<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#timings" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Timings<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#gallery" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Gallery<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#contact" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-12 bg-gradient-to-br from-deep-blue to-sky-blue relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-white"></div>
+            <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-white"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="font-heading text-4xl sm:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
+            <p class="text-white/80 text-lg">Your privacy matters to us</p>
+        </div>
+    </section>
+
+    <!-- Privacy Content -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg max-w-none">
+
+                <div class="mb-12">
+                    <p class="text-medium-gray leading-relaxed text-lg">
+                        At Happy Yogis Yoga Centre, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you visit our website or use our services.
+                    </p>
+                    <p class="text-medium-gray leading-relaxed mt-4">
+                        <span class="font-semibold text-deep-blue">Effective Date:</span> June 2026
+                    </p>
+                </div>
+
+                <!-- Information We Collect -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-sky-blue/10 flex items-center justify-center mr-3 text-sky-blue text-sm">01</span>
+                        Information We Collect
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed mb-4">We may collect the following types of information:</p>
+                        <ul class="space-y-2 text-medium-gray">
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-wellness-green mt-2 mr-3 flex-shrink-0"></span><span class="font-semibold text-dark-charcoal">Personal Information:</span> Name, phone number, email address, and WhatsApp contact details when you inquire about classes or book sessions.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-wellness-green mt-2 mr-3 flex-shrink-0"></span><span class="font-semibold text-dark-charcoal">Health Information:</span> Medical conditions or physical limitations you voluntarily share with our instructors for safe practice guidance.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-wellness-green mt-2 mr-3 flex-shrink-0"></span><span class="font-semibold text-dark-charcoal">Usage Data:</span> Information about how you interact with our website, including pages visited and time spent.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- How We Use Your Information -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-sunrise-gold/10 flex items-center justify-center mr-3 text-sunrise-gold text-sm">02</span>
+                        How We Use Your Information
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed mb-4">We use your information to:</p>
+                        <ul class="space-y-2 text-medium-gray">
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Respond to your inquiries and booking requests via WhatsApp or phone.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Schedule and manage your yoga class appointments.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Send class reminders, schedule updates, and wellness tips (with your consent).</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Improve our website experience and class offerings.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Ensure your safety during yoga practice by understanding any health conditions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- How We Protect Your Data -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-wellness-green/10 flex items-center justify-center mr-3 text-wellness-green text-sm">03</span>
+                        How We Protect Your Data
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            We take reasonable precautions to protect your personal information:
+                        </p>
+                        <ul class="space-y-2 text-medium-gray">
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sunrise-gold mt-2 mr-3 flex-shrink-0"></span>Your contact information is stored securely and accessed only by authorized staff.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sunrise-gold mt-2 mr-3 flex-shrink-0"></span>We do not sell, trade, or rent your personal information to third parties.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sunrise-gold mt-2 mr-3 flex-shrink-0"></span>Health information shared with instructors is kept confidential and used solely for your safety.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sunrise-gold mt-2 mr-3 flex-shrink-0"></span>We use secure communication channels for all inquiries and bookings.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Third-Party Services -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-sky-blue/10 flex items-center justify-center mr-3 text-sky-blue text-sm">04</span>
+                        Third-Party Services
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            Our website uses third-party services to enhance your experience:
+                        </p>
+                        <ul class="space-y-2 text-medium-gray">
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-wellness-green mt-2 mr-3 flex-shrink-0"></span><span class="font-semibold text-dark-charcoal">WhatsApp:</span> We use WhatsApp for class bookings and communication. Your messages are subject to WhatsApp's Privacy Policy.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-wellness-green mt-2 mr-3 flex-shrink-0"></span><span class="font-semibold text-dark-charcoal">Google Maps:</span> Our location map is powered by Google Maps, subject to Google's privacy practices.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-wellness-green mt-2 mr-3 flex-shrink-0"></span><span class="font-semibold text-dark-charcoal">Social Media:</span> Links to Instagram, Facebook, and YouTube are subject to their respective privacy policies.</li>
+                        </ul>
+                        <p class="text-medium-gray leading-relaxed mt-4">
+                            We are not responsible for the privacy practices of these third-party platforms. We encourage you to review their privacy policies.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cookies -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-sunrise-gold/10 flex items-center justify-center mr-3 text-sunrise-gold text-sm">05</span>
+                        Cookies & Tracking
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed">
+                            Our website may use essential cookies to ensure proper functionality. We do not use tracking cookies for advertising or analytics purposes. You can manage cookie preferences through your browser settings.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Your Rights -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-deep-blue/10 flex items-center justify-center mr-3 text-deep-blue text-sm">06</span>
+                        Your Rights
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed mb-4">You have the right to:</p>
+                        <ul class="space-y-2 text-medium-gray">
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Access the personal information we hold about you.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Request correction of inaccurate or incomplete information.</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Request deletion of your personal data (where applicable).</li>
+                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-sky-blue mt-2 mr-3 flex-shrink-0"></span>Opt out of promotional communications at any time.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Children's Privacy -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-wellness-green/10 flex items-center justify-center mr-3 text-wellness-green text-sm">07</span>
+                        Children's Privacy
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed">
+                            We offer kids yoga classes with parental consent. We do not knowingly collect personal information from children under 13 without parental consent. If you believe we have inadvertently collected such information, please contact us immediately.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Changes to This Policy -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-sky-blue/10 flex items-center justify-center mr-3 text-sky-blue text-sm">08</span>
+                        Changes to This Policy
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed">
+                            We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="mb-10">
+                    <h2 class="font-heading text-2xl font-bold text-deep-blue mb-4 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-sunrise-gold/10 flex items-center justify-center mr-3 text-sunrise-gold text-sm">09</span>
+                        Contact Us
+                    </h2>
+                    <div class="pl-11">
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            If you have any questions about this Privacy Policy or how we handle your data, please contact us:
+                        </p>
+                        <div class="bg-soft-white rounded-2xl p-6 border border-warm-gray">
+                            <p class="font-semibold text-deep-blue mb-2">Happy Yogis Yoga Centre</p>
+                            <p class="text-medium-gray mb-1">SSM Nagar, New Perungalathur, Chennai, Tamil Nadu</p>
+                            <p class="text-medium-gray">WhatsApp: +91 99942 47450</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-charcoal text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="logo.png" alt="Happy Yogis Logo" class="w-10 h-10 rounded-full object-cover" />
+                        <span class="font-heading text-2xl font-bold">Happy Yogis</span>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Helping You Build A Healthier And Balanced Lifestyle</p>
+                </div>
+                <!-- Programs -->
+                <div>
+                    <h4 class="font-heading text-lg font-semibold mb-4">Programs</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Weight Loss Yoga</a></li>
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Meditation</a></li>
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Therapeutic Yoga</a></li>
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Online Classes</a></li>
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Personal Coaching</a></li>
+                    </ul>
+                </div>
+                <!-- About -->
+                <div>
+                    <h4 class="font-heading text-lg font-semibold mb-4">About</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Our Story</a></li>
+                        <li><a href="#about" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Trainers</a></li>
+                        <li><a href="#timings" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Timings</a></li>
+                        <li><a href="#testimonials" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Testimonials</a></li>
+                    </ul>
+                </div>
+                <!-- Support -->
+                <div>
+                    <h4 class="font-heading text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#contact" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Contact</a></li>
+                        <li><a href="#faq" class="text-white/60 hover:text-sky-blue transition-colors text-sm">FAQs</a></li>
+                        <li><a href="privacy-policy.html" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white/40 text-sm">&copy; 2026 Happy Yogis Yoga Centre. All rights reserved.</p>
+                <p class="text-white/40 text-sm mt-2 md:mt-0">SSM Nagar, New Perungalathur, Chennai</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener noreferrer" class="whatsapp-float btn-shine w-14 h-14 rounded-full bg-wellness-green flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all" aria-label="Chat on WhatsApp">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu - SMOOTH ANIMATION
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMobileMenu() {
+            mobileMenuOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+        // Close on overlay click
+        mobileMenuOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileMenuOverlay) {
+                closeMobileMenu();
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+                if (mobileMenuOverlay.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // FAQ Glassmorphism Accordion
+        function initFaqAccordion() {
+            const faqCards = document.querySelectorAll('#faq .faq-glass');
+            if (!faqCards.length) return;
+
+            faqCards.forEach((card) => {
+                const button = card.querySelector('.faq-glass-toggle');
+                button.setAttribute('aria-expanded', 'false');
+
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const isOpen = card.classList.contains('faq-open');
+
+                    // Collapse all other cards
+                    faqCards.forEach((otherCard) => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('faq-open');
+                            otherCard.querySelector('.faq-glass-toggle').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle current card
+                    if (isOpen) {
+                        card.classList.remove('faq-open');
+                        button.setAttribute('aria-expanded', 'false');
+                    } else {
+                        card.classList.add('faq-open');
+                        button.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFaqAccordion);
+        } else {
+            initFaqAccordion();
+        }
+
+    </script>
+</body>
+</html>
+</body>
+</html>

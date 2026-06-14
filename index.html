@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Yogis Yoga Centre | Yoga Classes in Chennai</title>
+    <meta name="description" content="Professional yoga classes for ladies, gents, and kids in Chennai. Online & offline sessions, therapeutic wellness programs, weight loss yoga, and meditation.">
+
+    <!-- Structured Data - LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Happy Yogis Yoga Centre",
+      "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=80",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "SSM Nagar, New Perungalathur",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-9994247450",
+      "openingHours": ["Mo-Sa 05:30-18:00"],
+      "url": "https://happyyogis.com",
+      "sameAs": [
+        "https://instagram.com/happyyogis",
+        "https://facebook.com/happyyogis",
+        "https://youtube.com/happyyogis"
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#1F4E79',
+                        'sky-blue': '#4DA8DA',
+                        'soft-white': '#F8FBFD',
+                        'warm-gray': '#E8EEF2',
+                        'sunrise-gold': '#F4B942',
+                        'wellness-green': '#74C69D',
+                        'dark-charcoal': '#1C1C1C',
+                        'medium-gray': '#5F6B76',
+                    },
+                    fontFamily: {
+                        'heading': ['Cormorant Garamond', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8FBFD; }
+        ::-webkit-scrollbar-thumb { background: #4DA8DA; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1F4E79; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(77, 168, 218, 0.3); } 50% { box-shadow: 0 0 40px rgba(77, 168, 218, 0.6); } }
+        @keyframes scrollGallery { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scrollGalleryReverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+        .animate-fade-in-up { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .hero-gradient { background: linear-gradient(135deg, rgba(31, 78, 121, 0.85) 0%, rgba(77, 168, 218, 0.7) 50%, rgba(31, 78, 121, 0.85) 100%); }
+        .blue-gradient { background: linear-gradient(135deg, #1F4E79 0%, #4DA8DA 100%); }
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(31, 78, 121, 0.2); }
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s; }
+        .btn-shine:hover::after { left: 100%; }
+        .nav-scrolled { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(31, 78, 121, 0.1); border-bottom-color: transparent; }
+        .faq-glass.active .faq-glass-answer {
+            opacity: 1;
+        }
+
+        /* Smooth Mobile Menu - FIXED */
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0);
+            visibility: hidden;
+            transition: background 0.4s ease, visibility 0.4s ease;
+        }
+        .mobile-menu-overlay.open {
+            background: rgba(0, 0, 0, 0.4);
+            visibility: visible;
+        }
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            z-index: 51;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+        }
+        .mobile-menu-overlay.open .mobile-menu-panel {
+            transform: translateX(0);
+        }
+        .mobile-menu-panel .menu-item {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.4s ease;
+        }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(6) { transition-delay: 0.35s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(7) { transition-delay: 0.4s; }
+        .mobile-menu-overlay.open .mobile-menu-panel .menu-item:nth-child(8) { transition-delay: 0.45s; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .testimonial-card { transition: all 0.3s ease; }
+        .testimonial-card:hover { transform: scale(1.02); }
+        .timing-row { transition: all 0.3s ease; }
+        .timing-row:hover { background: rgba(77, 168, 218, 0.1); transform: translateX(8px); }
+        .img-zoom { overflow: hidden; }
+        .img-zoom img { transition: transform 0.6s ease; }
+        .img-zoom:hover img { transform: scale(1.1); }
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; z-index: 50; animation: float 3s ease-in-out infinite; }
+        .star-filled { color: #F4B942; }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 100; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .parallax-bg { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+        @media (max-width: 768px) { .parallax-bg { background-attachment: scroll; } }
+        .scroll-gallery-track { display: flex; gap: 1rem; animation: scrollGallery 30s linear infinite; width: max-content; }
+        .scroll-gallery-track:hover { animation-play-state: paused; }
+        .scroll-gallery-track-reverse { display: flex; gap: 1rem; animation: scrollGalleryReverse 35s linear infinite; width: max-content; }
+        .scroll-gallery-track-reverse:hover { animation-play-state: paused; }
+        .scroll-gallery-container { overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .gallery-item { cursor: pointer; transition: all 0.3s ease; }
+        .gallery-item:hover { transform: scale(1.02); z-index: 10; }
+
+        /* CTA Button Styles */
+        .cta-primary {
+            background: linear-gradient(135deg, #1F4E79 0%, #4DA8DA 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(31, 78, 121, 0.3);
+        }
+        .cta-secondary {
+            background: white;
+            color: #1F4E79;
+            border: 2px solid #1F4E79;
+            transition: all 0.3s ease;
+        }
+        .cta-secondary:hover {
+            background: #1F4E79;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .cta-gold {
+            background: #F4B942;
+            color: #1C1C1C;
+            transition: all 0.3s ease;
+        }
+        .cta-gold:hover {
+            background: #e5a832;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(244, 185, 66, 0.3);
+        }
+        /* Glassmorphism FAQ Styles */
+        .faq-glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 24px rgba(31, 78, 121, 0.06), 0 1px 2px rgba(31, 78, 121, 0.04);
+            transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+        }
+        .faq-glass:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(31, 78, 121, 0.10), 0 2px 4px rgba(31, 78, 121, 0.06);
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(77, 168, 218, 0.3);
+        }
+        .faq-glass.faq-open {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(77, 168, 218, 0.45);
+            box-shadow: 0 16px 48px rgba(31, 78, 121, 0.12), 0 2px 6px rgba(31, 78, 121, 0.08);
+        }
+        .faq-glass-toggle {
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .faq-glass-toggle:hover {
+            background-color: rgba(77, 168, 218, 0.04);
+        }
+        .faq-glass-chevron {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-glass.faq-open .faq-glass-chevron {
+            transform: rotate(180deg);
+        }
+        .faq-glass-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease 0.1s;
+            will-change: max-height, opacity;
+        }
+        .faq-glass.faq-open .faq-glass-answer {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+    
+        
+
+        /* Mobile menu button specific */
+        .nav-hamburger-transparent i {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+</style>
+<base target="_blank">
+<base target="_blank">
+<base target="_blank">
+</head>
+<body class="font-body bg-soft-white text-dark-charcoal antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md shadow-sm border-b border-warm-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Mobile Layout: Single row -->
+            <div class="flex lg:hidden items-center h-20 relative">
+                <!-- Center: Logo + Name -->
+                <a href="#home" class="flex items-center space-x-3 group absolute left-1/2 -translate-x-1/2">
+                    <img src="logo.png" alt="Happy Yogis Logo" class="w-10 h-10 rounded-full object-cover group-hover:scale-110 transition-transform" />
+                    <div class="hidden sm:block">
+                        <span class="font-heading text-2xl font-bold text-deep-blue">Happy Yogis</span>
+                        <span class="block text-xs text-medium-gray -mt-1">Yoga Centre</span>
+                    </div>
+                </a>
+                <!-- Right: Mobile Menu Button -->
+                <div class="ml-auto">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-deep-blue hover:bg-warm-gray transition-colors" aria-label="Open menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Desktop Layout: Two rows -->
+            <div class="hidden lg:block">
+                <!-- Top Row: Logo centered, CTA on right -->
+                <div class="flex items-center justify-center h-20 relative">
+                    <a href="#home" class="flex items-center space-x-3 group">
+                        <img src="logo.png" alt="Happy Yogis Logo" class="w-10 h-10 rounded-full object-cover group-hover:scale-110 transition-transform" />
+                        <div>
+                            <span class="font-heading text-2xl font-bold text-deep-blue">Happy Yogis</span>
+                            <span class="block text-xs text-medium-gray -mt-1">Yoga Centre</span>
+                        </div>
+                    </a>
+                    <!-- CTA absolute right -->
+                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener noreferrer" class="absolute right-0 btn-shine cta-primary inline-flex items-center px-5 py-2.5 text-white text-sm font-semibold rounded-full hover:shadow-xl transition-all duration-300 whitespace-nowrap">
+                        <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>Book Free Class
+                    </a>
+                </div>
+                <!-- Bottom Row: Nav links centered -->
+                <div class="flex justify-center items-center pb-4 space-x-6 xl:space-x-8">
+                    <a href="#home" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#about" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#trainer" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Trainer<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#timings" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Timings<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#gallery" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Gallery<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                    <a href="#contact" class="text-sm font-medium text-dark-charcoal hover:text-deep-blue transition-colors relative group whitespace-nowrap">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-blue transition-all group-hover:w-full"></span></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay lg:hidden">
+        <div class="mobile-menu-panel flex flex-col h-full p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Happy Yogis Logo" class="w-10 h-10 rounded-full object-cover" />
+                    <span class="font-heading text-2xl font-bold text-deep-blue">Happy Yogis</span>
+                </div>
+                <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-warm-gray transition-colors" aria-label="Close menu"><i data-lucide="x" class="w-6 h-6 text-deep-blue"></i></button>
+            </div>
+            <div class="flex flex-col space-y-1 flex-1">
+                <a href="#home" class="menu-item text-lg font-medium text-dark-charcoal hover:text-deep-blue hover:bg-soft-white transition-colors px-4 py-3 rounded-xl mobile-link">Home</a>
+                <a href="#about" class="menu-item text-lg font-medium text-dark-charcoal hover:text-deep-blue hover:bg-soft-white transition-colors px-4 py-3 rounded-xl mobile-link">About</a>
+                <a href="#trainer" class="menu-item text-lg font-medium text-dark-charcoal hover:text-deep-blue hover:bg-soft-white transition-colors px-4 py-3 rounded-xl mobile-link">Trainer</a>
+                <a href="#specializations" class="menu-item text-lg font-medium text-dark-charcoal hover:text-deep-blue hover:bg-soft-white transition-colors px-4 py-3 rounded-xl mobile-link">Specializations</a>
+                <a href="#timings" class="menu-item text-lg font-medium text-dark-charcoal hover:text-deep-blue hover:bg-soft-white transition-colors px-4 py-3 rounded-xl mobile-link">Timings</a>
+                
+                <a href="#gallery" class="menu-item text-lg font-medium text-dark-charcoal hover:text-deep-blue hover:bg-soft-white transition-colors px-4 py-3 rounded-xl mobile-link">Gallery</a>
+                <a href="#contact" class="menu-item text-lg font-medium text-dark-charcoal hover:text-deep-blue hover:bg-soft-white transition-colors px-4 py-3 rounded-xl mobile-link">Contact</a>
+            </div>
+            <div class="mt-6 space-y-3">
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener noreferrer" class="menu-item btn-shine cta-gold w-full flex items-center justify-center px-6 py-4 text-dark-charcoal text-lg font-semibold rounded-full hover:shadow-xl transition-all mobile-link">
+                    <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i>Book Free Class Today
+                </a>
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20enquire%20about%20your%20yoga%20classes." target="_blank" rel="noopener noreferrer" class="menu-item cta-secondary w-full flex items-center justify-center px-6 py-4 text-deep-blue text-lg font-semibold rounded-full transition-all mobile-link">
+                    <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>Enquire Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=80" alt="Yoga studio with warm sunlight" class="w-full h-full object-cover" loading="eager">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        <div class="absolute top-20 left-10 w-32 h-32 rounded-full bg-sky-blue/10 animate-float hidden lg:block"></div>
+        <div class="absolute bottom-20 right-20 w-48 h-48 rounded-full bg-sunrise-gold/10 animate-float hidden lg:block" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-wellness-green/10 animate-float hidden lg:block" style="animation-delay: 2s;"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+            <div class="max-w-3xl">
+                <div class="flex flex-wrap gap-3 mb-8 animate-fade-in-up">
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30"><i data-lucide="video" class="w-3 h-3 inline mr-1"></i> Online & Offline Classes</span>
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30"><i data-lucide="users" class="w-3 h-3 inline mr-1"></i> Ladies, Gents & Kids</span>
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30"><i data-lucide="heart" class="w-3 h-3 inline mr-1"></i> Beginner Friendly</span>
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30"><i data-lucide="sparkles" class="w-3 h-3 inline mr-1"></i> Therapeutic Wellness</span>
+                </div>
+                <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in-up delay-200">
+                    Transform Your Health<span class="block text-sunrise-gold">Through Yoga</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed animate-fade-in-up delay-300">
+                    Professional yoga classes for ladies, gents, and kids with guided wellness programs focused on strength, flexibility, stress relief, and holistic healing.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-400">
+                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener noreferrer" class="btn-shine cta-gold inline-flex items-center justify-center px-8 py-4 text-dark-charcoal text-lg font-semibold rounded-full hover:shadow-2xl animate-pulse-glow">
+                        <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i>Book A Free Trial Class
+                    </a>
+                    <a href="#timings" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white text-lg font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all duration-300">
+                        <i data-lucide="clock" class="w-5 h-5 mr-2"></i>View Batch Timings
+                    </a>
+                </div>
+                <div class="mt-12 flex items-center space-x-2 text-white/80 animate-fade-in-up delay-500">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    <span class="text-sm">SSM Nagar, New Perungalathur, Chennai, Tamil Nadu</span>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#trust" class="text-white/60 hover:text-white transition-colors" aria-label="Scroll down"><i data-lucide="chevron-down" class="w-8 h-8"></i></a>
+        </div>
+    </section>
+
+    <!-- Trust Badges Section -->
+    <section id="trust" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 text-center border border-warm-gray">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl blue-gradient flex items-center justify-center"><i data-lucide="flower-2" class="w-8 h-8 text-white"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-deep-blue mb-2">Certified Guidance</h3>
+                    <p class="text-medium-gray text-sm leading-relaxed">Professional yoga instruction focused on safe and effective practice.</p>
+                </div>
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 text-center border border-warm-gray" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-wellness-green flex items-center justify-center"><i data-lucide="heart-pulse" class="w-8 h-8 text-white"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-deep-blue mb-2">Holistic Wellness</h3>
+                    <p class="text-medium-gray text-sm leading-relaxed">Programs designed for physical, mental, and emotional wellbeing.</p>
+                </div>
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 text-center border border-warm-gray" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-sunrise-gold flex items-center justify-center"><i data-lucide="medal" class="w-8 h-8 text-white"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-deep-blue mb-2">Transformation Focused</h3>
+                    <p class="text-medium-gray text-sm leading-relaxed">Structured yoga programs that support weight loss and flexibility goals.</p>
+                </div>
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 text-center border border-warm-gray" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-sky-blue flex items-center justify-center"><i data-lucide="users" class="w-8 h-8 text-white"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-deep-blue mb-2">Supportive Community</h3>
+                    <p class="text-medium-gray text-sm leading-relaxed">Practice yoga in a motivating and positive environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / About Section (Bento Grid) -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-wellness-green/10 text-wellness-green text-sm font-semibold rounded-full mb-4">Why Choose Us</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">Your Wellness Journey Starts Here</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Experience the perfect blend of traditional yoga wisdom and modern wellness science.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 border border-warm-gray">
+                    <div class="w-14 h-14 rounded-xl blue-gradient flex items-center justify-center mb-6"><i data-lucide="monitor-smartphone" class="w-7 h-7 text-white"></i></div>
+                    <h3 class="font-heading text-2xl font-semibold text-deep-blue mb-3">Online & Offline Yoga</h3>
+                    <p class="text-medium-gray leading-relaxed">Attend guided yoga sessions from the studio or join conveniently from home with our high-quality virtual classes.</p>
+                </div>
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.1s;">
+                    <div class="w-14 h-14 rounded-xl bg-wellness-green flex items-center justify-center mb-6"><i data-lucide="users" class="w-7 h-7 text-white"></i></div>
+                    <h3 class="font-heading text-2xl font-semibold text-deep-blue mb-3">Programs For All Ages</h3>
+                    <p class="text-medium-gray leading-relaxed">Dedicated yoga guidance for ladies, gents, kids, beginners, and seniors. Everyone is welcome at Happy Yogis.</p>
+                </div>
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-xl bg-sunrise-gold flex items-center justify-center mb-6"><i data-lucide="heart-pulse" class="w-7 h-7 text-white"></i></div>
+                    <h3 class="font-heading text-2xl font-semibold text-deep-blue mb-3">Therapeutic Wellness Focus</h3>
+                    <p class="text-medium-gray leading-relaxed">Yoga sessions designed to support specific health conditions and overall body balance through targeted practices.</p>
+                </div>
+                <div class="reveal card-hover bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.3s;">
+                    <div class="w-14 h-14 rounded-xl bg-sky-blue flex items-center justify-center mb-6"><i data-lucide="calendar-days" class="w-7 h-7 text-white"></i></div>
+                    <h3 class="font-heading text-2xl font-semibold text-deep-blue mb-3">Flexible Daily Batches</h3>
+                    <p class="text-medium-gray leading-relaxed">Multiple morning and evening batches suitable for different schedules. Find the perfect time for your practice.</p>
+                </div>
+                <div class="reveal md:col-span-2 lg:col-span-2 rounded-2xl overflow-hidden relative min-h-[300px] img-zoom" style="transition-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=1200&q=80" alt="Modern yoga studio with students practicing" class="w-full h-full object-cover" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-blue/90 via-deep-blue/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <div class="glass rounded-2xl p-6 max-w-lg">
+                            <h3 class="font-heading text-2xl font-bold text-deep-blue mb-2">Build Consistency. Experience Transformation.</h3>
+                            <p class="text-medium-gray text-sm leading-relaxed">Daily guided yoga practice that improves posture, strength, flexibility, confidence, and inner peace over time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Your Trainer Section -->
+    <section id="trainer" class="py-20 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-sky-blue/5 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-wellness-green/5 blur-3xl"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-sunrise-gold/10 text-sunrise-gold text-sm font-semibold rounded-full mb-4">Your Guide</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">Meet Your Trainer</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Learn from a dedicated instructor who truly cares about your wellness journey.</p>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <div class="reveal bg-soft-white rounded-3xl border border-warm-gray overflow-hidden shadow-xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                        <!-- Image Side -->
+                        <div class="relative h-80 lg:h-auto overflow-hidden">
+                            <img src="instructor.jpeg" alt="Karthika Mam - Yoga Instructor at Happy Yogis" class="w-full h-full object-cover object-top" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-deep-blue/30 to-transparent lg:bg-gradient-to-r"></div>
+                        </div>
+
+                        <!-- Content Side -->
+                        <div class="p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
+                            <div class="mb-6">
+                                <h3 class="font-heading text-3xl sm:text-4xl font-bold text-deep-blue mb-2">Karthika Mam</h3>
+                                <span class="inline-block px-3 py-1 bg-sky-blue/10 text-sky-blue text-sm font-medium rounded-full">Lead Yoga Instructor</span>
+                            </div>
+
+                            <p class="text-medium-gray leading-relaxed mb-8">
+                                With a passion for spreading joy through yoga, Karthika Mam creates a warm, motivational environment where every student feels at home. Her personalized approach ensures that whether you're a complete beginner or an advanced practitioner, you'll receive the guidance and encouragement you need.
+                            </p>
+
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-sunrise-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i data-lucide="award" class="w-5 h-5 text-sunrise-gold"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-deep-blue text-sm">Years of Experience</h4>
+                                        <p class="text-medium-gray text-sm">10 + Years of Dedicated Practice and Teaching Experience in Yoga and Wellness</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-wellness-green/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i data-lucide="heart-handshake" class="w-5 h-5 text-wellness-green"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-deep-blue text-sm">Beginner-Friendly</h4>
+                                        <p class="text-medium-gray text-sm">Specialized in beginner-friendly and adaptive yoga for all levels</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-sky-blue/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i data-lucide="brain" class="w-5 h-5 text-sky-blue"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-deep-blue text-sm">Holistic Approach</h4>
+                                        <p class="text-medium-gray text-sm">Passionate about holistic wellness and mental clarity through yoga</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20class%20with%20Karthika%20Mam." target="_blank" rel="noopener noreferrer" class="btn-shine cta-primary inline-flex items-center justify-center px-8 py-4 text-white text-base font-semibold rounded-full hover:shadow-xl transition-all w-full sm:w-auto">
+                                <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i>Book a Class with Karthika Mam
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Specializations Section -->
+    <section id="specializations" class="hidden lg:block py-20 bg-soft-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-sunrise-gold/10 text-sunrise-gold text-sm font-semibold rounded-full mb-4">What We Offer</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">Our Specializations</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Expert-led yoga programs tailored to your unique wellness needs and goals.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Beginner Yoga" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Foundation</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Beginner Yoga</h3>
+                        <p class="text-medium-gray text-sm mb-4">Foundation yoga for new students starting their wellness journey with step-by-step guidance.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Beginner%20Yoga.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.1s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80" alt="Weight Loss Yoga" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Fitness</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Weight Loss Yoga</h3>
+                        <p class="text-medium-gray text-sm mb-4">Fat reduction and metabolism-focused sessions designed for effective and sustainable results.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Weight%20Loss%20Yoga.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.2s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=600&q=80" alt="Meditation Classes" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Mindfulness</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Meditation & Pranayama</h3>
+                        <p class="text-medium-gray text-sm mb-4">Guided meditation and breathing practices for inner peace and mental clarity.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Meditation%20Classes.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.3s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=600&q=80" alt="Flexibility Training" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Mobility</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Flexibility & Mobility</h3>
+                        <p class="text-medium-gray text-sm mb-4">Improve posture and body flexibility with targeted stretching and mobility routines.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Flexibility%20Training.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.4s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=600&q=80" alt="Women Wellness Yoga" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Women's Health</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Women Wellness Yoga</h3>
+                        <p class="text-medium-gray text-sm mb-4">Specialized wellness-focused yoga for women including PCOD, thyroid, and hormonal balance.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Women%20Wellness%20Yoga.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.5s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=80" alt="Senior Citizen Yoga" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Gentle Care</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Senior Citizen Yoga</h3>
+                        <p class="text-medium-gray text-sm mb-4">Safe low-impact yoga for elders to maintain mobility, joint health, and overall wellbeing.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Senior%20Citizen%20Yoga.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.6s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?w=600&q=80" alt="Stress Relief Program" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Mental Wellness</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Stress Relief & Relaxation</h3>
+                        <p class="text-medium-gray text-sm mb-4">Relaxation-focused yoga practice for modern stress management and mental peace.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Stress%20Relief%20Program.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.7s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Corporate Wellness" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Corporate</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Corporate Wellness</h3>
+                        <p class="text-medium-gray text-sm mb-4">Wellness sessions for companies and teams to improve productivity and employee health.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Corporate%20Wellness%20Sessions.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="reveal card-hover bg-white rounded-2xl overflow-hidden border border-warm-gray" style="transition-delay: 0.8s;">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=600&q=80" alt="Kids Yoga" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-sky-blue uppercase tracking-wider">Kids</span>
+                        <h3 class="font-heading text-xl font-semibold text-deep-blue mt-1 mb-2">Kids Yoga</h3>
+                        <p class="text-medium-gray text-sm mb-4">Fun yoga sessions designed for children to build healthy habits, focus, and confidence early.</p>
+                        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20am%20interested%20in%20Kids%20Yoga.%20Please%20provide%20more%20details." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Banner -->
+            <div class="mt-16 reveal">
+                <div class="bg-deep-blue rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10">
+                        <div class="absolute top-0 left-0 w-64 h-64 rounded-full bg-white"></div>
+                        <div class="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-white"></div>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">Not Sure Which Program is Right for You?</h3>
+                        <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">Speak with our wellness experts to find the perfect yoga program tailored to your goals and lifestyle.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20consultation%20to%20find%20the%20right%20program%20for%20me." target="_blank" rel="noopener noreferrer" class="btn-shine cta-gold inline-flex items-center justify-center px-8 py-4 text-dark-charcoal text-lg font-semibold rounded-full hover:shadow-xl transition-all">
+                                <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i>Book Free Consultation
+                            </a>
+                            <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20enquire%20about%20your%20programs." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white text-lg font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all">
+                                <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Only: Quick CTA (replaces Specializations on mobile) -->
+    <section id="mobile-specializations-cta" class="lg:hidden py-16 bg-soft-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="reveal">
+                <span class="inline-block px-4 py-1 bg-sunrise-gold/10 text-sunrise-gold text-sm font-semibold rounded-full mb-4">Our Programs</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-deep-blue mb-4">Yoga Programs For Everyone</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto mb-8">We offer a wide range of yoga specializations including Beginner Yoga, Weight Loss, Meditation, Women Wellness, Senior Care, Kids Yoga, and more.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20programs." target="_blank" rel="noopener noreferrer" class="btn-shine cta-gold inline-flex items-center justify-center px-8 py-4 text-dark-charcoal text-lg font-semibold rounded-full hover:shadow-xl transition-all">
+                        <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>Explore Our Programs
+                    </a>
+                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener noreferrer" class="cta-secondary inline-flex items-center justify-center px-8 py-4 text-deep-blue text-lg font-semibold rounded-full transition-all">
+                        <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i>Book Free Trial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class Timings Section -->
+    <section id="timings" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-sky-blue/10 text-sky-blue text-sm font-semibold rounded-full mb-4">Schedule</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">Flexible Batch Timings For Everyone</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Morning and evening yoga batches designed to fit your daily routine comfortably.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-warm-gray reveal">
+                    <div class="blue-gradient px-8 py-6">
+                        <div class="flex items-center justify-between text-white">
+                            <div class="flex items-center space-x-3"><i data-lucide="clock" class="w-6 h-6"></i><span class="font-heading text-xl font-semibold">Daily Batch Schedule</span></div>
+                            <span class="text-sm bg-white/20 px-3 py-1 rounded-full">6 Batches Daily</span>
+                        </div>
+                    </div>
+                    <div class="divide-y divide-warm-gray">
+                        <div class="timing-row px-8 py-5 flex items-center justify-between cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-sky-blue/10 flex items-center justify-center"><i data-lucide="sunrise" class="w-6 h-6 text-sky-blue"></i></div>
+                                <div><span class="font-semibold text-dark-charcoal text-lg">5:30 AM - 6:15 AM</span><span class="block text-sm text-medium-gray">45 min session</span></div>
+                            </div>
+                            <span class="px-4 py-1.5 bg-sky-blue/10 text-sky-blue text-sm font-semibold rounded-full">Morning Batch</span>
+                        </div>
+                        <div class="timing-row px-8 py-5 flex items-center justify-between cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-sunrise-gold/10 flex items-center justify-center"><i data-lucide="flame" class="w-6 h-6 text-sunrise-gold"></i></div>
+                                <div><span class="font-semibold text-dark-charcoal text-lg">6:15 AM - 7:15 AM</span><span class="block text-sm text-medium-gray">60 min session</span></div>
+                            </div>
+                            <span class="px-4 py-1.5 bg-sunrise-gold/10 text-sunrise-gold text-sm font-semibold rounded-full flex items-center"><i data-lucide="star" class="w-3 h-3 mr-1"></i> Popular Batch</span>
+                        </div>
+                        <div class="timing-row px-8 py-5 flex items-center justify-between cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-wellness-green/10 flex items-center justify-center"><i data-lucide="sparkles" class="w-6 h-6 text-wellness-green"></i></div>
+                                <div><span class="font-semibold text-dark-charcoal text-lg">8:00 AM - 9:00 AM</span><span class="block text-sm text-medium-gray">60 min session</span></div>
+                            </div>
+                            <span class="px-4 py-1.5 bg-wellness-green/10 text-wellness-green text-sm font-semibold rounded-full flex items-center"><i data-lucide="badge-plus" class="w-3 h-3 mr-1"></i> NEW Batch</span>
+                        </div>
+                        <div class="timing-row px-8 py-5 flex items-center justify-between cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-deep-blue/10 flex items-center justify-center"><i data-lucide="venus" class="w-6 h-6 text-deep-blue"></i></div>
+                                <div><span class="font-semibold text-dark-charcoal text-lg">10:00 AM - 11:00 AM</span><span class="block text-sm text-medium-gray">60 min session</span></div>
+                            </div>
+                            <span class="px-4 py-1.5 bg-deep-blue/10 text-deep-blue text-sm font-semibold rounded-full">Ladies Only</span>
+                        </div>
+                        <div class="timing-row px-8 py-5 flex items-center justify-between cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-sky-blue/10 flex items-center justify-center"><i data-lucide="sunset" class="w-6 h-6 text-sky-blue"></i></div>
+                                <div><span class="font-semibold text-dark-charcoal text-lg">5:00 PM - 6:00 PM</span><span class="block text-sm text-medium-gray">60 min session</span></div>
+                            </div>
+                            <span class="px-4 py-1.5 bg-sky-blue/10 text-sky-blue text-sm font-semibold rounded-full">Evening Batch</span>
+                        </div>
+                    </div>
+                    <div class="px-8 py-5 bg-soft-white border-t border-warm-gray">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-medium-gray flex items-center"><i data-lucide="info" class="w-4 h-4 mr-2 text-sky-blue"></i>All batches include warm-up, asanas, pranayama & relaxation</span>
+                            <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20enroll%20in%20a%20batch." target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors flex items-center">Enroll Now <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA for Timings -->
+            <div class="mt-12 text-center reveal">
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener noreferrer" class="btn-shine cta-primary inline-flex items-center px-8 py-4 text-white text-lg font-semibold rounded-full hover:shadow-xl transition-all">
+                    <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i>Book Your Free Trial Class Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Wellness Focus Section -->
+    <section id="special-focus" class="hidden lg:block py-20 bg-deep-blue relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 rounded-full bg-white"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-white/10 text-sunrise-gold text-sm font-semibold rounded-full mb-4">Specialized Care</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-white mb-4">Special Focus Programs</h2>
+                <p class="text-white/70 text-lg max-w-2xl mx-auto">Specialized yoga guidance designed to improve recovery, body balance, hormonal wellness, and long-term health.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 card-hover hover:bg-white/20">
+                    <div class="w-12 h-12 rounded-xl bg-sunrise-gold/20 flex items-center justify-center mb-4"><i data-lucide="heart" class="w-6 h-6 text-sunrise-gold"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-white mb-2">PCOD Support</h3>
+                    <p class="text-white/70 text-sm leading-relaxed">Yoga practices focused on hormonal balance and wellness support for women dealing with PCOD.</p>
+                </div>
+                <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 card-hover hover:bg-white/20" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-xl bg-wellness-green/20 flex items-center justify-center mb-4"><i data-lucide="bone" class="w-6 h-6 text-wellness-green"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-white mb-2">Knee Pain Relief</h3>
+                    <p class="text-white/70 text-sm leading-relaxed">Low-impact therapeutic yoga for mobility and joint support, perfect for knee pain management.</p>
+                </div>
+                <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 card-hover hover:bg-white/20" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-xl bg-sky-blue/20 flex items-center justify-center mb-4"><i data-lucide="activity" class="w-6 h-6 text-sky-blue"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-white mb-2">Thyroid Wellness</h3>
+                    <p class="text-white/70 text-sm leading-relaxed">Breathing and movement practices designed to support thyroid health and metabolism.</p>
+                </div>
+                <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 card-hover hover:bg-white/20" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-xl bg-sunrise-gold/20 flex items-center justify-center mb-4"><i data-lucide="baby" class="w-6 h-6 text-sunrise-gold"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-white mb-2">Pregnancy Care</h3>
+                    <p class="text-white/70 text-sm leading-relaxed">Safe prenatal yoga sessions guided carefully for mothers-to-be at all stages of pregnancy.</p>
+                </div>
+                <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 card-hover hover:bg-white/20" style="transition-delay: 0.4s;">
+                    <div class="w-12 h-12 rounded-xl bg-wellness-green/20 flex items-center justify-center mb-4"><i data-lucide="align-center" class="w-6 h-6 text-wellness-green"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-white mb-2">Spine Health</h3>
+                    <p class="text-white/70 text-sm leading-relaxed">Posture correction and spine-strengthening yoga routines for modern lifestyle challenges.</p>
+                </div>
+                <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 card-hover hover:bg-white/20" style="transition-delay: 0.5s;">
+                    <div class="w-12 h-12 rounded-xl bg-sky-blue/20 flex items-center justify-center mb-4"><i data-lucide="brain" class="w-6 h-6 text-sky-blue"></i></div>
+                    <h3 class="font-heading text-xl font-semibold text-white mb-2">Stress & Mental Wellness</h3>
+                    <p class="text-white/70 text-sm leading-relaxed">Breathing, meditation, and mindful yoga practices for calmness, clarity, and mental peace.</p>
+                </div>
+            </div>
+
+            <!-- CTA for Special Programs -->
+            <div class="mt-12 text-center reveal">
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20have%20a%20specific%20health%20condition%20and%20would%20like%20to%20know%20if%20you%20can%20help." target="_blank" rel="noopener noreferrer" class="btn-shine cta-gold inline-flex items-center px-8 py-4 text-dark-charcoal text-lg font-semibold rounded-full hover:shadow-xl transition-all">
+                    <i data-lucide="heart-pulse" class="w-5 h-5 mr-2"></i>Get Personalized Health Guidance
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Only: Special Focus CTA -->
+    <section id="mobile-special-focus-cta" class="lg:hidden py-16 bg-deep-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="reveal">
+                <span class="inline-block px-4 py-1 bg-white/10 text-sunrise-gold text-sm font-semibold rounded-full mb-4">Specialized Care</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">Health-Focused Yoga</h2>
+                <p class="text-white/70 text-lg max-w-2xl mx-auto mb-8">We provide specialized yoga for PCOD, thyroid, knee pain, pregnancy care, spine health, and stress relief.</p>
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20have%20a%20specific%20health%20condition%20and%20would%20like%20to%20know%20if%20you%20can%20help." target="_blank" rel="noopener noreferrer" class="btn-shine cta-gold inline-flex items-center justify-center px-8 py-4 text-dark-charcoal text-lg font-semibold rounded-full hover:shadow-xl transition-all">
+                    <i data-lucide="heart-pulse" class="w-5 h-5 mr-2"></i>Get Health Guidance
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-wellness-green/10 text-wellness-green text-sm font-semibold rounded-full mb-4">Success Stories</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">What Our Members Say</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Real experiences from our yoga community across Chennai.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"The classes helped me reduce stress and improve flexibility within a few weeks."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-deep-blue flex items-center justify-center text-white font-bold">PS</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Priya S</h4>
+                            <span class="text-sm text-medium-gray">Chennai · Stress Relief Yoga</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"Very professional guidance and a positive environment for beginners."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-sky-blue flex items-center justify-center text-white font-bold">KR</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Karthik R</h4>
+                            <span class="text-sm text-medium-gray">Tambaram · Beginner Yoga</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"I experienced noticeable weight loss and improved stamina after joining."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-wellness-green flex items-center justify-center text-white font-bold">DM</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Deepa M</h4>
+                            <span class="text-sm text-medium-gray">Perungalathur · Weight Loss Yoga</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.3s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"The instructors are patient, motivating, and genuinely supportive."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-sunrise-gold flex items-center justify-center text-white font-bold">AV</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Anitha V</h4>
+                            <span class="text-sm text-medium-gray">Chennai · Women Wellness Yoga</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.4s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"The breathing exercises improved my focus and sleep quality significantly."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-deep-blue flex items-center justify-center text-white font-bold">RK</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Ramesh K</h4>
+                            <span class="text-sm text-medium-gray">Guduvanchery · Meditation Classes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.5s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"Clean environment, organized sessions, and excellent teaching quality."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-sky-blue flex items-center justify-center text-white font-bold">HP</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Harini P</h4>
+                            <span class="text-sm text-medium-gray">Chromepet · Flexibility Training</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.6s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"The online classes are easy to follow and highly effective."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-wellness-green flex items-center justify-center text-white font-bold">SR</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Sowmya R</h4>
+                            <span class="text-sm text-medium-gray">Chennai · Online Yoga Classes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.7s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"I feel more energetic and mentally balanced after joining Happy Yogis."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-sunrise-gold flex items-center justify-center text-white font-bold">VA</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Vignesh A</h4>
+                            <span class="text-sm text-medium-gray">Tambaram · Daily Yoga Program</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card bg-soft-white rounded-2xl p-8 border border-warm-gray" style="transition-delay: 0.8s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-sunrise-gold">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-medium-gray leading-relaxed mb-6">"One of the best yoga centers for consistency and motivation."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-deep-blue flex items-center justify-center text-white font-bold">LN</div>
+                        <div>
+                            <h4 class="font-semibold text-dark-charcoal">Lakshmi N</h4>
+                            <span class="text-sm text-medium-gray">Perungalathur · Transformation Program</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA for Testimonials -->
+            <div class="mt-12 text-center reveal">
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20start%20my%20yoga%20journey." target="_blank" rel="noopener noreferrer" class="btn-shine cta-primary inline-flex items-center px-8 py-4 text-white text-lg font-semibold rounded-full hover:shadow-xl transition-all">
+                    <i data-lucide="sparkles" class="w-5 h-5 mr-2"></i>Join Our Happy Community
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 relative overflow-hidden">
+        <!-- Glassmorphism background layers -->
+        <div class="absolute inset-0 bg-gradient-to-br from-deep-blue/5 via-sky-blue/5 to-wellness-green/5"></div>
+        <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-sky-blue/10 blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-wellness-green/10 blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-sunrise-gold/5 blur-3xl"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-sky-blue/10 text-sky-blue text-sm font-semibold rounded-full mb-4">FAQ</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">Frequently Asked Questions</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Everything you need to know before beginning your wellness journey with Happy Yogis.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.05s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">What makes Happy Yogis different from other yoga centres?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Happy Yogis focuses on a power yoga approach combined with flexibility training, stability improvement, stress relief, and overall wellness. We focus on building a supportive wellness community rather than forcing rigid discipline.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.1s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">Who can join the yoga classes?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Our classes are suitable for beginners, working professionals, women, seniors, kids, and therapy-focused individuals looking to improve their health and wellbeing.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.15s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">What are the most common reasons people join Happy Yogis?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Most students join to improve their mental wellness, physical health, flexibility, stress management, and overall lifestyle balance.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.2s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">How soon can students notice results?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Many students begin noticing improvements in their mental wellbeing and overall energy levels within the second week of regular practice.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.25s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">What type of yoga teaching style do you follow?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">We focus on gentle, therapeutic, and guided yoga practices that help students improve comfortably at their own pace.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.3s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">Do students need to bring yoga mats?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Students can safely keep their yoga mats at the centre itself for convenience.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.35s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">Do you provide any yoga uniforms or dress code?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Yes. Every student will be provided with a set of Happy Yogis t-shirts to wear during classes.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.4s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">Will beginners feel pressured during classes?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Not at all. Students are never forced into yoga practices. We focus on creating a comfortable and encouraging community environment for everyone.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.45s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">Can anyone join the classes?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Yes. Every abled body is welcome to join the classes and begin their wellness journey with us.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.5s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">What kind of transformations have students experienced?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">Students have experienced improved flexibility, better physical health, reduced stress, and stronger mental wellbeing through consistent practice.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.55s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">How can I enroll in the classes?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">You can easily enroll by contacting the Happy Yogis WhatsApp number provided on the website.</div>
+                    </div>
+                </div>
+
+                <div class="faq-glass reveal rounded-2xl overflow-hidden" style="transition-delay: 0.6s;">
+                    <button type="button" class="faq-glass-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4">
+                        <span class="font-semibold text-deep-blue text-base sm:text-lg">Do you focus only on physical fitness?</span>
+                        <span class="faq-glass-chevron flex-shrink-0 w-9 h-9 rounded-full bg-sky-blue/10 flex items-center justify-center text-sky-blue transition-transform duration-300">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </span>
+                    </button>
+                    <div class="faq-glass-answer">
+                        <div class="px-6 pb-5 text-medium-gray leading-relaxed">No. Along with physical fitness, we strongly focus on mental wellness, stress relief, emotional balance, and overall holistic wellbeing.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-soft-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-sky-blue/10 text-sky-blue text-sm font-semibold rounded-full mb-4">Gallery</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">Our Yoga Studio</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Glimpses of our peaceful studio space, classes, and community events.</p>
+            </div>
+
+            <!-- Self-scrolling Gallery Row 1 -->
+            <div class="scroll-gallery-container mb-6 reveal">
+                <div class="scroll-gallery-track">
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima1.jpeg" alt="Yoga studio interior" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima10.jpeg" alt="Group yoga class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima3.jpeg" alt="Meditation session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima4.jpeg" alt="Stretching exercise" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima5.jpeg" alt="Fitness yoga" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima6.jpeg" alt="Kids yoga class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima8.jpeg" alt="Yoga studio interior" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima7.jpeg" alt="Group yoga class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima6.jpeg" alt="Meditation session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima9.jpeg" alt="Stretching exercise" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima5.jpeg" alt="Fitness yoga" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima10.jpeg" alt="Kids yoga class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Self-scrolling Gallery Row 2 (Reverse) -->
+            <div class="scroll-gallery-container reveal">
+                <div class="scroll-gallery-track-reverse">
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima1.jpeg" alt="Personal coaching session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima8.jpeg" alt="Women wellness class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima3.jpeg" alt="Online yoga setup" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima4.jpeg" alt="Corporate wellness session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima5.jpeg" alt="Senior yoga class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima10.jpeg" alt="Stress relief session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima1.jpeg" alt="Personal coaching session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima8.jpeg" alt="Women wellness class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima3.jpeg" alt="Online yoga setup" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima4.jpeg" alt="Corporate wellness session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima5.jpeg" alt="Senior yoga class" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="gallery-item flex-shrink-0 w-72 h-48 rounded-2xl overflow-hidden" onclick="openLightbox(this)">
+                        <img src="ima10.jpeg" alt="Stress relief session" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1 bg-sky-blue/10 text-sky-blue text-sm font-semibold rounded-full mb-4">Get In Touch</span>
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold text-deep-blue mb-4">Contact Us</h2>
+                <p class="text-medium-gray text-lg max-w-2xl mx-auto">Ready to start your wellness journey? Reach out to us for inquiries, class bookings, or a free consultation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="reveal card-hover bg-soft-white rounded-3xl p-8 border border-warm-gray text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl blue-gradient flex items-center justify-center">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold text-deep-blue mb-3">Visit Our Studio</h3>
+                    <p class="text-medium-gray text-sm leading-relaxed mb-4">SSM Nagar, New Perungalathur, Chennai, Tamil Nadu 600063</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=SSM+Nagar+New+Perungalathur+Chennai" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">
+                        <i data-lucide="navigation" class="w-4 h-4 mr-2"></i>Get Directions
+                    </a>
+                </div>
+
+                <div class="reveal card-hover bg-soft-white rounded-3xl p-8 border border-warm-gray text-center" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-wellness-green flex items-center justify-center">
+                        <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold text-deep-blue mb-3">Call Us</h3>
+                    <p class="text-medium-gray text-sm leading-relaxed mb-4">Speak directly with our team for immediate assistance and class bookings.</p>
+                    <a href="tel:+919994247450" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">
+                        <i data-lucide="phone" class="w-4 h-4 mr-2"></i>+91 99942 47450
+                    </a>
+                </div>
+
+                <div class="reveal card-hover bg-soft-white rounded-3xl p-8 border border-warm-gray text-center" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-sunrise-gold flex items-center justify-center">
+                        <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold text-deep-blue mb-3">WhatsApp Us</h3>
+                    <p class="text-medium-gray text-sm leading-relaxed mb-4">Quick responses for inquiries, class bookings, and wellness consultations.</p>
+                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-deep-blue hover:text-sky-blue transition-colors">
+                        <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat on WhatsApp
+                    </a>
+                </div>
+
+                
+            </div>
+
+            <!-- WhatsApp CTA Banner -->
+            <div class="reveal">
+                <div class="bg-gradient-to-r from-deep-blue to-sky-blue rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10">
+                        <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-white"></div>
+                        <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-white"></div>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Begin Your Yoga Journey?</h3>
+                        <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">Connect with us on WhatsApp for instant responses, free trial bookings, and personalized program recommendations.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener noreferrer" class="btn-shine cta-gold inline-flex items-center justify-center px-8 py-4 text-dark-charcoal text-lg font-semibold rounded-full hover:shadow-xl transition-all">
+                                <i data-lucide="calendar-check" class="w-5 h-5 mr-2"></i>Book A Free Class Today
+                            </a>
+                            <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20enquire%20about%20your%20yoga%20classes." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white text-lg font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all">
+                                <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Working Hours & Social -->
+            <div class="mt-12 max-w-3xl mx-auto reveal">
+                <div class="bg-soft-white rounded-3xl p-8 border border-warm-gray text-center">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-sky-blue/10 flex items-center justify-center">
+                                <i data-lucide="clock" class="w-5 h-5 text-sky-blue"></i>
+                            </div>
+                            <div class="text-left">
+                                <span class="block text-sm font-semibold text-dark-charcoal">Working Hours</span>
+                                <span class="block text-xs text-medium-gray">Monday - Friday: 5:30 AM - 6:00 PM</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-sky-blue/10 flex items-center justify-center">
+                                <i data-lucide="calendar-x" class="w-5 h-5 text-sky-blue"></i>
+                            </div>
+                            <div class="text-left">
+                                <span class="block text-sm font-semibold text-dark-charcoal">Closed On</span>
+                                <span class="block text-xs text-medium-gray">Saturday, Sundays & Public Holidays</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-12 md:py-20 bg-secondary-muted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground" style="font-family: 'Playfair Display', serif;">
+                Find Us on Google Maps
+            </h2>
+            <div class="rounded-xl overflow-hidden shadow-lg h-96 bg-muted">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8938068!2d80.1131382!3d12.8938068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5259bd7762301f%3A0xbb838e445fc93a!2sHAPPY%20YOGIS%20YOGA%20CENTRE!5e0!3m2!1sen!2sin!4v1234567890"
+                    width="100%"
+                    height="100%"
+                    style="border: 0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Happy Yogis Yoga Centre Location"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-charcoal text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="logo.png" alt="Happy Yogis Logo" class="w-10 h-10 rounded-full object-cover" />
+                        <span class="font-heading text-2xl font-bold">Happy Yogis</span>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Helping You Build A Healthier And Balanced Lifestyle</p>
+                </div>
+                <!-- Programs -->
+                <div>
+                    <h4 class="font-heading text-lg font-semibold mb-4">Programs</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Weight Loss Yoga</a></li>
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Meditation</a></li>
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Therapeutic Yoga</a></li>
+                        <li><a href="#specializations" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Online Classes</a></li>                    
+                    </ul>
+                </div>
+                <!-- About -->                                                                 
+                <div>
+                    <h4 class="font-heading text-lg font-semibold mb-4">About</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Our Story</a></li>
+                        <li><a href="#about" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Trainers</a></li>
+                        <li><a href="#timings" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Timings</a></li>
+                        <li><a href="#testimonials" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Testimonials</a></li>
+                    </ul>
+                </div>
+                <!-- Support -->
+                <div>
+                    <h4 class="font-heading text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#contact" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Contact</a></li>
+                        <li><a href="#faq" class="text-white/60 hover:text-sky-blue transition-colors text-sm">FAQs</a></li>
+                        <li><a href="privacy-policy.html" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="text-white/60 hover:text-sky-blue transition-colors text-sm">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white/40 text-sm">&copy; 2026 Happy Yogis Yoga Centre. All rights reserved.</p>
+                <p class="text-white/40 text-sm mt-2 md:mt-0">SSM Nagar, New Perungalathur, Chennai</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis!%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener noreferrer" class="whatsapp-float btn-shine w-14 h-14 rounded-full bg-wellness-green flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all" aria-label="Chat on WhatsApp">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors" aria-label="Close lightbox">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Gallery image" class="max-w-[90vw] max-h-[90vh] object-contain rounded-2xl">
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu - SMOOTH ANIMATION
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMobileMenu() {
+            mobileMenuOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+        // Close on overlay click
+        mobileMenuOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileMenuOverlay) {
+                closeMobileMenu();
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+                if (mobileMenuOverlay.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // FAQ Glassmorphism Accordion
+        function initFaqAccordion() {
+            const faqCards = document.querySelectorAll('#faq .faq-glass');
+            if (!faqCards.length) return;
+
+            faqCards.forEach((card) => {
+                const button = card.querySelector('.faq-glass-toggle');
+                button.setAttribute('aria-expanded', 'false');
+
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const isOpen = card.classList.contains('faq-open');
+
+                    // Collapse all other cards
+                    faqCards.forEach((otherCard) => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('faq-open');
+                            otherCard.querySelector('.faq-glass-toggle').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle current card
+                    if (isOpen) {
+                        card.classList.remove('faq-open');
+                        button.setAttribute('aria-expanded', 'false');
+                    } else {
+                        card.classList.add('faq-open');
+                        button.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFaqAccordion);
+        } else {
+            initFaqAccordion();
+        }
+
+    </script>
+</body>
+</html>
