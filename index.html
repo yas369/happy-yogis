@@ -87,6 +87,10 @@
 
         .nav-scrolled { box-shadow: 0 1px 0 rgba(31,78,121,.12); }
 
+        /* FAQ chevron points up while the answer is open */
+        .faq-item .faq-q svg { transition: transform .3s ease; }
+        .faq-item.is-open .faq-q svg { transform: rotate(180deg); }
+
         .mobile-menu { position: fixed; inset: 0; z-index: 60; visibility: hidden; }
         .mobile-menu::before {
             content: ''; position: absolute; inset: 0; background: rgba(17,24,32,0);
@@ -552,7 +556,7 @@
       <nav id="navbar" aria-label="Primary" class="fixed top-0 inset-x-0 z-50 bg-soft-white/95 backdrop-blur-sm border-b border-line transition-shadow">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="flex items-center justify-between h-[4.5rem]">
-                <a href="#" class="flex items-center gap-3 shrink-0">
+                <a href="#main" class="flex items-center gap-3 shrink-0">
                     <picture><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="" width="40" height="45" class="w-9 h-auto"></picture>
                     <span class="leading-tight">
                         <span class="block font-heading text-xl font-semibold text-deep-blue">Happy Yogis</span>
@@ -1344,12 +1348,32 @@
             });
         }, { passive: true });
 
+        // Keep Tab inside an open dialog. Both the menu and the lightbox are
+        // aria-modal, so focus escaping to the page behind them is a real bug.
+        function focusables(root) {
+            return Array.prototype.filter.call(
+                root.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+                function (el) { return el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement; });
+        }
+        function makeTrap(root) {
+            return function (e) {
+                if (e.key !== 'Tab') return;
+                var f = focusables(root);
+                if (!f.length) return;
+                var first = f[0], last = f[f.length - 1];
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            };
+        }
+
         var menu = document.getElementById('mobile-menu');
         var btn = document.getElementById('menu-btn');
         var close = document.getElementById('menu-close');
         var last = null;
+        var menuTrap = makeTrap(menu);
         function openMenu() {
             last = document.activeElement;
+            document.addEventListener('keydown', menuTrap, true);
             menu.classList.add('open');
             menu.setAttribute('aria-hidden', 'false');
             btn.setAttribute('aria-expanded', 'true');
@@ -1357,6 +1381,7 @@
             close.focus();
         }
         function closeMenu() {
+            document.removeEventListener('keydown', menuTrap, true);
             menu.classList.remove('open');
             menu.setAttribute('aria-hidden', 'true');
             btn.setAttribute('aria-expanded', 'false');
@@ -1390,6 +1415,7 @@
             var lbClose = document.getElementById('lightbox-close');
             var BLANK = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
             var opener = null;
+            var lbTrap = makeTrap(lb);
             // serve the full-size WebP where the browser supports it
             var webpOK = (function () {
                 var c = document.createElement('canvas');
@@ -1397,6 +1423,7 @@
             })();
             function openLb(t) {
                 opener = t;
+                document.addEventListener('keydown', lbTrap, true);
                 lbImg.src = t.getAttribute(webpOK ? 'data-full-webp' : 'data-full');
                 lbImg.alt = t.getAttribute('data-caption') || '';
                 lb.classList.add('active');
@@ -1405,6 +1432,7 @@
                 lbClose.focus();
             }
             function closeLb() {
+                document.removeEventListener('keydown', lbTrap, true);
                 lb.classList.remove('active');
                 lb.setAttribute('aria-hidden', 'true');
                 lbImg.src = BLANK;
