@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://happyyogis.com/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://happyyogis.com/og-image.jpg</image:loc>
+      <image:title>Happy Yogis Yoga Centre, New Perungalathur, Chennai</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.com/ima4.jpeg</image:loc>
+      <image:title>Morning yoga batch at Happy Yogis, New Perungalathur</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.com/ima6.jpeg</image:loc>
+      <image:title>Students of all ages in tree pose at Happy Yogis</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.com/ima2.jpeg</image:loc>
+      <image:title>Ladies yoga batch in Perungalathur, Chennai</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.com/yoga-classes-perungalathur.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://happyyogis.com/ima1.jpeg</image:loc>
+      <image:title>Yoga class in Perungalathur, Chennai</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.com/yoga-classes-tambaram.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://happyyogis.com/ima6.jpeg</image:loc>
+      <image:title>Yoga classes near Tambaram, Chennai</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.com/privacy-policy.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.com/terms-of-service.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+</urlset>
