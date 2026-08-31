@@ -111,12 +111,6 @@
                     z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
         .lightbox.active { display: flex; }
 
-        .rail { display: flex; gap: .75rem; overflow-x: auto; scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch; padding-bottom: .5rem; }
-        .rail > * { scroll-snap-align: start; flex: 0 0 auto; }
-        .rail::-webkit-scrollbar { height: 6px; }
-        .rail::-webkit-scrollbar-thumb { background: #cfd8df; border-radius: 3px; }
-
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after {

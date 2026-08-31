@@ -112,12 +112,6 @@
                     z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
         .lightbox.active { display: flex; }
 
-        .rail { display: flex; gap: .75rem; overflow-x: auto; scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch; padding-bottom: .5rem; }
-        .rail > * { scroll-snap-align: start; flex: 0 0 auto; }
-        .rail::-webkit-scrollbar { height: 6px; }
-        .rail::-webkit-scrollbar-thumb { background: #cfd8df; border-radius: 3px; }
-
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after {
@@ -141,7 +135,7 @@
       "@id": "https://happyyogis.com/#business",
       "name": "Happy Yogis Yoga Centre",
       "alternateName": "Happy Yogis",
-      "description": "Yoga centre in New Perungalathur, Chennai teaching morning and evening batches for ladies, gents and children, with online classes and health-focused programmes. Serves Perungalathur, Tambaram, Chromepet, Selaiyur, Vandalur and Guduvanchery.",
+      "description": "A single yoga centre in SSM Nagar, New Perungalathur, Chennai, teaching morning and evening batches for ladies, gents and children, plus online classes and health-focused practice. Students travel in from Perungalathur, Tambaram, Selaiyur, Chromepet, Vandalur and Guduvanchery.",
       "url": "https://happyyogis.com/",
       "logo": {
         "@type": "ImageObject",
@@ -918,45 +912,49 @@
     <section id="areas" aria-labelledby="areas-h" class="py-20 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="max-w-2xl reveal">
-                <p class="kicker">Where our students come from</p>
-                <h2 id="areas-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Areas we teach</h2>
+                <p class="kicker">Where to find us</p>
+                <h2 id="areas-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">One centre, in New Perungalathur</h2>
                 <p class="mt-4 text-ink/75 leading-relaxed">
-                    The centre is in New Perungalathur, just off the GST Road stretch between
-                    Tambaram and Vandalur, and close to Perungalathur railway station. Most
-                    students travel in from the surrounding neighbourhoods.
+                    Happy Yogis has a single centre &mdash; in SSM Nagar, New Perungalathur,
+                    just off the GST Road stretch between Tambaram and Vandalur, close to
+                    Perungalathur railway station. There are no other branches. Students
+                    travel in from the neighbourhoods nearby, and we also teach online for
+                    anyone who cannot make it in person.
                 </p>
             </div>
-            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
-                <a href="yoga-classes-perungalathur.html" class="group block p-6 bg-white border border-line rounded-md hover:border-deep-blue transition-colors">
-                    <h3 class="font-heading text-2xl text-deep-blue">Perungalathur</h3>
-                    <p class="mt-2 text-sm text-muted leading-relaxed">New Perungalathur, Old Perungalathur and SSM Nagar &mdash; the centre is in the neighbourhood.</p>
-                    <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-deep-blue">
-                        Yoga classes in Perungalathur <svg class="lucide w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+
+            <div class="mt-10 reveal">
+                <h3 class="kicker">Students travel in from</h3>
+                <ul class="mt-4 flex flex-wrap gap-2">
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">New Perungalathur</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Old Perungalathur</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">SSM Nagar</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">East Tambaram</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">West Tambaram</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Selaiyur</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Chromepet</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Vandalur</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Urapakkam</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Guduvanchery</li>
+                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Medavakkam</li>
+                </ul>
+            </div>
+
+            <div class="mt-12 grid sm:grid-cols-2 gap-5 reveal">
+                <a href="yoga-classes-perungalathur.html" class="group flex items-start justify-between gap-6 p-6 bg-white border border-line rounded-md hover:border-deep-blue transition-colors">
+                    <span>
+                        <span class="block font-heading text-2xl text-deep-blue">Yoga classes in Perungalathur</span>
+                        <span class="mt-1.5 block text-sm text-muted leading-relaxed">The centre is in this neighbourhood &mdash; where we are and what a class looks like.</span>
                     </span>
+                    <span class="shrink-0 mt-2 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></span>
                 </a>
-                <a href="yoga-classes-tambaram.html" class="group block p-6 bg-white border border-line rounded-md hover:border-deep-blue transition-colors">
-                    <h3 class="font-heading text-2xl text-deep-blue">Tambaram</h3>
-                    <p class="mt-2 text-sm text-muted leading-relaxed">East, West and Selaiyur. A short run down GST Road from Tambaram.</p>
-                    <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-deep-blue">
-                        Yoga classes in Tambaram <svg class="lucide w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+                <a href="yoga-classes-tambaram.html" class="group flex items-start justify-between gap-6 p-6 bg-white border border-line rounded-md hover:border-deep-blue transition-colors">
+                    <span>
+                        <span class="block font-heading text-2xl text-deep-blue">Yoga classes near Tambaram</span>
+                        <span class="mt-1.5 block text-sm text-muted leading-relaxed">Getting here from Tambaram and Selaiyur, and which batch suits the commute.</span>
                     </span>
+                    <span class="shrink-0 mt-2 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></span>
                 </a>
-                <div class="p-6 bg-white border border-line rounded-md">
-                    <h3 class="font-heading text-2xl text-ink">Chromepet</h3>
-                    <p class="mt-2 text-sm text-muted leading-relaxed">Students travel down from Chromepet for the morning batches.</p>
-                </div>
-                <div class="p-6 bg-white border border-line rounded-md">
-                    <h3 class="font-heading text-2xl text-ink">Guduvanchery</h3>
-                    <p class="mt-2 text-sm text-muted leading-relaxed">Up the GST Road / suburban line from Guduvanchery and Urapakkam.</p>
-                </div>
-                <div class="p-6 bg-white border border-line rounded-md">
-                    <h3 class="font-heading text-2xl text-ink">Vandalur</h3>
-                    <p class="mt-2 text-sm text-muted leading-relaxed">Close by on the same stretch of GST Road.</p>
-                </div>
-                <div class="p-6 bg-white border border-line rounded-md">
-                    <h3 class="font-heading text-2xl text-ink">Medavakkam &amp; Selaiyur</h3>
-                    <p class="mt-2 text-sm text-muted leading-relaxed">Across from the Tambaram side for the evening batch.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -967,98 +965,98 @@
             <div class="max-w-2xl reveal">
                 <p class="kicker">Inside the centre</p>
                 <h2 id="gallery-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Photos from our classes</h2>
-                <p class="mt-4 text-ink/75 leading-relaxed">Real batches, real students. Tap any photo to see it larger.</p>
+                <p class="mt-4 text-ink/75 leading-relaxed">Real batches, real students, all photographed at the centre. Tap any photo to see it larger.</p>
             </div>
         </div>
         <div class="mt-10 max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="rail reveal">
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+            <div class="columns-2 lg:columns-3 xl:columns-4 gap-4 reveal">
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima4.jpeg" data-full-webp="ima4.webp" data-caption="Morning batch seated in meditation at the New Perungalathur centre">
                     <picture>
                         <source srcset="ima4-sm.webp" type="image/webp">
-                        <img src="ima4-sm.jpg" width="640" height="427" alt="Morning batch seated in meditation at the New Perungalathur centre"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima4-sm.jpg" width="640" height="480" alt="Morning batch seated in meditation at the New Perungalathur centre"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima6.jpeg" data-full-webp="ima6.webp" data-caption="Students of all ages holding tree pose together">
                     <picture>
                         <source srcset="ima6-sm.webp" type="image/webp">
-                        <img src="ima6-sm.jpg" width="640" height="427" alt="Students of all ages holding tree pose together"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima6-sm.jpg" width="640" height="480" alt="Students of all ages holding tree pose together"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima1.jpeg" data-full-webp="ima1.webp" data-caption="Adults and children seated in meditation facing their teacher at Happy Yogis">
                     <picture>
                         <source srcset="ima1-sm.webp" type="image/webp">
-                        <img src="ima1-sm.jpg" width="640" height="427" alt="Adults and children seated in meditation facing their teacher at Happy Yogis"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima1-sm.jpg" width="640" height="360" alt="Adults and children seated in meditation facing their teacher at Happy Yogis"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima2.jpeg" data-full-webp="ima2.webp" data-caption="Ladies batch practising cobra pose during a women's yoga class">
                     <picture>
                         <source srcset="ima2-sm.webp" type="image/webp">
-                        <img src="ima2-sm.jpg" width="640" height="427" alt="Ladies batch practising cobra pose during a women's yoga class"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima2-sm.jpg" width="640" height="853" alt="Ladies batch practising cobra pose during a women's yoga class"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima8.jpeg" data-full-webp="ima8.webp" data-caption="Children practising cobra pose in a class at Happy Yogis">
                     <picture>
                         <source srcset="ima8-sm.webp" type="image/webp">
-                        <img src="ima8-sm.jpg" width="640" height="427" alt="Children practising cobra pose in a class at Happy Yogis"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima8-sm.jpg" width="640" height="853" alt="Children practising cobra pose in a class at Happy Yogis"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima5.jpeg" data-full-webp="ima5.webp" data-caption="Teacher leading a seated breathing practice for a mixed-age group">
                     <picture>
                         <source srcset="ima5-sm.webp" type="image/webp">
-                        <img src="ima5-sm.jpg" width="640" height="427" alt="Teacher leading a seated breathing practice for a mixed-age group"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima5-sm.jpg" width="640" height="480" alt="Teacher leading a seated breathing practice for a mixed-age group"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima10.jpeg" data-full-webp="ima10.webp" data-caption="Ladies batch moving through cat-cow stretches">
                     <picture>
                         <source srcset="ima10-sm.webp" type="image/webp">
-                        <img src="ima10-sm.jpg" width="640" height="427" alt="Ladies batch moving through cat-cow stretches"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima10-sm.jpg" width="640" height="853" alt="Ladies batch moving through cat-cow stretches"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima3.jpeg" data-full-webp="ima3.webp" data-caption="Student holding downward dog on a mat at the centre">
                     <picture>
                         <source srcset="ima3-sm.webp" type="image/webp">
-                        <img src="ima3-sm.jpg" width="640" height="427" alt="Student holding downward dog on a mat at the centre"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima3-sm.jpg" width="640" height="853" alt="Student holding downward dog on a mat at the centre"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima7.jpeg" data-full-webp="ima7.webp" data-caption="Yoga teacher demonstrating a seated spinal twist">
                     <picture>
                         <source srcset="ima7-sm.webp" type="image/webp">
-                        <img src="ima7-sm.jpg" width="640" height="427" alt="Yoga teacher demonstrating a seated spinal twist"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima7-sm.jpg" width="640" height="540" alt="Yoga teacher demonstrating a seated spinal twist"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group relative w-[15rem] sm:w-[17rem] aspect-[4/3] overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
                         data-full="ima9.jpeg" data-full-webp="ima9.webp" data-caption="Members of the Happy Yogis community together at a centre event">
                     <picture>
                         <source srcset="ima9-sm.webp" type="image/webp">
-                        <img src="ima9-sm.jpg" width="640" height="427" alt="Members of the Happy Yogis community together at a centre event"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        <img src="ima9-sm.jpg" width="640" height="288" alt="Members of the Happy Yogis community together at a centre event"
+                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
