@@ -1,0 +1,11 @@
+# robots.txt for Happy Yogis Yoga Centre
+# https://happyyogis.com/
+
+User-agent: *
+Allow: /
+
+# Nothing on this site is private or paginated, so the whole site is
+# crawlable. Keep this file permissive - a stray Disallow here is the
+# single fastest way to remove the site from Google.
+
+Sitemap: https://happyyogis.com/sitemap.xml
