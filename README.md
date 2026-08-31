@@ -14,11 +14,23 @@ robots.txt / sitemap.xml          Crawl rules + sitemap
 site.webmanifest                  Add-to-home-screen metadata
 ```
 
+## One centre
+
+Happy Yogis has a **single centre**, in SSM Nagar, New Perungalathur. There are
+no branches. The homepage "Areas we teach" section, both location pages and the
+LocalBusiness schema all say this explicitly — please keep it that way, because
+a page that reads like a Tambaram branch is both misleading to visitors and a
+Google Business Profile problem (you can only verify a location you occupy).
+
+The neighbourhood list on the homepage is what it says it is: where students
+travel in from, not places we teach.
+
 ## Location pages
 
 The two location pages exist to rank for "yoga centre in Tambaram" and "yoga
-classes in Perungalathur". Google only ranks these if they say genuinely
-different things, so **do not** duplicate one to make a third area page.
+classes in Perungalathur" while being clear there is one centre. Google only
+ranks these if they say genuinely different things, so **do not** duplicate one
+to make a third area page.
 
 If you add another area (Chromepet, Selaiyur, Guduvanchery…), give it:
 
@@ -68,7 +80,14 @@ Each source photo has four committed derivatives:
 | File | Purpose | Size |
 | --- | --- | --- |
 | `imaN.jpeg` / `imaN.webp` | full size — hero, section images, lightbox | ≤ 1280px long edge |
-| `imaN-sm.jpg` / `imaN-sm.webp` | gallery tiles | 640×427 |
+| `imaN-sm.jpg` / `imaN-sm.webp` | gallery tiles | 640px wide, natural height |
+
+The gallery thumbnails keep each photo's **natural aspect ratio** — the source
+photos range from a 0.75 portrait to a 2.22 panorama, and an earlier version
+cropped them all to one fixed tile, which cut people out of frame. The gallery
+is a CSS multi-column masonry, so mixed shapes flow without any cropping. When
+you add a photo, generate the thumbnail at 640px wide and let the height fall
+where it does — do not crop it to match the others.
 
 Pages use `<picture>` so WebP is served where supported, every `<img>` carries
 `width`/`height` to prevent layout shift, and the lightbox feature-detects WebP
