@@ -37,7 +37,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -48,17 +48,19 @@
                     paper:'#FBFAF8', line:'#E4E0D9', muted:'#6B7480'
                 },
                 fontFamily: {
-                    display:['Instrument Sans','system-ui','sans-serif'],
+                    display:['Instrument Serif','Georgia','Times New Roman','serif'],
                     body:['Inter','system-ui','sans-serif']
                 },
                 fontSize: {
-                    'd1':['2.75rem',{lineHeight:'1.05',letterSpacing:'-.025em'}],
-                    'd2':['1.75rem',{lineHeight:'1.15',letterSpacing:'-.02em'}],
-                    'd3':['1.25rem',{lineHeight:'1.3',letterSpacing:'-.01em'}]
+                    'd1':['clamp(2.75rem,6.4vw,4.5rem)',{lineHeight:'1.02',letterSpacing:'-.015em'}],
+                    'd2':['clamp(1.875rem,3.4vw,2.75rem)',{lineHeight:'1.08',letterSpacing:'-.01em'}],
+                    'd3':['clamp(1.25rem,1.7vw,1.5rem)',{lineHeight:'1.25',letterSpacing:'-.005em'}],
+                    'd4':['1.125rem',{lineHeight:'1.35'}]
                 }
             } }
         };
     </script>
+    <script>document.documentElement.className += ' js';</script>
     <style>
         :root {
             --ink:#16202b; --blue:#1F4E79; --sky:#4DA8DA;
@@ -67,7 +69,28 @@
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
 
-        h1, h2, h3, .display { font-family: 'Instrument Sans', system-ui, sans-serif; letter-spacing: -.022em; }
+        h1, h2, h3, .display {
+            font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+            font-weight: 400;
+        }
+        /* Instrument Serif is a text-figure face; headings read better with the
+           quotes and dashes hung slightly and the line box tightened. */
+        .display-i { font-style: italic; }
+        .lede { font-size: clamp(1.0625rem, 1.35vw, 1.1875rem); line-height: 1.65; }
+
+        /* ---- scroll reveals: opacity and transform only, once per element,
+           and gated on .js so nothing is ever hidden without a script ---- */
+        .js .reveal { opacity:0; transform:translateY(14px); }
+        .js .reveal.is-in {
+            opacity:1; transform:none;
+            transition:opacity .7s cubic-bezier(.2,.7,.3,1) var(--d, 0ms),
+                       transform .7s cubic-bezier(.2,.7,.3,1) var(--d, 0ms);
+        }
+
+        /* ---- bento: a 1px grid gap over the rule colour draws the dividers,
+           so the tiles separate without a single shadow ---- */
+        .bento { display:grid; gap:1px; background:var(--line);
+                 border:1px solid var(--line); border-radius:.25rem; overflow:hidden; }
 
         svg.i { fill: none; stroke: currentColor; stroke-width: 1.75;
                 stroke-linecap: round; stroke-linejoin: round; }
@@ -118,12 +141,48 @@
         .filter[aria-pressed="true"] { background:var(--ink); color:#fff; border-color:var(--ink); }
         .class-item[hidden] { display:none; }
 
+        /* ---- reviews carousel ----
+           A scroll-snap track, so it swipes natively on touch and scrolls with
+           the arrow keys when focused; the controls below it are added by CSS
+           only once the script has wired them up (.is-ready), so nothing dead
+           is shown if the script never runs. */
+        .rev-track { display:flex; align-items:stretch; overflow-x:auto; overflow-y:hidden;
+                     scroll-snap-type:x mandatory; scroll-behavior:smooth;
+                     scrollbar-width:none; -webkit-overflow-scrolling:touch;
+                     transition:height .3s ease; }
+        /* The script sets the track's height to the cards actually in view, so
+           one long quote does not leave a dead band under every short one; this
+           class lets it measure their natural heights first. */
+        .rev-track.rev-measure { align-items:flex-start; height:auto; }
+        .rev-track::-webkit-scrollbar { display:none; }
+        .rev-slide { flex:0 0 100%; scroll-snap-align:start; }
+        @media (min-width:768px) { .rev-slide { flex-basis:50%; } }
+        .rev-controls { display:none; flex-wrap:wrap; row-gap:.75rem; }
+        .rev.is-ready .rev-controls { display:flex; }
+        .rev-btn { display:inline-flex; align-items:center; justify-content:center;
+                   width:2.25rem; height:2.25rem; border:1px solid var(--line);
+                   border-radius:9999px; background:var(--paper); color:var(--ink);
+                   transition:border-color .2s ease, background .2s ease; }
+        .rev-btn:hover { border-color:var(--ink); background:#fff; }
+        .rev-dot { display:inline-flex; align-items:center; justify-content:center;
+                   width:1.25rem; height:1.5rem; }
+        .rev-dot::before { content:''; width:.4375rem; height:.4375rem; border-radius:9999px;
+                           background:var(--line); transition:background .2s ease; }
+        .rev-dot:hover::before { background:var(--muted); }
+        .rev-dot[aria-current="true"]::before { background:var(--blue); }
+
+        /* ---- FAQ: the plus turns into a cross while its answer is open.
+           .is-open was being toggled with nothing listening to it. ---- */
+        .faq-q svg { transition:transform .3s cubic-bezier(.4,0,.2,1); }
+        .faq-item.is-open .faq-q svg { transform:rotate(45deg); }
+
         .lightbox { display:none; position:fixed; inset:0; background:rgba(12,16,20,.94);
                     z-index:100; align-items:center; justify-content:center; padding:1.5rem; }
         .lightbox.active { display:flex; }
 
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior:auto; }
+            html, .rev-track { scroll-behavior:auto; }
+            .js .reveal { opacity:1 !important; transform:none !important; }
             *, *::before, *::after {
                 animation-duration:.01ms !important; animation-iteration-count:1 !important;
                 transition-duration:.01ms !important;
@@ -442,7 +501,7 @@
                 <a href="index.html" class="flex items-center gap-2.5 shrink-0">
                     <picture><source srcset="logo.webp" type="image/webp">
                     <img src="logo.png" alt="" width="40" height="45" class="w-8 h-auto"></picture>
-                    <span class="display text-[17px] font-semibold text-ink">Happy Yogis</span>
+                    <span class="display text-[17px] text-ink">Happy Yogis</span>
                 </a>
 
                 <div class="hidden lg:flex items-center gap-7">
@@ -472,7 +531,7 @@
     <div id="mobile-menu" class="mobile-menu lg:hidden" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
         <div class="mobile-menu-panel">
             <div class="flex items-center justify-between px-6 h-16 border-b border-line">
-                <span class="display text-[17px] font-semibold text-ink">Menu</span>
+                <span class="display text-[17px] text-ink">Menu</span>
                 <button id="menu-close" type="button" aria-label="Close menu" class="-mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
             </div>
             <nav aria-label="Mobile" class="flex-1 overflow-y-auto">
@@ -505,7 +564,7 @@
     </nav>
 
     <article class="max-w-3xl mx-auto px-5 sm:px-8 py-10 lg:py-14">
-        <h1 class="text-d1 font-semibold text-ink">Yoga classes in Perungalathur</h1>
+        <h1 class="text-d1 text-ink">Yoga classes in Perungalathur</h1>
         <p class="mt-5 text-[17px] leading-relaxed text-ink/80">Happy Yogis is a yoga centre in SSM Nagar, New Perungalathur, and this is our only location &mdash; so if you live in Perungalathur, this is your local class rather than a drive across the city.</p>
         <div class="mt-7 flex flex-wrap gap-3">
             <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20am%20from%20Perungalathur%20and%20would%20like%20to%20book%20a%203-day%20trial."
@@ -524,17 +583,17 @@
                  class="w-full rounded mt-10" loading="lazy" decoding="async">
         </picture>
 
-            <h2 class="text-d2 font-semibold text-ink mt-12">Where we are</h2>
+            <h2 class="text-d2 text-ink mt-12">Where we are</h2>
             <p class="mt-3 text-[16px] leading-relaxed text-ink/80">The centre is in SSM Nagar, New Perungalathur, close to Perungalathur railway station and just off the GST Road stretch running down towards Vandalur. Students walk or ride in from New Perungalathur, Old Perungalathur and the surrounding streets.</p>
-            <h2 class="text-d2 font-semibold text-ink mt-12">Who practises here</h2>
+            <h2 class="text-d2 text-ink mt-12">Who practises here</h2>
             <p class="mt-3 text-[16px] leading-relaxed text-ink/80">The batches are genuinely mixed &mdash; school children before class, people fitting a session in before the commute, women in the mid-morning ladies batch, and retired members who come for the joint mobility and the company. Most people who join have never done yoga before.</p>
-            <h2 class="text-d2 font-semibold text-ink mt-12">What a class looks like</h2>
+            <h2 class="text-d2 text-ink mt-12">What a class looks like</h2>
             <p class="mt-3 text-[16px] leading-relaxed text-ink/80">Every batch runs warm-up, asanas, pranayama and a closing relaxation. Sessions are 45 or 60 minutes. If you are working around a knee problem, back pain, PCOD or a thyroid condition, tell the teacher beforehand and the practice is adjusted for you.</p>
-            <h2 class="text-d2 font-semibold text-ink mt-12">Getting started</h2>
+            <h2 class="text-d2 text-ink mt-12">Getting started</h2>
             <p class="mt-3 text-[16px] leading-relaxed text-ink/80">Message us on WhatsApp and we will book you a 3-day trial in whichever batch has room. Bring a mat if you have one; once you join you can leave it at the centre.</p>
 
         <aside class="mt-14 border border-line rounded p-6 sm:p-8 bg-sand">
-            <h2 class="text-d3 font-semibold text-ink">Batch timings</h2>
+            <h2 class="text-d3 text-ink">Batch timings</h2>
             <p class="mt-1.5 text-[13.5px] text-muted">Monday to Friday, 5:30 am &ndash; 7:00 pm. Closed Saturday, Sunday and public holidays.</p>
             <ul class="mt-5">
                     <li class="flex justify-between gap-4 border-t border-line py-3"><span class="text-ink">5:30 &ndash; 6:15 am</span><span class="text-muted">Everyone</span></li>
@@ -572,7 +631,7 @@
                     <div class="flex items-center gap-2.5 mb-4">
                         <picture><source srcset="logo.webp" type="image/webp">
                         <img src="logo.png" alt="" width="40" height="45" class="w-8 h-auto"></picture>
-                        <span class="display text-[17px] font-semibold text-white">Happy Yogis Yoga Centre</span>
+                        <span class="display text-[17px] text-white">Happy Yogis Yoga Centre</span>
                     </div>
                     <address class="not-italic text-sm leading-relaxed">
                         SSM Nagar, New Perungalathur<br>Chennai, Tamil Nadu 600063<br>
@@ -852,6 +911,232 @@
                 item.classList.toggle('is-open', !open);
             });
         });
+
+        /* ---------- reviews carousel ----------
+           Auto-advances one screenful at a time. It holds while the pointer is
+           over it, while focus is inside it and while the tab is hidden; it
+           stops for good as soon as the visitor takes control (arrows, dots,
+           a swipe, a key) or presses pause, and it never starts at all under
+           prefers-reduced-motion. aria-live flips to polite whenever it is not
+           rotating, so a screen reader hears changes the visitor caused. */
+        var rev = document.querySelector('[data-rev]');
+        if (rev) {
+            var track = rev.querySelector('.rev-track');
+            var dotBox = rev.querySelector('[data-rev-dots]');
+            var toggle = rev.querySelector('[data-rev-toggle]');
+            var pauseIcon = rev.querySelector('[data-rev-pause]');
+            var playIcon = rev.querySelector('[data-rev-play]');
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+            var timer = null, dots = [], pages = 1;
+            var held = { user: false, hover: false, focus: false, hidden: false };
+
+            var slides = [].slice.call(track.querySelectorAll('.rev-slide'));
+            var clones = [];
+
+            function pageOf(x) { return Math.round(x / track.clientWidth); }
+            function perPage() {
+                return Math.max(1, Math.round(track.clientWidth / slides[0].offsetWidth));
+            }
+            /* The page after the last one is a copy of the first, so the loop
+               runs forwards off the end and is reset to the real first page
+               once the scroll settles - on identical pixels, so the seam never
+               shows. Copies are hidden from assistive tech. */
+            function makeClones() {
+                clones.forEach(function (c) { track.removeChild(c); });
+                clones = [];
+                for (var i = 0; i < Math.min(perPage(), slides.length); i++) {
+                    var c = slides[i].cloneNode(true);
+                    c.setAttribute('aria-hidden', 'true');
+                    c.removeAttribute('role');
+                    c.removeAttribute('aria-roledescription');
+                    c.removeAttribute('aria-label');
+                    track.appendChild(c);
+                    clones.push(c);
+                }
+            }
+            /* Height of the cards on one page, measured at their natural size. */
+            function fit(p) {
+                if (p === undefined) p = curPage();
+                if (p >= pages) p = 0;
+                var per = perPage(), h = 0;
+                track.classList.add('rev-measure');
+                for (var i = p * per; i < Math.min(slides.length, p * per + per); i++) {
+                    h = Math.max(h, slides[i].firstElementChild.offsetHeight);
+                }
+                track.classList.remove('rev-measure');
+                track.style.height = h ? h + 'px' : '';
+            }
+            function onClonePage() { return track.scrollLeft >= pages * track.clientWidth - 2; }
+            function curPage() {
+                var p = pageOf(track.scrollLeft);
+                return p >= pages ? 0 : Math.max(0, p);
+            }
+            /* scrollTo({behavior:'auto'}) defers to the CSS scroll-behavior,
+               which is smooth here - so the seam reset would animate all the
+               way back through every page. Drop the CSS rule for the one
+               assignment instead; that jumps in every browser. */
+            function jumpTo(px) {
+                var prev = track.style.scrollBehavior;
+                track.style.scrollBehavior = 'auto';
+                track.scrollLeft = px;
+                track.style.scrollBehavior = prev;
+            }
+            function goTo(p, jump) {
+                p = Math.max(0, Math.min(pages - 1, p));
+                if (onClonePage() && p === 0) jump = true;   /* already there */
+                fit(p);
+                if (jump) jumpTo(p * track.clientWidth);
+                else track.scrollTo({ left: p * track.clientWidth, behavior: 'smooth' });
+            }
+            function mark() {
+                var cur = curPage();
+                dots.forEach(function (d, i) {
+                    if (i === cur) d.setAttribute('aria-current', 'true');
+                    else d.removeAttribute('aria-current');
+                });
+            }
+            function buildDots() {
+                track.style.height = '';
+                makeClones();
+                pages = Math.max(1, Math.ceil(slides.length / perPage()));
+                dotBox.textContent = '';
+                dots = [];
+                for (var i = 0; i < pages; i++) {
+                    dots.push(dotBox.appendChild(makeDot(i)));
+                }
+                mark();
+            }
+            function makeDot(i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'rev-dot';
+                b.setAttribute('aria-label', 'Reviews ' + (i + 1) + ' of ' + pages);
+                b.addEventListener('click', function () { takeOver(); goTo(i); });
+                return b;
+            }
+            function sync() {
+                var run = !reduce.matches && !held.user && !held.hover &&
+                          !held.focus && !held.hidden;
+                if (run && !timer) timer = setInterval(advance, 6000);
+                if (!run && timer) { clearInterval(timer); timer = null; }
+                track.setAttribute('aria-live', timer ? 'off' : 'polite');
+                if (pauseIcon) pauseIcon.hidden = held.user;
+                if (playIcon) playIcon.hidden = !held.user;
+                toggle.setAttribute('aria-label',
+                    held.user ? 'Play the reviews' : 'Pause the reviews');
+            }
+            function advance() {
+                var p = pageOf(track.scrollLeft);
+                if (p + 1 < pages) { goTo(p + 1); return; }
+                fit(0);                                   /* the copy shows page one */
+                track.scrollTo({ left: pages * track.clientWidth, behavior: 'smooth' });
+            }
+            /* The visitor is driving now - stop rotating and leave it stopped. */
+            function takeOver() { held.user = true; sync(); }
+            function step(d) {
+                takeOver();
+                var p = curPage() + d;
+                goTo(p < 0 ? pages - 1 : p >= pages ? 0 : p);
+            }
+
+            rev.querySelector('[data-rev-prev]').addEventListener('click', function () { step(-1); });
+            rev.querySelector('[data-rev-next]').addEventListener('click', function () { step(1); });
+            toggle.addEventListener('click', function () { held.user = !held.user; sync(); });
+
+            rev.addEventListener('pointerenter', function (e) {
+                if (e.pointerType === 'mouse') { held.hover = true; sync(); }
+            });
+            rev.addEventListener('pointerleave', function (e) {
+                if (e.pointerType === 'mouse') { held.hover = false; sync(); }
+            });
+            /* Focus inside the carousel holds it - except on the play/pause
+               button itself, which focuses on click and would otherwise make
+               pressing play do nothing. */
+            rev.addEventListener('focusin', function (e) {
+                held.focus = !toggle.contains(e.target); sync();
+            });
+            rev.addEventListener('focusout', function () {
+                if (!rev.contains(document.activeElement)) { held.focus = false; sync(); }
+            });
+            document.addEventListener('visibilitychange', function () {
+                held.hidden = document.hidden; sync();
+            });
+            track.addEventListener('touchstart', takeOver, { passive: true });
+            track.addEventListener('wheel', takeOver, { passive: true });
+            track.addEventListener('keydown', function (e) {
+                if (e.key.indexOf('Arrow') === 0 || e.key === 'Home' || e.key === 'End') takeOver();
+            });
+
+            var scrolling = false, settled;
+            track.addEventListener('scroll', function () {
+                /* Off-screen cards can overflow the height we set; the track
+                   clips them, but keep it pinned so nothing scrolls into view
+                   vertically. */
+                if (track.scrollTop) track.scrollTop = 0;
+                clearTimeout(settled);
+                settled = setTimeout(function () {
+                    if (onClonePage()) jumpTo(0);
+                    fit();
+                }, 80);                                  /* after a swipe */
+                if (scrolling) return;
+                scrolling = true;
+                requestAnimationFrame(function () { mark(); scrolling = false; });
+            }, { passive: true });
+
+            var resized;
+            window.addEventListener('resize', function () {
+                clearTimeout(resized);
+                resized = setTimeout(function () { buildDots(); fit(); }, 150);
+            });
+            if (reduce.addEventListener) reduce.addEventListener('change', function () {
+                toggle.hidden = reduce.matches; sync();
+            });
+
+            /* The quotes reflow whenever the stylesheet or the webfonts land -
+               Tailwind compiles in the browser here, so that is after this
+               script runs - and every reflow changes the height the track
+               should be. Watch the quotes themselves: their height depends on
+               the text and the width, never on the height we set, so this
+               cannot feed back on itself. */
+            function remeasure() { buildDots(); fit(); }
+            if (window.ResizeObserver) {
+                var settleFit;
+                var ro = new ResizeObserver(function () {
+                    clearTimeout(settleFit);
+                    settleFit = setTimeout(remeasure, 60);
+                });
+                slides.forEach(function (sl) { ro.observe(sl.querySelector('blockquote')); });
+            }
+            window.addEventListener('load', remeasure);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+
+            buildDots();
+            fit(0);
+            toggle.hidden = reduce.matches;
+            rev.classList.add('is-ready');
+            sync();
+        }
+
+        /* ---------- scroll reveals ----------
+           One fade per element, the first time it comes into view, then the
+           observer lets it go. Opacity and transform only, so it stays on the
+           compositor; anything above the fold is deliberately not marked. */
+        var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+        if (reveals.length) {
+            var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (still || !window.IntersectionObserver) {
+                reveals.forEach(function (el) { el.classList.add('is-in'); });
+            } else {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        e.target.classList.add('is-in');
+                        io.unobserve(e.target);
+                    });
+                }, { rootMargin: '0px 0px -8% 0px', threshold: .05 });
+                reveals.forEach(function (el) { io.observe(el); });
+            }
+        }
 
         /* ---------- in-page links clear the fixed nav ---------- */
         document.querySelectorAll('a[href^="#"]').forEach(function (a) {
