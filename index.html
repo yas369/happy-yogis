@@ -109,6 +109,12 @@
         .batch-detail { overflow:hidden; }
         .batch-now { color:var(--blue); font-weight:600; }
 
+        /* ---- hero fact line: flows and wraps, no boxes ----
+           No separator glyph between items: the line wraps at every width the
+           hero column takes, and a ::before dot orphans at the start of each
+           wrapped line. Spacing carries the separation instead. */
+        .factline { display:flex; flex-wrap:wrap; column-gap:2rem; row-gap:.55rem; }
+
         /* ---- class filter ---- */
         .filter[aria-pressed="true"] { background:var(--ink); color:#fff; border-color:var(--ink); }
         .class-item[hidden] { display:none; }
@@ -631,24 +637,12 @@
                         </a>
                     </div>
 
-                    <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 border-t border-line">
-                        <div class="py-4 pr-4">
-                            <dt class="text-[13px] text-muted">Batches a day</dt>
-                            <dd class="display text-[22px] font-medium text-ink mt-0.5">Four</dd>
-                        </div>
-                        <div class="py-4 px-4 border-l border-line">
-                            <dt class="text-[13px] text-muted">Days</dt>
-                            <dd class="display text-[22px] font-medium text-ink mt-0.5">Mon&ndash;Fri</dd>
-                        </div>
-                        <div class="py-4 pr-4 sm:px-4 border-t sm:border-t-0 sm:border-l border-line">
-                            <dt class="text-[13px] text-muted whitespace-nowrap">Women only</dt>
-                            <dd class="display text-[22px] font-medium text-ink mt-0.5">10 am</dd>
-                        </div>
-                        <div class="py-4 px-4 border-t sm:border-t-0 border-l border-line">
-                            <dt class="text-[13px] text-muted">Also taught</dt>
-                            <dd class="display text-[22px] font-medium text-ink mt-0.5">Online</dd>
-                        </div>
-                    </dl>
+                    <ul class="factline mt-11 pt-5 border-t border-line text-[15px] text-ink/80">
+                        <li>Four classes a day</li>
+                        <li>Monday to Friday</li>
+                        <li>Special care for women</li>
+                        <li>Online and in person</li>
+                    </ul>
                 </div>
 
                 <!-- schedule panel -->
