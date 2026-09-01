@@ -119,12 +119,42 @@
         .filter[aria-pressed="true"] { background:var(--ink); color:#fff; border-color:var(--ink); }
         .class-item[hidden] { display:none; }
 
+        /* ---- reviews carousel ----
+           A scroll-snap track, so it swipes natively on touch and scrolls with
+           the arrow keys when focused; the controls below it are added by CSS
+           only once the script has wired them up (.is-ready), so nothing dead
+           is shown if the script never runs. */
+        .rev-track { display:flex; align-items:stretch; overflow-x:auto; overflow-y:hidden;
+                     scroll-snap-type:x mandatory; scroll-behavior:smooth;
+                     scrollbar-width:none; -webkit-overflow-scrolling:touch;
+                     transition:height .3s ease; }
+        /* The script sets the track's height to the cards actually in view, so
+           one long quote does not leave a dead band under every short one; this
+           class lets it measure their natural heights first. */
+        .rev-track.rev-measure { align-items:flex-start; height:auto; }
+        .rev-track::-webkit-scrollbar { display:none; }
+        .rev-slide { flex:0 0 100%; scroll-snap-align:start; }
+        @media (min-width:768px) { .rev-slide { flex-basis:50%; } }
+        .rev-controls { display:none; flex-wrap:wrap; row-gap:.75rem; }
+        .rev.is-ready .rev-controls { display:flex; }
+        .rev-btn { display:inline-flex; align-items:center; justify-content:center;
+                   width:2.25rem; height:2.25rem; border:1px solid var(--line);
+                   border-radius:9999px; background:var(--paper); color:var(--ink);
+                   transition:border-color .2s ease, background .2s ease; }
+        .rev-btn:hover { border-color:var(--ink); background:#fff; }
+        .rev-dot { display:inline-flex; align-items:center; justify-content:center;
+                   width:1.25rem; height:1.5rem; }
+        .rev-dot::before { content:''; width:.4375rem; height:.4375rem; border-radius:9999px;
+                           background:var(--line); transition:background .2s ease; }
+        .rev-dot:hover::before { background:var(--muted); }
+        .rev-dot[aria-current="true"]::before { background:var(--blue); }
+
         .lightbox { display:none; position:fixed; inset:0; background:rgba(12,16,20,.94);
                     z-index:100; align-items:center; justify-content:center; padding:1.5rem; }
         .lightbox.active { display:flex; }
 
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior:auto; }
+            html, .rev-track { scroll-behavior:auto; }
             *, *::before, *::after {
                 animation-duration:.01ms !important; animation-iteration-count:1 !important;
                 transition-duration:.01ms !important;
@@ -540,9 +570,13 @@
 <!-- Inline Lucide icon sprite (lucide-static v1.38.0, ISC). Replaces the former runtime unpkg.com/lucide script. -->
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
 <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></symbol>
+<symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></symbol>
 <symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" /></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="3" width="5" height="18" rx="1" /><rect x="5" y="3" width="5" height="18" rx="1" /></symbol>
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></symbol>
 <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="M12 5v14" /></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
 </svg>
@@ -1027,79 +1061,118 @@
                 <a href="https://www.google.com/maps/search/?api=1&query=HAPPY+YOGIS+YOGA+CENTRE" target="_blank" rel="noopener"
                    class="font-medium text-blue hover:underline">Read them all on Google <svg class="i w-4 h-4 inline-block align-[-2px]" aria-hidden="true" focusable="false"><use href="#i-arrow-up-right"></use></svg></a>
             </p>
-            <div class="mt-8 sm:columns-2 lg:columns-3 gap-4">
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Very good place to kick start if we are new to Yoga for people like me (Am 36). Advance level Yoga is also taught here based on our performance and flexibility. Our Yoga Teacher (Karthika Mam) is very polite and concentrates on each and every students carefully. Capturing their strengths and weak areas and correcting them appropriately. No age limits here and it feels very energetic to perform along with the little kids.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Karthik Chennai <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I really enjoy taking yoga classes with Karthika mam. She is friendly and explains everything clearly. The classes are very peaceful and help me feel calm , relaxed and more focused. Karthika mam teaches not just poses , but also how to breathe properly and stay mindful. I feel stronger, more flexible, and more positive after each class. Karthika mam makes everyone feel welcome, no matter their level. I am very thankful for the guidance and support I receive in every session. I have personally benefitted a lot in my health and sleeping pattern. I highly recommend KARTHIKA MAM to anyone who wants to improve their body and mind through YOGA&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Anitha Jaganathan <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I had a wonderful experience at this yoga class. The instructor is very kind, patient, and explains each posture clearly, which makes it easy for beginners to follow. The sessions are well-structured and help improve both physical health and mental peace. I can already feel positive changes in my flexibility and overall well-being. The environment is calm, supportive, and motivating. I highly recommend this class to anyone looking to start or continue their yoga journey.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Naga Lakshmi <span aria-hidden="true">&middot;</span> <span class="text-muted/80">5 months ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I&rsquo;ve been a student here since 2023, and it has truly helped me maintain my health much better. The classes are well-structured, and the guidance is clear and supportive. I&rsquo;ve noticed improvements in my flexibility, strength, and overall well-being. It has become an important part of my routine, and I highly recommend it to anyone looking to improve their health through yoga&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Vasumathi Bindumadhavan <span aria-hidden="true">&middot;</span> <span class="text-muted/80">5 months ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I had a great refreshing days while I was practicing with her. It helped me a lot to recover my body and mental health. My daughter who is 9 year old says.attending yoga classes made her body flexible and gives her peace of mind.she is very happy to learn from Karthika mam as she makes their classes fun and adventurous I highly recommend Happy yogis&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Nithya Ramesh <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Very good yoga coaching center, Karthika ma&rsquo;am is very friendly and sweet. My flexibility has improved a lot from these classes.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Sailakshmi U <span aria-hidden="true">&middot;</span> <span class="text-muted/80">5 months ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I am attending this class for more than a year. Really helps in maintaining fitness. Mam use to shuffle and make modifications to keep it non monotonous.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Ramanathan Ramu <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Good Structured Yoga training . It is a good experience to do yoga along with school kids who have very good flexibility&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Bharat KVK <span aria-hidden="true">&middot;</span> <span class="text-muted/80">11 months ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Wonderful training given by yoga teacher karthiga Mam. Much appreciated when she is correcting our poses when we are doing incorrectly. Keep rocking Mam.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Sanjay Edgar <span aria-hidden="true">&middot;</span> <span class="text-muted/80">11 months ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Really nice. Thank you for such a refreshing class. I always leave feeling better than when I arrived. I feel stronger and more balanced every time I practice with you. You are a friendly person. Thanks a ton mam.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Arockia Thenmozhi <span aria-hidden="true">&middot;</span> <span class="text-muted/80">4 months ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I absolutely loved my yoga class experience! The instructor was calm, kind, friendly and guided us with care. Every session left me feeling refreshed and focused. Highly recommend it for anyone looking to improve mind and body.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Venkatesh Sampath <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
-                    </figcaption>
-                </figure>
-                <figure class="break-inside-avoid mb-4 border border-line rounded p-6 bg-paper">
-                    <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;The class is truly inspiring! The instructor's guidance is clear, calm, and motivating. Every session feels like a reset—calm, focused, and refreshing.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-[13px] text-muted">
-                        Ramya KA <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
-                    </figcaption>
-                </figure>
+            <div class="rev mt-8" data-rev>
+                <div class="rev-track" role="region" aria-label="Student reviews" aria-live="off" tabindex="0">
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 1 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Very good place to kick start if we are new to Yoga for people like me (Am 36). Advance level Yoga is also taught here based on our performance and flexibility. Our Yoga Teacher (Karthika Mam) is very polite and concentrates on each and every students carefully. Capturing their strengths and weak areas and correcting them appropriately. No age limits here and it feels very energetic to perform along with the little kids.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Karthik Chennai <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 2 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I really enjoy taking yoga classes with Karthika mam. She is friendly and explains everything clearly. The classes are very peaceful and help me feel calm , relaxed and more focused. Karthika mam teaches not just poses , but also how to breathe properly and stay mindful. I feel stronger, more flexible, and more positive after each class. Karthika mam makes everyone feel welcome, no matter their level. I am very thankful for the guidance and support I receive in every session. I have personally benefitted a lot in my health and sleeping pattern. I highly recommend KARTHIKA MAM to anyone who wants to improve their body and mind through YOGA&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Anitha Jaganathan <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 3 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I had a wonderful experience at this yoga class. The instructor is very kind, patient, and explains each posture clearly, which makes it easy for beginners to follow. The sessions are well-structured and help improve both physical health and mental peace. I can already feel positive changes in my flexibility and overall well-being. The environment is calm, supportive, and motivating. I highly recommend this class to anyone looking to start or continue their yoga journey.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Naga Lakshmi <span aria-hidden="true">&middot;</span> <span class="text-muted/80">5 months ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 4 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I&rsquo;ve been a student here since 2023, and it has truly helped me maintain my health much better. The classes are well-structured, and the guidance is clear and supportive. I&rsquo;ve noticed improvements in my flexibility, strength, and overall well-being. It has become an important part of my routine, and I highly recommend it to anyone looking to improve their health through yoga&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Vasumathi Bindumadhavan <span aria-hidden="true">&middot;</span> <span class="text-muted/80">5 months ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 5 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I had a great refreshing days while I was practicing with her. It helped me a lot to recover my body and mental health. My daughter who is 9 year old says.attending yoga classes made her body flexible and gives her peace of mind.she is very happy to learn from Karthika mam as she makes their classes fun and adventurous I highly recommend Happy yogis&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Nithya Ramesh <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 6 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Very good yoga coaching center, Karthika ma&rsquo;am is very friendly and sweet. My flexibility has improved a lot from these classes.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Sailakshmi U <span aria-hidden="true">&middot;</span> <span class="text-muted/80">5 months ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 7 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I am attending this class for more than a year. Really helps in maintaining fitness. Mam use to shuffle and make modifications to keep it non monotonous.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Ramanathan Ramu <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 8 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Good Structured Yoga training . It is a good experience to do yoga along with school kids who have very good flexibility&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Bharat KVK <span aria-hidden="true">&middot;</span> <span class="text-muted/80">11 months ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 9 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Wonderful training given by yoga teacher karthiga Mam. Much appreciated when she is correcting our poses when we are doing incorrectly. Keep rocking Mam.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Sanjay Edgar <span aria-hidden="true">&middot;</span> <span class="text-muted/80">11 months ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 10 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;Really nice. Thank you for such a refreshing class. I always leave feeling better than when I arrived. I feel stronger and more balanced every time I practice with you. You are a friendly person. Thanks a ton mam.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Arockia Thenmozhi <span aria-hidden="true">&middot;</span> <span class="text-muted/80">4 months ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 11 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;I absolutely loved my yoga class experience! The instructor was calm, kind, friendly and guided us with care. Every session left me feeling refreshed and focused. Highly recommend it for anyone looking to improve mind and body.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Venkatesh Sampath <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="rev-slide pr-4 flex" role="group" aria-roledescription="review" aria-label="Review 12 of 12">
+                        <figure class="flex-1 flex flex-col border border-line rounded p-6 bg-paper">
+                            <blockquote class="text-[15px] leading-relaxed text-ink">&ldquo;The class is truly inspiring! The instructor's guidance is clear, calm, and motivating. Every session feels like a reset—calm, focused, and refreshing.&rdquo;</blockquote>
+                            <figcaption class="mt-auto pt-5 text-[13px] text-muted">
+                                Ramya KA <span aria-hidden="true">&middot;</span> <span class="text-muted/80">a year ago</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="rev-controls mt-6 items-center gap-2">
+                    <button type="button" class="rev-btn" data-rev-prev aria-label="Previous reviews">
+                        <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-chevron-left"></use></svg>
+                    </button>
+                    <button type="button" class="rev-btn" data-rev-next aria-label="Next reviews">
+                        <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg>
+                    </button>
+                    <button type="button" class="rev-btn" data-rev-toggle aria-label="Pause the reviews">
+                        <span data-rev-pause><svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-pause"></use></svg></span>
+                        <span data-rev-play hidden><svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg></span>
+                    </button>
+                    <div class="rev-dots flex items-center ml-1" data-rev-dots></div>
+                </div>
             </div>
             </div>
         </div>
@@ -1662,6 +1735,169 @@
                 item.classList.toggle('is-open', !open);
             });
         });
+
+        /* ---------- reviews carousel ----------
+           Auto-advances one screenful at a time. It holds while the pointer is
+           over it, while focus is inside it and while the tab is hidden; it
+           stops for good as soon as the visitor takes control (arrows, dots,
+           a swipe, a key) or presses pause, and it never starts at all under
+           prefers-reduced-motion. aria-live flips to polite whenever it is not
+           rotating, so a screen reader hears changes the visitor caused. */
+        var rev = document.querySelector('[data-rev]');
+        if (rev) {
+            var track = rev.querySelector('.rev-track');
+            var dotBox = rev.querySelector('[data-rev-dots]');
+            var toggle = rev.querySelector('[data-rev-toggle]');
+            var pauseIcon = rev.querySelector('[data-rev-pause]');
+            var playIcon = rev.querySelector('[data-rev-play]');
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+            var timer = null, dots = [], pages = 1;
+            var held = { user: false, hover: false, focus: false, hidden: false };
+
+            var slides = [].slice.call(track.querySelectorAll('.rev-slide'));
+
+            function pageOf(x) { return Math.round(x / track.clientWidth); }
+            function perPage() {
+                return Math.max(1, Math.round(track.clientWidth / slides[0].offsetWidth));
+            }
+            /* Height of the cards on one page, measured at their natural size. */
+            function fit(p) {
+                if (p === undefined) p = atEnd() ? pages - 1 : pageOf(track.scrollLeft);
+                var per = perPage(), h = 0;
+                track.classList.add('rev-measure');
+                for (var i = p * per; i < Math.min(slides.length, p * per + per); i++) {
+                    h = Math.max(h, slides[i].firstElementChild.offsetHeight);
+                }
+                track.classList.remove('rev-measure');
+                track.style.height = h ? h + 'px' : '';
+            }
+            function atEnd() { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; }
+            function goTo(p, jump) {
+                p = Math.max(0, Math.min(pages - 1, p));
+                fit(p);
+                track.scrollTo({ left: p * track.clientWidth, behavior: jump ? 'auto' : 'smooth' });
+            }
+            function mark() {
+                var cur = atEnd() ? pages - 1 : pageOf(track.scrollLeft);
+                dots.forEach(function (d, i) {
+                    if (i === cur) d.setAttribute('aria-current', 'true');
+                    else d.removeAttribute('aria-current');
+                });
+            }
+            function buildDots() {
+                track.style.height = '';
+                pages = Math.max(1, Math.round(track.scrollWidth / track.clientWidth));
+                dotBox.textContent = '';
+                dots = [];
+                for (var i = 0; i < pages; i++) {
+                    dots.push(dotBox.appendChild(makeDot(i)));
+                }
+                mark();
+            }
+            function makeDot(i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'rev-dot';
+                b.setAttribute('aria-label', 'Reviews ' + (i + 1) + ' of ' + pages);
+                b.addEventListener('click', function () { takeOver(); goTo(i); });
+                return b;
+            }
+            function sync() {
+                var run = !reduce.matches && !held.user && !held.hover &&
+                          !held.focus && !held.hidden;
+                if (run && !timer) timer = setInterval(advance, 6000);
+                if (!run && timer) { clearInterval(timer); timer = null; }
+                track.setAttribute('aria-live', timer ? 'off' : 'polite');
+                if (pauseIcon) pauseIcon.hidden = held.user;
+                if (playIcon) playIcon.hidden = !held.user;
+                toggle.setAttribute('aria-label',
+                    held.user ? 'Play the reviews' : 'Pause the reviews');
+            }
+            function advance() {
+                if (atEnd()) goTo(0, true);
+                else goTo(pageOf(track.scrollLeft) + 1);
+            }
+            /* The visitor is driving now - stop rotating and leave it stopped. */
+            function takeOver() { held.user = true; sync(); }
+            function step(d) {
+                takeOver();
+                goTo(d > 0 && atEnd() ? 0 : pageOf(track.scrollLeft) + d);
+            }
+
+            rev.querySelector('[data-rev-prev]').addEventListener('click', function () { step(-1); });
+            rev.querySelector('[data-rev-next]').addEventListener('click', function () { step(1); });
+            toggle.addEventListener('click', function () { held.user = !held.user; sync(); });
+
+            rev.addEventListener('pointerenter', function (e) {
+                if (e.pointerType === 'mouse') { held.hover = true; sync(); }
+            });
+            rev.addEventListener('pointerleave', function (e) {
+                if (e.pointerType === 'mouse') { held.hover = false; sync(); }
+            });
+            /* Focus inside the carousel holds it - except on the play/pause
+               button itself, which focuses on click and would otherwise make
+               pressing play do nothing. */
+            rev.addEventListener('focusin', function (e) {
+                held.focus = !toggle.contains(e.target); sync();
+            });
+            rev.addEventListener('focusout', function () {
+                if (!rev.contains(document.activeElement)) { held.focus = false; sync(); }
+            });
+            document.addEventListener('visibilitychange', function () {
+                held.hidden = document.hidden; sync();
+            });
+            track.addEventListener('touchstart', takeOver, { passive: true });
+            track.addEventListener('wheel', takeOver, { passive: true });
+            track.addEventListener('keydown', function (e) {
+                if (e.key.indexOf('Arrow') === 0 || e.key === 'Home' || e.key === 'End') takeOver();
+            });
+
+            var scrolling = false, settled;
+            track.addEventListener('scroll', function () {
+                /* Off-screen cards can overflow the height we set; the track
+                   clips them, but keep it pinned so nothing scrolls into view
+                   vertically. */
+                if (track.scrollTop) track.scrollTop = 0;
+                clearTimeout(settled);
+                settled = setTimeout(fit, 80);           /* after a swipe */
+                if (scrolling) return;
+                scrolling = true;
+                requestAnimationFrame(function () { mark(); scrolling = false; });
+            }, { passive: true });
+
+            var resized;
+            window.addEventListener('resize', function () {
+                clearTimeout(resized);
+                resized = setTimeout(function () { buildDots(); fit(); }, 150);
+            });
+            if (reduce.addEventListener) reduce.addEventListener('change', function () {
+                toggle.hidden = reduce.matches; sync();
+            });
+
+            /* The quotes reflow whenever the stylesheet or the webfonts land -
+               Tailwind compiles in the browser here, so that is after this
+               script runs - and every reflow changes the height the track
+               should be. Watch the quotes themselves: their height depends on
+               the text and the width, never on the height we set, so this
+               cannot feed back on itself. */
+            function remeasure() { buildDots(); fit(); }
+            if (window.ResizeObserver) {
+                var settleFit;
+                var ro = new ResizeObserver(function () {
+                    clearTimeout(settleFit);
+                    settleFit = setTimeout(remeasure, 60);
+                });
+                slides.forEach(function (s) { ro.observe(s.querySelector('blockquote')); });
+            }
+            window.addEventListener('load', remeasure);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+
+            buildDots();
+            fit(0);
+            toggle.hidden = reduce.matches;
+            rev.classList.add('is-ready');
+            sync();
+        }
 
         /* ---------- in-page links clear the fixed nav ---------- */
         document.querySelectorAll('a[href^="#"]').forEach(function (a) {

@@ -108,16 +108,52 @@
         .batch-detail { overflow:hidden; }
         .batch-now { color:var(--blue); font-weight:600; }
 
+        /* ---- hero fact line: flows and wraps, no boxes ----
+           No separator glyph between items: the line wraps at every width the
+           hero column takes, and a ::before dot orphans at the start of each
+           wrapped line. Spacing carries the separation instead. */
+        .factline { display:flex; flex-wrap:wrap; column-gap:2rem; row-gap:.55rem; }
+
         /* ---- class filter ---- */
         .filter[aria-pressed="true"] { background:var(--ink); color:#fff; border-color:var(--ink); }
         .class-item[hidden] { display:none; }
+
+        /* ---- reviews carousel ----
+           A scroll-snap track, so it swipes natively on touch and scrolls with
+           the arrow keys when focused; the controls below it are added by CSS
+           only once the script has wired them up (.is-ready), so nothing dead
+           is shown if the script never runs. */
+        .rev-track { display:flex; align-items:stretch; overflow-x:auto; overflow-y:hidden;
+                     scroll-snap-type:x mandatory; scroll-behavior:smooth;
+                     scrollbar-width:none; -webkit-overflow-scrolling:touch;
+                     transition:height .3s ease; }
+        /* The script sets the track's height to the cards actually in view, so
+           one long quote does not leave a dead band under every short one; this
+           class lets it measure their natural heights first. */
+        .rev-track.rev-measure { align-items:flex-start; height:auto; }
+        .rev-track::-webkit-scrollbar { display:none; }
+        .rev-slide { flex:0 0 100%; scroll-snap-align:start; }
+        @media (min-width:768px) { .rev-slide { flex-basis:50%; } }
+        .rev-controls { display:none; flex-wrap:wrap; row-gap:.75rem; }
+        .rev.is-ready .rev-controls { display:flex; }
+        .rev-btn { display:inline-flex; align-items:center; justify-content:center;
+                   width:2.25rem; height:2.25rem; border:1px solid var(--line);
+                   border-radius:9999px; background:var(--paper); color:var(--ink);
+                   transition:border-color .2s ease, background .2s ease; }
+        .rev-btn:hover { border-color:var(--ink); background:#fff; }
+        .rev-dot { display:inline-flex; align-items:center; justify-content:center;
+                   width:1.25rem; height:1.5rem; }
+        .rev-dot::before { content:''; width:.4375rem; height:.4375rem; border-radius:9999px;
+                           background:var(--line); transition:background .2s ease; }
+        .rev-dot:hover::before { background:var(--muted); }
+        .rev-dot[aria-current="true"]::before { background:var(--blue); }
 
         .lightbox { display:none; position:fixed; inset:0; background:rgba(12,16,20,.94);
                     z-index:100; align-items:center; justify-content:center; padding:1.5rem; }
         .lightbox.active { display:flex; }
 
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior:auto; }
+            html, .rev-track { scroll-behavior:auto; }
             *, *::before, *::after {
                 animation-duration:.01ms !important; animation-iteration-count:1 !important;
                 transition-duration:.01ms !important;
@@ -720,6 +756,169 @@
                 item.classList.toggle('is-open', !open);
             });
         });
+
+        /* ---------- reviews carousel ----------
+           Auto-advances one screenful at a time. It holds while the pointer is
+           over it, while focus is inside it and while the tab is hidden; it
+           stops for good as soon as the visitor takes control (arrows, dots,
+           a swipe, a key) or presses pause, and it never starts at all under
+           prefers-reduced-motion. aria-live flips to polite whenever it is not
+           rotating, so a screen reader hears changes the visitor caused. */
+        var rev = document.querySelector('[data-rev]');
+        if (rev) {
+            var track = rev.querySelector('.rev-track');
+            var dotBox = rev.querySelector('[data-rev-dots]');
+            var toggle = rev.querySelector('[data-rev-toggle]');
+            var pauseIcon = rev.querySelector('[data-rev-pause]');
+            var playIcon = rev.querySelector('[data-rev-play]');
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+            var timer = null, dots = [], pages = 1;
+            var held = { user: false, hover: false, focus: false, hidden: false };
+
+            var slides = [].slice.call(track.querySelectorAll('.rev-slide'));
+
+            function pageOf(x) { return Math.round(x / track.clientWidth); }
+            function perPage() {
+                return Math.max(1, Math.round(track.clientWidth / slides[0].offsetWidth));
+            }
+            /* Height of the cards on one page, measured at their natural size. */
+            function fit(p) {
+                if (p === undefined) p = atEnd() ? pages - 1 : pageOf(track.scrollLeft);
+                var per = perPage(), h = 0;
+                track.classList.add('rev-measure');
+                for (var i = p * per; i < Math.min(slides.length, p * per + per); i++) {
+                    h = Math.max(h, slides[i].firstElementChild.offsetHeight);
+                }
+                track.classList.remove('rev-measure');
+                track.style.height = h ? h + 'px' : '';
+            }
+            function atEnd() { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; }
+            function goTo(p, jump) {
+                p = Math.max(0, Math.min(pages - 1, p));
+                fit(p);
+                track.scrollTo({ left: p * track.clientWidth, behavior: jump ? 'auto' : 'smooth' });
+            }
+            function mark() {
+                var cur = atEnd() ? pages - 1 : pageOf(track.scrollLeft);
+                dots.forEach(function (d, i) {
+                    if (i === cur) d.setAttribute('aria-current', 'true');
+                    else d.removeAttribute('aria-current');
+                });
+            }
+            function buildDots() {
+                track.style.height = '';
+                pages = Math.max(1, Math.round(track.scrollWidth / track.clientWidth));
+                dotBox.textContent = '';
+                dots = [];
+                for (var i = 0; i < pages; i++) {
+                    dots.push(dotBox.appendChild(makeDot(i)));
+                }
+                mark();
+            }
+            function makeDot(i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'rev-dot';
+                b.setAttribute('aria-label', 'Reviews ' + (i + 1) + ' of ' + pages);
+                b.addEventListener('click', function () { takeOver(); goTo(i); });
+                return b;
+            }
+            function sync() {
+                var run = !reduce.matches && !held.user && !held.hover &&
+                          !held.focus && !held.hidden;
+                if (run && !timer) timer = setInterval(advance, 6000);
+                if (!run && timer) { clearInterval(timer); timer = null; }
+                track.setAttribute('aria-live', timer ? 'off' : 'polite');
+                if (pauseIcon) pauseIcon.hidden = held.user;
+                if (playIcon) playIcon.hidden = !held.user;
+                toggle.setAttribute('aria-label',
+                    held.user ? 'Play the reviews' : 'Pause the reviews');
+            }
+            function advance() {
+                if (atEnd()) goTo(0, true);
+                else goTo(pageOf(track.scrollLeft) + 1);
+            }
+            /* The visitor is driving now - stop rotating and leave it stopped. */
+            function takeOver() { held.user = true; sync(); }
+            function step(d) {
+                takeOver();
+                goTo(d > 0 && atEnd() ? 0 : pageOf(track.scrollLeft) + d);
+            }
+
+            rev.querySelector('[data-rev-prev]').addEventListener('click', function () { step(-1); });
+            rev.querySelector('[data-rev-next]').addEventListener('click', function () { step(1); });
+            toggle.addEventListener('click', function () { held.user = !held.user; sync(); });
+
+            rev.addEventListener('pointerenter', function (e) {
+                if (e.pointerType === 'mouse') { held.hover = true; sync(); }
+            });
+            rev.addEventListener('pointerleave', function (e) {
+                if (e.pointerType === 'mouse') { held.hover = false; sync(); }
+            });
+            /* Focus inside the carousel holds it - except on the play/pause
+               button itself, which focuses on click and would otherwise make
+               pressing play do nothing. */
+            rev.addEventListener('focusin', function (e) {
+                held.focus = !toggle.contains(e.target); sync();
+            });
+            rev.addEventListener('focusout', function () {
+                if (!rev.contains(document.activeElement)) { held.focus = false; sync(); }
+            });
+            document.addEventListener('visibilitychange', function () {
+                held.hidden = document.hidden; sync();
+            });
+            track.addEventListener('touchstart', takeOver, { passive: true });
+            track.addEventListener('wheel', takeOver, { passive: true });
+            track.addEventListener('keydown', function (e) {
+                if (e.key.indexOf('Arrow') === 0 || e.key === 'Home' || e.key === 'End') takeOver();
+            });
+
+            var scrolling = false, settled;
+            track.addEventListener('scroll', function () {
+                /* Off-screen cards can overflow the height we set; the track
+                   clips them, but keep it pinned so nothing scrolls into view
+                   vertically. */
+                if (track.scrollTop) track.scrollTop = 0;
+                clearTimeout(settled);
+                settled = setTimeout(fit, 80);           /* after a swipe */
+                if (scrolling) return;
+                scrolling = true;
+                requestAnimationFrame(function () { mark(); scrolling = false; });
+            }, { passive: true });
+
+            var resized;
+            window.addEventListener('resize', function () {
+                clearTimeout(resized);
+                resized = setTimeout(function () { buildDots(); fit(); }, 150);
+            });
+            if (reduce.addEventListener) reduce.addEventListener('change', function () {
+                toggle.hidden = reduce.matches; sync();
+            });
+
+            /* The quotes reflow whenever the stylesheet or the webfonts land -
+               Tailwind compiles in the browser here, so that is after this
+               script runs - and every reflow changes the height the track
+               should be. Watch the quotes themselves: their height depends on
+               the text and the width, never on the height we set, so this
+               cannot feed back on itself. */
+            function remeasure() { buildDots(); fit(); }
+            if (window.ResizeObserver) {
+                var settleFit;
+                var ro = new ResizeObserver(function () {
+                    clearTimeout(settleFit);
+                    settleFit = setTimeout(remeasure, 60);
+                });
+                slides.forEach(function (s) { ro.observe(s.querySelector('blockquote')); });
+            }
+            window.addEventListener('load', remeasure);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+
+            buildDots();
+            fit(0);
+            toggle.hidden = reduce.matches;
+            rev.classList.add('is-ready');
+            sync();
+        }
 
         /* ---------- in-page links clear the fixed nav ---------- */
         document.querySelectorAll('a[href^="#"]').forEach(function (a) {

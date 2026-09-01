@@ -70,6 +70,12 @@ These carried over from the previous version of the site and are worth a check:
   are truncated with "… More". The 12 shown are curated from the complete ones
   and quoted as written. **Never quote a truncated review**, and never invent
   one. To refresh them, edit `REVIEWS` in the page source.
+- The reviews are a **carousel**: a scroll-snap track, two cards at a time from
+  768px and one below that, so it swipes natively on touch and scrolls with the
+  arrow keys. The script sets the track's height to the cards actually in view,
+  which is why one very long quote does not leave a dead band under every short
+  one. Without JavaScript the track is still a scrollable row of all 12 quotes
+  and the controls stay hidden — nothing is hidden behind the script.
 - **No `AggregateRating` or `Review` schema is emitted, deliberately.** These
   reviews live on the centre's Google profile; marking them up here and feeding
   them back to Google is self-serving review markup, which its guidelines
@@ -171,9 +177,13 @@ The design deliberately avoids the generic template look. Please keep to this:
 - real photos of real classes, never stock photography
 - plain, specific copy; concrete beats aspirational
 
-**Motion:** exactly one non-user-triggered moment — the "next class today" line
-in the hero resolving on load. Everything else responds to a real action:
-expanding a batch, filtering classes, opening the menu, submitting the form.
+**Motion:** two non-user-triggered moments, and no more — the "next class today"
+line in the hero resolving on load, and the reviews carousel advancing. The
+carousel earns it by being controllable: it pauses on hover, on keyboard focus
+and when the tab is hidden, stops for good the moment a visitor takes control,
+has a real pause button, and does not auto-advance at all under
+`prefers-reduced-motion`. Everything else responds to a real action: expanding a
+batch, filtering classes, opening the menu, submitting the form.
 
 ## The hero schedule panel
 
