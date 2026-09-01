@@ -5,14 +5,30 @@ No build step: open `index.html`, or serve the folder with
 `python3 -m http.server` and visit <http://localhost:8000>.
 
 ```
-index.html                        Home
-yoga-classes-perungalathur.html   Location page - Perungalathur
-yoga-classes-tambaram.html        Location page - Tambaram
-privacy-policy.html               Privacy policy
-terms-of-service.html             Terms of service
-robots.txt / sitemap.xml          Crawl rules + sitemap
-site.webmanifest                  Add-to-home-screen metadata
+index.html                            Home
+yoga-classes-perungalathur.html       Location page - Perungalathur
+yoga-classes-tambaram.html            Location page - Tambaram
+blog.html                             Journal index
+what-happens-in-your-first-...html    Journal post
+privacy-policy.html                   Privacy policy
+terms-of-service.html                 Terms of service
+robots.txt / sitemap.xml              Crawl rules + sitemap
+site.webmanifest                      Add-to-home-screen metadata
 ```
+
+## Confirmed business facts
+
+These were confirmed by the owner and must not be changed without asking:
+
+- **Four batches, Monday to Friday:** 5:30–6:15 am (45 min) · 6:15–7:15 am ·
+  10:00–11:00 am (**women only**) · 5:00–6:00 pm. There is no 8–9 am batch.
+- **Opening hours 5:30 am – 7:00 pm**, Mon–Fri. Closed weekends and public holidays.
+- **A 3-day trial. The price is deliberately not published anywhere on the site**,
+  and no fees of any kind appear on the site.
+- T-shirt provided to every student · mats can be left at the centre · online and
+  in-person both offered, and students may switch between them.
+- **No social media links.** `sameAs` was removed from the schema at the owner's
+  instruction — do not re-add unverified profiles.
 
 ## One centre
 
@@ -130,13 +146,47 @@ classes only work once you re-run the build.
 
 ## House style
 
-The design deliberately avoids the generic template look:
+Type is **Instrument Sans** (headings, via the `display` class) and **Inter**
+(body). Colour tokens: `ink #16202b` · `blue #1F4E79` · `sky #4DA8DA` ·
+`sand #F6F3EE` · `paper #FBFAF8` · `line #E4E0D9` · `muted #6B7480`.
 
-- no coloured "eyebrow" pill above every heading — use the `.kicker` label
-- no icon chip on every card
-- no blurred gradient blobs, shimmer buttons or glassmorphism
+The design deliberately avoids the generic template look. Please keep to this:
+
+- **no eyebrow labels** — no small tracked-out all-caps line above headings
+- **no shadows anywhere** — surfaces separate with a 1px `border-line` rule or a
+  change of ground colour (`bg-sand` against `bg-paper`)
+- no icon chip on every card; an icon must mean something
+- **no arrows appended to buttons** — an arrow only on a link that leaves the site
+- no numbered markers unless the content is genuinely a sequence (the legal pages
+  number their clauses, which is a real sequence)
 - real photos of real classes, never stock photography
 - plain, specific copy; concrete beats aspirational
+
+**Motion:** exactly one non-user-triggered moment — the "next class today" line
+in the hero resolving on load. Everything else responds to a real action:
+expanding a batch, filtering classes, opening the menu, submitting the form.
+
+## The hero schedule panel
+
+The hero is built around the schedule rather than around a headline. The panel
+reads the visitor's clock and names the next batch; on a weekend or after the
+last class it points at the next weekday morning. Selecting a batch expands it
+and rewrites the call to action to name that batch.
+
+If you change a batch time, update `BATCHES` — the 24-hour `data-start` value on
+each row is what the next-class logic reads, so it must match the label.
+
+## The enquiry form
+
+The form does not post anywhere. On submit it composes a WhatsApp message from
+the fields and opens `wa.me` — nothing is stored on the site and nothing reaches
+you until the visitor presses send in WhatsApp. That trade-off is deliberate (no
+third-party service, no signup), but it does mean **abandoned submissions are
+lost**. If you later want every submission captured, Vercel supports form
+handling and the privacy policy would need revisiting.
+
+The optional health box is covered by a dedicated clause in the privacy policy —
+if you change what the form collects, update that clause too.
 
 Keep one `<h1>` per page, heading levels in order, `alt` text that describes the
 actual photo (`alt=""` for decorative logos), `aria-expanded` in sync on the FAQ
