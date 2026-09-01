@@ -108,6 +108,12 @@
         .batch-detail { overflow:hidden; }
         .batch-now { color:var(--blue); font-weight:600; }
 
+        /* ---- hero fact line: flows and wraps, no boxes ----
+           No separator glyph between items: the line wraps at every width the
+           hero column takes, and a ::before dot orphans at the start of each
+           wrapped line. Spacing carries the separation instead. */
+        .factline { display:flex; flex-wrap:wrap; column-gap:2rem; row-gap:.55rem; }
+
         /* ---- class filter ---- */
         .filter[aria-pressed="true"] { background:var(--ink); color:#fff; border-color:var(--ink); }
         .class-item[hidden] { display:none; }
