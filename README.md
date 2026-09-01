@@ -64,10 +64,19 @@ A thin page that just swaps the place name is worse than no page at all.
 
 These carried over from the previous version of the site and are worth a check:
 
-- **Student quotes** in the "What students say" section must be real. If they
-  cannot be attributed to actual students, remove them and use Google reviews
-  instead — invented testimonials are both a trust problem and, for reviews,
-  a legal one.
+- **Student quotes** are now real Google reviews supplied by the owner. Of the
+  50 pasted in (all five stars), only 25 have complete written text — 12 are
+  rating-only, 7 are Google's old "Positive / Quality" attribute tags, and 4
+  are truncated with "… More". The 12 shown are curated from the complete ones
+  and quoted as written. **Never quote a truncated review**, and never invent
+  one. To refresh them, edit `REVIEWS` in the page source.
+- **No `AggregateRating` or `Review` schema is emitted, deliberately.** These
+  reviews live on the centre's Google profile; marking them up here and feeding
+  them back to Google is self-serving review markup, which its guidelines
+  prohibit and which risks a manual action. The star rating you want in search
+  results comes from the Google Business Profile itself, not from this site.
+- `REVIEW_COUNT_CLAIM` says "More than 45" rather than an exact figure, so it
+  stays true as reviews accumulate. Update it if the count ever drops.
 - **Social links** in the JSON-LD (`instagram.com/happyyogis`,
   `facebook.com/happyyogis`, `youtube.com/happyyogis`) are unverified. Wrong
   `sameAs` links weaken Google's entity matching — fix or remove them.
