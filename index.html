@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Yoga Centre in Perungalathur & Tambaram | Happy Yogis</title>
-    <meta name="description" content="Yoga classes in New Perungalathur for ladies, gents and children. Five batches daily, Mon-Fri, plus online classes. Free trial class.">
+    <meta name="description" content="Yoga classes in New Perungalathur for ladies, gents and children. Four batches daily, Mon-Fri, plus online classes. 3-day trial.">
     <link rel="canonical" href="https://happyyogis.com/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="theme-color" content="#1F4E79">
@@ -20,13 +20,13 @@
     <meta property="og:locale" content="en_IN">
     <meta property="og:url" content="https://happyyogis.com/">
     <meta property="og:title" content="Yoga Centre in Perungalathur & Tambaram | Happy Yogis">
-    <meta property="og:description" content="Yoga classes in New Perungalathur for ladies, gents and children. Five batches daily, Mon-Fri, plus online classes. Free trial class.">
+    <meta property="og:description" content="Yoga classes in New Perungalathur for ladies, gents and children. Four batches daily, Mon-Fri, plus online classes. 3-day trial.">
     <meta property="og:image" content="https://happyyogis.com/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Yoga Centre in Perungalathur & Tambaram | Happy Yogis">
-    <meta name="twitter:description" content="Yoga classes in New Perungalathur for ladies, gents and children. Five batches daily, Mon-Fri, plus online classes. Free trial class.">
+    <meta name="twitter:description" content="Yoga classes in New Perungalathur for ladies, gents and children. Four batches daily, Mon-Fri, plus online classes. 3-day trial.">
     <meta name="twitter:image" content="https://happyyogis.com/og-image.jpg">
 
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -37,7 +37,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="ima4.webp" type="image/webp" fetchpriority="high">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,80 +45,84 @@
         if (window.tailwind) tailwind.config = {
             theme: { extend: {
                 colors: {
-                    'ink': '#16202b', 'deep-blue': '#1F4E79', 'sky-blue': '#4DA8DA',
-                    'sand': '#F6F3EE', 'soft-white': '#FBFAF8', 'line': '#E4E0D9',
-                    'gold': '#C8912F', 'muted': '#6B7480'
+                    ink:'#16202b', blue:'#1F4E79', sky:'#4DA8DA', sand:'#F6F3EE',
+                    paper:'#FBFAF8', line:'#E4E0D9', muted:'#6B7480'
                 },
                 fontFamily: {
-                    'heading': ['Cormorant Garamond', 'Georgia', 'serif'],
-                    'body': ['Inter', 'system-ui', 'sans-serif']
+                    display:['Instrument Sans','system-ui','sans-serif'],
+                    body:['Inter','system-ui','sans-serif']
+                },
+                fontSize: {
+                    'd1':['2.75rem',{lineHeight:'1.05',letterSpacing:'-.025em'}],
+                    'd2':['1.75rem',{lineHeight:'1.15',letterSpacing:'-.02em'}],
+                    'd3':['1.25rem',{lineHeight:'1.3',letterSpacing:'-.01em'}]
                 }
             } }
         };
     </script>
     <style>
+        :root {
+            --ink:#16202b; --blue:#1F4E79; --sky:#4DA8DA;
+            --sand:#F6F3EE; --paper:#FBFAF8; --line:#E4E0D9; --muted:#6B7480;
+        }
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
 
-        svg.lucide {
-            fill: none; stroke: currentColor; stroke-width: 1.75;
-            stroke-linecap: round; stroke-linejoin: round;
+        h1, h2, h3, .display { font-family: 'Instrument Sans', system-ui, sans-serif; letter-spacing: -.022em; }
+
+        svg.i { fill: none; stroke: currentColor; stroke-width: 1.75;
+                stroke-linecap: round; stroke-linejoin: round; }
+
+        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+                   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+        .skip-link { position:absolute; left:50%; top:0; transform:translate(-50%,-120%);
+                     z-index:100; background:var(--blue); color:#fff; padding:.75rem 1.5rem;
+                     border-radius:0 0 .375rem .375rem; font-weight:600; transition:transform .2s ease; }
+        .skip-link:focus { transform:translate(-50%,0); }
+        a:focus-visible, button:focus-visible, input:focus-visible,
+        select:focus-visible, textarea:focus-visible {
+            outline:2px solid var(--blue); outline-offset:2px; border-radius:2px;
         }
 
-        .sr-only {
-            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-        }
-        .skip-link {
-            position: absolute; left: 50%; top: 0; transform: translate(-50%, -120%);
-            z-index: 100; background: #1F4E79; color: #fff; padding: .75rem 1.5rem;
-            border-radius: 0 0 .5rem .5rem; font-weight: 600; transition: transform .2s ease;
-        }
-        .skip-link:focus { transform: translate(-50%, 0); }
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid #1F4E79; outline-offset: 3px; border-radius: 2px;
-        }
+        .nav-scrolled { border-bottom-color: var(--line); }
 
-        /* Section rule used instead of a coloured "eyebrow" pill */
-        .kicker {
-            font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
-            font-weight: 600; color: #8a949e;
-        }
+        /* ---- mobile menu ---- */
+        .mobile-menu { position:fixed; inset:0; z-index:60; visibility:hidden; }
+        .mobile-menu::before { content:''; position:absolute; inset:0;
+            background:rgba(17,24,32,0); transition:background .3s ease; }
+        .mobile-menu.open { visibility:visible; }
+        .mobile-menu.open::before { background:rgba(17,24,32,.45); }
+        .mobile-menu-panel { position:absolute; top:0; right:0; bottom:0; width:100%;
+            max-width:21rem; background:#fff; transform:translateX(100%);
+            transition:transform .3s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; }
+        .mobile-menu.open .mobile-menu-panel { transform:translateX(0); }
 
-        .nav-scrolled { box-shadow: 0 1px 0 rgba(31,78,121,.12); }
+        /* ---- the one page-load moment: the next-class panel resolving ---- */
+        @keyframes settle { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+        .settle { animation: settle .5s cubic-bezier(.2,.7,.3,1) both; }
 
-        /* FAQ chevron points up while the answer is open */
-        .faq-item .faq-q svg { transition: transform .3s ease; }
-        .faq-item.is-open .faq-q svg { transform: rotate(180deg); }
+        /* ---- batch list (hero) ---- */
+        .batch { display:block; width:100%; text-align:left; border-top:1px solid var(--line);
+                 padding:.9rem 0; transition:padding-left .2s ease; }
+        .batch:hover { padding-left:.35rem; }
+        .batch[aria-expanded="true"] { padding-left:.35rem; }
+        .batch-detail { overflow:hidden; }
+        .batch-now { color:var(--blue); font-weight:600; }
 
-        .mobile-menu { position: fixed; inset: 0; z-index: 60; visibility: hidden; }
-        .mobile-menu::before {
-            content: ''; position: absolute; inset: 0; background: rgba(17,24,32,0);
-            transition: background .3s ease;
-        }
-        .mobile-menu.open { visibility: visible; }
-        .mobile-menu.open::before { background: rgba(17,24,32,.45); }
-        .mobile-menu-panel {
-            position: absolute; top: 0; right: 0; bottom: 0; width: 100%; max-width: 22rem;
-            background: #fff; transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1);
-            display: flex; flex-direction: column;
-        }
-        .mobile-menu.open .mobile-menu-panel { transform: translateX(0); }
+        /* ---- class filter ---- */
+        .filter[aria-pressed="true"] { background:var(--ink); color:#fff; border-color:var(--ink); }
+        .class-item[hidden] { display:none; }
 
-        .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-        .reveal.active { opacity: 1; transform: none; }
-
-        .lightbox { display: none; position: fixed; inset: 0; background: rgba(12,16,20,.94);
-                    z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
-        .lightbox.active { display: flex; }
+        .lightbox { display:none; position:fixed; inset:0; background:rgba(12,16,20,.94);
+                    z-index:100; align-items:center; justify-content:center; padding:1.5rem; }
+        .lightbox.active { display:flex; }
 
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
+            html { scroll-behavior:auto; }
             *, *::before, *::after {
-                animation-duration: .01ms !important; animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
+                animation-duration:.01ms !important; animation-iteration-count:1 !important;
+                transition-duration:.01ms !important;
             }
-            .reveal { opacity: 1; transform: none; }
         }
     </style>
 
@@ -150,7 +154,6 @@
         "https://happyyogis.com/ima6.jpeg"
       ],
       "telephone": "+91-99942-47450",
-      "currenciesAccepted": "INR",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "SSM Nagar, New Perungalathur",
@@ -176,21 +179,21 @@
             "Friday"
           ],
           "opens": "05:30",
-          "closes": "18:00"
+          "closes": "19:00"
         }
       ],
       "areaServed": [
-        {
-          "@type": "Place",
-          "name": "Perungalathur"
-        },
         {
           "@type": "Place",
           "name": "New Perungalathur"
         },
         {
           "@type": "Place",
-          "name": "Tambaram"
+          "name": "Old Perungalathur"
+        },
+        {
+          "@type": "Place",
+          "name": "SSM Nagar"
         },
         {
           "@type": "Place",
@@ -233,11 +236,6 @@
         "en",
         "ta"
       ],
-      "sameAs": [
-        "https://instagram.com/happyyogis",
-        "https://facebook.com/happyyogis",
-        "https://youtube.com/happyyogis"
-      ],
       "employee": {
         "@id": "https://happyyogis.com/#karthika"
       },
@@ -258,7 +256,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Beginner yoga",
-              "description": "If you have never held a pose before, start here. We build the standing postures and the breath slowly, and nobody is pushed past what their body will do that day.",
+              "description": "If you have never held a pose before, this is where you start. Standing postures and the breath, built slowly. Nobody is pushed past what their body will do that day.",
               "serviceType": "Beginner yoga",
               "provider": {
                 "@id": "https://happyyogis.com/#business"
@@ -273,8 +271,24 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
+              "name": "Flexibility and posture",
+              "description": "Hip openers, hamstring work and spinal movement, for students who sit at a desk all day and arrive with a stiff neck and lower back.",
+              "serviceType": "Flexibility and posture",
+              "provider": {
+                "@id": "https://happyyogis.com/#business"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Chennai"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
               "name": "Weight loss and stamina",
-              "description": "A faster-moving practice built around sun salutations and standing sequences, for students whose main goal is losing weight and building stamina.",
+              "description": "A faster practice built around sun salutations and standing sequences, for students whose main goal is losing weight and building stamina.",
               "serviceType": "Weight loss and stamina",
               "provider": {
                 "@id": "https://happyyogis.com/#business"
@@ -289,9 +303,9 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Flexibility and posture",
-              "description": "Hip openers, hamstring work and spinal movement. Popular with students who sit at a desk all day and arrive with a stiff neck and lower back.",
-              "serviceType": "Flexibility and posture",
+              "name": "Yoga for seniors",
+              "description": "Low-impact practice with chair and wall support where it helps, for joint mobility and steadiness.",
+              "serviceType": "Yoga for seniors",
               "provider": {
                 "@id": "https://happyyogis.com/#business"
               },
@@ -322,7 +336,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Yoga for women",
-              "description": "Practice adapted around PCOD, thyroid and hormonal health, and around the menstrual cycle. The 10:00 am batch is ladies only.",
+              "description": "Practice adapted around PCOD, thyroid and hormonal health, and around the menstrual cycle. The 10:00 am batch is women only.",
               "serviceType": "Yoga for women",
               "provider": {
                 "@id": "https://happyyogis.com/#business"
@@ -338,24 +352,8 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Yoga for children",
-              "description": "Children join the morning and evening batches with their parents. The focus is on balance, concentration and making it enjoyable rather than perfect.",
+              "description": "Children practise in the morning and evening batches alongside their parents. The focus is balance, concentration and enjoying it.",
               "serviceType": "Yoga for children",
-              "provider": {
-                "@id": "https://happyyogis.com/#business"
-              },
-              "areaServed": {
-                "@type": "City",
-                "name": "Chennai"
-              }
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Yoga for seniors",
-              "description": "Low-impact practice with chair and wall support where it is needed, for joint mobility and steadiness.",
-              "serviceType": "Yoga for seniors",
               "provider": {
                 "@id": "https://happyyogis.com/#business"
               },
@@ -389,6 +387,7 @@
       "@id": "https://happyyogis.com/#karthika",
       "name": "Karthika",
       "jobTitle": "Yoga teacher",
+      "image": "https://happyyogis.com/instructor.jpeg",
       "description": "Teacher at Happy Yogis Yoga Centre, New Perungalathur, with more than ten years of yoga practice and teaching experience.",
       "worksFor": {
         "@id": "https://happyyogis.com/#business"
@@ -434,7 +433,7 @@
           "name": "Do I need to be flexible to start?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Most people who join us cannot touch their toes on day one, and that is genuinely fine. Flexibility is what the practice builds, not what it asks for."
+            "text": "No. Most people who join cannot touch their toes on day one, and that is genuinely fine. Flexibility is what the practice builds, not what it asks for."
           }
         },
         {
@@ -447,10 +446,10 @@
         },
         {
           "@type": "Question",
-          "name": "Can I try a class before paying?",
+          "name": "Can I try before joining properly?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Message us on WhatsApp and we will put you into a batch for a free trial class so you can see whether it suits you."
+            "text": "Yes. We run a 3-day trial so you can sit in on a batch and see whether it suits you before committing. Message us on WhatsApp and we will book you in."
           }
         },
         {
@@ -471,6 +470,14 @@
         },
         {
           "@type": "Question",
+          "name": "Can I switch between online and in-person?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We teach both, and students move between them as their week allows. If you sign up for online classes you can come to the centre instead, and the other way round."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Are the classes in Tamil or English?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -482,7 +489,7 @@
           "name": "Do you teach men as well as women?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. The general batches are mixed. The 10:00 am batch is ladies only."
+            "text": "Yes. The 5:30 am, 6:15 am and 5:00 pm batches are for everyone. The 10:00 am batch is women only."
           }
         },
         {
@@ -495,15 +502,7 @@
         },
         {
           "@type": "Question",
-          "name": "Do you take online classes?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, we teach online as well as at the centre, which suits students who have moved away or travel for work."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "I have a knee problem / back pain / PCOD. Can I still practise?",
+          "name": "I have a knee problem, back pain or PCOD. Can I still practise?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "In most cases yes, with the practice adapted. Tell us before you start so the teacher knows, and check with your doctor if you are under treatment for anything."
@@ -522,7 +521,7 @@
           "name": "How do I join?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Message us on WhatsApp or call. We will tell you which batches have room and book you a trial class."
+            "text": "Message us on WhatsApp or call. We will tell you which batches have room and book you a trial."
           }
         }
       ]
@@ -531,49 +530,48 @@
 }
     </script>
 </head>
-<body class="font-body bg-soft-white text-ink">
+<body class="font-body bg-paper text-ink text-[15px]">
 <!-- Inline Lucide icon sprite (lucide-static v1.38.0, ISC). Replaces the former runtime unpkg.com/lucide script. -->
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
-<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol>
-<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol>
-<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></symbol>
-<symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></symbol>
 <symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" /></symbol>
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="M12 5v14" /></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
 </svg>
 
     <a href="#main" class="skip-link">Skip to main content</a>
 
     <header>
-      <nav id="navbar" aria-label="Primary" class="fixed top-0 inset-x-0 z-50 bg-soft-white/95 backdrop-blur-sm border-b border-line transition-shadow">
+      <nav id="navbar" aria-label="Primary" class="fixed top-0 inset-x-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-transparent transition-colors">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="flex items-center justify-between h-[4.5rem]">
-                <a href="#main" class="flex items-center gap-3 shrink-0">
-                    <picture><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="" width="40" height="45" class="w-9 h-auto"></picture>
-                    <span class="leading-tight">
-                        <span class="block font-heading text-xl font-semibold text-deep-blue">Happy Yogis</span>
-                        <span class="block text-[11px] tracking-wide text-muted">Yoga Centre &middot; Perungalathur</span>
-                    </span>
+            <div class="flex items-center justify-between h-16">
+                <a href="#main" class="flex items-center gap-2.5 shrink-0">
+                    <picture><source srcset="logo.webp" type="image/webp">
+                    <img src="logo.png" alt="" width="40" height="45" class="w-8 h-auto"></picture>
+                    <span class="display text-[17px] font-semibold text-ink">Happy Yogis</span>
                 </a>
 
                 <div class="hidden lg:flex items-center gap-7">
-                    <a href="#classes" class="text-sm text-ink/75 hover:text-deep-blue transition-colors">Classes</a>
-                    <a href="#timings" class="text-sm text-ink/75 hover:text-deep-blue transition-colors">Timings</a>
-                    <a href="#trainer" class="text-sm text-ink/75 hover:text-deep-blue transition-colors">Teacher</a>
-                    <a href="#areas" class="text-sm text-ink/75 hover:text-deep-blue transition-colors">Areas</a>
-                    <a href="#gallery" class="text-sm text-ink/75 hover:text-deep-blue transition-colors">Gallery</a>
-                    <a href="#contact" class="text-sm text-ink/75 hover:text-deep-blue transition-colors">Contact</a>
-                    <a href="tel:+919994247450" class="inline-flex items-center gap-2 text-sm font-semibold text-deep-blue">
-                        <svg class="lucide w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
-                    </a>
+                    <a href="#schedule" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Schedule</a>
+                    <a href="#classes" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Classes</a>
+                    <a href="#teacher" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Teacher</a>
+                    <a href="#studio" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Studio</a>
+                    <a href="blog.html" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Journal</a>
+                    <a href="#visit" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Visit</a>
                 </div>
 
-                <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
-                        class="lg:hidden -mr-2 p-2 text-deep-blue">
-                    <svg class="lucide w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
-                </button>
+                <div class="flex items-center gap-2">
+                    <a href="tel:+919994247450" class="hidden sm:inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ink px-3 py-2 hover:text-blue transition-colors">
+                        <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
+                    </a>
+                    <a href="#enquire" class="hidden sm:inline-flex items-center px-4 py-2 bg-ink text-white text-[13.5px] font-medium rounded hover:bg-blue transition-colors">
+                        Book a trial
+                    </a>
+                    <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
+                            class="lg:hidden -mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg></button>
+                </div>
             </div>
         </div>
       </nav>
@@ -581,27 +579,24 @@
 
     <div id="mobile-menu" class="mobile-menu lg:hidden" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
         <div class="mobile-menu-panel">
-            <div class="flex items-center justify-between px-6 h-[4.5rem] border-b border-line">
-                <span class="font-heading text-xl font-semibold text-deep-blue">Menu</span>
-                <button id="menu-close" type="button" aria-label="Close menu" class="-mr-2 p-2 text-ink">
-                    <svg class="lucide w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg>
-                </button>
+            <div class="flex items-center justify-between px-6 h-16 border-b border-line">
+                <span class="display text-[17px] font-semibold text-ink">Menu</span>
+                <button id="menu-close" type="button" aria-label="Close menu" class="-mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
             </div>
-            <nav aria-label="Mobile" class="py-3 flex-1 overflow-y-auto">
-                <a href="#classes" class="mobile-link block px-6 py-3.5 text-lg text-ink hover:bg-sand transition-colors">Classes</a>
-                <a href="#timings" class="mobile-link block px-6 py-3.5 text-lg text-ink hover:bg-sand transition-colors">Timings</a>
-                <a href="#trainer" class="mobile-link block px-6 py-3.5 text-lg text-ink hover:bg-sand transition-colors">Teacher</a>
-                <a href="#areas" class="mobile-link block px-6 py-3.5 text-lg text-ink hover:bg-sand transition-colors">Areas</a>
-                <a href="#gallery" class="mobile-link block px-6 py-3.5 text-lg text-ink hover:bg-sand transition-colors">Gallery</a>
-                <a href="#contact" class="mobile-link block px-6 py-3.5 text-lg text-ink hover:bg-sand transition-colors">Contact</a>
+            <nav aria-label="Mobile" class="flex-1 overflow-y-auto">
+                <a href="#schedule" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Schedule</a>
+                <a href="#classes" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Classes</a>
+                <a href="#teacher" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Teacher</a>
+                <a href="#studio" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Studio</a>
+                <a href="blog.html" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Journal</a>
+                <a href="#visit" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Visit</a>
             </nav>
-            <div class="p-5 border-t border-line space-y-2.5">
-                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener"
-                   class="mobile-link flex items-center justify-center gap-2 w-full px-5 py-3.5 bg-deep-blue text-white font-semibold rounded-md">
-                    Book a free trial class
+            <div class="p-5 space-y-2.5 border-t border-line">
+                <a href="#enquire" class="mobile-link flex items-center justify-center w-full px-5 py-3.5 bg-ink text-white font-medium rounded">
+                    Book a 3-day trial
                 </a>
-                <a href="tel:+919994247450" class="mobile-link flex items-center justify-center gap-2 w-full px-5 py-3.5 border border-deep-blue text-deep-blue font-semibold rounded-md">
-                    <svg class="lucide w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
+                <a href="tel:+919994247450" class="mobile-link flex items-center justify-center gap-2 w-full px-5 py-3.5 border border-line text-ink font-medium rounded">
+                    <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
                 </a>
             </div>
         </div>
@@ -609,289 +604,303 @@
 
     <main id="main">
 
-    <!-- Hero -->
-    <section class="relative pt-[4.5rem]">
-        <div class="relative min-h-[32rem] lg:min-h-[38rem] flex items-end">
-            <picture>
-                <source srcset="ima4.webp" type="image/webp">
-                <img src="ima4.jpeg" width="1280" height="960"
-                     alt="Morning batch seated in meditation at the New Perungalathur centre"
-                     class="absolute inset-0 w-full h-full object-cover" fetchpriority="high" decoding="async">
-            </picture>
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/25"></div>
+    <!-- Hero: the schedule is the interface -->
+    <section aria-labelledby="hero-h" class="pt-16">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-14 lg:pt-20 pb-16">
 
-            <div class="relative w-full max-w-6xl mx-auto px-5 sm:px-8 pb-14 pt-24">
-                <p class="text-white/80 text-sm mb-4">SSM Nagar, New Perungalathur &middot; Chennai</p>
-                <h1 class="font-heading text-white text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] max-w-3xl">
-                    Yoga classes in Perungalathur<br class="hidden sm:block"> and Tambaram
-                </h1>
-                <p class="mt-6 text-lg text-white/85 max-w-xl leading-relaxed">
-                    Small daily batches for ladies, gents and children at our centre in
-                    SSM Nagar, New Perungalathur &mdash; plus online classes. Most people
-                    who join have never done yoga before.
-                </p>
-                <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener"
-                       class="inline-flex items-center justify-center px-7 py-3.5 bg-white text-ink font-semibold rounded-md hover:bg-white/90 transition-colors">
-                        Book a free trial class
-                    </a>
-                    <a href="#timings"
-                       class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/40 text-white font-semibold rounded-md hover:bg-white/10 transition-colors">
-                        <svg class="lucide w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg>See batch timings
-                    </a>
+                <div class="lg:col-span-7">
+                    <p class="text-[13.5px] text-muted">SSM Nagar, New Perungalathur &middot; Chennai</p>
+                    <h1 id="hero-h" class="mt-4 text-d1 sm:text-[3.5rem] font-semibold text-ink">
+                        Yoga classes in Perungalathur and Tambaram
+                    </h1>
+                    <p class="mt-5 text-[17px] leading-relaxed text-ink/75 max-w-xl">
+                        Four small batches a day, Monday to Friday, for ladies, gents and
+                        children. Most people who join have never done yoga before, and the
+                        practice is adjusted person by person.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a id="batch-cta" href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20book%20a%203-day%20trial." data-base="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20book%20a%203-day%20trial."
+                           target="_blank" rel="noopener"
+                           class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
+                            Book a 3-day trial
+                        </a>
+                        <a href="#classes" class="inline-flex items-center px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">
+                            See what we teach
+                        </a>
+                    </div>
+
+                    <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 border-t border-line">
+                        <div class="py-4 pr-4">
+                            <dt class="text-[13px] text-muted">Batches a day</dt>
+                            <dd class="display text-[22px] font-medium text-ink mt-0.5">Four</dd>
+                        </div>
+                        <div class="py-4 px-4 border-l border-line">
+                            <dt class="text-[13px] text-muted">Days</dt>
+                            <dd class="display text-[22px] font-medium text-ink mt-0.5">Mon&ndash;Fri</dd>
+                        </div>
+                        <div class="py-4 pr-4 sm:px-4 border-t sm:border-t-0 sm:border-l border-line">
+                            <dt class="text-[13px] text-muted whitespace-nowrap">Women only</dt>
+                            <dd class="display text-[22px] font-medium text-ink mt-0.5">10 am</dd>
+                        </div>
+                        <div class="py-4 px-4 border-t sm:border-t-0 border-l border-line">
+                            <dt class="text-[13px] text-muted">Also taught</dt>
+                            <dd class="display text-[22px] font-medium text-ink mt-0.5">Online</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <!-- schedule panel -->
+                <div class="lg:col-span-5" id="schedule">
+                    <div class="border border-line rounded p-6 sm:p-7 bg-sand/50">
+                        <div class="flex items-baseline justify-between gap-4">
+                            <h2 class="display text-[15px] font-semibold text-ink">Today at the centre</h2>
+                            <span class="text-[13px] text-muted">Mon&ndash;Fri</span>
+                        </div>
+                        <p id="next-class" class="mt-1.5 text-[13.5px] text-muted">Batches run Monday to Friday.</p>
+
+                        <ul class="mt-5">
+                    <li>
+                        <button type="button" class="batch group" data-start="05:30" data-label="5:30 - 6:15 am"
+                                aria-expanded="false" aria-controls="batch-d0">
+                            <span class="flex items-baseline justify-between gap-4">
+                                <span class="display text-[17px] font-medium text-ink">5:30 &ndash; 6:15 am</span>
+                                <span class="text-[13px] text-muted whitespace-nowrap">45 min</span>
+                            </span>
+                            <span class="mt-0.5 block text-[13px] text-muted">Everyone</span>
+                        </button>
+                        <div id="batch-d0" class="batch-detail">
+                            <p class="pb-4 text-[14px] leading-relaxed text-muted max-w-md">The early batch. Mostly people who want it done before the day starts.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="button" class="batch group" data-start="06:15" data-label="6:15 - 7:15 am"
+                                aria-expanded="false" aria-controls="batch-d1">
+                            <span class="flex items-baseline justify-between gap-4">
+                                <span class="display text-[17px] font-medium text-ink">6:15 &ndash; 7:15 am</span>
+                                <span class="text-[13px] text-muted whitespace-nowrap">60 min</span>
+                            </span>
+                            <span class="mt-0.5 block text-[13px] text-muted">Everyone</span>
+                        </button>
+                        <div id="batch-d1" class="batch-detail">
+                            <p class="pb-4 text-[14px] leading-relaxed text-muted max-w-md">Our busiest hour. Mixed ability and mixed ages, from school children to retired members.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="button" class="batch group" data-start="10:00" data-label="10:00 - 11:00 am"
+                                aria-expanded="false" aria-controls="batch-d2">
+                            <span class="flex items-baseline justify-between gap-4">
+                                <span class="display text-[17px] font-medium text-ink">10:00 &ndash; 11:00 am</span>
+                                <span class="text-[13px] text-muted whitespace-nowrap">60 min</span>
+                            </span>
+                            <span class="mt-0.5 block text-[13px] text-blue font-medium">Ladies only</span>
+                        </button>
+                        <div id="batch-d2" class="batch-detail">
+                            <p class="pb-4 text-[14px] leading-relaxed text-muted max-w-md">Mid-morning, and women only. Popular with homemakers and anyone on a shift pattern.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="button" class="batch group" data-start="17:00" data-label="5:00 - 6:00 pm"
+                                aria-expanded="false" aria-controls="batch-d3">
+                            <span class="flex items-baseline justify-between gap-4">
+                                <span class="display text-[17px] font-medium text-ink">5:00 &ndash; 6:00 pm</span>
+                                <span class="text-[13px] text-muted whitespace-nowrap">60 min</span>
+                            </span>
+                            <span class="mt-0.5 block text-[13px] text-muted">Everyone</span>
+                        </button>
+                        <div id="batch-d3" class="batch-detail">
+                            <p class="pb-4 text-[14px] leading-relaxed text-muted max-w-md">The evening batch. A lot of school and college students come to this one.</p>
+                        </div>
+                    </li>
+                        </ul>
+
+                        <p class="mt-5 pt-4 border-t border-line text-[13px] leading-relaxed text-muted">
+                            Every batch is warm-up, asanas, pranayama and relaxation.
+                            Select a batch to see who it suits.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Facts strip -->
-        <div class="border-b border-line bg-white">
-            <dl class="max-w-6xl mx-auto px-5 sm:px-8 grid grid-cols-2 lg:grid-cols-4 divide-x divide-line">
-                <div class="py-6 pr-4 lg:px-6 first:pl-0">
-                    <dt class="text-xs uppercase tracking-wider text-muted">Batches a day</dt>
-                    <dd class="font-heading text-3xl text-deep-blue mt-1">5</dd>
-                </div>
-                <div class="py-6 px-4 lg:px-6">
-                    <dt class="text-xs uppercase tracking-wider text-muted">Open</dt>
-                    <dd class="font-heading text-3xl text-deep-blue mt-1">Mon&ndash;Fri</dd>
-                </div>
-                <div class="py-6 pr-4 lg:px-6 border-t lg:border-t-0 border-line">
-                    <dt class="text-xs uppercase tracking-wider text-muted">First class</dt>
-                    <dd class="font-heading text-3xl text-deep-blue mt-1">5:30 am</dd>
-                </div>
-                <div class="py-6 px-4 lg:px-6 border-t lg:border-t-0 border-line">
-                    <dt class="text-xs uppercase tracking-wider text-muted">Also taught</dt>
-                    <dd class="font-heading text-3xl text-deep-blue mt-1">Online</dd>
-                </div>
-            </dl>
         </div>
     </section>
 
+    <!-- Photo band -->
+    <section aria-hidden="true" class="border-y border-line">
+        <picture>
+            <source srcset="ima4.webp" type="image/webp">
+            <img src="ima4.jpeg" width="1280" height="960" alt=""
+                 class="w-full h-[220px] sm:h-[320px] lg:h-[400px] object-cover" fetchpriority="high" decoding="async">
+        </picture>
+    </section>
+
     <!-- About -->
-    <section id="about" aria-labelledby="about-h" class="py-20 lg:py-28">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <div class="lg:col-span-7 reveal">
-                <p class="kicker">About the centre</p>
-                <h2 id="about-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-                    A neighbourhood centre, not a fitness chain
-                </h2>
-                <div class="mt-6 space-y-4 text-[17px] leading-relaxed text-ink/80 max-w-2xl">
-                    <p>
-                        Happy Yogis runs out of a hall in SSM Nagar, New Perungalathur. On any
-                        given morning you will find school children, people on their way to
-                        work, homemakers and retired members on the mats at the same time.
-                        That mix is deliberate &mdash; it is what keeps the room relaxed.
-                    </p>
-                    <p>
-                        Classes are small enough that the teacher knows what each person is
-                        working with: a bad knee, a desk job, a thyroid condition, a first
-                        week of ever having tried yoga. The practice gets adjusted around
-                        that rather than the other way round.
-                    </p>
-                    <p>
-                        We are not interested in whether you can put your leg behind your
-                        head. We care that you turn up, breathe properly, and leave feeling
-                        better than when you walked in.
-                    </p>
-                </div>
+    <section id="about" aria-labelledby="about-h" class="py-16 lg:py-24">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
+            <div class="lg:col-span-4">
+                <h2 id="about-h" class="text-d2 font-semibold text-ink">A neighbourhood centre, not a fitness chain</h2>
             </div>
-            <div class="lg:col-span-5 reveal">
-                <picture>
-                    <source srcset="ima6.webp" type="image/webp">
-                    <img src="ima6.jpeg" width="1280" height="960" alt="Students of all ages holding tree pose together"
-                         class="w-full rounded-md" loading="lazy" decoding="async">
-                </picture>
-                <p class="mt-3 text-sm text-muted">Tree pose, morning batch.</p>
+            <div class="lg:col-span-8 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl">
+                <p>
+                    Happy Yogis runs out of a hall in SSM Nagar, New Perungalathur. On any
+                    given morning you will find school children, people on their way to
+                    work, homemakers and retired members on the mats at the same time.
+                    That mix is deliberate &mdash; it is what keeps the room relaxed.
+                </p>
+                <p>
+                    Batches are small enough that the teacher knows what each person is
+                    working with: a bad knee, a desk job, a thyroid condition, a first week
+                    of ever having tried yoga. The practice is adjusted around that rather
+                    than the other way round.
+                </p>
+                <p>
+                    We are not interested in whether you can put your leg behind your head.
+                    We care that you turn up, breathe properly, and leave feeling better
+                    than when you walked in.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Classes -->
-    <section id="classes" aria-labelledby="classes-h" class="py-20 lg:py-24 bg-sand border-y border-line">
+    <section id="classes" aria-labelledby="classes-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="max-w-2xl reveal">
-                <p class="kicker">What we teach</p>
-                <h2 id="classes-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Classes at Happy Yogis</h2>
-                <p class="mt-4 text-ink/75 leading-relaxed">
-                    Everything below is taught within the regular batches &mdash; you do not
-                    book a separate course. Tell us what you are working towards and the
-                    teacher builds it into your practice.
-                </p>
-            </div>
-            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10">
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Beginner yoga</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">If you have never held a pose before, start here. We build the standing postures and the breath slowly, and nobody is pushed past what their body will do that day.</p>
+            <div class="lg:flex lg:items-end lg:justify-between lg:gap-10">
+                <div class="max-w-xl">
+                    <h2 id="classes-h" class="text-d2 font-semibold text-ink">What we teach</h2>
+                    <p class="mt-3 text-[16px] leading-relaxed text-ink/75">
+                        All of it is taught inside the regular batches &mdash; you do not book
+                        a separate course. Tell us what you are working towards and the
+                        teacher builds it into your practice.
+                    </p>
                 </div>
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Weight loss and stamina</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">A faster-moving practice built around sun salutations and standing sequences, for students whose main goal is losing weight and building stamina.</p>
-                </div>
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Flexibility and posture</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">Hip openers, hamstring work and spinal movement. Popular with students who sit at a desk all day and arrive with a stiff neck and lower back.</p>
-                </div>
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Meditation and pranayama</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">Breathing practice and seated meditation. Every batch ends with this, and some students come specifically for it.</p>
-                </div>
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Yoga for women</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">Practice adapted around PCOD, thyroid and hormonal health, and around the menstrual cycle. The 10:00 am batch is ladies only.</p>
-                </div>
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Yoga for children</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">Children join the morning and evening batches with their parents. The focus is on balance, concentration and making it enjoyable rather than perfect.</p>
-                </div>
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Yoga for seniors</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">Low-impact practice with chair and wall support where it is needed, for joint mobility and steadiness.</p>
-                </div>
-                <div class="reveal">
-                    <h3 class="font-heading text-2xl text-deep-blue">Corporate and group sessions</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ink/75">Sessions for offices and residential associations, at your premises or online. Ask us for details.</p>
+                <div class="mt-6 lg:mt-0 flex flex-wrap gap-2" role="group" aria-label="Filter classes">
+                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded-full text-ink transition-colors" data-group="all" aria-pressed="true">Everything</button>
+                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded-full text-ink transition-colors" data-group="Start here" aria-pressed="false">Start here</button>
+                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded-full text-ink transition-colors" data-group="Build strength" aria-pressed="false">Build strength</button>
+                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded-full text-ink transition-colors" data-group="Breath and mind" aria-pressed="false">Breath and mind</button>
+                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded-full text-ink transition-colors" data-group="Beyond the batches" aria-pressed="false">Beyond the batches</button>
                 </div>
             </div>
+
+            <p id="filter-status" class="sr-only" role="status" aria-live="polite"></p>
+            <ul class="mt-10 border-b border-line">
+                <li class="class-item border-t border-line py-6" data-group="Start here">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Beginner yoga</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">If you have never held a pose before, this is where you start. Standing postures and the breath, built slowly. Nobody is pushed past what their body will do that day.</p>
+                    </div>
+                </li>
+                <li class="class-item border-t border-line py-6" data-group="Start here">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Flexibility and posture</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">Hip openers, hamstring work and spinal movement, for students who sit at a desk all day and arrive with a stiff neck and lower back.</p>
+                    </div>
+                </li>
+                <li class="class-item border-t border-line py-6" data-group="Build strength">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Weight loss and stamina</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">A faster practice built around sun salutations and standing sequences, for students whose main goal is losing weight and building stamina.</p>
+                    </div>
+                </li>
+                <li class="class-item border-t border-line py-6" data-group="Build strength">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Yoga for seniors</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">Low-impact practice with chair and wall support where it helps, for joint mobility and steadiness.</p>
+                    </div>
+                </li>
+                <li class="class-item border-t border-line py-6" data-group="Breath and mind">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Meditation and pranayama</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">Breathing practice and seated meditation. Every batch ends with this, and some students come specifically for it.</p>
+                    </div>
+                </li>
+                <li class="class-item border-t border-line py-6" data-group="Breath and mind">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Yoga for women</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">Practice adapted around PCOD, thyroid and hormonal health, and around the menstrual cycle. The 10:00 am batch is women only.</p>
+                    </div>
+                </li>
+                <li class="class-item border-t border-line py-6" data-group="Beyond the batches">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Yoga for children</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">Children practise in the morning and evening batches alongside their parents. The focus is balance, concentration and enjoying it.</p>
+                    </div>
+                </li>
+                <li class="class-item border-t border-line py-6" data-group="Beyond the batches">
+                    <div class="sm:flex sm:items-baseline sm:gap-8">
+                        <h3 class="display text-d3 font-medium text-ink sm:w-64 sm:shrink-0">Corporate and group sessions</h3>
+                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">Sessions for offices and residential associations, at your premises or online. Ask us for details.</p>
+                    </div>
+                </li>
+            </ul>
         </div>
     </section>
 
     <!-- Health -->
-    <section id="health" aria-labelledby="health-h" class="py-20 lg:py-24">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12">
-            <div class="lg:col-span-4 reveal">
-                <p class="kicker">Health-focused practice</p>
-                <h2 id="health-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-                    Practising around a health condition
-                </h2>
-                <p class="mt-5 text-ink/75 leading-relaxed">
-                    A good number of our students come to yoga because a doctor suggested it.
-                    Tell us what you are dealing with before your first class so the teacher
-                    can plan around it.
+    <section id="health" aria-labelledby="health-h" class="py-16 lg:py-24">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
+            <div class="lg:col-span-4">
+                <h2 id="health-h" class="text-d2 font-semibold text-ink">Practising around a health condition</h2>
+                <p class="mt-4 text-[16px] leading-relaxed text-ink/75">
+                    A good number of our students come to yoga because a doctor suggested
+                    it. Tell us what you are dealing with before your first class so the
+                    teacher can plan around it.
                 </p>
-                <p class="mt-4 text-sm text-muted leading-relaxed">
-                    Yoga supports treatment; it does not replace it. If you are under medical
-                    care, please keep your doctor in the loop.
+                <p class="mt-4 text-[13.5px] leading-relaxed text-muted">
+                    Yoga supports treatment; it does not replace it. If you are under
+                    medical care, please keep your doctor in the loop.
                 </p>
             </div>
-            <div class="lg:col-span-8 reveal">
-                <dl class="grid sm:grid-cols-2 gap-x-10">
-                    <div class="py-5 border-t border-line">
-                        <dt class="font-medium text-ink">PCOD and hormonal health</dt>
-                        <dd class="mt-1 text-[15px] text-muted leading-relaxed">Practice sequenced around hormonal balance, taken at a manageable pace.</dd>
+            <div class="lg:col-span-8">
+                <dl class="sm:grid sm:grid-cols-2 sm:gap-x-10">
+                    <div class="border-t border-line py-5">
+                        <dt class="display text-[15px] font-medium text-ink">PCOD and hormonal health</dt>
+                        <dd class="mt-1 text-[14px] leading-relaxed text-muted">Practice sequenced around hormonal balance, at a manageable pace.</dd>
                     </div>
-                    <div class="py-5 border-t border-line">
-                        <dt class="font-medium text-ink">Thyroid support</dt>
-                        <dd class="mt-1 text-[15px] text-muted leading-relaxed">Breathing and movement chosen with thyroid health in mind.</dd>
+                    <div class="border-t border-line py-5">
+                        <dt class="display text-[15px] font-medium text-ink">Thyroid support</dt>
+                        <dd class="mt-1 text-[14px] leading-relaxed text-muted">Breathing and movement chosen with thyroid health in mind.</dd>
                     </div>
-                    <div class="py-5 border-t border-line">
-                        <dt class="font-medium text-ink">Knee and joint pain</dt>
-                        <dd class="mt-1 text-[15px] text-muted leading-relaxed">Low-impact work with support, so the knees are not loaded.</dd>
+                    <div class="border-t border-line py-5">
+                        <dt class="display text-[15px] font-medium text-ink">Knee and joint pain</dt>
+                        <dd class="mt-1 text-[14px] leading-relaxed text-muted">Low-impact work with support, so the knees are not loaded.</dd>
                     </div>
-                    <div class="py-5 border-t border-line">
-                        <dt class="font-medium text-ink">Back and spine</dt>
-                        <dd class="mt-1 text-[15px] text-muted leading-relaxed">Posture correction and spinal strengthening for desk workers.</dd>
+                    <div class="border-t border-line py-5">
+                        <dt class="display text-[15px] font-medium text-ink">Back and spine</dt>
+                        <dd class="mt-1 text-[14px] leading-relaxed text-muted">Posture correction and spinal strengthening for desk workers.</dd>
                     </div>
-                    <div class="py-5 border-t border-line">
-                        <dt class="font-medium text-ink">Pregnancy care</dt>
-                        <dd class="mt-1 text-[15px] text-muted leading-relaxed">Prenatal practice, guided carefully and adjusted by stage.</dd>
+                    <div class="border-t border-line py-5">
+                        <dt class="display text-[15px] font-medium text-ink">Pregnancy care</dt>
+                        <dd class="mt-1 text-[14px] leading-relaxed text-muted">Prenatal practice, guided carefully and adjusted by stage.</dd>
                     </div>
-                    <div class="py-5 border-t border-line">
-                        <dt class="font-medium text-ink">Stress and sleep</dt>
-                        <dd class="mt-1 text-[15px] text-muted leading-relaxed">Breathing and relaxation for students who arrive wound up or sleeping badly.</dd>
+                    <div class="border-t border-line py-5">
+                        <dt class="display text-[15px] font-medium text-ink">Stress and sleep</dt>
+                        <dd class="mt-1 text-[14px] leading-relaxed text-muted">Breathing and relaxation for students who arrive wound up or sleeping badly.</dd>
                     </div>
                 </dl>
             </div>
         </div>
     </section>
 
-    <!-- Timings -->
-    <section id="timings" aria-labelledby="timings-h" class="py-20 lg:py-24 bg-sand border-y border-line">
-        <div class="max-w-4xl mx-auto px-5 sm:px-8">
-            <div class="reveal">
-                <p class="kicker">Timings</p>
-                <h2 id="timings-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Daily batches, Monday to Friday</h2>
-                <p class="mt-4 text-ink/75 leading-relaxed max-w-2xl">
-                    Every batch includes warm-up, asanas, pranayama and relaxation. The centre
-                    is closed on Saturdays, Sundays and public holidays.
-                </p>
-            </div>
-            <div class="mt-10 reveal">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-[15px]">
-                        <caption class="sr-only">Daily yoga batch timings at Happy Yogis, Monday to Friday</caption>
-                        <thead>
-                            <tr class="text-xs uppercase tracking-wider text-muted">
-                                <th scope="col" class="pb-3 pr-4 font-semibold">Time</th>
-                                <th scope="col" class="pb-3 pr-4 font-semibold">Length</th>
-                                <th scope="col" class="pb-3 pr-4 font-semibold">Batch</th>
-                                <th scope="col" class="pb-3 font-semibold hidden sm:table-cell">Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="border-t border-line">
-                            <td class="py-4 pr-4 font-medium text-ink whitespace-nowrap">5:30 &ndash; 6:15 am</td>
-                            <td class="py-4 pr-4 text-muted whitespace-nowrap">45 min</td>
-                            <td class="py-4 pr-4 whitespace-nowrap">General batch</td>
-                            <td class="py-4 text-muted hidden sm:table-cell">Early morning, before work or school.</td>
-                        </tr>
-                        <tr class="border-t border-line">
-                            <td class="py-4 pr-4 font-medium text-ink whitespace-nowrap">6:15 &ndash; 7:15 am</td>
-                            <td class="py-4 pr-4 text-muted whitespace-nowrap">60 min</td>
-                            <td class="py-4 pr-4 whitespace-nowrap">General batch</td>
-                            <td class="py-4 text-muted hidden sm:table-cell">Our busiest batch. Mixed ability, all ages.</td>
-                        </tr>
-                        <tr class="border-t border-line">
-                            <td class="py-4 pr-4 font-medium text-ink whitespace-nowrap">8:00 &ndash; 9:00 am</td>
-                            <td class="py-4 pr-4 text-muted whitespace-nowrap">60 min</td>
-                            <td class="py-4 pr-4 whitespace-nowrap">General batch</td>
-                            <td class="py-4 text-muted hidden sm:table-cell">Added recently; usually the quietest.</td>
-                        </tr>
-                        <tr class="border-t border-line">
-                            <td class="py-4 pr-4 font-medium text-ink whitespace-nowrap">10:00 &ndash; 11:00 am</td>
-                            <td class="py-4 pr-4 text-muted whitespace-nowrap">60 min</td>
-                            <td class="py-4 pr-4 whitespace-nowrap"><span class="text-deep-blue font-medium">Ladies only</span></td>
-                            <td class="py-4 text-muted hidden sm:table-cell">Mid-morning, for homemakers and shift workers.</td>
-                        </tr>
-                        <tr class="border-t border-line">
-                            <td class="py-4 pr-4 font-medium text-ink whitespace-nowrap">5:00 &ndash; 6:00 pm</td>
-                            <td class="py-4 pr-4 text-muted whitespace-nowrap">60 min</td>
-                            <td class="py-4 pr-4 whitespace-nowrap">General batch</td>
-                            <td class="py-4 text-muted hidden sm:table-cell">Evening batch, popular with school children.</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20know%20which%20batches%20have%20space." target="_blank" rel="noopener"
-                       class="inline-flex items-center justify-center px-6 py-3 bg-deep-blue text-white font-semibold rounded-md hover:bg-[#1a4267] transition-colors">
-                        Ask which batches have space
-                    </a>
-                    <a href="tel:+919994247450" class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-line bg-white text-ink font-semibold rounded-md hover:border-deep-blue transition-colors">
-                        <svg class="lucide w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Teacher -->
-    <section id="trainer" aria-labelledby="trainer-h" class="py-20 lg:py-28">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 reveal">
+    <section id="teacher" aria-labelledby="teacher-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <div class="lg:col-span-4">
                 <picture>
-                    <source srcset="ima5.webp" type="image/webp">
-                    <img src="ima5.jpeg" width="1280" height="960"
-                         alt="A morning batch at Happy Yogis Yoga Centre, students seated for breathing practice"
-                         class="w-full rounded-md" loading="lazy" decoding="async">
+                    <source srcset="instructor.webp" type="image/webp">
+                    <img src="instructor.jpeg" width="799" height="1200"
+                         alt="Karthika, yoga teacher at Happy Yogis Yoga Centre, New Perungalathur"
+                         class="w-full max-w-xs rounded" loading="lazy" decoding="async">
                 </picture>
-                <p class="mt-3 text-sm text-muted">A morning batch at the centre.</p>
             </div>
-            <div class="lg:col-span-7 reveal">
-                <p class="kicker">Your teacher</p>
-                <h2 id="trainer-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Karthika</h2>
-                <div class="mt-5 space-y-4 text-[17px] leading-relaxed text-ink/80 max-w-2xl">
+            <div class="lg:col-span-8">
+                <h2 id="teacher-h" class="text-d2 font-semibold text-ink">Karthika</h2>
+                <p class="mt-1 text-[14px] text-muted">Teaches every batch at the centre</p>
+                <div class="mt-5 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl">
                     <p>
                         Karthika has been practising and teaching yoga for more than ten
-                        years, and teaches every batch at the centre herself.
+                        years, and takes every batch at the centre herself.
                     </p>
                     <p>
                         Her approach is to meet people where they are. Beginners are not
@@ -900,77 +909,27 @@
                         rather than being told to sit it out.
                     </p>
                 </div>
-                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20book%20a%20class%20with%20Karthika." target="_blank" rel="noopener"
-                   class="mt-8 inline-flex items-center justify-center px-6 py-3 bg-deep-blue text-white font-semibold rounded-md hover:bg-[#1a4267] transition-colors">
-                    Book a trial class
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20book%20a%203-day%20trial%20with%20Karthika."
+                   target="_blank" rel="noopener"
+                   class="mt-7 inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
+                    Book a 3-day trial
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Areas -->
-    <section id="areas" aria-labelledby="areas-h" class="py-20 lg:py-24 bg-sand border-y border-line">
+    <!-- Studio photos -->
+    <section id="studio" aria-labelledby="studio-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="max-w-2xl reveal">
-                <p class="kicker">Where to find us</p>
-                <h2 id="areas-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">One centre, in New Perungalathur</h2>
-                <p class="mt-4 text-ink/75 leading-relaxed">
-                    Happy Yogis has a single centre &mdash; in SSM Nagar, New Perungalathur,
-                    just off the GST Road stretch between Tambaram and Vandalur, close to
-                    Perungalathur railway station. There are no other branches. Students
-                    travel in from the neighbourhoods nearby, and we also teach online for
-                    anyone who cannot make it in person.
+            <div class="max-w-xl">
+                <h2 id="studio-h" class="text-d2 font-semibold text-ink">Inside the centre</h2>
+                <p class="mt-3 text-[16px] leading-relaxed text-ink/75">
+                    Real batches, real students, all photographed at the centre. Select any
+                    photo to see it larger.
                 </p>
             </div>
-
-            <div class="mt-10 reveal">
-                <h3 class="kicker">Students travel in from</h3>
-                <ul class="mt-4 flex flex-wrap gap-2">
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">New Perungalathur</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Old Perungalathur</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">SSM Nagar</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">East Tambaram</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">West Tambaram</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Selaiyur</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Chromepet</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Vandalur</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Urapakkam</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Guduvanchery</li>
-                    <li class="px-3 py-1.5 bg-white border border-line rounded-full text-sm text-ink">Medavakkam</li>
-                </ul>
-            </div>
-
-            <div class="mt-12 grid sm:grid-cols-2 gap-5 reveal">
-                <a href="yoga-classes-perungalathur.html" class="group flex items-start justify-between gap-6 p-6 bg-white border border-line rounded-md hover:border-deep-blue transition-colors">
-                    <span>
-                        <span class="block font-heading text-2xl text-deep-blue">Yoga classes in Perungalathur</span>
-                        <span class="mt-1.5 block text-sm text-muted leading-relaxed">The centre is in this neighbourhood &mdash; where we are and what a class looks like.</span>
-                    </span>
-                    <span class="shrink-0 mt-2 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></span>
-                </a>
-                <a href="yoga-classes-tambaram.html" class="group flex items-start justify-between gap-6 p-6 bg-white border border-line rounded-md hover:border-deep-blue transition-colors">
-                    <span>
-                        <span class="block font-heading text-2xl text-deep-blue">Yoga classes near Tambaram</span>
-                        <span class="mt-1.5 block text-sm text-muted leading-relaxed">Getting here from Tambaram and Selaiyur, and which batch suits the commute.</span>
-                    </span>
-                    <span class="shrink-0 mt-2 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery" aria-labelledby="gallery-h" class="py-20 lg:py-24">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="max-w-2xl reveal">
-                <p class="kicker">Inside the centre</p>
-                <h2 id="gallery-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Photos from our classes</h2>
-                <p class="mt-4 text-ink/75 leading-relaxed">Real batches, real students, all photographed at the centre. Tap any photo to see it larger.</p>
-            </div>
-        </div>
-        <div class="mt-10 max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="columns-2 lg:columns-3 xl:columns-4 gap-4 reveal">
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+            <div class="mt-10 columns-2 lg:columns-3 xl:columns-4 gap-4">
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima4.jpeg" data-full-webp="ima4.webp" data-caption="Morning batch seated in meditation at the New Perungalathur centre">
                     <picture>
                         <source srcset="ima4-sm.webp" type="image/webp">
@@ -979,7 +938,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima6.jpeg" data-full-webp="ima6.webp" data-caption="Students of all ages holding tree pose together">
                     <picture>
                         <source srcset="ima6-sm.webp" type="image/webp">
@@ -988,7 +947,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima1.jpeg" data-full-webp="ima1.webp" data-caption="Adults and children seated in meditation facing their teacher at Happy Yogis">
                     <picture>
                         <source srcset="ima1-sm.webp" type="image/webp">
@@ -997,7 +956,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima2.jpeg" data-full-webp="ima2.webp" data-caption="Ladies batch practising cobra pose during a women's yoga class">
                     <picture>
                         <source srcset="ima2-sm.webp" type="image/webp">
@@ -1006,7 +965,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima8.jpeg" data-full-webp="ima8.webp" data-caption="Children practising cobra pose in a class at Happy Yogis">
                     <picture>
                         <source srcset="ima8-sm.webp" type="image/webp">
@@ -1015,7 +974,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima5.jpeg" data-full-webp="ima5.webp" data-caption="Teacher leading a seated breathing practice for a mixed-age group">
                     <picture>
                         <source srcset="ima5-sm.webp" type="image/webp">
@@ -1024,7 +983,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima10.jpeg" data-full-webp="ima10.webp" data-caption="Ladies batch moving through cat-cow stretches">
                     <picture>
                         <source srcset="ima10-sm.webp" type="image/webp">
@@ -1033,7 +992,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima3.jpeg" data-full-webp="ima3.webp" data-caption="Student holding downward dog on a mat at the centre">
                     <picture>
                         <source srcset="ima3-sm.webp" type="image/webp">
@@ -1042,7 +1001,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima7.jpeg" data-full-webp="ima7.webp" data-caption="Yoga teacher demonstrating a seated spinal twist">
                     <picture>
                         <source srcset="ima7-sm.webp" type="image/webp">
@@ -1051,7 +1010,7 @@
                              loading="lazy" decoding="async">
                     </picture>
                 </button>
-                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded-md bg-line"
+                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded"
                         data-full="ima9.jpeg" data-full-webp="ima9.webp" data-caption="Members of the Happy Yogis community together at a centre event">
                     <picture>
                         <source srcset="ima9-sm.webp" type="image/webp">
@@ -1064,206 +1023,284 @@
         </div>
     </section>
 
-    <!-- Quotes -->
-    <section id="students" aria-labelledby="students-h" class="py-20 lg:py-24 bg-sand border-y border-line">
+    <!-- Reviews -->
+    <section id="reviews" aria-labelledby="reviews-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="max-w-2xl reveal">
-                <p class="kicker">In their words</p>
-                <h2 id="students-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">What students say</h2>
+            <div class="max-w-xl">
+                <h2 id="reviews-h" class="text-d2 font-semibold text-ink">What students say</h2>
             </div>
-            <div class="mt-10 sm:columns-2 lg:columns-2 gap-6 max-w-4xl">
-                <figure class="reveal break-inside-avoid mb-6 bg-white border border-line rounded-md p-6">
-                    <blockquote class="font-heading text-xl leading-snug text-ink">&ldquo;The classes helped me reduce stress and improve flexibility within a few weeks.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-sm text-muted">Priya S. &middot; Chennai</figcaption>
-                </figure>
-                <figure class="reveal break-inside-avoid mb-6 bg-white border border-line rounded-md p-6">
-                    <blockquote class="font-heading text-xl leading-snug text-ink">&ldquo;Very professional guidance and a positive environment for beginners.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-sm text-muted">Karthik R. &middot; Tambaram</figcaption>
-                </figure>
-                <figure class="reveal break-inside-avoid mb-6 bg-white border border-line rounded-md p-6">
-                    <blockquote class="font-heading text-xl leading-snug text-ink">&ldquo;The breathing exercises improved my focus and sleep quality significantly.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-sm text-muted">Ramesh K. &middot; Guduvanchery</figcaption>
-                </figure>
-                <figure class="reveal break-inside-avoid mb-6 bg-white border border-line rounded-md p-6">
-                    <blockquote class="font-heading text-xl leading-snug text-ink">&ldquo;I experienced noticeable weight loss and improved stamina after joining.&rdquo;</blockquote>
-                    <figcaption class="mt-4 text-sm text-muted">Deepa M. &middot; Perungalathur</figcaption>
-                </figure>
+            <div class="mt-8">
+            <div class="border border-line rounded p-8 sm:p-10 max-w-2xl">
+                <p class="text-[15px] leading-relaxed text-muted">
+                    We are collecting reviews from our students on Google. Once they are
+                    up, they will appear here &mdash; in their words, not ours.
+                </p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=HAPPY+YOGIS+YOGA+CENTRE"
+                   target="_blank" rel="noopener"
+                   class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium text-blue hover:underline">
+                    Find us on Google Maps {icon('arrow-up-right', 'w-4 h-4')}
+                </a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Areas -->
+    <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
+            <div class="lg:col-span-5">
+                <h2 id="areas-h" class="text-d2 font-semibold text-ink">One centre, in New Perungalathur</h2>
+                <p class="mt-4 text-[16px] leading-relaxed text-ink/75">
+                    We teach from a single centre in SSM Nagar, just off the GST Road
+                    stretch between Tambaram and Vandalur and close to Perungalathur
+                    railway station. There are no other branches. Students travel in from
+                    the neighbourhoods nearby, and we teach online for anyone who cannot
+                    make it in person.
+                </p>
+                <h3 class="mt-8 text-[13.5px] font-medium text-ink">Students travel in from</h3>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">New Perungalathur</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">Old Perungalathur</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">SSM Nagar</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">East Tambaram</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">West Tambaram</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">Selaiyur</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">Chromepet</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">Vandalur</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">Urapakkam</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">Guduvanchery</li>
+                    <li class="px-3 py-1.5 border border-line rounded-full text-[13.5px] text-ink">Medavakkam</li>
+                </ul>
+            </div>
+            <div class="lg:col-span-7 lg:pt-1">
+                <a href="yoga-classes-perungalathur.html" class="group block border-t border-line py-6 transition-colors hover:bg-sand/60">
+                    <span class="display text-d3 font-medium text-ink group-hover:text-blue transition-colors">Yoga classes in Perungalathur</span>
+                    <span class="mt-1 block text-[14px] leading-relaxed text-muted max-w-md">The centre is in this neighbourhood. Where we are, and what a class looks like.</span>
+                </a>
+                <a href="yoga-classes-tambaram.html" class="group block border-t border-line py-6 transition-colors hover:bg-sand/60">
+                    <span class="display text-d3 font-medium text-ink group-hover:text-blue transition-colors">Yoga classes near Tambaram</span>
+                    <span class="mt-1 block text-[14px] leading-relaxed text-muted max-w-md">Getting here from Tambaram and Selaiyur, and which batch suits the commute.</span>
+                </a>
+                <div class="border-t border-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enquiry + visit -->
+    <section id="visit" aria-labelledby="visit-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
+
+            <div class="lg:col-span-6" id="enquire">
+                <h2 id="visit-h" class="text-d2 font-semibold text-ink">Book a 3-day trial</h2>
+                <p class="mt-3 text-[16px] leading-relaxed text-ink/75 max-w-lg">
+                    Fill this in and it opens WhatsApp with your details ready to send, so
+                    we can tell you which batches have room.
+                </p>
+
+                <form id="enquiry-form" class="mt-7 space-y-4 max-w-lg" novalidate>
+                    <div>
+                        <label for="f-name" class="block text-[13.5px] font-medium text-ink">Your name</label>
+                        <input id="f-name" name="name" type="text" autocomplete="name" required
+                               class="mt-1.5 w-full px-3.5 py-2.5 bg-paper border border-line rounded text-[15px] text-ink placeholder:text-muted/70">
+                    </div>
+                    <div>
+                        <label for="f-phone" class="block text-[13.5px] font-medium text-ink">Phone number</label>
+                        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required
+                               class="mt-1.5 w-full px-3.5 py-2.5 bg-paper border border-line rounded text-[15px] text-ink placeholder:text-muted/70">
+                    </div>
+                    <div class="sm:grid sm:grid-cols-2 sm:gap-4 space-y-4 sm:space-y-0">
+                        <div>
+                            <label for="f-batch" class="block text-[13.5px] font-medium text-ink">Preferred batch</label>
+                            <select id="f-batch" name="batch"
+                                    class="mt-1.5 w-full px-3.5 py-2.5 bg-paper border border-line rounded text-[15px] text-ink">
+                                <option value="">No preference</option>
+                                <option>5:30 - 6:15 am</option>
+                                <option>6:15 - 7:15 am</option>
+                                <option>10:00 - 11:00 am (ladies only)</option>
+                                <option>5:00 - 6:00 pm</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="f-mode" class="block text-[13.5px] font-medium text-ink">Format</label>
+                            <select id="f-mode" name="mode"
+                                    class="mt-1.5 w-full px-3.5 py-2.5 bg-paper border border-line rounded text-[15px] text-ink">
+                                <option value="">Either</option>
+                                <option>At the centre</option>
+                                <option>Online</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="f-notes" class="block text-[13.5px] font-medium text-ink">
+                            Anything the teacher should know
+                            <span class="font-normal text-muted">(optional)</span>
+                        </label>
+                        <textarea id="f-notes" name="notes" rows="3"
+                                  class="mt-1.5 w-full px-3.5 py-2.5 bg-paper border border-line rounded text-[15px] text-ink placeholder:text-muted/70"
+                                  placeholder="Knee pain, PCOD, pregnancy, a goal you have in mind&hellip;"></textarea>
+                        <p class="mt-1.5 text-[12.5px] leading-relaxed text-muted">
+                            Only shared with your teacher. See our
+                            <a href="privacy-policy.html" class="underline hover:text-ink">privacy policy</a>.
+                        </p>
+                    </div>
+                    <button type="submit"
+                            class="inline-flex items-center gap-2 px-5 py-3 bg-[#1FA855] text-white font-medium rounded hover:bg-[#178c46] transition-colors">
+                        <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg>Open WhatsApp with my details
+                    </button>
+                    <p id="form-note" hidden role="status"
+                       class="text-[13.5px] leading-relaxed text-ink bg-paper border border-line rounded px-4 py-3">
+                        WhatsApp should have opened in a new tab with your message ready.
+                        Press send there and we will get back to you. If nothing opened,
+                        call us on <a href="tel:+919994247450" class="underline">+91 99942 47450</a>.
+                    </p>
+                </form>
+            </div>
+
+            <div class="lg:col-span-6">
+                <h2 class="text-d2 font-semibold text-ink">Visit the centre</h2>
+                <dl class="mt-6 text-[15px]">
+                    <div class="flex gap-4 border-t border-line py-4">
+                        <dt class="shrink-0 w-24 text-[13.5px] text-muted">Address</dt>
+                        <dd>
+                            <address class="not-italic text-ink">SSM Nagar, New Perungalathur,<br>Chennai, Tamil Nadu 600063</address>
+                            <a href="https://www.google.com/maps/search/?api=1&query=SSM+Nagar+New+Perungalathur+Chennai" target="_blank" rel="noopener"
+                               class="mt-1.5 inline-flex items-center gap-1.5 text-[14px] font-medium text-blue hover:underline">
+                                Get directions <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-arrow-up-right"></use></svg>
+                            </a>
+                        </dd>
+                    </div>
+                    <div class="flex gap-4 border-t border-line py-4">
+                        <dt class="shrink-0 w-24 text-[13.5px] text-muted">Phone</dt>
+                        <dd><a href="tel:+919994247450" class="text-ink hover:text-blue transition-colors">+91 99942 47450</a></dd>
+                    </div>
+                    <div class="flex gap-4 border-t border-b border-line py-4">
+                        <dt class="shrink-0 w-24 text-[13.5px] text-muted">Open</dt>
+                        <dd class="text-ink">Monday to Friday, 5:30 am &ndash; 7:00 pm<br><span class="text-muted">Closed Saturday, Sunday and public holidays</span></dd>
+                    </div>
+                </dl>
+
+                <div class="mt-6 rounded overflow-hidden border border-line">
+                    <iframe title="Map showing Happy Yogis Yoga Centre, New Perungalathur"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8938068!2d80.1131382!3d12.8938068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5259bd7762301f%3A0xbb838e445fc93a!2sHAPPY%20YOGIS%20YOGA%20CENTRE!5e0!3m2!1sen!2sin!4v1234567890"
+                            width="100%" height="300" style="border:0" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-h" class="py-20 lg:py-24">
+    <section id="faq" aria-labelledby="faq-h" class="py-16 lg:py-24">
         <div class="max-w-3xl mx-auto px-5 sm:px-8">
-            <div class="reveal">
-                <p class="kicker">Questions</p>
-                <h2 id="faq-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Before you join</h2>
-            </div>
-            <div class="mt-10 border-t border-line reveal">
+            <h2 id="faq-h" class="text-d2 font-semibold text-ink">Before you join</h2>
+            <div class="mt-8 border-t border-line">
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Do I need to be flexible to start?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Do I need to be flexible to start?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">No. Most people who join us cannot touch their toes on day one, and that is genuinely fine. Flexibility is what the practice builds, not what it asks for.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">No. Most people who join cannot touch their toes on day one, and that is genuinely fine. Flexibility is what the practice builds, not what it asks for.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">I have never done yoga before. Which batch should I join?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">I have never done yoga before. Which batch should I join?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Any of them. Every batch is mixed ability and the practice is adjusted person by person. Most beginners pick the 6:15 am or the 5:00 pm batch.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Any of them. Every batch is mixed ability and the practice is adjusted person by person. Most beginners pick the 6:15 am or the 5:00 pm batch.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Can I try a class before paying?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Can I try before joining properly?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Yes. Message us on WhatsApp and we will put you into a batch for a free trial class so you can see whether it suits you.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Yes. We run a 3-day trial so you can sit in on a batch and see whether it suits you before committing. Message us on WhatsApp and we will book you in.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Do I need to bring a mat?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Do I need to bring a mat?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Bring one for the trial if you have it. Once you join you can leave your mat at the centre rather than carrying it every day.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Bring one for the trial if you have it. Once you join you can leave your mat at the centre rather than carrying it every day.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Is there a dress code?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Is there a dress code?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Wear something you can move in. Every student is given a Happy Yogis t-shirt to wear to class.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Wear something you can move in. Every student is given a Happy Yogis t-shirt to wear to class.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Are the classes in Tamil or English?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Can I switch between online and in-person?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Both. Instructions are given in whichever language the batch is comfortable with.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Yes. We teach both, and students move between them as their week allows. If you sign up for online classes you can come to the centre instead, and the other way round.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Do you teach men as well as women?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Are the classes in Tamil or English?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Yes. The general batches are mixed. The 10:00 am batch is ladies only.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Both. Instructions are given in whichever language the batch is comfortable with.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Can my child join?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Do you teach men as well as women?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Yes, children practise alongside their parents in the morning and evening batches.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Yes. The 5:30 am, 6:15 am and 5:00 pm batches are for everyone. The 10:00 am batch is women only.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">Do you take online classes?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">Can my child join?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Yes, we teach online as well as at the centre, which suits students who have moved away or travel for work.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Yes, children practise alongside their parents in the morning and evening batches.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">I have a knee problem / back pain / PCOD. Can I still practise?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">I have a knee problem, back pain or PCOD. Can I still practise?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">In most cases yes, with the practice adapted. Tell us before you start so the teacher knows, and check with your doctor if you are under treatment for anything.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">In most cases yes, with the practice adapted. Tell us before you start so the teacher knows, and check with your doctor if you are under treatment for anything.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">How soon will I notice a difference?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">How soon will I notice a difference?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Most students say they sleep better and feel less stiff within the first two or three weeks of practising regularly. Physical changes take longer.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Most students say they sleep better and feel less stiff within the first two or three weeks of practising regularly. Physical changes take longer.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
-                            <span class="font-medium text-ink">How do I join?</span>
-                            <span class="shrink-0 mt-0.5 text-deep-blue"><svg class="lucide w-5 h-5 transition-transform" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg></span>
+                            <span class="text-[15.5px] font-medium text-ink">How do I join?</span>
+                            <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-muted leading-relaxed max-w-2xl">Message us on WhatsApp or call. We will tell you which batches have room and book you a trial class.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" aria-labelledby="contact-h" class="py-20 lg:py-24 bg-sand border-t border-line">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12">
-            <div class="lg:col-span-5 reveal">
-                <p class="kicker">Visit or call</p>
-                <h2 id="contact-h" class="font-heading text-3xl sm:text-4xl text-ink mt-3">Come and try a class</h2>
-                <p class="mt-4 text-ink/75 leading-relaxed">
-                    The quickest way to start is a WhatsApp message. Tell us roughly when you
-                    can make it and we will suggest a batch.
-                </p>
-
-                <dl class="mt-8 space-y-6 text-[15px]">
-                    <div class="flex gap-4">
-                        <dt class="shrink-0 text-deep-blue mt-0.5" aria-hidden="true"><svg class="lucide w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-map-pin"></use></svg></dt>
-                        <dd>
-                            <span class="sr-only">Address: </span>
-                            <address class="not-italic text-ink">SSM Nagar, New Perungalathur,<br>Chennai, Tamil Nadu 600063</address>
-                            <a href="https://www.google.com/maps/search/?api=1&query=SSM+Nagar+New+Perungalathur+Chennai" target="_blank" rel="noopener"
-                               class="mt-1.5 inline-flex items-center gap-1.5 font-medium text-deep-blue hover:underline">
-                                Get directions <svg class="lucide w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-                            </a>
-                        </dd>
-                    </div>
-                    <div class="flex gap-4">
-                        <dt class="shrink-0 text-deep-blue mt-0.5" aria-hidden="true"><svg class="lucide w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg></dt>
-                        <dd>
-                            <span class="sr-only">Phone: </span>
-                            <a href="tel:+919994247450" class="text-ink hover:text-deep-blue transition-colors">+91 99942 47450</a>
-                        </dd>
-                    </div>
-                    <div class="flex gap-4">
-                        <dt class="shrink-0 text-deep-blue mt-0.5" aria-hidden="true"><svg class="lucide w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg></dt>
-                        <dd>
-                            <span class="sr-only">Opening hours: </span>
-                            <span class="text-ink">Monday&ndash;Friday, 5:30 am &ndash; 6:00 pm</span><br>
-                            <span class="text-muted">Closed Saturday, Sunday and public holidays</span>
-                        </dd>
-                    </div>
-                </dl>
-
-                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20book%20a%20free%20trial%20class." target="_blank" rel="noopener"
-                   class="mt-9 inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#1FA855] text-white font-semibold rounded-md hover:bg-[#178c46] transition-colors">
-                    <svg class="lucide w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg>Message us on WhatsApp
-                </a>
-            </div>
-
-            <div class="lg:col-span-7 reveal">
-                <div class="h-full min-h-[22rem] rounded-md overflow-hidden border border-line bg-white">
-                    <iframe title="Map showing Happy Yogis Yoga Centre, New Perungalathur"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8938068!2d80.1131382!3d12.8938068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5259bd7762301f%3A0xbb838e445fc93a!2sHAPPY%20YOGIS%20YOGA%20CENTRE!5e0!3m2!1sen!2sin!4v1234567890"
-                            width="100%" height="100%" style="border:0;min-height:22rem"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">Message us on WhatsApp or call. We will tell you which batches have room and book you a trial.</div>
                 </div>
             </div>
         </div>
@@ -1271,40 +1308,41 @@
 
     </main>
 
-    <footer class="bg-ink text-white/70">
+    <footer class="bg-ink text-white/65 mt-px">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14">
             <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
                 <div class="lg:col-span-2">
-                    <div class="flex items-center gap-3 mb-4">
-                        <picture><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="" width="40" height="45" class="w-9 h-auto"></picture>
-                        <span class="font-heading text-xl font-semibold text-white">Happy Yogis Yoga Centre</span>
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <picture><source srcset="logo.webp" type="image/webp">
+                        <img src="logo.png" alt="" width="40" height="45" class="w-8 h-auto"></picture>
+                        <span class="display text-[17px] font-semibold text-white">Happy Yogis Yoga Centre</span>
                     </div>
                     <address class="not-italic text-sm leading-relaxed">
-                        SSM Nagar, New Perungalathur<br>
-                        Chennai, Tamil Nadu 600063<br>
-                        <a href="tel:+919994247450" class="text-white hover:text-sky-blue transition-colors">+91 99942 47450</a>
+                        SSM Nagar, New Perungalathur<br>Chennai, Tamil Nadu 600063<br>
+                        <a href="tel:+919994247450" class="text-white hover:text-sky transition-colors">+91 99942 47450</a>
                     </address>
-                    <p class="mt-4 text-sm">Monday to Friday, 5:30 am to 6:00 pm.<br>Closed Saturday, Sunday and public holidays.</p>
+                    <p class="mt-4 text-sm">Monday to Friday, 5:30 am to 7:00 pm.<br>Closed Saturday, Sunday and public holidays.</p>
+                    <p class="mt-4 text-sm">One centre, in New Perungalathur. We have no other branches.</p>
                 </div>
 
-                <nav aria-labelledby="f-classes">
-                    <h2 id="f-classes" class="text-white font-semibold text-sm mb-4">Classes</h2>
+                <nav aria-labelledby="f-site">
+                    <h2 id="f-site" class="text-white font-medium text-sm mb-4">The centre</h2>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="index.html#classes" class="hover:text-sky-blue transition-colors">What we teach</a></li>
-                        <li><a href="index.html#health" class="hover:text-sky-blue transition-colors">Health-focused yoga</a></li>
-                        <li><a href="index.html#timings" class="hover:text-sky-blue transition-colors">Batch timings</a></li>
-                        <li><a href="index.html#trainer" class="hover:text-sky-blue transition-colors">Your teacher</a></li>
-                        <li><a href="index.html#faq" class="hover:text-sky-blue transition-colors">Questions</a></li>
+                        <li><a href="index.html#schedule" class="hover:text-sky transition-colors">Batch schedule</a></li>
+                        <li><a href="index.html#classes" class="hover:text-sky transition-colors">What we teach</a></li>
+                        <li><a href="index.html#teacher" class="hover:text-sky transition-colors">Your teacher</a></li>
+                        <li><a href="index.html#studio" class="hover:text-sky transition-colors">Photos</a></li>
+                        <li><a href="blog.html" class="hover:text-sky transition-colors">Journal</a></li>
+                        <li><a href="index.html#faq" class="hover:text-sky transition-colors">Questions</a></li>
                     </ul>
                 </nav>
 
                 <nav aria-labelledby="f-areas">
-                    <h2 id="f-areas" class="text-white font-semibold text-sm mb-4">Areas we teach</h2>
+                    <h2 id="f-areas" class="text-white font-medium text-sm mb-4">Areas we teach</h2>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="yoga-classes-perungalathur.html" class="hover:text-sky-blue transition-colors">Yoga classes in Perungalathur</a></li>
-                        <li><a href="yoga-classes-tambaram.html" class="hover:text-sky-blue transition-colors">Yoga classes in Tambaram</a></li>
-                        <li><a href="index.html#areas" class="hover:text-sky-blue transition-colors">All areas</a></li>
-                        <li><a href="index.html#contact" class="hover:text-sky-blue transition-colors">Visit the centre</a></li>
+                        <li><a href="yoga-classes-perungalathur.html" class="hover:text-sky transition-colors">Yoga classes in Perungalathur</a></li>
+                        <li><a href="yoga-classes-tambaram.html" class="hover:text-sky transition-colors">Yoga classes near Tambaram</a></li>
+                        <li><a href="index.html#visit" class="hover:text-sky transition-colors">Visit the centre</a></li>
                     </ul>
                 </nav>
             </div>
@@ -1312,22 +1350,22 @@
             <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs">
                 <p>&copy; 2026 Happy Yogis Yoga Centre.</p>
                 <p class="flex gap-5">
-                    <a href="privacy-policy.html" class="hover:text-sky-blue transition-colors">Privacy Policy</a>
-                    <a href="terms-of-service.html" class="hover:text-sky-blue transition-colors">Terms &amp; Conditions</a>
+                    <a href="privacy-policy.html" class="hover:text-sky transition-colors">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="hover:text-sky transition-colors">Terms &amp; Conditions</a>
                 </p>
             </div>
         </div>
     </footer>
 
     <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener"
-       class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 pl-4 pr-5 py-3 rounded-full bg-[#1FA855] text-white text-sm font-semibold shadow-lg hover:bg-[#178c46] transition-colors"
+       class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 pl-3.5 pr-4 py-3 rounded-full bg-[#1FA855] text-white text-sm font-medium hover:bg-[#178c46] transition-colors"
        aria-label="Chat with Happy Yogis on WhatsApp">
-        <svg class="lucide w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg><span class="hidden sm:inline">WhatsApp</span>
+        <svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg><span class="hidden sm:inline">WhatsApp</span>
     </a>
 
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
         <button id="lightbox-close" type="button" aria-label="Close photo"
-                class="absolute top-5 right-5 p-2 text-white/80 hover:text-white"><svg class="lucide w-7 h-7" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
+                class="absolute top-5 right-5 p-2 text-white/80 hover:text-white"><svg class="i w-7 h-7" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
         <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
              alt="" class="max-w-full max-h-[85vh] object-contain rounded" decoding="async">
     </div>
@@ -1346,11 +1384,10 @@
             });
         }, { passive: true });
 
-        // Keep Tab inside an open dialog. Both the menu and the lightbox are
-        // aria-modal, so focus escaping to the page behind them is a real bug.
+        /* Keep Tab inside an open modal dialog. */
         function focusables(root) {
             return Array.prototype.filter.call(
-                root.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+                root.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'),
                 function (el) { return el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement; });
         }
         function makeTrap(root) {
@@ -1364,49 +1401,145 @@
             };
         }
 
+        /* ---------- mobile menu ---------- */
         var menu = document.getElementById('mobile-menu');
-        var btn = document.getElementById('menu-btn');
-        var close = document.getElementById('menu-close');
-        var last = null;
+        var mBtn = document.getElementById('menu-btn');
+        var mClose = document.getElementById('menu-close');
+        var lastFocus = null;
         var menuTrap = makeTrap(menu);
         function openMenu() {
-            last = document.activeElement;
+            lastFocus = document.activeElement;
             document.addEventListener('keydown', menuTrap, true);
             menu.classList.add('open');
             menu.setAttribute('aria-hidden', 'false');
-            btn.setAttribute('aria-expanded', 'true');
+            mBtn.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
-            close.focus();
+            mClose.focus();
         }
         function closeMenu() {
             document.removeEventListener('keydown', menuTrap, true);
             menu.classList.remove('open');
             menu.setAttribute('aria-hidden', 'true');
-            btn.setAttribute('aria-expanded', 'false');
+            mBtn.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
-            if (last) last.focus();
+            if (lastFocus) lastFocus.focus();
         }
-        btn.addEventListener('click', openMenu);
-        close.addEventListener('click', closeMenu);
+        mBtn.addEventListener('click', openMenu);
+        mClose.addEventListener('click', closeMenu);
         menu.addEventListener('click', function (e) { if (e.target === menu) closeMenu(); });
-        menu.querySelectorAll('.mobile-link').forEach(function (a) {
-            a.addEventListener('click', closeMenu);
+        menu.querySelectorAll('.mobile-link').forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+        /* ---------- hero: which batch is next, from the visitor's clock ----------
+           Classes run Monday to Friday only. On a weekend, or after the last
+           batch, this points at the next weekday morning. */
+        var nextEl = document.getElementById('next-class');
+        var batches = Array.prototype.map.call(
+            document.querySelectorAll('[data-start]'),
+            function (el) { return { el: el, start: el.getAttribute('data-start'), label: el.getAttribute('data-label') }; });
+
+        if (nextEl && batches.length) {
+            var now = new Date();
+            var day = now.getDay();                       // 0 Sun .. 6 Sat
+            var mins = now.getHours() * 60 + now.getMinutes();
+            function toMins(hhmm) {
+                var p = hhmm.split(':');
+                return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+            }
+            var weekday = day >= 1 && day <= 5;
+            var upcoming = null;
+            if (weekday) {
+                for (var i = 0; i < batches.length; i++) {
+                    if (toMins(batches[i].start) > mins) { upcoming = batches[i]; break; }
+                }
+            }
+            var when;
+            if (upcoming) {
+                when = 'Next class today';
+            } else {
+                upcoming = batches[0];
+                var names = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                var d = day;
+                do { d = (d + 1) % 7; } while (d < 1 || d > 5);
+                when = 'Next class ' + (d === (day + 1) % 7 ? 'tomorrow' : names[d]);
+            }
+            nextEl.innerHTML = '<span class="batch-now">' + when + '</span> &middot; ' + upcoming.label;
+            nextEl.classList.add('settle');
+            upcoming.el.setAttribute('data-next', 'true');
+        }
+
+        /* ---------- hero: expanding a batch (user-triggered) ---------- */
+        document.querySelectorAll('.batch').forEach(function (btn, i) {
+            var detail = document.getElementById(btn.getAttribute('aria-controls'));
+            if (!detail) return;
+            detail.hidden = true;
+            btn.addEventListener('click', function () {
+                var open = btn.getAttribute('aria-expanded') === 'true';
+                document.querySelectorAll('.batch').forEach(function (other) {
+                    if (other === btn) return;
+                    other.setAttribute('aria-expanded', 'false');
+                    var d = document.getElementById(other.getAttribute('aria-controls'));
+                    if (d) d.hidden = true;
+                });
+                btn.setAttribute('aria-expanded', String(!open));
+                detail.hidden = open;
+                // the enquiry CTA names whichever batch is open
+                var cta = document.getElementById('batch-cta');
+                if (cta) {
+                    if (open) {
+                        cta.textContent = 'Book a 3-day trial';
+                        cta.setAttribute('href', cta.getAttribute('data-base'));
+                    } else {
+                        var label = btn.getAttribute('data-label');
+                        cta.textContent = 'Ask about the ' + label + ' batch';
+                        cta.setAttribute('href', cta.getAttribute('data-base') +
+                            encodeURIComponent(' I am interested in the ' + label + ' batch.'));
+                    }
+                }
+            });
         });
 
-        var reveals = document.querySelectorAll('.reveal');
-        if ('IntersectionObserver' in window) {
-            var io = new IntersectionObserver(function (es) {
-                es.forEach(function (e) {
-                    if (!e.isIntersecting) return;
-                    e.target.classList.add('active');
-                    io.unobserve(e.target);
+        /* ---------- classes: filter by group (user-triggered) ---------- */
+        var filters = document.querySelectorAll('.filter');
+        filters.forEach(function (f) {
+            f.addEventListener('click', function () {
+                var group = f.getAttribute('data-group');
+                filters.forEach(function (o) { o.setAttribute('aria-pressed', String(o === f)); });
+                document.querySelectorAll('.class-item').forEach(function (item) {
+                    item.hidden = !(group === 'all' || item.getAttribute('data-group') === group);
                 });
-            }, { threshold: .12, rootMargin: '0px 0px -40px' });
-            reveals.forEach(function (el) { io.observe(el); });
-        } else {
-            reveals.forEach(function (el) { el.classList.add('active'); });
+                var live = document.getElementById('filter-status');
+                if (live) {
+                    var n = document.querySelectorAll('.class-item:not([hidden])').length;
+                    live.textContent = n + (n === 1 ? ' class' : ' classes') + ' shown';
+                }
+            });
+        });
+
+        /* ---------- enquiry form: composes a WhatsApp message ---------- */
+        var form = document.getElementById('enquiry-form');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var name = form.elements.name.value.trim();
+                var phone = form.elements.phone.value.trim();
+                var batch = form.elements.batch.value;
+                var mode = form.elements.mode.value;
+                var notes = form.elements.notes.value.trim();
+
+                var msg = 'Hello Happy Yogis! I would like to book a 3-day trial.';
+                if (name) msg += '\nName: ' + name;
+                if (phone) msg += '\nPhone: ' + phone;
+                if (batch) msg += '\nPreferred batch: ' + batch;
+                if (mode) msg += '\nFormat: ' + mode;
+                if (notes) msg += '\nAnything to know: ' + notes;
+
+                var note = document.getElementById('form-note');
+                if (note) note.hidden = false;
+                window.open('https://wa.me/919994247450?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+            });
         }
 
+        /* ---------- gallery lightbox ---------- */
         var lb = document.getElementById('lightbox');
         if (lb) {
             var lbImg = document.getElementById('lightbox-img');
@@ -1414,7 +1547,6 @@
             var BLANK = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
             var opener = null;
             var lbTrap = makeTrap(lb);
-            // serve the full-size WebP where the browser supports it
             var webpOK = (function () {
                 var c = document.createElement('canvas');
                 return !!(c.getContext && c.toDataURL('image/webp').indexOf('data:image/webp') === 0);
@@ -1453,12 +1585,11 @@
             if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
         });
 
+        /* ---------- FAQ ---------- */
         document.querySelectorAll('.faq-item').forEach(function (item, i) {
-            var q = item.querySelector('.faq-q');
-            var a = item.querySelector('.faq-a');
+            var q = item.querySelector('.faq-q'), a = item.querySelector('.faq-a');
             if (!q || !a) return;
-            a.id = 'faq-a-' + i;
-            q.id = 'faq-q-' + i;
+            a.id = 'faq-a-' + i; q.id = 'faq-q-' + i;
             q.setAttribute('aria-controls', a.id);
             a.setAttribute('role', 'region');
             a.setAttribute('aria-labelledby', q.id);
@@ -1472,6 +1603,7 @@
             });
         });
 
+        /* ---------- in-page links clear the fixed nav ---------- */
         document.querySelectorAll('a[href^="#"]').forEach(function (a) {
             a.addEventListener('click', function (e) {
                 var id = this.getAttribute('href');
