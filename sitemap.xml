@@ -3,107 +3,139 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://happyyogis.com/</loc>
+    <loc>https://happyyogis.in/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://happyyogis.com/og-image.jpg</image:loc>
-      <image:title>Happy Yogis Yoga Centre, New Perungalathur, Chennai</image:title>
+      <image:loc>https://happyyogis.in/ima4.jpeg</image:loc>
+      <image:title>Morning batch seated in meditation at the New Perungalathur centre</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://happyyogis.com/ima4.jpeg</image:loc>
-      <image:title>Morning yoga batch at Happy Yogis, New Perungalathur</image:title>
+      <image:loc>https://happyyogis.in/instructor.jpeg</image:loc>
+      <image:title>Karthika, yoga teacher at Happy Yogis Yoga Centre</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://happyyogis.com/ima6.jpeg</image:loc>
-      <image:title>Students of all ages in tree pose at Happy Yogis</image:title>
+      <image:loc>https://happyyogis.in/ima6.jpeg</image:loc>
+      <image:title>Students of all ages holding tree pose together</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://happyyogis.com/ima2.jpeg</image:loc>
-      <image:title>Ladies yoga batch in Perungalathur, Chennai</image:title>
+      <image:loc>https://happyyogis.in/ima1.jpeg</image:loc>
+      <image:title>Adults and children seated in meditation facing their teacher at Happy Yogis</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima2.jpeg</image:loc>
+      <image:title>Ladies batch practising cobra pose during a women's yoga class</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima8.jpeg</image:loc>
+      <image:title>Children practising cobra pose in a class at Happy Yogis</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima5.jpeg</image:loc>
+      <image:title>Teacher leading a seated breathing practice for a mixed-age group</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima10.jpeg</image:loc>
+      <image:title>Ladies batch moving through cat-cow stretches</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima3.jpeg</image:loc>
+      <image:title>Student holding downward dog on a mat at the centre</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima7.jpeg</image:loc>
+      <image:title>Yoga teacher demonstrating a seated spinal twist</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima9.jpeg</image:loc>
+      <image:title>Members of the Happy Yogis community together at a centre event</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://happyyogis.com/yoga-classes-perungalathur.html</loc>
+    <loc>https://happyyogis.in/yoga-classes-perungalathur.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://happyyogis.com/ima1.jpeg</image:loc>
-      <image:title>Yoga class in Perungalathur, Chennai</image:title>
+      <image:loc>https://happyyogis.in/ima1.jpeg</image:loc>
+      <image:title>Adults and children seated in meditation facing their teacher at Happy Yogis</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://happyyogis.com/yoga-classes-tambaram.html</loc>
+    <loc>https://happyyogis.in/yoga-classes-tambaram.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://happyyogis.com/ima6.jpeg</image:loc>
-      <image:title>Yoga classes near Tambaram, Chennai</image:title>
+      <image:loc>https://happyyogis.in/ima6.jpeg</image:loc>
+      <image:title>Students of all ages holding tree pose together</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://happyyogis.com/blog.html</loc>
+    <loc>https://happyyogis.in/blog.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://happyyogis.com/what-happens-in-your-first-yoga-class.html</loc>
+    <loc>https://happyyogis.in/hatha-yoga-in-chennai.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima5.jpeg</image:loc>
+      <image:title>Teacher leading a seated breathing practice for a mixed-age group</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima7.jpeg</image:loc>
+      <image:title>Yoga teacher demonstrating a seated spinal twist</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/yoga-for-weight-loss-in-chennai.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima3.jpeg</image:loc>
+      <image:title>Student holding downward dog on a mat at the centre</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima6.jpeg</image:loc>
+      <image:title>Students of all ages holding tree pose together</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima2.jpeg</image:loc>
+      <image:title>Ladies batch practising cobra pose during a women's yoga class</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/what-happens-in-your-first-yoga-class.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://happyyogis.com/ima1.jpeg</image:loc>
-      <image:title>A first yoga class at Happy Yogis</image:title>
+      <image:loc>https://happyyogis.in/ima1.jpeg</image:loc>
+      <image:title>Adults and children seated in meditation facing their teacher at Happy Yogis</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://happyyogis.com/hatha-yoga-in-chennai.html</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://happyyogis.com/ima5.jpeg</image:loc>
-      <image:title>Hatha yoga class in New Perungalathur, Chennai</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://happyyogis.com/ima7.jpeg</image:loc>
-      <image:title>Seated spinal twist at Happy Yogis, Chennai</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://happyyogis.com/yoga-for-weight-loss-in-chennai.html</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://happyyogis.com/ima3.jpeg</image:loc>
-      <image:title>Yoga for weight loss and stamina in New Perungalathur, Chennai</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://happyyogis.com/ima6.jpeg</image:loc>
-      <image:title>Standing posture held by a mixed batch at Happy Yogis</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://happyyogis.com/privacy-policy.html</loc>
+    <loc>https://happyyogis.in/privacy-policy.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://happyyogis.com/terms-of-service.html</loc>
+    <loc>https://happyyogis.in/terms-of-service.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
