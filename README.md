@@ -123,6 +123,31 @@ serves without a redirect. A sitemap entry that redirects still works, but
 Search Console flags every one of them, so if the host form ever changes, this
 file and the canonicals change with it.
 
+## The journal, and health claims
+
+Posts live in the journal generator's `POSTS` list. The homepage "From the
+journal" section reads that same list, newest first, so a new post appears in
+both places from one edit — do not hand-write journal entries onto the
+homepage.
+
+**Every post carries the health disclaimer**, rendered from one constant so it
+cannot drift between posts. It is written to agree with the *Health Disclaimer*
+and *Limitation of Liability* clauses in `terms-of-service.html`, and it links
+to them. If you change those clauses, read the disclaimer again — a note that
+contradicts your own terms is worse than no note. **No disclaimer makes a
+business immune from a claim.** This one states the limits plainly and
+consistently, which is what it can do; if you want certainty, have an advocate
+read it once.
+
+**Citations** are health-authority and government sources only — NCCIH (NIH),
+WHO, NICHD and the Ministry of Ayush — held in a `SOURCES` dict so the same URL
+is never retyped. The rule for adding one: open the page, and only claim what
+that page actually supports. "May help" is what these sources say about yoga
+and sleep, back pain or weight; "cures", "burns X calories" and any figure you
+have not read yourself do not go on this site. A yoga centre writing about
+PCOD, thyroid or body weight is publishing health content, and both Google and
+a reader judge it by what it cites and by how carefully it is hedged.
+
 ## The sitemap
 
 `sitemap.xml` is generated, not hand-edited. It reads each page's own
