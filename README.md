@@ -72,7 +72,12 @@ These carried over from the previous version of the site and are worth a check:
   one. To refresh them, edit `REVIEWS` in the page source.
 - The reviews are a **carousel**: a scroll-snap track, two cards at a time from
   768px and one below that, so it swipes natively on touch and scrolls with the
-  arrow keys. The script sets the track's height to the cards actually in view,
+  arrow keys. It loops seamlessly — the script appends a copy of the first page
+  after the last, scrolls forward onto it, then resets to the real first page on
+  identical pixels. That reset must not use `scrollTo({behavior:'auto'})`:
+  `auto` defers to the CSS `scroll-behavior`, which is `smooth` here, and the
+  carousel visibly rewinds through every page. `jumpTo()` drops the CSS rule for
+  the one assignment instead. The script sets the track's height to the cards actually in view,
   which is why one very long quote does not leave a dead band under every short
   one. Without JavaScript the track is still a scrollable row of all 12 quotes
   and the controls stay hidden — nothing is hidden behind the script.
@@ -161,9 +166,24 @@ classes only work once you re-run the build.
 
 ## House style
 
-Type is **Instrument Sans** (headings, via the `display` class) and **Inter**
-(body). Colour tokens: `ink #16202b` · `blue #1F4E79` · `sky #4DA8DA` ·
-`sand #F6F3EE` · `paper #FBFAF8` · `line #E4E0D9` · `muted #6B7480`.
+Type is **Instrument Serif** (every heading and the wordmark, via the `display`
+class) and **Inter** (body copy and UI). Two families, no third. Colour tokens
+are unchanged: `ink #16202b` · `blue #1F4E79` · `sky #4DA8DA` · `sand #F6F3EE` ·
+`paper #FBFAF8` · `line #E4E0D9` · `muted #6B7480`.
+
+**Instrument Serif ships one weight (400).** Never put `font-bold`,
+`font-semibold` or `font-medium` on a heading or on anything carrying
+`display` — the browser fakes the weight and it looks smeared. Scale and
+spacing carry the emphasis instead; `text-d1`/`d2`/`d3` are fluid `clamp()`
+sizes, so they adapt without breakpoint jumps.
+
+Sections are laid out asymmetrically rather than as centred bands: the hero
+runs a large serif headline and the class photograph down the left with the
+live schedule held to the right, and the health and visit blocks are **bento
+grids** — a 1px grid gap over the rule colour draws the dividers, which is how
+tiles separate here without a single shadow. Use `.bento` for that; do not add
+a bento to a section that reads better as a list (the classes list filters, so
+it stayed a list).
 
 The design deliberately avoids the generic template look. Please keep to this:
 
@@ -177,13 +197,21 @@ The design deliberately avoids the generic template look. Please keep to this:
 - real photos of real classes, never stock photography
 - plain, specific copy; concrete beats aspirational
 
-**Motion:** two non-user-triggered moments, and no more — the "next class today"
-line in the hero resolving on load, and the reviews carousel advancing. The
-carousel earns it by being controllable: it pauses on hover, on keyboard focus
-and when the tab is hidden, stops for good the moment a visitor takes control,
-has a real pause button, and does not auto-advance at all under
-`prefers-reduced-motion`. Everything else responds to a real action: expanding a
-batch, filtering classes, opening the menu, submitting the form.
+**Motion:** three kinds, and no more.
+
+1. The "next class today" line in the hero resolving on load.
+2. **Scroll reveals** — one fade-and-lift per element the first time it enters
+   view, then the observer releases it. Opacity and transform only. Mark an
+   element with `class="reveal"` and stagger a group with `style="--d:90ms"`.
+   The rule is gated on `.js` (set by a one-line script in `<head>`), so
+   nothing is ever hidden when the script does not run, and the whole thing is
+   disabled under `prefers-reduced-motion`. **Never mark hero content** — the
+   first screen must not wait on a script.
+3. The reviews carousel advancing, which earns it by being controllable (see
+   below).
+
+Everything else responds to a real action: expanding a batch, filtering
+classes, opening the menu, submitting the form.
 
 ## The hero schedule panel
 
