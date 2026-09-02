@@ -183,7 +183,7 @@ the loading rule — so none of that gets retyped or forgotten:
 | A neighbourhood centre | the morning batch |
 | What we teach | cobra, cat-cow, seated breathing |
 | Health bento, last tile | the ladies' batch |
-| Your teacher | the seated twist, beside Karthika's portrait |
+| Your teacher | Karthika's portrait, on its own |
 | Inside the centre | all ten |
 
 The upper page uses each photograph once; the gallery repeats them, which is
