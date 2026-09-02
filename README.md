@@ -171,6 +171,28 @@ Each source photo has four committed derivatives:
 | `imaN.jpeg` / `imaN.webp` | full size — hero, section images, lightbox | ≤ 1280px long edge |
 | `imaN-sm.jpg` / `imaN-sm.webp` | gallery tiles | 640px wide, natural height |
 
+### Where the photographs sit on the homepage
+
+Every photo on the page comes from the same ten, through one `photo()` helper
+that emits the `<picture>`, the 640px/full `srcset`, the real intrinsic size and
+the loading rule — so none of that gets retyped or forgotten:
+
+| Place | Photo |
+| --- | --- |
+| Hero cluster | tree pose (large, the LCP image), downward dog, ladies' cobra |
+| A neighbourhood centre | the morning batch |
+| What we teach | cobra, cat-cow, seated breathing |
+| Health bento, last tile | the ladies' batch |
+| Your teacher | the seated twist, beside Karthika's portrait |
+| Inside the centre | all ten |
+
+The upper page uses each photograph once; the gallery repeats them, which is
+what a gallery is for. **Only the large hero photo is eager** — everything else
+is lazy, and each tile has a fixed CSS height so nothing reflows as the images
+land. Measured CLS is 0 at 390px and at 1280px, and the phone's LCP is the
+640px derivative, not the full file. If you swap a photo, keep those two
+properties: a fixed box, and the small file for small screens.
+
 The gallery thumbnails keep each photo's **natural aspect ratio** — the source
 photos range from a 0.75 portrait to a 2.22 panorama, and an earlier version
 cropped them all to one fixed tile, which cut people out of frame. The gallery
