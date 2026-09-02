@@ -77,7 +77,7 @@
 
   <url>
     <loc>https://happyyogis.in/blog.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -113,6 +113,21 @@
     <image:image>
       <image:loc>https://happyyogis.in/ima2.jpeg</image:loc>
       <image:title>Ladies batch practising cobra pose during a women's yoga class</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/yoga-classes-for-men-perungalathur.html</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima6.jpeg</image:loc>
+      <image:title>Students of all ages holding tree pose together</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima4.jpeg</image:loc>
+      <image:title>Morning batch seated in meditation at the New Perungalathur centre</image:title>
     </image:image>
   </url>
 
