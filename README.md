@@ -193,6 +193,23 @@ land. Measured CLS is 0 at 390px and at 1280px, and the phone's LCP is the
 640px derivative, not the full file. If you swap a photo, keep those two
 properties: a fixed box, and the small file for small screens.
 
+### The beach photographs
+
+Nine of the twenty-six photographs were taken at a **one-off beach session**.
+Classes are taught in the hall at SSM Nagar. Wherever a beach frame appears
+large — the two full-width bands — it carries a caption saying so, and none of
+them is used as the hero or behind the call to action. A visitor who lands on a
+beach hero reasonably concludes you teach on a beach; that is exactly the kind
+of impression the rest of this site is careful not to create. The keys are
+listed in `BEACH` in the content file — keep that rule if you add more.
+
+The one place copy sits **over** a photograph is the call-to-action band, and it
+uses an indoor class photo behind a `bg-ink/70` scrim. White text on that
+combination measures **6.18:1 at its worst pixel** at both 390px and 1280px,
+against the 4.5:1 WCAG AA requirement — measured from the rendered pixels, not
+assumed. If you change that photograph, measure it again; a lighter picture
+will fail.
+
 The gallery thumbnails keep each photo's **natural aspect ratio** — the source
 photos range from a 0.75 portrait to a 2.22 panorama, and an earlier version
 cropped them all to one fixed tile, which cut people out of frame. The gallery
