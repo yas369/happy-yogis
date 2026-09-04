@@ -171,6 +171,11 @@
         .rev-dot:hover::before { background:var(--muted); }
         .rev-dot[aria-current="true"]::before { background:var(--blue); }
 
+        /* Keeps the standfirsts in the journal grid to two lines, so the rows
+           line up whatever length each post's opening sentence is. */
+        .clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+                   overflow:hidden; }
+
         /* ---- FAQ: the plus turns into a cross while its answer is open.
            .is-open was being toggled with nothing listening to it. ---- */
         .faq-q svg { transition:transform .3s cubic-bezier(.4,0,.2,1); }
