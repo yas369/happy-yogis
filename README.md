@@ -191,9 +191,9 @@ the loading rule — so none of that gets retyped or forgotten:
 
 | Place | Photo |
 | --- | --- |
-| Hero cluster | tree pose (large, the LCP image), downward dog, ladies' cobra |
+| Hero cluster | tree pose (large, the LCP image), downward dog, two students in cobra |
 | A neighbourhood centre | the morning batch |
-| What we teach | cobra, cat-cow, seated breathing |
+| What we teach | cobra, a seated wide-legged fold, seated breathing |
 | Health bento, last tile | the ladies' batch |
 | Your teacher | Karthika's portrait, on its own |
 | Inside the centre | all ten |
