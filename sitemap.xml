@@ -141,7 +141,7 @@
 
   <url>
     <loc>https://happyyogis.in/blog.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -181,8 +181,43 @@
   </url>
 
   <url>
+    <loc>https://happyyogis.in/yoga-classes-for-children-perungalathur.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima23.jpeg</image:loc>
+      <image:title>A young boy balancing on his hands in a wide-legged arm balance</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima22.jpeg</image:loc>
+      <image:title>Three children folded forward together on one mat</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima21.jpeg</image:loc>
+      <image:title>Two students in cobra pose, chests lifted and heads back</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima20.jpeg</image:loc>
+      <image:title>A student holding a wide-legged seated forward fold on a mat at the centre</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima25.jpeg</image:loc>
+      <image:title>A student holding an inverted shoulder-supported pose, legs overhead</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima26.jpeg</image:loc>
+      <image:title>A student in a seated side split, arms stretched overhead</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima8.jpeg</image:loc>
+      <image:title>Children practising cobra pose in a class at Happy Yogis</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://happyyogis.in/yoga-classes-for-men-perungalathur.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
     <image:image>
