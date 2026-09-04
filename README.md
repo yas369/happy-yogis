@@ -207,10 +207,23 @@ properties: a fixed box, and the small file for small screens.
 
 ### The beach photographs
 
-Nine of the twenty-six photographs were taken at a **one-off beach session**.
+They are all from one event: the **108 Suryanamaskar Non-Stop Challenge**, held
+on **12 June 2026 at the Blue Flag beach, Chennai**, for International Yoga Day
+2026. Those details live in `EVENT` in the content file, and the homepage band
+captions and both event posts read them from there — change the date in one
+place, not five.
+
+**No participant is named anywhere on the site.** Several mementos in the
+photographs carry names and some are faintly legible; the site never repeats
+them in text. Children are photographed but not identified. If you ever want to
+name finishers, get each adult's permission and a parent's for every child
+first — a name beside a face on a public page is not a small thing to hand out.
+
+Twenty-one of the forty photographs were taken at that **one-off event**.
 Classes are taught in the hall at SSM Nagar. Wherever a beach frame appears
-large — the two full-width bands — it carries a caption saying so, and none of
-them is used as the hero or behind the call to action. A visitor who lands on a
+large — the two full-width bands — it carries a caption naming the event and
+the date, and none of them is used as the homepage hero or behind the call to
+action. A visitor who lands on a
 beach hero reasonably concludes you teach on a beach; that is exactly the kind
 of impression the rest of this site is careful not to create. The keys are
 listed in `BEACH` in the content file — keep that rule if you add more.
