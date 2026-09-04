@@ -171,6 +171,11 @@
         .rev-dot:hover::before { background:var(--muted); }
         .rev-dot[aria-current="true"]::before { background:var(--blue); }
 
+        /* Keeps the standfirsts in the journal grid to two lines, so the rows
+           line up whatever length each post's opening sentence is. */
+        .clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+                   overflow:hidden; }
+
         /* ---- FAQ: the plus turns into a cross while its answer is open.
            .is-open was being toggled with nothing listening to it. ---- */
         .faq-q svg { transition:transform .3s cubic-bezier(.4,0,.2,1); }
@@ -238,6 +243,13 @@
           "headline": "Yoga classes for children in New Perungalathur",
           "datePublished": "2026-09-03",
           "url": "https://happyyogis.in/yoga-classes-for-children-perungalathur.html"
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://happyyogis.in/international-yoga-day-beach.html#post",
+          "headline": "International Yoga Day on the beach",
+          "datePublished": "2026-09-04",
+          "url": "https://happyyogis.in/international-yoga-day-beach.html"
         }
       ]
     },
@@ -351,6 +363,13 @@
         </p>
 
         <ul class="mt-12 border-b border-line">
+            <li class="border-t border-line">
+                <a href="international-yoga-day-beach.html" class="group block py-7 transition-colors hover:bg-sand/60">
+                    <time datetime="2026-09-04" class="text-[13px] text-muted">4 September 2026</time>
+                    <h2 class="mt-1.5 text-d3 text-ink group-hover:text-blue transition-colors">International Yoga Day on the beach</h2>
+                    <p class="mt-1.5 text-[15px] leading-relaxed text-muted max-w-2xl">Once, we took the whole centre out of the hall and onto the sand for International Yoga Day. Mats, towels, children, parents, and the sea coming up behind us. These are the photographs.</p>
+                </a>
+            </li>
             <li class="border-t border-line">
                 <a href="yoga-classes-for-children-perungalathur.html" class="group block py-7 transition-colors hover:bg-sand/60">
                     <time datetime="2026-09-03" class="text-[13px] text-muted">3 September 2026</time>

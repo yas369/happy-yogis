@@ -171,6 +171,11 @@
         .rev-dot:hover::before { background:var(--muted); }
         .rev-dot[aria-current="true"]::before { background:var(--blue); }
 
+        /* Keeps the standfirsts in the journal grid to two lines, so the rows
+           line up whatever length each post's opening sentence is. */
+        .clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+                   overflow:hidden; }
+
         /* ---- FAQ: the plus turns into a cross while its answer is open.
            .is-open was being toggled with nothing listening to it. ---- */
         .faq-q svg { transition:transform .3s cubic-bezier(.4,0,.2,1); }
@@ -460,9 +465,9 @@
 
         <aside class="mt-14 border-t border-line pt-6">
             <h2 class="text-[13.5px] font-medium text-ink">Read next</h2>
-            <a href="what-happens-in-your-first-yoga-class.html" class="group mt-3 block">
-                <span class="display text-d3 text-ink group-hover:text-blue transition-colors">What happens in your first yoga class</span>
-                <span class="mt-1.5 block text-[15px] leading-relaxed text-muted max-w-xl">What to wear, what to bring, and what the hour actually involves - written for people who have never been on a mat.</span>
+            <a href="international-yoga-day-beach.html" class="group mt-3 block">
+                <span class="display text-d3 text-ink group-hover:text-blue transition-colors">International Yoga Day on the beach</span>
+                <span class="mt-1.5 block text-[15px] leading-relaxed text-muted max-w-xl">The morning we took the whole centre out of the hall and onto the sand, in photographs.</span>
             </a>
         </aside>
         <div class="mt-14 border border-line rounded p-6 sm:p-8 bg-sand">

@@ -125,10 +125,22 @@ file and the canonicals change with it.
 
 ## The journal, and health claims
 
-Posts live in the journal generator's `POSTS` list. The homepage "From the
-journal" section reads that same list, newest first, so a new post appears in
-both places from one edit — do not hand-write journal entries onto the
-homepage.
+Posts live in the journal generator's `POSTS` list. The homepage section
+"What people ask before they start" reads that same list, newest first, two to
+a row, so a new post appears in both places from one edit — do not hand-write
+journal entries onto the homepage. The standfirsts are held to two lines by
+`.clamp-2` so the grid rows stay level whatever length each opening sentence is.
+
+**It is a list, not a carousel, and that is deliberate.** Six headlines are read
+in one glance; a slider shows two and hides the rest behind a wait, loses almost
+all engagement past the first slide, and moves while people are reading. The
+page also already has one thing advancing on its own — the reviews — and a
+second competes with it.
+
+**Do not rename that heading to "People also search for."** It is the name of a
+Google search-results feature, it would be untrue (these are articles, not
+queries anyone searched), and borrowing a search engine's interface language for
+your own links is the kind of thing a reader notices.
 
 **Every post carries the health disclaimer**, rendered from one constant so it
 cannot drift between posts. It is written to agree with the *Health Disclaimer*
