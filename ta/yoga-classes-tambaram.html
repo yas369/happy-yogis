@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Privacy Policy | Happy Yogis Yoga Centre</title>
-    <meta name="description" content="How Happy Yogis Yoga Centre in New Perungalathur, Chennai collects, uses and protects student and website visitor information.">
-    <link rel="canonical" href="https://happyyogis.in/privacy-policy.html">
+    <title>தாம்பரம் அருகே யோகா வகுப்புகள், சென்னை | Happy Yogis</title>
+    <meta name="description" content="தாம்பரத்திலிருந்து ஜி.எஸ்.டி. சாலையில் சிறிது தூரம். காலை மற்றும் மாலை வகுப்புகள், பெண்கள் மட்டும் வகுப்பு, ஆன்லைன் வகுப்புகள்.">
+    <link rel="canonical" href="https://happyyogis.in/ta/yoga-classes-tambaram.html">
+    <link rel="alternate" hreflang="ta-IN" href="https://happyyogis.in/ta/yoga-classes-tambaram.html">
+    <link rel="alternate" hreflang="en-IN" href="https://happyyogis.in/yoga-classes-tambaram.html">
+    <link rel="alternate" hreflang="x-default" href="https://happyyogis.in/yoga-classes-tambaram.html">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="theme-color" content="#1F4E79">
 
@@ -17,25 +20,26 @@
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Happy Yogis Yoga Centre">
-    <meta property="og:locale" content="en_IN">
-    <meta property="og:url" content="https://happyyogis.in/privacy-policy.html">
-    <meta property="og:title" content="Privacy Policy | Happy Yogis Yoga Centre">
-    <meta property="og:description" content="How Happy Yogis Yoga Centre in New Perungalathur, Chennai collects, uses and protects student and website visitor information.">
-    <meta property="og:image" content="https://happyyogis.in/og-image.jpg">
+    <meta property="og:locale" content="ta_IN">
+    <meta property="og:url" content="https://happyyogis.in/ta/yoga-classes-tambaram.html">
+    <meta property="og:title" content="தாம்பரம் அருகே யோகா வகுப்புகள், சென்னை | Happy Yogis">
+    <meta property="og:description" content="தாம்பரத்திலிருந்து ஜி.எஸ்.டி. சாலையில் சிறிது தூரம். காலை மற்றும் மாலை வகுப்புகள், பெண்கள் மட்டும் வகுப்பு, ஆன்லைன் வகுப்புகள்.">
+    <meta property="og:image" content="https://happyyogis.in/og-tambaram.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Privacy Policy | Happy Yogis Yoga Centre">
-    <meta name="twitter:description" content="How Happy Yogis Yoga Centre in New Perungalathur, Chennai collects, uses and protects student and website visitor information.">
-    <meta name="twitter:image" content="https://happyyogis.in/og-image.jpg">
+    <meta name="twitter:title" content="தாம்பரம் அருகே யோகா வகுப்புகள், சென்னை | Happy Yogis">
+    <meta name="twitter:description" content="தாம்பரத்திலிருந்து ஜி.எஸ்.டி. சாலையில் சிறிது தூரம். காலை மற்றும் மாலை வகுப்புகள், பெண்கள் மட்டும் வகுப்பு, ஆன்லைன் வகுப்புகள்.">
+    <meta name="twitter:image" content="https://happyyogis.in/og-tambaram.jpg">
 
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <link rel="preload" href="/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/noto-tamil.woff2" as="font" type="font/woff2" crossorigin>
 
     <script>document.documentElement.className += ' js';</script>
     <style>
@@ -202,6 +206,30 @@
                 transition-duration:.01ms !important;
             }
         }
+
+        @font-face {
+            font-family: 'Noto Sans Tamil';
+            font-style: normal;
+            font-weight: 400 500;
+            font-display: swap;
+            src: url(/noto-tamil.woff2) format('woff2');
+            unicode-range: U+0964-0965, U+0B82-0BFA, U+200C-200D, U+20B9, U+25CC;
+        }
+        :lang(ta) body, :lang(ta) h1, :lang(ta) h2, :lang(ta) h3, :lang(ta) .display {
+            font-family: 'Noto Sans Tamil', 'DM Sans', system-ui, sans-serif;
+        }
+        /* Tamil words are long and do not hyphenate. "பெருங்களத்தூர்" alone
+           measures 387px at the Latin d1 size, which is wider than a 390px
+           phone - and since a grid item will not shrink below its longest
+           word, that one word pushed the whole hero off the screen. The scale
+           steps down until it fits, break-word catches anything longer in
+           future, and the line box opens up because Tamil carries taller
+           ascenders and descenders than Latin. */
+        :lang(ta) h1 { font-size: clamp(2.05rem, 5.2vw, 3.5rem); line-height: 1.18; }
+        :lang(ta) h2 { line-height: 1.22; }
+        :lang(ta) h1, :lang(ta) h2, :lang(ta) h3, :lang(ta) .display {
+            overflow-wrap: break-word;
+        }
     </style>
 
     <script type="application/ld+json">
@@ -210,41 +238,26 @@
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://happyyogis.in/privacy-policy.html#webpage",
-      "url": "https://happyyogis.in/privacy-policy.html",
-      "name": "Privacy Policy | Happy Yogis Yoga Centre",
-      "description": "How Happy Yogis Yoga Centre in New Perungalathur, Chennai collects, uses and protects student and website visitor information.",
-      "inLanguage": "en-IN",
+      "@id": "https://happyyogis.in/ta/yoga-classes-tambaram.html",
+      "url": "https://happyyogis.in/ta/yoga-classes-tambaram.html",
+      "name": "தாம்பரம் அருகே யோகா வகுப்புகள், சென்னை | Happy Yogis",
+      "description": "தாம்பரத்திலிருந்து ஜி.எஸ்.டி. சாலையில் சிறிது தூரம். காலை மற்றும் மாலை வகுப்புகள், பெண்கள் மட்டும் வகுப்பு, ஆன்லைன் வகுப்புகள்.",
+      "inLanguage": "ta-IN",
       "isPartOf": {
         "@id": "https://happyyogis.in/#website"
       },
       "about": {
         "@id": "https://happyyogis.in/#business"
+      },
+      "translationOfWork": {
+        "@id": "https://happyyogis.in/yoga-classes-tambaram.html"
       }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://happyyogis.in/privacy-policy.html#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://happyyogis.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Privacy Policy",
-          "item": "https://happyyogis.in/privacy-policy.html"
-        }
-      ]
     }
   ]
 }
     </script>
 </head>
-<body class="font-body bg-soft-white text-ink">
+<body class="font-body bg-paper text-ink text-[15px]">
 <!-- Inline Lucide icon sprite (lucide-static v1.38.0, ISC). Replaces the former runtime unpkg.com/lucide script. -->
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></symbol>
@@ -253,7 +266,7 @@
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
 </svg>
 
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#main" class="skip-link">முதன்மை உள்ளடக்கத்திற்குச் செல்க</a>
 
     <header>
       <nav id="navbar" aria-label="Primary" class="fixed top-0 inset-x-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-transparent transition-colors">
@@ -266,12 +279,13 @@
                 </a>
 
                 <div class="hidden lg:flex items-center gap-7">
-                    <a href="index.html#schedule" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Schedule</a>
-                    <a href="index.html#classes" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Classes</a>
-                    <a href="index.html#teacher" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Teacher</a>
-                    <a href="index.html#studio" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Studio</a>
-                    <a href="blog.html" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Journal</a>
-                    <a href="index.html#visit" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Visit</a>
+                    <a href="index.html#schedule" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">அட்டவணை</a>
+                    <a href="index.html#classes" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">வகுப்புகள்</a>
+                    <a href="index.html#teacher" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">ஆசிரியர்</a>
+                    <a href="index.html#studio" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">மையம்</a>
+                    <a href="/blog.html" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">கட்டுரைகள்</a>
+                    <a href="index.html#visit" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">வருகை</a>
+                    <a href="/yoga-classes-tambaram.html" hreflang="en" lang="en" class="text-[13.5px] font-medium text-blue hover:underline">English</a>
                 </div>
 
                 <div class="flex items-center gap-2">
@@ -279,9 +293,9 @@
                         <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
                     </a>
                     <a href="index.html#enquire" class="hidden sm:inline-flex items-center px-4 py-2 bg-ink text-white text-[13.5px] font-medium rounded hover:bg-blue transition-colors">
-                        Book a trial
+                        முயற்சி வகுப்பு
                     </a>
-                    <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
+                    <button id="menu-btn" type="button" aria-label="பட்டியைத் திற" aria-expanded="false" aria-controls="mobile-menu"
                             class="lg:hidden -mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg></button>
                 </div>
             </div>
@@ -292,16 +306,17 @@
     <div id="mobile-menu" class="mobile-menu lg:hidden" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
         <div class="mobile-menu-panel">
             <div class="flex items-center justify-between px-6 h-16 border-b border-line">
-                <span class="display text-[17px] text-ink">Menu</span>
-                <button id="menu-close" type="button" aria-label="Close menu" class="-mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
+                <span class="display text-[17px] text-ink">பட்டி</span>
+                <button id="menu-close" type="button" aria-label="பட்டியை மூடு" class="-mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
             </div>
             <nav aria-label="Mobile" class="flex-1 overflow-y-auto">
-                <a href="index.html#schedule" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Schedule</a>
-                <a href="index.html#classes" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Classes</a>
-                <a href="index.html#teacher" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Teacher</a>
-                <a href="index.html#studio" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Studio</a>
-                <a href="blog.html" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Journal</a>
-                <a href="index.html#visit" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Visit</a>
+                <a href="index.html#schedule" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">அட்டவணை</a>
+                <a href="index.html#classes" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">வகுப்புகள்</a>
+                <a href="index.html#teacher" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">ஆசிரியர்</a>
+                <a href="index.html#studio" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">மையம்</a>
+                <a href="/blog.html" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">கட்டுரைகள்</a>
+                <a href="index.html#visit" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">வருகை</a>
+                <a href="/yoga-classes-tambaram.html" hreflang="en" lang="en" class="mobile-link block px-6 py-3.5 text-[17px] text-blue border-b border-line hover:bg-sand transition-colors">English</a>
             </nav>
             <div class="p-5 space-y-2.5 border-t border-line">
                 <a href="index.html#enquire" class="mobile-link flex items-center justify-center w-full px-5 py-3.5 bg-ink text-white font-medium rounded">
@@ -314,268 +329,100 @@
         </div>
     </div>
 
-    <main id="main" class="pt-[4.5rem]">
+    <main id="main">
+    <article class="max-w-3xl mx-auto px-5 sm:px-8 pt-32 pb-20">
+        <nav aria-label="Breadcrumb" class="text-[13px] text-muted">
+            <a href="index.html" class="hover:text-ink transition-colors">Happy Yogis</a>
+            <span aria-hidden="true"> / </span>தாம்பரம் அருகே யோகா வகுப்புகள்
+        </nav>
+        <h1 class="mt-4 text-d1 text-ink">தாம்பரம் அருகே யோகா வகுப்புகள்</h1>
+        <p class="mt-5 text-[17px] leading-relaxed text-ink/80">Happy Yogis புதிய பெருங்களத்தூரில் உள்ள ஒரே மையத்திலிருந்து கற்பிக்கிறது &mdash; தாம்பரத்திலிருந்து ஜி.எஸ்.டி. சாலையிலும் புறநகர் ரயில் பாதையிலும் அடுத்த நிறுத்தம். தாம்பரத்தில் கிளை இல்லை; ஆனால் எங்கள் வழக்கமான மாணவர்கள் பலர் கிழக்கு தாம்பரம், மேற்கு தாம்பரம், செலையூரிலிருந்து வருகிறார்கள்.</p>
 
-    <nav aria-label="Breadcrumb" class="max-w-3xl mx-auto px-5 sm:px-8 pt-8">
-        <ol class="flex flex-wrap items-center gap-2 text-sm text-muted">
-            <li><a href="index.html" class="hover:text-ink">Home</a></li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page" class="text-ink">Privacy Policy</li>
-        </ol>
-    </nav>
+        <div class="mt-10 overflow-hidden rounded reveal">
+            <picture>
+                    <source type="image/webp" sizes="(min-width:768px) 768px, 100vw"
+                            srcset="/ima6-xs.webp 320w, /ima6-sm.webp 640w, /ima6.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 768px, 100vw"
+                            srcset="/ima6-xs.jpg 320w, /ima6-sm.jpg 640w, /ima6.jpeg 1280w">
+                    <img src="/ima6.jpeg" width="1280" height="960" alt="Students of all ages holding tree pose together"
+                     class="w-full h-[240px] sm:h-[340px] object-cover" loading="lazy" decoding="async">
+                </picture>
+        </div>
 
-    <div class="max-w-3xl mx-auto px-5 sm:px-8 py-10 lg:py-14">
-        <h1 class="text-d1 text-ink">Privacy Policy</h1>
-        <div class="legal mt-8">
+            <h2 class="mt-10 text-d2 text-ink reveal">தாம்பரத்திலிருந்து வருவது எப்படி</h2>
+            <p class="mt-3 text-[16px] leading-relaxed text-ink/80">எஸ்.எஸ்.எம். நகர், புதிய பெருங்களத்தூர், பெருங்களத்தூர் ரயில் நிலையத்திற்கு அருகில் &mdash; தாம்பரத்திலிருந்து செங்கல்பட்டு வழியில் ஒரு நிறுத்தம், அல்லது ஜி.எஸ்.டி. சாலையில் நேராக தெற்கே. செலையூர் மற்றும் கிழக்கு தாம்பரத்திலிருந்து பெரும்பாலோர் இருசக்கர வாகனத்தில் வருகிறார்கள்.</p>
+            <h2 class="mt-10 text-d2 text-ink reveal">தாம்பரம் பயணத்திற்கு ஏற்ற வகுப்பு</h2>
+            <p class="mt-3 text-[16px] leading-relaxed text-ink/80">பிறகு நகரத்திற்குச் செல்பவர்களுக்கு காலை 5:30 மற்றும் 6:15 வகுப்புகள் சிறந்தவை. தாம்பரத்திலிருந்து திரும்பும் பள்ளி மற்றும் கல்லூரி மாணவர்களுக்கு மாலை 5:00 வகுப்பு பிரபலம். காலை 10:00 வகுப்பு பெண்கள் மட்டும்.</p>
+            <h2 class="mt-10 text-d2 text-ink reveal">அல்லது வீட்டிலிருந்தே</h2>
+            <p class="mt-3 text-[16px] leading-relaxed text-ink/80">ஆன்லைனிலும் கற்பிக்கிறோம் &mdash; ஜி.எஸ்.டி. சாலை நெரிசல் மதிப்பில்லை என்று தோன்றும் நாட்களில் தாம்பரம் பக்க மாணவர்கள் பலர் இதைப் பயன்படுத்துகிறார்கள். அதே ஆசிரியர், அதே அமைப்பு; வாரத்திற்கேற்ப ஆன்லைன் மற்றும் மையத்திற்கு இடையே மாறலாம்.</p>
+            <h2 class="mt-10 text-d2 text-ink reveal">நாங்கள் கற்பிப்பவை</h2>
+            <p class="mt-3 text-[16px] leading-relaxed text-ink/80">ஆரம்ப நிலை யோகா, எடை குறைப்பு மற்றும் சகிப்புத்தன்மை, நெகிழ்வுத்தன்மை மற்றும் உடல் நிலை, பிராணாயாமம் மற்றும் தியானம், மேலும் பி.சி.ஓ.டி., தைராய்டு, முழங்கால் வலி, முதுகுப் பிரச்சினை, கர்ப்பகாலத்திற்கு ஏற்ப மாற்றப்பட்ட பயிற்சி. குழந்தைகள் பெற்றோருடன் சேர்ந்து பயிற்சி செய்கிறார்கள்.</p>
 
-
-    <!-- Privacy Content -->
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="prose prose-lg max-w-none">
-
-                <div class="mb-12">
-                    <p class="text-muted leading-relaxed text-lg">
-                        At Happy Yogis Yoga Centre, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you visit our website or use our services.
-                    </p>
-                    <p class="text-muted leading-relaxed mt-4">
-                        <span class="font-semibold text-ink">Effective Date:</span> June 2026
-                    </p>
-                </div>
-
-                <!-- Information We Collect -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">01</span>
-                        Information We Collect
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">We may collect the following types of information:</p>
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1"><span class="font-semibold text-ink">Personal Information:</span> Name, phone number, email address, and WhatsApp contact details when you inquire about classes or book sessions.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1"><span class="font-semibold text-ink">Health Information:</span> Medical conditions or physical limitations you voluntarily share with our instructors for safe practice guidance.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1"><span class="font-semibold text-ink">Usage Data:</span> Information about how you interact with our website, including pages visited and time spent.</span></li>
-                        </ul>
-                        <div class="mt-6 border border-line rounded p-5 bg-sand">
-                            <p class="text-[15px] font-medium text-ink">The enquiry form on our website</p>
-                            <p class="mt-2 text-muted leading-relaxed text-[15px]">
-                                Our enquiry form does not send anything to a server and we do
-                                not store it on this website. When you submit it, the details
-                                you typed &mdash; including anything you write in the
-                                &ldquo;anything the teacher should know&rdquo; box &mdash; are
-                                placed into a WhatsApp message on your own device. Nothing
-                                reaches us until you press send in WhatsApp, and the message is
-                                then handled by WhatsApp under their own privacy terms.
-                            </p>
-                            <p class="mt-3 text-muted leading-relaxed text-[15px]">
-                                The health box is optional. Share only what you want your
-                                teacher to know in order to keep your practice safe. We use it
-                                for that purpose alone, we do not share it with anyone outside
-                                the centre, and you can ask us to delete it at any time by
-                                contacting us on the number below.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- How We Use Your Information -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">02</span>
-                        How We Use Your Information
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">We use your information to:</p>
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Respond to your inquiries and booking requests via WhatsApp or phone.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Schedule and manage your yoga class appointments.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Send class reminders, schedule updates, and wellness tips (with your consent).</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Improve our website experience and class offerings.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Ensure your safety during yoga practice by understanding any health conditions.</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- How We Protect Your Data -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">03</span>
-                        How We Protect Your Data
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">
-                            We take reasonable precautions to protect your personal information:
-                        </p>
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Your contact information is stored securely and accessed only by authorized staff.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">We do not sell, trade, or rent your personal information to third parties.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Health information shared with instructors is kept confidential and used solely for your safety.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">We use secure communication channels for all inquiries and bookings.</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Third-Party Services -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">04</span>
-                        Third-Party Services
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">
-                            Our website uses third-party services to enhance your experience:
-                        </p>
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1"><span class="font-semibold text-ink">WhatsApp:</span> We use WhatsApp for class bookings and communication. Your messages are subject to WhatsApp's Privacy Policy.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1"><span class="font-semibold text-ink">Google Maps:</span> Our location map is powered by Google Maps, subject to Google's privacy practices.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1"><span class="font-semibold text-ink">Social Media:</span> Links to Instagram, Facebook, and YouTube are subject to their respective privacy policies.</span></li>
-                        </ul>
-                        <p class="text-muted leading-relaxed mt-4">
-                            We are not responsible for the privacy practices of these third-party platforms. We encourage you to review their privacy policies.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Cookies -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">05</span>
-                        Cookies & Tracking
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed">
-                            Our website may use essential cookies to ensure proper functionality. We do not use tracking cookies for advertising or analytics purposes. You can manage cookie preferences through your browser settings.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Your Rights -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-ink/10 flex items-center justify-center mr-3 text-ink text-sm">06</span>
-                        Your Rights
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">You have the right to:</p>
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Access the personal information we hold about you.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Request correction of inaccurate or incomplete information.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Request deletion of your personal data (where applicable).</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Opt out of promotional communications at any time.</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Children's Privacy -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">07</span>
-                        Children's Privacy
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed">
-                            We offer kids yoga classes with parental consent. We do not knowingly collect personal information from children under 13 without parental consent. If you believe we have inadvertently collected such information, please contact us immediately.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Changes to This Policy -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">08</span>
-                        Changes to This Policy
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed">
-                            We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Contact Us -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">09</span>
-                        Contact Us
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">
-                            If you have any questions about this Privacy Policy or how we handle your data, please contact us:
-                        </p>
-                        <div class="bg-sand rounded-2xl p-6 border border-line">
-                            <p class="font-semibold text-ink mb-2">Happy Yogis Yoga Centre</p>
-                            <p class="text-muted mb-1">SSM Nagar, New Perungalathur, Chennai, Tamil Nadu</p>
-                            <p class="text-muted">WhatsApp: +91 99942 47450</p>
-                        </div>
-                    </div>
-                </div>
-
+        <div class="mt-12 border border-line rounded p-6 sm:p-8 bg-sand/60 reveal">
+            <h2 class="display text-d3 text-ink">3 நாள் முயற்சி வகுப்பைப் பதிவு செய்யுங்கள்</h2>
+            <p class="mt-2 text-[15px] leading-relaxed text-ink/75">இதை நிரப்புங்கள் &mdash; உங்கள் விவரங்களுடன் WhatsApp திறக்கும், அனுப்பினால் எந்த வகுப்பில் இடம் இருக்கிறது என்று சொல்கிறோம்.</p>
+            <div class="mt-5 flex flex-wrap gap-3">
+                <a href="https://wa.me/919994247450?text=%E0%AE%B5%E0%AE%A3%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%AE%E0%AF%8D%20Happy%20Yogis%21%203%20%E0%AE%A8%E0%AE%BE%E0%AE%B3%E0%AF%8D%20%E0%AE%AE%E0%AF%81%E0%AE%AF%E0%AE%B1%E0%AF%8D%E0%AE%9A%E0%AE%BF%20%E0%AE%B5%E0%AE%95%E0%AF%81%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%20%E0%AE%AA%E0%AE%B1%E0%AF%8D%E0%AE%B1%E0%AE%BF%20%E0%AE%85%E0%AE%B1%E0%AE%BF%E0%AE%AF%20%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%BF%E0%AE%B1%E0%AF%87%E0%AE%A9%E0%AF%8D." target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 px-5 py-3 bg-[#17843F] text-white font-medium rounded hover:bg-[#126B33] transition-colors">
+                    <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg>WhatsApp
+                </a>
+                <a href="tel:+919994247450" class="inline-flex items-center px-5 py-3 border border-line rounded text-ink font-medium hover:border-ink transition-colors">
+                    +91 99942 47450
+                </a>
             </div>
         </div>
-    </section>
 
-    
+        <div class="mt-10 border-t border-line pt-5">
+            <h2 class="text-[13.5px] font-medium text-ink">அருகிலுள்ள பகுதிகள்</h2>
+            <a href="yoga-classes-perungalathur.html" class="group mt-3 block">
+                <span class="display text-d3 text-ink group-hover:text-blue transition-colors">பெருங்களத்தூரில் யோகா வகுப்புகள்</span>
+            </a>
         </div>
-    </div>
-
+    </article>
     </main>
 
     <footer class="bg-ink text-white/65 mt-px">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14">
-            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
                 <div class="lg:col-span-2">
-                    <div class="flex items-center gap-2.5 mb-4">
-                        <picture><source srcset="/logo.webp" type="image/webp">
-                        <img src="/logo.png" alt="" width="40" height="45" class="w-8 h-auto"></picture>
-                        <span class="display text-[17px] text-white">Happy Yogis Yoga Centre</span>
-                    </div>
-                    <address class="not-italic text-sm leading-relaxed">
-                        SSM Nagar, New Perungalathur<br>Chennai, Tamil Nadu 600063<br>
-                        <a href="tel:+919994247450" class="text-white hover:text-sky transition-colors">+91 99942 47450</a>
+                    <p class="display text-[19px] text-white">Happy Yogis Yoga Centre</p>
+                    <p class="mt-3 text-[14px] leading-relaxed max-w-xs">புதிய பெருங்களத்தூரில் ஒரே மையம். வேறு கிளைகள் இல்லை.</p>
+                    <address class="mt-4 not-italic text-[14px] leading-relaxed">
+                        SSM Nagar, New Perungalathur,<br>Chennai, Tamil Nadu 600063
                     </address>
-                    <p class="mt-4 text-sm">Monday to Friday, 5:30 am to 7:00 pm.<br>Closed Saturday, Sunday and public holidays.</p>
-                    <p class="mt-4 text-sm">One centre, in New Perungalathur. We have no other branches.</p>
+                    <p class="mt-3 text-[14px]">
+                        <a href="tel:+919994247450" class="hover:text-white transition-colors">+91 99942 47450</a>
+                    </p>
+                    <p class="mt-4 text-[13.5px] leading-relaxed">திங்கள் முதல் வெள்ளி வரை, காலை 5:30 முதல் மாலை 7:00 வரை.<br>சனி, ஞாயிறு மற்றும் பொது விடுமுறை நாட்களில் மூடப்பட்டிருக்கும்.</p>
                 </div>
-
-                <nav aria-labelledby="f-site">
-                    <h2 id="f-site" class="text-white font-medium text-sm mb-4">The centre</h2>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="index.html#schedule" class="hover:text-sky transition-colors">Batch schedule</a></li>
-                        <li><a href="index.html#classes" class="hover:text-sky transition-colors">What we teach</a></li>
-                        <li><a href="index.html#teacher" class="hover:text-sky transition-colors">Your teacher</a></li>
-                        <li><a href="index.html#studio" class="hover:text-sky transition-colors">Photos</a></li>
-                        <li><a href="blog.html" class="hover:text-sky transition-colors">Journal</a></li>
-                        <li><a href="index.html#faq" class="hover:text-sky transition-colors">Questions</a></li>
+                <div>
+                    <p class="text-[13px] font-medium text-white">மையம்</p>
+                    <ul class="mt-3 space-y-2">
+                        <li><a href="index.html#schedule" class="text-[14px] hover:text-white transition-colors">வகுப்பு நேரம்</a></li>
+                        <li><a href="index.html#classes" class="text-[14px] hover:text-white transition-colors">நாங்கள் கற்பிப்பவை</a></li>
+                        <li><a href="index.html#teacher" class="text-[14px] hover:text-white transition-colors">உங்கள் ஆசிரியர்</a></li>
+                        <li><a href="index.html#studio" class="text-[14px] hover:text-white transition-colors">படங்கள்</a></li>
                     </ul>
-                </nav>
-
-                <nav aria-labelledby="f-areas">
-                    <h2 id="f-areas" class="text-white font-medium text-sm mb-4">Areas we teach</h2>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="yoga-classes-perungalathur.html" class="hover:text-sky transition-colors">Yoga classes in Perungalathur</a></li>
-                        <li><a href="yoga-classes-tambaram.html" class="hover:text-sky transition-colors">Yoga classes near Tambaram</a></li>
-                        <li><a href="index.html#visit" class="hover:text-sky transition-colors">Visit the centre</a></li>
+                </div>
+                <div>
+                    <p class="text-[13px] font-medium text-white">நாங்கள் கற்பிக்கும் பகுதிகள்</p>
+                    <ul class="mt-3 space-y-2">
+                        <li><a href="yoga-classes-perungalathur.html" class="text-[14px] hover:text-white transition-colors">பெருங்களத்தூர்</a></li>
+                        <li><a href="yoga-classes-tambaram.html" class="text-[14px] hover:text-white transition-colors">தாம்பரம்</a></li>
+                        <li><a href="index.html#faq" class="text-[14px] hover:text-white transition-colors">கேள்விகள்</a></li>
                     </ul>
-                </nav>
+                </div>
             </div>
-
-            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs">
-                <p>&copy; 2026 Happy Yogis Yoga Centre.</p>
-                <p class="flex gap-5">
-                    <a href="privacy-policy.html" class="hover:text-sky transition-colors">Privacy Policy</a>
-                    <a href="terms-of-service.html" class="hover:text-sky transition-colors">Terms &amp; Conditions</a>
+            <div class="mt-12 pt-6 border-t border-white/15 flex flex-wrap items-center justify-between gap-4 text-[13px]">
+                <p>&copy; 2026 Happy Yogis Yoga Centre</p>
+                <p class="flex flex-wrap items-center gap-x-5 gap-y-2">
+                    <a href="/privacy-policy.html" hreflang="en" lang="en" class="hover:text-white transition-colors">தனியுரிமைக் கொள்கை</a>
+                    <a href="/terms-of-service.html" hreflang="en" lang="en" class="hover:text-white transition-colors">விதிமுறைகள்</a>
+                    <a href="/yoga-classes-tambaram.html" hreflang="en" lang="en" class="hover:text-white transition-colors">English version</a>
                 </p>
             </div>
         </div>
     </footer>
-
-    <aside aria-label="Quick contact">
-        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener"
-           class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 pl-3.5 pr-4 py-3 rounded-full bg-[#17843F] text-white text-sm font-medium hover:bg-[#126B33] transition-colors"
-           aria-label="Chat with Happy Yogis on WhatsApp">
-            <svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg><span class="hidden sm:inline">WhatsApp</span>
-        </a>
-    </aside>
 
     <script>
     (function () {
