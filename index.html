@@ -35,9 +35,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" as="image" href="ima6.webp"
           imagesrcset="ima6-sm.webp 640w, ima6.webp 1280w" imagesizes="(min-width:1024px) 420px, 66vw" type="image/webp" fetchpriority="high">
 
@@ -50,8 +48,8 @@
                     paper:'#FBFAF8', line:'#E4E0D9', muted:'#6B7480'
                 },
                 fontFamily: {
-                    display:['Instrument Serif','Georgia','Times New Roman','serif'],
-                    body:['Inter','system-ui','sans-serif']
+                    display:['DM Sans','system-ui','-apple-system','Segoe UI','sans-serif'],
+                    body:['DM Sans','system-ui','-apple-system','Segoe UI','sans-serif']
                 },
                 fontSize: {
                     'd1':['clamp(2.75rem,6.4vw,4.5rem)',{lineHeight:'1.02',letterSpacing:'-.015em'}],
@@ -64,20 +62,42 @@
     </script>
     <script>document.documentElement.className += ' js';</script>
     <style>
+        @font-face {
+            font-family: 'DM Sans';
+            font-style: normal;
+            font-weight: 400 600;
+            font-display: swap;
+            src: url(dm-sans-latin.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+                U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'DM Sans';
+            font-style: normal;
+            font-weight: 400 600;
+            font-display: swap;
+            src: url(dm-sans-latin-ext.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+                U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+                U+2C60-2C7F, U+A720-A7FF;
+        }
+
         :root {
             --ink:#16202b; --blue:#1F4E79; --sky:#4DA8DA;
             --sand:#F6F3EE; --paper:#FBFAF8; --line:#E4E0D9; --muted:#6B7480;
         }
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
+        /* The nav is fixed, so an anchor jump would otherwise land the target
+           heading underneath it. Only applies when the element is scrolled to. */
+        [id] { scroll-margin-top: 5rem; }
 
         h1, h2, h3, .display {
-            font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-            font-weight: 400;
+            font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-weight: 500;
         }
-        /* Instrument Serif is a text-figure face; headings read better with the
-           quotes and dashes hung slightly and the line box tightened. */
-        .display-i { font-style: italic; }
         .lede { font-size: clamp(1.0625rem, 1.35vw, 1.1875rem); line-height: 1.65; }
 
         /* ---- scroll reveals: opacity and transform only, once per element,
