@@ -84,7 +84,7 @@
 
         :root {
             --ink:#16202b; --blue:#1F4E79; --sky:#4DA8DA;
-            --sand:#F6F3EE; --paper:#FBFAF8; --line:#E4E0D9; --muted:#6B7480;
+            --sand:#F6F3EE; --paper:#FBFAF8; --line:#E4E0D9; --muted:#616A76;
         }
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
@@ -111,6 +111,14 @@
            so the tiles separate without a single shadow ---- */
         .bento { display:grid; gap:1px; background:var(--line);
                  border:1px solid var(--line); border-radius:.25rem; overflow:hidden; }
+        /* The health bento ends in a photograph, which cannot sit inside the
+           <dl>: a div child of a definition list has to wrap a dt/dd pair. It
+           lives directly below instead, and these two join the seam so the
+           whole thing still reads as one panel. The foot keeps its top border,
+           which supplies the hairline the grid gap used to draw. */
+        .bento-open-b { border-bottom:0; border-bottom-left-radius:0; border-bottom-right-radius:0; }
+        .bento-foot { border:1px solid var(--line); overflow:hidden;
+                      border-bottom-left-radius:.25rem; border-bottom-right-radius:.25rem; }
 
         svg.i { fill: none; stroke: currentColor; stroke-width: 1.75;
                 stroke-linecap: round; stroke-linejoin: round; }
@@ -572,11 +580,13 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener"
-       class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 pl-3.5 pr-4 py-3 rounded-full bg-[#1FA855] text-white text-sm font-medium hover:bg-[#178c46] transition-colors"
-       aria-label="Chat with Happy Yogis on WhatsApp">
-        <svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg><span class="hidden sm:inline">WhatsApp</span>
-    </a>
+    <aside aria-label="Quick contact">
+        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener"
+           class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 pl-3.5 pr-4 py-3 rounded-full bg-[#17843F] text-white text-sm font-medium hover:bg-[#126B33] transition-colors"
+           aria-label="Chat with Happy Yogis on WhatsApp">
+            <svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg><span class="hidden sm:inline">WhatsApp</span>
+        </a>
+    </aside>
 
     <script>
     (function () {
@@ -846,6 +856,14 @@
                 for (var i = 0; i < Math.min(perPage(), slides.length); i++) {
                     var c = slides[i].cloneNode(true);
                     c.setAttribute('aria-hidden', 'true');
+                    /* aria-hidden alone still leaves the copied links in the tab
+                       order, so a keyboard user lands on a card no screen reader
+                       will announce. inert covers modern browsers; the tabindex
+                       pass covers the rest. */
+                    c.inert = true;
+                    [].forEach.call(c.querySelectorAll('a,button,[tabindex]'), function (el) {
+                        el.setAttribute('tabindex', '-1');
+                    });
                     c.removeAttribute('role');
                     c.removeAttribute('aria-roledescription');
                     c.removeAttribute('aria-label');
