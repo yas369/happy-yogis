@@ -217,6 +217,18 @@
         }
     </style>
 
+    <!-- Google Analytics 4. Loaded async, so it never blocks the first paint -
+         unlike the Tailwind CDN this replaced nothing and costs no render time.
+         It is the site's only third-party request; everything else is served
+         from this origin. The privacy policy describes what it collects. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-86VPTR7ERW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-86VPTR7ERW');
+    </script>
+
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -457,7 +469,10 @@
                     </h2>
                     <div class="pl-11">
                         <p class="text-muted leading-relaxed">
-                            Our website may use essential cookies to ensure proper functionality. We do not use tracking cookies for advertising or analytics purposes. You can manage cookie preferences through your browser settings.
+                            This website uses Google Analytics to count visits and see which pages people actually read. It stores cookies in your browser and sends Google your IP address, the pages you view, and general information about your device and browser. We use it only to understand which pages are useful. We do not use it for advertising, we do not build profiles, and we do not sell or share the data with anyone.
+                        </p>
+                        <p class="text-muted leading-relaxed mt-4">
+                            If you would rather not be counted, you can install <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" class="text-blue underline">Google&rsquo;s opt-out add-on</a> or block cookies in your browser settings. The site works normally either way &mdash; nothing on it depends on analytics.
                         </p>
                     </div>
                 </div>

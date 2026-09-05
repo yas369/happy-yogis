@@ -217,6 +217,18 @@
         }
     </style>
 
+    <!-- Google Analytics 4. Loaded async, so it never blocks the first paint -
+         unlike the Tailwind CDN this replaced nothing and costs no render time.
+         It is the site's only third-party request; everything else is served
+         from this origin. The privacy policy describes what it collects. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-86VPTR7ERW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-86VPTR7ERW');
+    </script>
+
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
