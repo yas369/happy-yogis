@@ -37,7 +37,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -48,8 +48,8 @@
                     paper:'#FBFAF8', line:'#E4E0D9', muted:'#6B7480'
                 },
                 fontFamily: {
-                    display:['Instrument Serif','Georgia','Times New Roman','serif'],
-                    body:['Inter','system-ui','sans-serif']
+                    display:['DM Sans','system-ui','-apple-system','Segoe UI','sans-serif'],
+                    body:['DM Sans','system-ui','-apple-system','Segoe UI','sans-serif']
                 },
                 fontSize: {
                     'd1':['clamp(2.75rem,6.4vw,4.5rem)',{lineHeight:'1.02',letterSpacing:'-.015em'}],
@@ -68,14 +68,14 @@
         }
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
+        /* The nav is fixed, so an anchor jump would otherwise land the target
+           heading underneath it. Only applies when the element is scrolled to. */
+        [id] { scroll-margin-top: 5rem; }
 
         h1, h2, h3, .display {
-            font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-            font-weight: 400;
+            font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-weight: 500;
         }
-        /* Instrument Serif is a text-figure face; headings read better with the
-           quotes and dashes hung slightly and the line box tightened. */
-        .display-i { font-style: italic; }
         .lede { font-size: clamp(1.0625rem, 1.35vw, 1.1875rem); line-height: 1.65; }
 
         /* ---- scroll reveals: opacity and transform only, once per element,
