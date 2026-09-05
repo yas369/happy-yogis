@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Terms of Service | Happy Yogis Yoga Centre</title>
-    <meta name="description" content="Terms and conditions for yoga classes, bookings and memberships at Happy Yogis Yoga Centre, New Perungalathur, Chennai.">
-    <link rel="canonical" href="https://happyyogis.in/terms-of-service.html">
+    <title>யோகாவா ஜிம்மா? ஒரு நேர்மையான ஒப்பீடு | Happy Yogis</title>
+    <meta name="description" content="யோகாவா ஜிம்மா? சென்னை யோகா மையம் ஒன்று நேர்மையாக ஒப்பிடுகிறது &mdash; எது எதில் உண்மையிலேயே வெல்கிறது.">
+    <link rel="canonical" href="https://happyyogis.in/ta/yoga-or-gym-which-should-you-pick.html">
+    <link rel="alternate" hreflang="ta-IN" href="https://happyyogis.in/ta/yoga-or-gym-which-should-you-pick.html">
+    <link rel="alternate" hreflang="en-IN" href="https://happyyogis.in/yoga-or-gym-which-should-you-pick.html">
+    <link rel="alternate" hreflang="x-default" href="https://happyyogis.in/yoga-or-gym-which-should-you-pick.html">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="theme-color" content="#1F4E79">
 
@@ -17,25 +20,26 @@
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Happy Yogis Yoga Centre">
-    <meta property="og:locale" content="en_IN">
-    <meta property="og:url" content="https://happyyogis.in/terms-of-service.html">
-    <meta property="og:title" content="Terms of Service | Happy Yogis Yoga Centre">
-    <meta property="og:description" content="Terms and conditions for yoga classes, bookings and memberships at Happy Yogis Yoga Centre, New Perungalathur, Chennai.">
+    <meta property="og:locale" content="ta_IN">
+    <meta property="og:url" content="https://happyyogis.in/ta/yoga-or-gym-which-should-you-pick.html">
+    <meta property="og:title" content="யோகாவா ஜிம்மா? ஒரு நேர்மையான ஒப்பீடு | Happy Yogis">
+    <meta property="og:description" content="யோகாவா ஜிம்மா? சென்னை யோகா மையம் ஒன்று நேர்மையாக ஒப்பிடுகிறது &mdash; எது எதில் உண்மையிலேயே வெல்கிறது.">
     <meta property="og:image" content="https://happyyogis.in/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Terms of Service | Happy Yogis Yoga Centre">
-    <meta name="twitter:description" content="Terms and conditions for yoga classes, bookings and memberships at Happy Yogis Yoga Centre, New Perungalathur, Chennai.">
+    <meta name="twitter:title" content="யோகாவா ஜிம்மா? ஒரு நேர்மையான ஒப்பீடு | Happy Yogis">
+    <meta name="twitter:description" content="யோகாவா ஜிம்மா? சென்னை யோகா மையம் ஒன்று நேர்மையாக ஒப்பிடுகிறது &mdash; எது எதில் உண்மையிலேயே வெல்கிறது.">
     <meta name="twitter:image" content="https://happyyogis.in/og-image.jpg">
 
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <link rel="preload" href="/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/noto-tamil.woff2" as="font" type="font/woff2" crossorigin>
 
     <script>document.documentElement.className += ' js';</script>
     <style>
@@ -202,6 +206,30 @@
                 transition-duration:.01ms !important;
             }
         }
+
+        @font-face {
+            font-family: 'Noto Sans Tamil';
+            font-style: normal;
+            font-weight: 400 500;
+            font-display: swap;
+            src: url(/noto-tamil.woff2) format('woff2');
+            unicode-range: U+0964-0965, U+0B82-0BFA, U+200C-200D, U+20B9, U+25CC;
+        }
+        :lang(ta) body, :lang(ta) h1, :lang(ta) h2, :lang(ta) h3, :lang(ta) .display {
+            font-family: 'Noto Sans Tamil', 'DM Sans', system-ui, sans-serif;
+        }
+        /* Tamil words are long and do not hyphenate. "பெருங்களத்தூர்" alone
+           measures 387px at the Latin d1 size, which is wider than a 390px
+           phone - and since a grid item will not shrink below its longest
+           word, that one word pushed the whole hero off the screen. The scale
+           steps down until it fits, break-word catches anything longer in
+           future, and the line box opens up because Tamil carries taller
+           ascenders and descenders than Latin. */
+        :lang(ta) h1 { font-size: clamp(2.05rem, 5.2vw, 3.5rem); line-height: 1.18; }
+        :lang(ta) h2 { line-height: 1.22; }
+        :lang(ta) h1, :lang(ta) h2, :lang(ta) h3, :lang(ta) .display {
+            overflow-wrap: break-word;
+        }
     </style>
 
     <script type="application/ld+json">
@@ -209,51 +237,42 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebPage",
-      "@id": "https://happyyogis.in/terms-of-service.html#webpage",
-      "url": "https://happyyogis.in/terms-of-service.html",
-      "name": "Terms of Service | Happy Yogis Yoga Centre",
-      "description": "Terms and conditions for yoga classes, bookings and memberships at Happy Yogis Yoga Centre, New Perungalathur, Chennai.",
-      "inLanguage": "en-IN",
-      "isPartOf": {
-        "@id": "https://happyyogis.in/#website"
+      "@type": "BlogPosting",
+      "@id": "https://happyyogis.in/ta/yoga-or-gym-which-should-you-pick.html",
+      "headline": "யோகாவா ஜிம்மா? ஒரு நேர்மையான ஒப்பீடு",
+      "description": "யோகாவா ஜிம்மா? சென்னை யோகா மையம் ஒன்று நேர்மையாக ஒப்பிடுகிறது &mdash; எது எதில் உண்மையிலேயே வெல்கிறது.",
+      "inLanguage": "ta-IN",
+      "datePublished": "2026-09-07",
+      "image": "https://happyyogis.in/ima3.jpeg",
+      "author": {
+        "@type": "Organization",
+        "name": "Happy Yogis Yoga Centre"
       },
-      "about": {
+      "publisher": {
         "@id": "https://happyyogis.in/#business"
+      },
+      "translationOfWork": {
+        "@id": "https://happyyogis.in/yoga-or-gym-which-should-you-pick.html"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://happyyogis.in/ta/yoga-or-gym-which-should-you-pick.html"
       }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://happyyogis.in/terms-of-service.html#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://happyyogis.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Terms of Service",
-          "item": "https://happyyogis.in/terms-of-service.html"
-        }
-      ]
     }
   ]
 }
     </script>
 </head>
-<body class="font-body bg-soft-white text-ink">
+<body class="font-body bg-paper text-ink text-[15px]">
 <!-- Inline Lucide icon sprite (lucide-static v1.38.0, ISC). Replaces the former runtime unpkg.com/lucide script. -->
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></symbol>
 <symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" /></symbol>
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
 </svg>
 
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#main" class="skip-link">முதன்மை உள்ளடக்கத்திற்குச் செல்க</a>
 
     <header>
       <nav id="navbar" aria-label="Primary" class="fixed top-0 inset-x-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-transparent transition-colors">
@@ -266,12 +285,13 @@
                 </a>
 
                 <div class="hidden lg:flex items-center gap-7">
-                    <a href="index.html#schedule" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Schedule</a>
-                    <a href="index.html#classes" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Classes</a>
-                    <a href="index.html#teacher" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Teacher</a>
-                    <a href="index.html#studio" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Studio</a>
-                    <a href="blog.html" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Journal</a>
-                    <a href="index.html#visit" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">Visit</a>
+                    <a href="index.html#schedule" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">அட்டவணை</a>
+                    <a href="index.html#classes" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">வகுப்புகள்</a>
+                    <a href="index.html#teacher" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">ஆசிரியர்</a>
+                    <a href="index.html#studio" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">மையம்</a>
+                    <a href="blog.html" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">கட்டுரைகள்</a>
+                    <a href="index.html#visit" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">வருகை</a>
+                    <a href="/yoga-or-gym-which-should-you-pick.html" hreflang="en" lang="en" class="text-[13.5px] font-medium text-blue hover:underline">English</a>
                 </div>
 
                 <div class="flex items-center gap-2">
@@ -279,9 +299,9 @@
                         <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
                     </a>
                     <a href="index.html#enquire" class="hidden sm:inline-flex items-center px-4 py-2 bg-ink text-white text-[13.5px] font-medium rounded hover:bg-blue transition-colors">
-                        Book a trial
+                        முயற்சி வகுப்பு
                     </a>
-                    <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
+                    <button id="menu-btn" type="button" aria-label="பட்டியைத் திற" aria-expanded="false" aria-controls="mobile-menu"
                             class="lg:hidden -mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg></button>
                 </div>
             </div>
@@ -292,16 +312,17 @@
     <div id="mobile-menu" class="mobile-menu lg:hidden" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
         <div class="mobile-menu-panel">
             <div class="flex items-center justify-between px-6 h-16 border-b border-line">
-                <span class="display text-[17px] text-ink">Menu</span>
-                <button id="menu-close" type="button" aria-label="Close menu" class="-mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
+                <span class="display text-[17px] text-ink">பட்டி</span>
+                <button id="menu-close" type="button" aria-label="பட்டியை மூடு" class="-mr-2 p-2 text-ink"><svg class="i w-6 h-6" aria-hidden="true" focusable="false"><use href="#i-x"></use></svg></button>
             </div>
             <nav aria-label="Mobile" class="flex-1 overflow-y-auto">
-                <a href="index.html#schedule" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Schedule</a>
-                <a href="index.html#classes" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Classes</a>
-                <a href="index.html#teacher" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Teacher</a>
-                <a href="index.html#studio" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Studio</a>
-                <a href="blog.html" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Journal</a>
-                <a href="index.html#visit" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">Visit</a>
+                <a href="index.html#schedule" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">அட்டவணை</a>
+                <a href="index.html#classes" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">வகுப்புகள்</a>
+                <a href="index.html#teacher" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">ஆசிரியர்</a>
+                <a href="index.html#studio" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">மையம்</a>
+                <a href="blog.html" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">கட்டுரைகள்</a>
+                <a href="index.html#visit" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">வருகை</a>
+                <a href="/yoga-or-gym-which-should-you-pick.html" hreflang="en" lang="en" class="mobile-link block px-6 py-3.5 text-[17px] text-blue border-b border-line hover:bg-sand transition-colors">English</a>
             </nav>
             <div class="p-5 space-y-2.5 border-t border-line">
                 <a href="index.html#enquire" class="mobile-link flex items-center justify-center w-full px-5 py-3.5 bg-ink text-white font-medium rounded">
@@ -314,260 +335,132 @@
         </div>
     </div>
 
-    <main id="main" class="pt-[4.5rem]">
+    <main id="main">
+    <article class="max-w-3xl mx-auto px-5 sm:px-8 pt-32 pb-20">
+        <nav aria-label="Breadcrumb" class="text-[13px] text-muted">
+            <a href="blog.html" class="hover:text-ink transition-colors">கட்டுரைகள்</a>
+            <span aria-hidden="true"> / </span>7 செப்டம்பர் 2026
+        </nav>
+        <h1 class="mt-4 text-d1 text-ink">யோகாவா ஜிம்மா? ஒரு நேர்மையான ஒப்பீடு</h1>
+        <p class="mt-5 text-[17px] leading-relaxed text-ink/80">நாங்கள் யோகா கற்பிக்கிறோம், எனவே இதை உரிய சந்தேகத்துடன் படியுங்கள் &mdash; பிறகு ஜிம் வெல்லும் பகுதியையும் படியுங்கள், ஏனெனில் அப்படி ஒன்று உண்டு.</p>
+        <aside class="mt-8 border-l-2 border-line pl-5" aria-label="சுருக்கமாக">
+            <p class="text-[13px] font-medium text-ink">சுருக்கமாக</p>
+            <ul class="mt-2 space-y-1.5 text-[15px] leading-relaxed text-ink/75 list-disc pl-5 marker:text-muted">
+                    <li>அதிகபட்ச வலிமை அல்லது தசை அளவுக்கு ஜிம்மே வெல்கிறது. வெளிப்படையாக.</li>
+                    <li>இயக்கத்திறன், மூச்சு, தூக்கம், மூட்டுகளுக்கு யோகா அதிகம் செய்கிறது.</li>
+                    <li>உண்மையான கேள்வி: ஆறாவது மாதத்திலும் எதைத் தொடர்வீர்கள்?</li>
+            </ul>
+        </aside>
 
-    <nav aria-label="Breadcrumb" class="max-w-3xl mx-auto px-5 sm:px-8 pt-8">
-        <ol class="flex flex-wrap items-center gap-2 text-sm text-muted">
-            <li><a href="index.html" class="hover:text-ink">Home</a></li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page" class="text-ink">Terms of Service</li>
-        </ol>
-    </nav>
+        <figure class="mt-8">
+            <picture>
+                <source srcset="/ima3.webp" type="image/webp">
+                <img src="/ima3.jpeg" width="960" height="1280" alt="Student holding downward dog on a mat at the centre"
+                     class="w-full rounded" loading="lazy" decoding="async">
+            </picture>
+        </figure>
 
-    <div class="max-w-3xl mx-auto px-5 sm:px-8 py-10 lg:py-14">
-        <h1 class="text-d1 text-ink">Terms of Service</h1>
-        <div class="legal mt-8">
-
-
-    <!-- Terms Content -->
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="prose prose-lg max-w-none">
-
-                <div class="mb-12">
-                    <p class="text-muted leading-relaxed text-lg">
-                        Welcome to Happy Yogis Yoga Centre. By accessing our website or joining our programs, you agree to the following Terms of Service.
-                    </p>
+            <h2 class="text-d2 text-ink mt-12">ஜிம் உண்மையிலேயே வெல்லும் இடம்</h2>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">உங்கள் இலக்கு அதிகபட்ச வலிமை அல்லது தெரியும் தசை என்றால், ஜிம்முக்குச் செல்லுங்கள். எடைகளுடன் படிப்படியாக ஏற்றுவது அதை யோகாவை விடச் சிறப்பாகச் செய்கிறது; எங்கள் சொந்தப் பயிற்சி மீதான பற்று அதை மாற்றாது. ஒரு குறிப்பிட்ட விளையாட்டுக்குப் பயிற்சி பெறுவதற்கும், பிசியோதெரபிஸ்ட் ஒரு எடைப் பயிற்சித் திட்டம் தந்திருந்தால் அதற்கும் இதுவே பொருந்தும்.</p>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">வேறு மாதிரி சொல்லும் எந்த யோகா மையமும் ஏதோ ஒன்றை விற்கிறது.</p>
+            <h2 class="text-d2 text-ink mt-12">யோகா அதிகம் செய்யும் இடம்</h2>
+            <ul class="mt-4 space-y-2.5 text-[16px] leading-relaxed text-ink/80 list-disc pl-5 marker:text-muted">
+                <li><strong>இயக்கத்திறன்.</strong> இடுப்பு, முதுகெலும்பு, தோள்கள் &mdash; ஒரு கருவி அனுமதிக்கும் அளவுக்கு அல்ல, முழு வீச்சிலும்.</li>
+                <li><strong>மூச்சு.</strong> பிராணாயாமம் அந்த மணி நேரத்தின் பகுதி; பிறகு வீட்டில் செய்யச் சொல்லப்படுவது அல்ல.</li>
+                <li><strong>மூட்டுகள்.</strong> இதில் எதுவும் முழங்கால்களில் அடிக்காது &mdash; இப்போது கூடுதல் எடையுடன் இருந்தால் இது முக்கியம்.</li>
+                <li><strong>தூக்கமும் மன அழுத்தமும்.</strong> இறுதி ஓய்வுதான் ஏதோ ஒன்று மாறியது என்று மாணவர்கள் அதிகம் சொல்லும் பகுதி.</li>
+            </ul>
+            <h2 class="text-d2 text-ink mt-12">உண்மையில் முடிவெடுக்கும் ஒப்பீடு</h2>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">மணி நேரத்திற்கு எரியும் கலோரி அல்ல. ஆறாவது மாதத்தில் வருகை.</p>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">ஜனவரியில் எடுக்கப்பட்டு ஏப்ரலில் கைவிடப்படும் ஜிம் உறுப்பினர் சீட்டு சென்னையின் ஒரு பழக்கம். காரணங்கள் பயிற்சி பற்றியவை அல்ல: அது தூரம், கருவிகள் யாரோ பயன்படுத்திக்கொண்டிருக்கும், நீங்கள் வந்தீர்களா என்பதை யாரும் கவனிப்பதில்லை, உங்களை எதிர்பார்க்கும் நிர்ணயிக்கப்பட்ட நேரமும் இல்லை.</p>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">வீட்டிலிருந்து பத்து நிமிடத் தொலைவில், நிர்ணயிக்கப்பட்ட நேரத்தில், ஆசிரியருக்கு உங்கள் பெயர் தெரிந்த, நீங்கள் வராதது தெரியும் ஒரு சிறிய வகுப்பு வேறு விஷயம். காகிதத்தில் சிறந்த பயிற்சி அல்ல &mdash; ஓராண்டு கழித்தும் அது தொடரும் என்பதற்கான சிறந்த வாய்ப்பு.</p>
+            <h2 class="text-d2 text-ink mt-12">யாரும் கணக்கில் கொள்ளாத வெயில்</h2>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">வெளியில் ஓடுவதோ நடப்பதோ ஆண்டின் நல்ல பகுதிக்கு சிரமமானது; அதைக் கைவிடும் மாதங்களில்தான் பழக்கமும் இறக்கிறது. அதிகாலை ஐந்தரை மணிக்கு உள்ளரங்கில் ஒரு வகுப்பு டிசம்பரில் வேலை செய்வதைப் போலவே ஏப்ரலிலும் வேலை செய்யும்.</p>
+            <h2 class="text-d2 text-ink mt-12">இரண்டில் ஒன்றைத் தேர்வு செய்ய வேண்டியதில்லை</h2>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">எங்கள் மாணவர்கள் பலர் வாரத்தில் இரண்டு முறை எடை தூக்கி, மூன்று முறை இங்கே பயிற்சி செய்கிறார்கள். அந்தக் கலவை தனித்தனியாக எதையும் விட மேல்: ஜிம் தசையை ஏற்றுகிறது, பயிற்சி மூட்டுகளையும் மூச்சையும் இயங்க வைக்கிறது, இரண்டும் ஒரே மீட்சிக்காகப் போட்டியிடுவதில்லை.</p>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">ஒன்றை மட்டுமே செய்ய முடியும் என்றால், தொடர முடிந்ததைத் தேர்வு செய்யுங்கள்.</p>
+            <h2 class="text-d2 text-ink mt-12">பொதுவான கேள்விகள்</h2>
+            <dl class="mt-6 border-b border-line">
+                <div class="border-t border-line py-5">
+                    <dt class="display text-d3 text-ink">யோகா மட்டுமே போதுமான உடற்பயிற்சியா?</dt>
+                    <dd class="mt-2 text-[15.5px] leading-relaxed text-ink/80">இயக்கத்திறன், உடல் நிலை, மூச்சு, பொது ஆரோக்கியத்திற்கு ஆம் &mdash; வழக்கமான பயிற்சி உலக சுகாதார அமைப்பின் வழிகாட்டுதலுக்குள் வசதியாக அடங்கும். அதிகபட்ச வலிமைக்கு இல்லை. <a href="https://www.who.int/news-room/fact-sheets/detail/physical-activity" target="_blank" rel="noopener" title="World Health Organization, physical activity" class="text-blue font-medium hover:underline">WHO உடல் செயல்பாட்டு வழிகாட்டுதல்<svg class="i w-3.5 h-3.5 inline-block align-[-1px] ml-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-up-right"></use></svg></a></dd>
                 </div>
-
-                <!-- General Use -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">01</span>
-                        General Use
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">
-                            This website is intended to provide information about our yoga classes, wellness programs, schedules, and services.
-                        </p>
-                        <p class="text-muted leading-relaxed">
-                            By using this website, you agree to use it responsibly and lawfully.
-                        </p>
-                    </div>
+                <div class="border-t border-line py-5">
+                    <dt class="display text-d3 text-ink">யோகா தசையை வளர்க்குமா?</dt>
+                    <dd class="mt-2 text-[15.5px] leading-relaxed text-ink/80">பயன்படும் வலிமையை வளர்க்கும் &mdash; குறிப்பாக தோள்கள், இடுப்பு, கால்களில். வேகமான சூரிய நமஸ்காரப் பயிற்சி உண்மையிலேயே கடினமானது. ஆனால் படிப்படியான எடைப் பயிற்சி போல தசை அளவை அது வளர்க்காது.</dd>
                 </div>
-
-                <!-- Health Disclaimer -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">02</span>
-                        Health Disclaimer
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">
-                            Yoga and wellness activities involve physical movement and may not be suitable for everyone.
-                        </p>
-                        <p class="text-muted leading-relaxed mb-4">Students are encouraged to:</p>
-                        <ul class="space-y-2 text-muted mb-4">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Practice within their comfort limits</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Inform instructors about any medical conditions</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Consult a medical professional if necessary before beginning any program</span></li>
-                        </ul>
-                        <p class="text-muted leading-relaxed">
-                            Happy Yogis Yoga Centre is not liable for injuries resulting from improper practice or failure to follow instructor guidance.
-                        </p>
-                    </div>
+                <div class="border-t border-line py-5">
+                    <dt class="display text-d3 text-ink">எது அதிக கலோரி எரிக்கும்?</dt>
+                    <dd class="mt-2 text-[15.5px] leading-relaxed text-ink/80">பெரும்பாலான அமர்வுகளில் ஜிம். அதுதான் சுவாரஸ்யமான கேள்வி என்று நாங்கள் ஒருபோதும் நினைத்ததில்லை.</dd>
                 </div>
-
-                <!-- Class Participation -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">03</span>
-                        Class Participation
-                    </h2>
-                    <div class="pl-11">
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Students are expected to maintain respectful behavior during classes.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">We aim to create a positive and supportive wellness community for everyone.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Any disruptive or harmful behavior may result in removal from sessions.</span></li>
-                        </ul>
-                    </div>
+                <div class="border-t border-line py-5">
+                    <dt class="display text-d3 text-ink">ஒரே வாரத்தில் இரண்டையும் செய்யலாமா?</dt>
+                    <dd class="mt-2 text-[15.5px] leading-relaxed text-ink/80">ஆம், பலர் செய்கிறார்கள். வேறு என்ன பயிற்சி செய்கிறீர்கள் என்று ஆசிரியரிடம் சொல்லுங்கள் &mdash; பயிற்சி அதை மீண்டும் செய்யாமல், நிறைவு செய்யும்.</dd>
                 </div>
+            </dl>
 
-                <!-- Payments & Fees -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">04</span>
-                        Payments & Fees
-                    </h2>
-                    <div class="pl-11">
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Program fees, schedules, and offers may change periodically.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Payments made for classes or programs may be subject to separate refund or cancellation policies communicated directly during enrollment.</span></li>
-                        </ul>
-                    </div>
-                </div>
+        <aside class="mt-12 border border-line rounded p-5 sm:p-6 bg-sand/60 text-[13.5px] leading-relaxed text-muted">
+            இந்தக் கட்டுரை பொது தகவலுக்காக மட்டுமே; மருத்துவ ஆலோசனை அல்ல. யோகா சிகிச்சைக்கு ஆதரவாக இருக்கிறது, அதற்குப் பதிலாக அல்ல. உடல்நலப் பிரச்சினை, காயம் அல்லது கர்ப்பம் இருந்தால், புதிய பயிற்சியைத் தொடங்கும் முன் தகுதிவாய்ந்த மருத்துவரிடம் கேளுங்கள். வகுப்புக்கு முன் ஆசிரியரிடம் சொல்லுங்கள்.
+        </aside>
 
-                <!-- Online Classes -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">05</span>
-                        Online Classes
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">For online sessions:</p>
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Students are responsible for maintaining proper internet access and safe practice environments.</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Session quality may vary depending on network conditions.</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Intellectual Property -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-ink/10 flex items-center justify-center mr-3 text-ink text-sm">06</span>
-                        Intellectual Property
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">All website content including:</p>
-                        <ul class="space-y-2 text-muted mb-4">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Text</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Branding</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Logos</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Images</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Designs</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Graphics</span></li>
-                        </ul>
-                        <p class="text-muted leading-relaxed">
-                            belongs to Happy Yogis Yoga Centre unless otherwise stated. Unauthorized copying or commercial use is prohibited.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Third-Party Services -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">07</span>
-                        Third-Party Services
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed">
-                            Our website may contain links to external platforms such as WhatsApp, Instagram, YouTube, or Google services. We are not responsible for external websites or services.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Limitation of Liability -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">08</span>
-                        Limitation of Liability
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed mb-4">Happy Yogis Yoga Centre shall not be held responsible for:</p>
-                        <ul class="space-y-2 text-muted">
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Technical website interruptions</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Third-party platform issues</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Personal injuries caused outside instructor supervision</span></li>
-                            <li class="flex items-start"><span class="w-2 h-2 rounded-full bg-blue mt-2 mr-3 flex-shrink-0"></span><span class="flex-1">Indirect damages arising from website usage</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Changes To Terms -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center mr-3 text-blue text-sm">09</span>
-                        Changes To Terms
-                    </h2>
-                    <div class="pl-11">
-                        <p class="text-muted leading-relaxed">
-                            We may update these Terms of Service at any time. Continued use of the website after updates indicates acceptance of the revised terms.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Contact Information -->
-                <div class="mb-10">
-                    <h2 class="display text-2xl text-ink mb-4 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-ink/10 flex items-center justify-center mr-3 text-ink text-sm">10</span>
-                        Contact Information
-                    </h2>
-                    <div class="pl-11">
-                        <div class="bg-sand rounded-2xl p-6 border border-line">
-                            <p class="font-semibold text-ink mb-2">Happy Yogis Yoga Centre</p>
-                            <p class="text-muted mb-1">SSM Nagar, New Perungalathur, Chennai, Tamil Nadu</p>
-                            <p class="text-muted">WhatsApp: +91 99942 47450</p>
-                        </div>
-                    </div>
-                </div>
-
+        <div class="mt-10 border border-line rounded p-6 sm:p-8 bg-sand/60">
+            <h2 class="display text-d3 text-ink">3 நாள் முயற்சி வகுப்பைப் பதிவு செய்யுங்கள்</h2>
+            <p class="mt-2 text-[15px] leading-relaxed text-ink/75">இதை நிரப்புங்கள் &mdash; உங்கள் விவரங்களுடன் WhatsApp திறக்கும், அனுப்பினால் எந்த வகுப்பில் இடம் இருக்கிறது என்று சொல்கிறோம்.</p>
+            <div class="mt-5 flex flex-wrap gap-3">
+                <a href="https://wa.me/919994247450?text=%E0%AE%B5%E0%AE%A3%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%AE%E0%AF%8D%20Happy%20Yogis%21%203%20%E0%AE%A8%E0%AE%BE%E0%AE%B3%E0%AF%8D%20%E0%AE%AE%E0%AF%81%E0%AE%AF%E0%AE%B1%E0%AF%8D%E0%AE%9A%E0%AE%BF%20%E0%AE%B5%E0%AE%95%E0%AF%81%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%20%E0%AE%AA%E0%AE%B1%E0%AF%8D%E0%AE%B1%E0%AE%BF%20%E0%AE%85%E0%AE%B1%E0%AE%BF%E0%AE%AF%20%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%BF%E0%AE%B1%E0%AF%87%E0%AE%A9%E0%AF%8D." target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 px-5 py-3 bg-[#17843F] text-white font-medium rounded hover:bg-[#126B33] transition-colors">
+                    <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg>WhatsApp
+                </a>
+                <a href="tel:+919994247450" class="inline-flex items-center px-5 py-3 border border-line rounded text-ink font-medium hover:border-ink transition-colors">
+                    +91 99942 47450
+                </a>
             </div>
         </div>
-    </section>
-
-    
-        </div>
-    </div>
-
+    </article>
     </main>
 
     <footer class="bg-ink text-white/65 mt-px">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14">
-            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
                 <div class="lg:col-span-2">
-                    <div class="flex items-center gap-2.5 mb-4">
-                        <picture><source srcset="/logo.webp" type="image/webp">
-                        <img src="/logo.png" alt="" width="40" height="45" class="w-8 h-auto"></picture>
-                        <span class="display text-[17px] text-white">Happy Yogis Yoga Centre</span>
-                    </div>
-                    <address class="not-italic text-sm leading-relaxed">
-                        SSM Nagar, New Perungalathur<br>Chennai, Tamil Nadu 600063<br>
-                        <a href="tel:+919994247450" class="text-white hover:text-sky transition-colors">+91 99942 47450</a>
+                    <p class="display text-[19px] text-white">Happy Yogis Yoga Centre</p>
+                    <p class="mt-3 text-[14px] leading-relaxed max-w-xs">புதிய பெருங்களத்தூரில் ஒரே மையம். வேறு கிளைகள் இல்லை.</p>
+                    <address class="mt-4 not-italic text-[14px] leading-relaxed">
+                        SSM Nagar, New Perungalathur,<br>Chennai, Tamil Nadu 600063
                     </address>
-                    <p class="mt-4 text-sm">Monday to Friday, 5:30 am to 7:00 pm.<br>Closed Saturday, Sunday and public holidays.</p>
-                    <p class="mt-4 text-sm">One centre, in New Perungalathur. We have no other branches.</p>
+                    <p class="mt-3 text-[14px]">
+                        <a href="tel:+919994247450" class="hover:text-white transition-colors">+91 99942 47450</a>
+                    </p>
+                    <p class="mt-4 text-[13.5px] leading-relaxed">திங்கள் முதல் வெள்ளி வரை, காலை 5:30 முதல் மாலை 7:00 வரை.<br>சனி, ஞாயிறு மற்றும் பொது விடுமுறை நாட்களில் மூடப்பட்டிருக்கும்.</p>
                 </div>
-
-                <nav aria-labelledby="f-site">
-                    <h2 id="f-site" class="text-white font-medium text-sm mb-4">The centre</h2>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="index.html#schedule" class="hover:text-sky transition-colors">Batch schedule</a></li>
-                        <li><a href="index.html#classes" class="hover:text-sky transition-colors">What we teach</a></li>
-                        <li><a href="index.html#teacher" class="hover:text-sky transition-colors">Your teacher</a></li>
-                        <li><a href="index.html#studio" class="hover:text-sky transition-colors">Photos</a></li>
-                        <li><a href="blog.html" class="hover:text-sky transition-colors">Journal</a></li>
-                        <li><a href="index.html#faq" class="hover:text-sky transition-colors">Questions</a></li>
+                <div>
+                    <p class="text-[13px] font-medium text-white">மையம்</p>
+                    <ul class="mt-3 space-y-2">
+                        <li><a href="index.html#schedule" class="text-[14px] hover:text-white transition-colors">வகுப்பு நேரம்</a></li>
+                        <li><a href="index.html#classes" class="text-[14px] hover:text-white transition-colors">நாங்கள் கற்பிப்பவை</a></li>
+                        <li><a href="index.html#teacher" class="text-[14px] hover:text-white transition-colors">உங்கள் ஆசிரியர்</a></li>
+                        <li><a href="index.html#studio" class="text-[14px] hover:text-white transition-colors">படங்கள்</a></li>
                     </ul>
-                </nav>
-
-                <nav aria-labelledby="f-areas">
-                    <h2 id="f-areas" class="text-white font-medium text-sm mb-4">Areas we teach</h2>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="yoga-classes-perungalathur.html" class="hover:text-sky transition-colors">Yoga classes in Perungalathur</a></li>
-                        <li><a href="yoga-classes-tambaram.html" class="hover:text-sky transition-colors">Yoga classes near Tambaram</a></li>
-                        <li><a href="index.html#visit" class="hover:text-sky transition-colors">Visit the centre</a></li>
+                </div>
+                <div>
+                    <p class="text-[13px] font-medium text-white">நாங்கள் கற்பிக்கும் பகுதிகள்</p>
+                    <ul class="mt-3 space-y-2">
+                        <li><a href="yoga-classes-perungalathur.html" class="text-[14px] hover:text-white transition-colors">பெருங்களத்தூர்</a></li>
+                        <li><a href="yoga-classes-tambaram.html" class="text-[14px] hover:text-white transition-colors">தாம்பரம்</a></li>
+                        <li><a href="index.html#faq" class="text-[14px] hover:text-white transition-colors">கேள்விகள்</a></li>
                     </ul>
-                </nav>
+                </div>
             </div>
-
-            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs">
-                <p>&copy; 2026 Happy Yogis Yoga Centre.</p>
-                <p class="flex gap-5">
-                    <a href="privacy-policy.html" class="hover:text-sky transition-colors">Privacy Policy</a>
-                    <a href="terms-of-service.html" class="hover:text-sky transition-colors">Terms &amp; Conditions</a>
+            <div class="mt-12 pt-6 border-t border-white/15 flex flex-wrap items-center justify-between gap-4 text-[13px]">
+                <p>&copy; 2026 Happy Yogis Yoga Centre</p>
+                <p class="flex flex-wrap items-center gap-x-5 gap-y-2">
+                    <a href="/privacy-policy.html" hreflang="en" lang="en" class="hover:text-white transition-colors">தனியுரிமைக் கொள்கை</a>
+                    <a href="/terms-of-service.html" hreflang="en" lang="en" class="hover:text-white transition-colors">விதிமுறைகள்</a>
+                    <a href="/yoga-or-gym-which-should-you-pick.html" hreflang="en" lang="en" class="hover:text-white transition-colors">English version</a>
                 </p>
             </div>
         </div>
     </footer>
-
-    <aside aria-label="Quick contact">
-        <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20would%20like%20to%20know%20more%20about%20your%20yoga%20classes." target="_blank" rel="noopener"
-           class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 pl-3.5 pr-4 py-3 rounded-full bg-[#17843F] text-white text-sm font-medium hover:bg-[#126B33] transition-colors"
-           aria-label="Chat with Happy Yogis on WhatsApp">
-            <svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-message-circle"></use></svg><span class="hidden sm:inline">WhatsApp</span>
-        </a>
-    </aside>
 
     <script>
     (function () {

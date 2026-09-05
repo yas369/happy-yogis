@@ -24,6 +24,41 @@
   </url>
 
   <url>
+    <loc>https://happyyogis.in/ta/blog.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/ta/how-often-should-you-do-yoga.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/ta/yoga-or-gym-which-should-you-pick.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/ta/morning-or-evening-yoga-class.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/ta/yoga-for-back-pain-chennai.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://happyyogis.in/</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
@@ -176,6 +211,50 @@
       <image:loc>https://happyyogis.in/ima5.jpeg</image:loc>
       <image:title>Teacher leading a seated breathing practice for a mixed-age group</image:title>
     </image:image>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima7.jpeg</image:loc>
+      <image:title>Yoga teacher demonstrating a seated spinal twist</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/how-often-should-you-do-yoga.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima24.jpeg</image:loc>
+      <image:title>A student in a standing forward bend with the palms flat on the mat</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/yoga-or-gym-which-should-you-pick.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima3.jpeg</image:loc>
+      <image:title>Student holding downward dog on a mat at the centre</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/morning-or-evening-yoga-class.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima20.jpeg</image:loc>
+      <image:title>A student holding a wide-legged seated forward fold on a mat at the centre</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/yoga-for-back-pain-chennai.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
     <image:image>
       <image:loc>https://happyyogis.in/ima7.jpeg</image:loc>
       <image:title>Yoga teacher demonstrating a seated spinal twist</image:title>
