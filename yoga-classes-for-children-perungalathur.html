@@ -595,10 +595,16 @@
             </ul>
         </aside>
 
+        <!-- The lead image is the largest thing on the first screen, so it
+             carries the real widths and is fetched eagerly. Left lazy it was
+             the LCP element and the browser deferred it. -->
         <picture>
-            <source srcset="ima23.webp" type="image/webp">
+            <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima23-xs.webp 320w, ima23-sm.webp 640w, ima23-md.webp 768w, ima23.webp 1280w">
+            <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima23-xs.jpg 320w, ima23-sm.jpg 640w, ima23-md.jpg 768w, ima23.jpeg 1280w">
             <img src="ima23.jpeg" width="1280" height="960" alt="A young boy balancing on his hands in a wide-legged arm balance"
-                 class="w-full rounded mt-10" loading="lazy" decoding="async">
+                 class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 
             <h2 class="text-d2 text-ink mt-12">Children practise with the grown-ups, not away from them</h2>
@@ -608,7 +614,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">The focus is balance, concentration and enjoying it &mdash; not flexibility, not achieving a posture, not competing with the child on the next mat. A seven-year-old who holds their attention on one shape for thirty seconds has got what the class is for, whether or not it looked like the picture.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima22.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima22-xs.webp 320w, ima22-sm.webp 640w, ima22-md.webp 768w, ima22.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima22-xs.jpg 320w, ima22-sm.jpg 640w, ima22-md.jpg 768w, ima22.jpeg 1280w">
                     <img src="ima22.jpeg" width="1280" height="960" alt="Three children folded forward together on one mat"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -619,7 +628,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Most children start where everyone starts: standing postures, simple back bends and forward folds.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima21.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima21-xs.webp 320w, ima21-sm.webp 640w, ima21-md.webp 768w, ima21.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima21-xs.jpg 320w, ima21-sm.jpg 640w, ima21-md.jpg 768w, ima21.jpeg 1280w">
                     <img src="ima21.jpeg" width="1280" height="960" alt="Two students in cobra pose, chests lifted and heads back"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -628,7 +640,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima20.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima20-xs.webp 320w, ima20-sm.webp 640w, ima20-md.webp 768w, ima20.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima20-xs.jpg 320w, ima20-sm.jpg 640w, ima20-md.jpg 768w, ima20.jpeg 1280w">
                     <img src="ima20.jpeg" width="1280" height="960" alt="A student holding a wide-legged seated forward fold on a mat at the centre"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -637,7 +652,10 @@
             </figure>            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Arm balances come later. They are the ones children ask for, because they look difficult and feel like an achievement &mdash; and where a teacher has to be firm about wrists, shoulders and not trying it before the body is ready.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima23.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima23-xs.webp 320w, ima23-sm.webp 640w, ima23-md.webp 768w, ima23.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima23-xs.jpg 320w, ima23-sm.jpg 640w, ima23-md.jpg 768w, ima23.jpeg 1280w">
                     <img src="ima23.jpeg" width="1280" height="960" alt="A young boy balancing on his hands in a wide-legged arm balance"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -652,7 +670,10 @@
             </ul>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima25.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima25-xs.webp 320w, ima25-sm.webp 640w, ima25-md.webp 768w, ima25.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima25-xs.jpg 320w, ima25-sm.jpg 640w, ima25-md.jpg 768w, ima25.jpeg 1280w">
                     <img src="ima25.jpeg" width="1280" height="960" alt="A student holding an inverted shoulder-supported pose, legs overhead"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -661,7 +682,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima26.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima26-xs.webp 320w, ima26-sm.webp 640w, ima26-md.webp 768w, ima26.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima26-xs.jpg 320w, ima26-sm.jpg 640w, ima26-md.jpg 768w, ima26.jpeg 1280w">
                     <img src="ima26.jpeg" width="1280" height="960" alt="A student in a seated side split, arms stretched overhead"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -675,7 +699,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">One hall, in SSM Nagar, New Perungalathur &mdash; just off the GST Road stretch between Tambaram and Vandalur, close to Perungalathur railway station. Families travel in from Old Perungalathur, East and West Tambaram, Selaiyur, Chromepet, Vandalur, Urapakkam, Guduvanchery and Medavakkam.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima8.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima8-xs.webp 320w, ima8-sm.webp 640w, ima8-md.webp 768w, ima8.webp 960w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima8-xs.jpg 320w, ima8-sm.jpg 640w, ima8-md.jpg 768w, ima8.jpeg 960w">
                     <img src="ima8.jpeg" width="960" height="1280" alt="Children practising cobra pose in a class at Happy Yogis"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>

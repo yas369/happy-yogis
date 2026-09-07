@@ -623,7 +623,10 @@
         <figure class="mt-8">
             <div class="rounded zoom grade">
             <picture>
-                <source srcset="/ima3.webp" type="image/webp">
+                <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                        srcset="/ima3-xs.webp 320w, /ima3-sm.webp 640w, /ima3-md.webp 768w, /ima3.webp 960w">
+                <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                        srcset="/ima3-xs.jpg 320w, /ima3-sm.jpg 640w, /ima3-md.jpg 768w, /ima3.jpeg 960w">
                 <img src="/ima3.jpeg" width="960" height="1280" alt="Student holding downward dog on a mat at the centre"
                      class="w-full rounded" loading="lazy" decoding="async">
             </picture>

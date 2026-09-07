@@ -596,10 +596,16 @@
             </ul>
         </aside>
 
+        <!-- The lead image is the largest thing on the first screen, so it
+             carries the real widths and is fetched eagerly. Left lazy it was
+             the LCP element and the browser deferred it. -->
         <picture>
-            <source srcset="ima5.webp" type="image/webp">
+            <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima5-xs.webp 320w, ima5-sm.webp 640w, ima5-md.webp 768w, ima5.webp 1280w">
+            <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima5-xs.jpg 320w, ima5-sm.jpg 640w, ima5-md.jpg 768w, ima5.jpeg 1280w">
             <img src="ima5.jpeg" width="1280" height="960" alt="Teacher leading a seated breathing practice for a mixed-age group"
-                 class="w-full rounded mt-10" loading="lazy" decoding="async">
+                 class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 
             <h2 class="text-d2 text-ink mt-12">What hatha yoga actually is</h2>
@@ -622,7 +628,10 @@
             </ul>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima7.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima7-xs.webp 320w, ima7-sm.webp 640w, ima7-md.webp 768w, ima7.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima7-xs.jpg 320w, ima7-sm.jpg 640w, ima7-md.jpg 768w, ima7.jpeg 1280w">
                     <img src="ima7.jpeg" width="1280" height="1081" alt="Yoga teacher demonstrating a seated spinal twist"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>

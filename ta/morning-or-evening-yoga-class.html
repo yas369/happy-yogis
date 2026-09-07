@@ -622,7 +622,10 @@
         <figure class="mt-8">
             <div class="rounded zoom grade">
             <picture>
-                <source srcset="/ima20.webp" type="image/webp">
+                <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                        srcset="/ima20-xs.webp 320w, /ima20-sm.webp 640w, /ima20-md.webp 768w, /ima20.webp 1280w">
+                <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                        srcset="/ima20-xs.jpg 320w, /ima20-sm.jpg 640w, /ima20-md.jpg 768w, /ima20.jpeg 1280w">
                 <img src="/ima20.jpeg" width="1280" height="960" alt="A student holding a wide-legged seated forward fold on a mat at the centre"
                      class="w-full rounded" loading="lazy" decoding="async">
             </picture>

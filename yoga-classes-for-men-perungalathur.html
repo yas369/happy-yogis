@@ -595,10 +595,16 @@
             </ul>
         </aside>
 
+        <!-- The lead image is the largest thing on the first screen, so it
+             carries the real widths and is fetched eagerly. Left lazy it was
+             the LCP element and the browser deferred it. -->
         <picture>
-            <source srcset="ima6.webp" type="image/webp">
+            <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima6-xs.webp 320w, ima6-sm.webp 640w, ima6-md.webp 768w, ima6.webp 1280w">
+            <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima6-xs.jpg 320w, ima6-sm.jpg 640w, ima6-md.jpg 768w, ima6.jpeg 1280w">
             <img src="ima6.jpeg" width="1280" height="960" alt="Students of all ages holding tree pose together"
-                 class="w-full rounded mt-10" loading="lazy" decoding="async">
+                 class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 
             <h2 class="text-d2 text-ink mt-12">Three of the four batches are for everyone</h2>
@@ -607,7 +613,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">A desk, a long commute up the GST Road and years of no stretching leave tight hips, a locked lower back and shoulders near the ears. You do not need to touch your toes to start. Nobody is pushed into a posture they are not ready for, and nobody is watching you.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima4.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima4-xs.webp 320w, ima4-sm.webp 640w, ima4-md.webp 768w, ima4.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima4-xs.jpg 320w, ima4-sm.jpg 640w, ima4-md.jpg 768w, ima4.jpeg 1280w">
                     <img src="ima4.jpeg" width="1280" height="960" alt="Morning batch seated in meditation at the New Perungalathur centre"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>

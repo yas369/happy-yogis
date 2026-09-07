@@ -623,7 +623,10 @@
         <figure class="mt-8">
             <div class="rounded zoom grade">
             <picture>
-                <source srcset="/ima7.webp" type="image/webp">
+                <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                        srcset="/ima7-xs.webp 320w, /ima7-sm.webp 640w, /ima7-md.webp 768w, /ima7.webp 1280w">
+                <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                        srcset="/ima7-xs.jpg 320w, /ima7-sm.jpg 640w, /ima7-md.jpg 768w, /ima7.jpeg 1280w">
                 <img src="/ima7.jpeg" width="1280" height="1081" alt="Yoga teacher demonstrating a seated spinal twist"
                      class="w-full rounded" loading="lazy" decoding="async">
             </picture>

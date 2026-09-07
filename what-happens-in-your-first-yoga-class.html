@@ -596,10 +596,16 @@
             </ul>
         </aside>
 
+        <!-- The lead image is the largest thing on the first screen, so it
+             carries the real widths and is fetched eagerly. Left lazy it was
+             the LCP element and the browser deferred it. -->
         <picture>
-            <source srcset="ima1.webp" type="image/webp">
+            <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima1-xs.webp 320w, ima1-sm.webp 640w, ima1-md.webp 768w, ima1.webp 1280w">
+            <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima1-xs.jpg 320w, ima1-sm.jpg 640w, ima1-md.jpg 768w, ima1.jpeg 1280w">
             <img src="ima1.jpeg" width="1280" height="720" alt="Adults and children seated in meditation facing their teacher at Happy Yogis"
-                 class="w-full rounded mt-10" loading="lazy" decoding="async">
+                 class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 
             <h2 class="text-d2 text-ink mt-12">Before you arrive</h2>

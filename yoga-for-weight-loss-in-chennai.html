@@ -596,10 +596,16 @@
             </ul>
         </aside>
 
+        <!-- The lead image is the largest thing on the first screen, so it
+             carries the real widths and is fetched eagerly. Left lazy it was
+             the LCP element and the browser deferred it. -->
         <picture>
-            <source srcset="ima3.webp" type="image/webp">
+            <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima3-xs.webp 320w, ima3-sm.webp 640w, ima3-md.webp 768w, ima3.webp 960w">
+            <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima3-xs.jpg 320w, ima3-sm.jpg 640w, ima3-md.jpg 768w, ima3.jpeg 960w">
             <img src="ima3.jpeg" width="960" height="1280" alt="Student holding downward dog on a mat at the centre"
-                 class="w-full rounded mt-10" loading="lazy" decoding="async">
+                 class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 
             <h2 class="text-d2 text-ink mt-12">Start with what yoga is not</h2>
@@ -623,7 +629,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">There is no separate weight-loss course and no package to buy. All of it is taught inside the regular batches: tell the teacher what you are working towards and she builds it into your practice.</p>            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">That is possible because the batches stay small. On any morning the same room holds a school child, someone heading to an office, a homemaker and a retired member &mdash; and the person next to you working on mobility after a knee problem is doing a different version of the same sequence than the person working on stamina. Karthika takes every batch herself and has been teaching for more than ten years, which is what makes that practical rather than theoretical.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima6.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima6-xs.webp 320w, ima6-sm.webp 640w, ima6-md.webp 768w, ima6.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima6-xs.jpg 320w, ima6-sm.jpg 640w, ima6-md.jpg 768w, ima6.jpeg 1280w">
                     <img src="ima6.jpeg" width="1280" height="960" alt="Students of all ages holding tree pose together"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -634,7 +643,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Many of the women who ask us about weight are really asking about something underneath it. PCOD and thyroid conditions are common, make weight harder to shift, and are often the reason someone starts.</p>            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">So we adapt the practice: for PCOD, work sequenced around hormonal balance at a manageable pace; for thyroid, breathing and movement chosen with that in mind. The 10:00 to 11:00 am batch is women only, which for many students is the difference between attending and not.</p>            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Lifestyle changes, including physical activity, sit among the <a href="https://www.nichd.nih.gov/health/topics/pcos/conditioninfo/treatments" target="_blank" rel="noopener" title="US National Institute of Child Health and Human Development" class="text-blue font-medium hover:underline">recognised treatments for PCOS<svg class="i w-3.5 h-3.5 inline-block align-[-1px] ml-0.5" aria-hidden="true" focusable="false"><use href="#i-arrow-up-right"></use></svg></a> alongside medication &mdash; which is exactly why we describe the practice as supporting your treatment rather than being it.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima10.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima10-xs.webp 320w, ima10-sm.webp 640w, ima10-md.webp 768w, ima10.webp 960w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima10-xs.jpg 320w, ima10-sm.jpg 640w, ima10-md.jpg 768w, ima10.jpeg 960w">
                     <img src="ima10.jpeg" width="960" height="1280" alt="Ladies batch moving through cat-cow stretches"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>

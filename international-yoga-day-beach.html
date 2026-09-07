@@ -595,17 +595,26 @@
             </ul>
         </aside>
 
+        <!-- The lead image is the largest thing on the first screen, so it
+             carries the real widths and is fetched eagerly. Left lazy it was
+             the LCP element and the browser deferred it. -->
         <picture>
-            <source srcset="ima14.webp" type="image/webp">
+            <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima14-xs.webp 320w, ima14-sm.webp 640w, ima14-md.webp 768w, ima14.webp 1280w">
+            <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima14-xs.jpg 320w, ima14-sm.jpg 640w, ima14-md.jpg 768w, ima14.jpeg 1280w">
             <img src="ima14.jpeg" width="1280" height="853" alt="A student stretching both arms overhead in the morning light at the beach"
-                 class="w-full rounded mt-10" loading="lazy" decoding="async">
+                 class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 
             <h2 class="text-d2 text-ink mt-12">Before the sun was properly up</h2>
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">We start at half past five most mornings anyway, so an early beach session was no hardship. People arrived in the half-light, spread mats and towels on the sand, and waited for enough light to see the person in front of them.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima15.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima15-xs.webp 320w, ima15-sm.webp 640w, ima15-md.webp 768w, ima15.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima15-xs.jpg 320w, ima15-sm.jpg 640w, ima15-md.jpg 768w, ima15.jpeg 1280w">
                     <img src="ima15.jpeg" width="1280" height="853" alt="The group seated on mats as the sun comes up over the water"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -614,7 +623,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima33.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima33-xs.webp 320w, ima33-sm.webp 640w, ima33-md.webp 768w, ima33.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima33-xs.jpg 320w, ima33-sm.jpg 640w, ima33-md.jpg 768w, ima33.jpeg 1280w">
                     <img src="ima33.jpeg" width="1280" height="853" alt="The whole group seated for the opening of the morning, water behind"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -625,7 +637,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">The thing that made the morning was who turned up. Children who normally practise beside their parents in the 6:15 batch. Parents. Retired members. The men who come to the evening class. Whole families on one towel.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima11.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima11-xs.webp 320w, ima11-sm.webp 640w, ima11-md.webp 768w, ima11.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima11-xs.jpg 320w, ima11-sm.jpg 640w, ima11-md.jpg 768w, ima11.jpeg 1280w">
                     <img src="ima11.jpeg" width="1280" height="853" alt="Students seated on mats at a Happy Yogis beach session, the sea behind them"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -634,7 +649,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima12.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima12-xs.webp 320w, ima12-sm.webp 640w, ima12-md.webp 768w, ima12.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima12-xs.jpg 320w, ima12-sm.jpg 640w, ima12-md.jpg 768w, ima12.jpeg 1280w">
                     <img src="ima12.jpeg" width="1280" height="853" alt="Men from the centre seated on their mats at the beach session at sunset"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -643,7 +661,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima34.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima34-xs.webp 320w, ima34-sm.webp 640w, ima34-md.webp 768w, ima34.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima34-xs.jpg 320w, ima34-sm.jpg 640w, ima34-md.jpg 768w, ima34.jpeg 1280w">
                     <img src="ima34.jpeg" width="1280" height="853" alt="A young student speaking into a microphone at the beach session"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -652,7 +673,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima35.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima35-xs.webp 320w, ima35-sm.webp 640w, ima35-md.webp 768w, ima35.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima35-xs.jpg 320w, ima35-sm.jpg 640w, ima35-md.jpg 768w, ima35.jpeg 1280w">
                     <img src="ima35.jpeg" width="1280" height="853" alt="The teacher with one of the younger students after the challenge"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -663,7 +687,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Much the same as any morning: warm-up, standing postures, forward bends, then seated work and breathing to close. The sequence was not the point. Doing it in the open, facing the water, with a hundred unrelated people walking past, was.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima19.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima19-xs.webp 320w, ima19-sm.webp 640w, ima19-md.webp 768w, ima19.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima19-xs.jpg 320w, ima19-sm.jpg 640w, ima19-md.jpg 768w, ima19.jpeg 1280w">
                     <img src="ima19.jpeg" width="1280" height="853" alt="The group holding a standing forward bend on the beach"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -672,7 +699,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima16.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima16-xs.webp 320w, ima16-sm.webp 640w, ima16-md.webp 768w, ima16.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima16-xs.jpg 320w, ima16-sm.jpg 640w, ima16-md.jpg 768w, ima16.jpeg 1280w">
                     <img src="ima16.jpeg" width="1280" height="853" alt="Students in a wide-legged forward bend together on the sand"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -681,7 +711,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima17.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima17-xs.webp 320w, ima17-sm.webp 640w, ima17-md.webp 768w, ima17.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima17-xs.jpg 320w, ima17-sm.jpg 640w, ima17-md.jpg 768w, ima17.jpeg 1280w">
                     <img src="ima17.jpeg" width="1280" height="853" alt="A row of students in a seated forward bend, the city skyline behind"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -690,7 +723,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima32.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima32-xs.webp 320w, ima32-sm.webp 640w, ima32-md.webp 768w, ima32.webp 853w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima32-xs.jpg 320w, ima32-sm.jpg 640w, ima32-md.jpg 768w, ima32.jpeg 853w">
                     <img src="ima32.jpeg" width="853" height="1280" alt="A young girl on her hands in the sand, smiling at the camera"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -707,7 +743,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">At the end, the group photo. Students, parents, children and teachers, all in the blue t-shirts, squinting into the sun.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima13.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima13-xs.webp 320w, ima13-sm.webp 640w, ima13-md.webp 768w, ima13.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima13-xs.jpg 320w, ima13-sm.jpg 640w, ima13-md.jpg 768w, ima13.jpeg 1280w">
                     <img src="ima13.jpeg" width="1280" height="853" alt="The Happy Yogis group photographed together at the beach session"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>

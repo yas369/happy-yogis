@@ -595,10 +595,16 @@
             </ul>
         </aside>
 
+        <!-- The lead image is the largest thing on the first screen, so it
+             carries the real widths and is fetched eagerly. Left lazy it was
+             the LCP element and the browser deferred it. -->
         <picture>
-            <source srcset="ima29.webp" type="image/webp">
+            <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima29-xs.webp 320w, ima29-sm.webp 640w, ima29-md.webp 768w, ima29.webp 1280w">
+            <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                    srcset="ima29-xs.jpg 320w, ima29-sm.jpg 640w, ima29-md.jpg 768w, ima29.jpeg 1280w">
             <img src="ima29.jpeg" width="1280" height="853" alt="A row of students holding the lunge of a sun salutation on the sand"
-                 class="w-full rounded mt-10" loading="lazy" decoding="async">
+                 class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 
             <h2 class="text-d2 text-ink mt-12">Why 108</h2>
@@ -606,7 +612,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">A single Surya Namaskar is a linked round of twelve positions moved through with the breath. Doing 108 without stopping is not a yoga class; it is an endurance event that happens to be made of yoga.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima27.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima27-xs.webp 320w, ima27-sm.webp 640w, ima27-md.webp 768w, ima27.webp 1024w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima27-xs.jpg 320w, ima27-sm.jpg 640w, ima27-md.jpg 768w, ima27.jpeg 1024w">
                     <img src="ima27.jpeg" width="1024" height="1536" alt="The Happy Yogis poster announcing the 108 Suryanamaskar Non-Stop Challenge"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -625,7 +634,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Chennai in June, on an open beach, is not a controlled environment. The 5:30 slot had the cooler air; the 10:00 slot did not. Sand gives under the hands in the plank and the back foot in the lunge, so every round costs more than on a wooden floor.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima31.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima31-xs.webp 320w, ima31-sm.webp 640w, ima31-md.webp 768w, ima31.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima31-xs.jpg 320w, ima31-sm.jpg 640w, ima31-md.jpg 768w, ima31.jpeg 1280w">
                     <img src="ima31.jpeg" width="1280" height="853" alt="A student lowering into the plank of a sun salutation on the sand"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -634,7 +646,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima30.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima30-xs.webp 320w, ima30-sm.webp 640w, ima30-md.webp 768w, ima30.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima30-xs.jpg 320w, ima30-sm.jpg 640w, ima30-md.jpg 768w, ima30.jpeg 1280w">
                     <img src="ima30.jpeg" width="1280" height="853" alt="Students holding a low lunge together, the backwater behind them"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -645,7 +660,10 @@
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Everyone who completed all 108 received a certificate, a medal and a memento, handed over on the sand at the end of the slot.</p>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima37.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima37-xs.webp 320w, ima37-sm.webp 640w, ima37-md.webp 768w, ima37.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima37-xs.jpg 320w, ima37-sm.jpg 640w, ima37-md.jpg 768w, ima37.jpeg 1280w">
                     <img src="ima37.jpeg" width="1280" height="853" alt="A finisher receiving his medal while another celebrates behind him"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -654,7 +672,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima40.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima40-xs.webp 320w, ima40-sm.webp 640w, ima40-md.webp 768w, ima40.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima40-xs.jpg 320w, ima40-sm.jpg 640w, ima40-md.jpg 768w, ima40.jpeg 1280w">
                     <img src="ima40.jpeg" width="1280" height="853" alt="A finisher with his medal, receiving his certificate"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -663,7 +684,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima38.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima38-xs.webp 320w, ima38-sm.webp 640w, ima38-md.webp 768w, ima38.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima38-xs.jpg 320w, ima38-sm.jpg 640w, ima38-md.jpg 768w, ima38.jpeg 1280w">
                     <img src="ima38.jpeg" width="1280" height="853" alt="A finisher receiving her certificate and memento"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -672,7 +696,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima39.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima39-xs.webp 320w, ima39-sm.webp 640w, ima39-md.webp 768w, ima39.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima39-xs.jpg 320w, ima39-sm.jpg 640w, ima39-md.jpg 768w, ima39.jpeg 1280w">
                     <img src="ima39.jpeg" width="1280" height="853" alt="A finisher receiving his certificate and memento"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -681,7 +708,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima36.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima36-xs.webp 320w, ima36-sm.webp 640w, ima36-md.webp 768w, ima36.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima36-xs.jpg 320w, ima36-sm.jpg 640w, ima36-md.jpg 768w, ima36.jpeg 1280w">
                     <img src="ima36.jpeg" width="1280" height="853" alt="A young student receiving her certificate and memento"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
@@ -690,7 +720,10 @@
             </figure>            <figure class="mt-8">
                 <div class="rounded zoom grade">
                 <picture>
-                    <source srcset="ima28.webp" type="image/webp">
+                    <source type="image/webp" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima28-xs.webp 320w, ima28-sm.webp 640w, ima28-md.webp 768w, ima28.webp 1280w">
+                    <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
+                            srcset="ima28-xs.jpg 320w, ima28-sm.jpg 640w, ima28-md.jpg 768w, ima28.jpeg 1280w">
                     <img src="ima28.jpeg" width="1280" height="960" alt="The certificate given to everyone who completed the 108 challenge"
                          class="w-full rounded" loading="lazy" decoding="async">
                 </picture>
