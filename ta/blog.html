@@ -1163,9 +1163,14 @@
         }
 
         /* ---------- in-page links clear the fixed nav ---------- */
-        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        /* Also catches "/#schedule": the homepage canonicalises as "/", so the
+           nav points there rather than at index.html, and those links are
+           same-page whenever the current path is already "/". */
+        document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(function (a) {
             a.addEventListener('click', function (e) {
-                var id = this.getAttribute('href');
+                var href = a.getAttribute('href');
+                var id = href.charAt(0) === '/' ? href.slice(1) : href;
+                if (href.charAt(0) === '/' && location.pathname !== '/') return;
                 if (id.length < 2) return;
                 var t = document.querySelector(id);
                 if (!t) return;
