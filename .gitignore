@@ -1,0 +1,6 @@
+# Build tooling, not source
+src/node_modules/
+src/.scan/
+src/tw.out.css
+src/__pycache__/
+src/**/__pycache__/
