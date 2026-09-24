@@ -226,7 +226,7 @@ def photo_cta(key):
     return f"""    <section aria-labelledby="cta-h" class="relative isolate border-y border-line overflow-hidden">
         <div class="absolute inset-0 -z-10">
             {photo(key, cls='w-full h-full object-cover object-[center_40%]', sizes='100vw')}
-            <div class="absolute inset-0 bg-ink/70"></div>
+            <div class="cta-scrim" role="presentation"></div>
         </div>
         <div class="max-w-6xl mx-auto px-5 sm:px-8 py-20 lg:py-28">
             <div class="max-w-xl">
@@ -340,7 +340,6 @@ def build_index():
             {photo('ima6', cls='w-full h-full object-cover object-[center_38%]',
                    sizes='100vw', priority=True)}
         </div>
-        <div class="bleed__wash" role="presentation"></div>
         <div class="bleed__foot" role="presentation"></div>
 
         <div class="bleed__in w-full max-w-6xl mx-auto px-5 sm:px-8 pb-14 lg:pb-20 pt-28 enter">

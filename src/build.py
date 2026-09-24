@@ -376,7 +376,7 @@ CSS = FONT_FACE + TAILWIND + """
         /* The label over the hero photograph. The brass that works on paper
            measures 2.95:1 against the scrimmed image - this lighter tone is
            5.64:1 on the same backdrop. */
-        .lbl--dark { color:#E6C79A; }
+        .lbl--dark { color:#F3E2C8; }
         /* A heading used as a control label is interface, not display type.
            Cormorant at 15.5px is too delicate to tap confidently, so the FAQ
            questions keep the body face even though they are h3 for structure. */
@@ -455,26 +455,17 @@ CSS = FONT_FACE + TAILWIND + """
             from { transform:scale(1); opacity:.8; }
             to   { transform:scale(1.12) translate3d(-2%,2%,0); opacity:1; }
         }
-        /* A unifying grade. The photographs were taken on a phone under tube
-           light, so their white balance wanders; blending a blue over the
-           luminosity pulls the whole set onto one temperature and onto the
-           palette. Costs nothing to ship - it is compositing, not pixels. */
-        .grade { position:relative; isolation:isolate; }
-        .grade > img, .grade > picture > img { filter:saturate(.78) contrast(1.05); }
-        .grade::after {
-            content:''; position:absolute; inset:0; pointer-events:none;
-            background:linear-gradient(170deg, #2E6F9E 0%, #1F4E79 55%, #0E2740 100%);
-            /* mix-blend-mode:color replaces hue outright. At full strength that
-               unified the room shots nicely and turned people's faces grey-blue,
-               so it is held back to a tint: enough to pull the set onto one
-               temperature, not enough to take the skin with it. */
-            mix-blend-mode:color; opacity:.38;
+        /* Photographs keep their own colour. A blue was blended over them to
+           unify the set, and it cost more than it bought: the room's warmth -
+           the wood, the lamps, the students' shirts - went flat slate, and the
+           whole site read dull. All that is left is a gentle lift, which helps
+           the few frames the tube light underexposed and changes no hue. */
+        .grade { position:relative; }
+        .grade > img, .grade > picture > img {
+            filter:saturate(1.06) contrast(1.04) brightness(1.03);
         }
-        /* A face filling the frame needs even less. */
-        /* Desaturation rather than tint: it mutes a loud background without
-           shifting skin hue, which a stronger blue tint does immediately. */
-        .grade--portrait::after { opacity:.3; }
-        .grade--portrait > picture > img { filter:saturate(.5) contrast(1.04); }
+        /* A face wants even less than that. */
+        .grade--portrait > picture > img { filter:saturate(1.02) contrast(1.02); }
 
         /* The opening screen: one photograph, edge to edge, with the headline
            and a single call to action over it. Everything else waits below. */
@@ -487,12 +478,22 @@ CSS = FONT_FACE + TAILWIND + """
         /* Two scrims: a wash that carries the grade, and a foot that gives the
            text a floor to sit on. Measured, not guessed - see the contrast
            check in the commit. */
-        .bleed__wash { position:absolute; inset:0; z-index:1;
-            background:linear-gradient(168deg, rgba(46,111,158,.55), rgba(31,78,121,.62) 50%, rgba(14,39,64,.80));
-            mix-blend-mode:color; }
+        /* The headline sits at the foot of the hero, so only the foot needs to
+           be dark. Covering the whole frame - which is what this did, on top
+           of a blue blended across every pixel - was most of why the opening
+           screen looked murky. The top two thirds are now the photograph. */
         .bleed__foot { position:absolute; inset:0; z-index:2;
-            background:linear-gradient(to bottom, rgba(8,24,40,.42) 0%, rgba(8,24,40,.30) 42%, rgba(8,24,40,.86) 100%); }
+            background:linear-gradient(to bottom,
+                rgba(6,20,34,0) 0%, rgba(6,20,34,.04) 16%, rgba(6,20,34,.22) 30%,
+                rgba(6,20,34,.46) 52%, rgba(6,20,34,.74) 78%, rgba(6,20,34,.90) 100%); }
         .bleed__in { position:relative; z-index:3; }
+
+        /* Same idea for the one band where copy sits over a photograph: the
+           text is a column on the left, so the cover is heaviest there and
+           thins out across the frame, instead of a flat 70% over everything. */
+        .cta-scrim { position:absolute; inset:0;
+            background:linear-gradient(100deg, rgba(6,20,34,.88) 0%, rgba(6,20,34,.74) 38%,
+                       rgba(6,20,34,.40) 70%, rgba(6,20,34,.22) 100%); }
 
         .glow { position:absolute; pointer-events:none; border-radius:50%;
                 background:radial-gradient(closest-side, rgba(77,168,218,.28), transparent 70%);
