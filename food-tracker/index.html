@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Plate Check</title>
+<meta name="description" content="A personal food tracker: quick-pick Indian foods, a daily calorie limit, and reminders before you overeat.">
+<meta name="theme-color" content="#2F6B4F">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Plate Check">
+<style>
+:root {
+  --bg: #F6F4EF;
+  --surface: #FFFFFF;
+  --surface-2: #EFECE4;
+  --text: #1E2420;
+  --muted: #5E6660;
+  --line: #DEDAD0;
+  --accent: #2F6B4F;
+  --accent-ink: #FFFFFF;
+  --ok: #2F6B4F;
+  --warn: #B26A00;
+  --over: #B3261E;
+  --warn-bg: #FFF3DC;
+  --over-bg: #FDE7E4;
+  --ok-bg: #E4F1E9;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141816;
+    --surface: #1C211E;
+    --surface-2: #252B27;
+    --text: #E8ECE9;
+    --muted: #A2ABA5;
+    --line: #333A36;
+    --accent: #6CC39A;
+    --accent-ink: #0E1A14;
+    --ok: #6CC39A;
+    --warn: #F0B35A;
+    --over: #F28B82;
+    --warn-bg: #3A2E17;
+    --over-bg: #3D1F1C;
+    --ok-bg: #1D3228;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141816;
+  --surface: #1C211E;
+  --surface-2: #252B27;
+  --text: #E8ECE9;
+  --muted: #A2ABA5;
+  --line: #333A36;
+  --accent: #6CC39A;
+  --accent-ink: #0E1A14;
+  --ok: #6CC39A;
+  --warn: #F0B35A;
+  --over: #F28B82;
+  --warn-bg: #3A2E17;
+  --over-bg: #3D1F1C;
+  --ok-bg: #1D3228;
+  --shadow: none;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+}
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+.wrap { max-width: 560px; margin: 0 auto; padding: 0 16px; }
+header.top {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--bg);
+  padding: calc(10px + env(safe-area-inset-top)) 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+header.top .wrap { display: flex; align-items: center; gap: 8px; }
+header.top h1 { font-size: 17px; margin: 0; flex: 1; text-align: center; font-weight: 600; }
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--surface);
+  display: grid; place-items: center; font-size: 18px; line-height: 1;
+}
+.icon-btn:disabled { opacity: .35; cursor: default; }
+section.view { display: none; padding: 16px 0 24px; }
+section.view.active { display: block; }
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.card h2 { font-size: 15px; margin: 0 0 8px; font-weight: 600; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.summary { display: flex; gap: 16px; align-items: center; }
+.ring { width: 118px; height: 118px; flex: none; }
+.ring circle { fill: none; stroke-width: 12; }
+.ring .track { stroke: var(--surface-2); }
+.ring .bar { stroke: var(--ok); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset .4s ease; }
+.ring.warn .bar { stroke: var(--warn); }
+.ring.over .bar { stroke: var(--over); }
+.ring text { fill: var(--text); text-anchor: middle; }
+.ring .big { font-size: 24px; font-weight: 700; }
+.ring .sub { font-size: 11px; fill: var(--muted); }
+.status { font-size: 17px; font-weight: 600; margin: 0 0 4px; }
+.status.warn { color: var(--warn); }
+.status.over { color: var(--over); }
+.banner { border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; font-size: 14px; }
+.banner.warn { background: var(--warn-bg); }
+.banner.over { background: var(--over-bg); }
+.banner.ok { background: var(--ok-bg); }
+.banner strong { display: block; margin-bottom: 2px; }
+.nudges { list-style: none; padding: 0; margin: 8px 0 0; font-size: 14px; }
+.nudges li { padding: 6px 0; border-top: 1px dashed var(--line); }
+.nudges li:first-child { border-top: 0; }
+.tip { border-left: 4px solid var(--accent); }
+.tip p { margin: 0; }
+.meal-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.meal-head h2 { margin: 0; }
+.entries { list-style: none; margin: 8px 0 0; padding: 0; }
+.entries li { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.entries li .name { flex: 1; min-width: 0; }
+.entries li .kcal { font-variant-numeric: tabular-nums; color: var(--muted); }
+.entries .del { border: 0; background: none; color: var(--muted); font-size: 18px; width: 32px; height: 32px; border-radius: 50%; }
+.entries .hungerTag { font-size: 11px; padding: 1px 6px; border-radius: 99px; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+  padding: 10px 14px; min-height: 44px; font-weight: 600;
+}
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.danger { color: var(--over); }
+.btn.block { width: 100%; }
+.btn.slim { min-height: 36px; padding: 6px 12px; font-size: 14px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.row > * { flex: 1 1 auto; }
+nav.tabs {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+  background: var(--surface); border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+nav.tabs .wrap { display: flex; }
+nav.tabs button {
+  flex: 1; border: 0; background: none; padding: 10px 0 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-size: 12px; color: var(--muted);
+}
+nav.tabs button span { font-size: 20px; line-height: 1; }
+nav.tabs button[aria-selected="true"] { color: var(--accent); font-weight: 600; }
+label.field { display: block; margin-bottom: 12px; font-size: 14px; }
+label.field > span { display: block; margin-bottom: 4px; color: var(--muted); }
+input[type="text"], input[type="number"], input[type="search"], input[type="time"], select {
+  width: 100%; min-height: 44px; padding: 8px 12px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+}
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+.seg { display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.seg button { flex: 1; border: 0; background: var(--surface); padding: 10px 4px; min-height: 44px; font-size: 14px; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.switch-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.switch-row:first-of-type { border-top: 0; }
+.switch-row .grow { flex: 1; min-width: 0; }
+.switch-row input[type="time"] { width: 120px; flex: none; }
+input[type="checkbox"].toggle { width: 22px; height: 22px; accent-color: var(--accent); flex: none; }
+
+/* Add sheet */
+dialog {
+  border: 0; padding: 0; margin: 0; width: 100%; max-width: 100%;
+  height: 100%; max-height: 100%; background: var(--bg); color: var(--text);
+}
+dialog::backdrop { background: rgba(0,0,0,.4); }
+@media (min-width: 600px) {
+  dialog { max-width: 560px; height: 90vh; margin: 5vh auto; border-radius: 18px; }
+}
+.sheet { display: flex; flex-direction: column; height: 100%; }
+.sheet-head { display: flex; align-items: center; gap: 8px; padding: calc(10px + env(safe-area-inset-top)) 16px 10px; border-bottom: 1px solid var(--line); }
+.sheet-head h2 { flex: 1; margin: 0; font-size: 17px; }
+.sheet-body { flex: 1; overflow-y: auto; padding: 12px 16px 16px; -webkit-overflow-scrolling: touch; }
+.sheet-foot { border-top: 1px solid var(--line); padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--surface); }
+.hunger { display: grid; gap: 8px; margin: 12px 0; }
+.hunger button { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 12px 14px; min-height: 52px; display: flex; gap: 12px; align-items: center; }
+.hunger button b { width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; flex: none; }
+.chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chips button { flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 6px 12px; font-size: 14px; min-height: 36px; }
+.chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.cat { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 14px 0 6px; font-weight: 600; }
+.foods { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.food {
+  text-align: left; border: 1px solid var(--line); background: var(--surface);
+  border-radius: 12px; padding: 10px 12px; min-height: 60px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.food .n { font-weight: 600; font-size: 14px; line-height: 1.25; }
+.food .u { font-size: 12px; color: var(--muted); }
+.food.in { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.tray { list-style: none; margin: 0 0 10px; padding: 0; max-height: 34vh; overflow-y: auto; }
+.tray li { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 14px; }
+.tray li .name { flex: 1; min-width: 0; }
+.stepper { display: flex; align-items: center; gap: 4px; }
+.stepper button { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface-2); font-size: 18px; line-height: 1; }
+.stepper output { min-width: 30px; text-align: center; font-variant-numeric: tabular-nums; }
+.foot-warn { font-size: 13px; margin-bottom: 8px; }
+.foot-warn.warn { color: var(--warn); }
+.foot-warn.over { color: var(--over); font-weight: 600; }
+details.custom summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
+
+/* History */
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 160px; position: relative; margin: 8px 0 4px; }
+.bars .b { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; }
+.bars .b i { display: block; width: 100%; border-radius: 6px 6px 2px 2px; background: var(--ok); min-height: 2px; }
+.bars .b.warn i { background: var(--warn); }
+.bars .b.over i { background: var(--over); }
+.bars .b.empty i { background: var(--surface-2); }
+.bars .line { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--muted); opacity: .6; pointer-events: none; }
+.bar-labels { display: flex; gap: 6px; font-size: 11px; color: var(--muted); }
+.bar-labels span { flex: 1; text-align: center; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat { background: var(--surface-2); border-radius: 12px; padding: 12px; }
+.stat b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--muted); }
+.insights { margin: 0; padding-left: 18px; font-size: 14px; }
+.insights li { margin: 6px 0; }
+.toast {
+  position: fixed; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 99px; font-size: 14px;
+  opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 50; max-width: calc(100% - 32px);
+}
+.toast.show { opacity: 1; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <button class="icon-btn" id="prevDay" aria-label="Previous day">‹</button>
+    <h1 id="dayTitle">Today</h1>
+    <button class="icon-btn" id="nextDay" aria-label="Next day">›</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="view active" id="view-today" aria-label="Today">
+    <div id="alertSlot"></div>
+    <div class="card">
+      <div class="summary">
+        <svg class="ring" id="ring" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="track" cx="60" cy="60" r="50"/>
+          <circle class="bar" id="ringBar" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="314.16"/>
+          <text class="big" id="ringNum" x="60" y="62">0</text>
+          <text class="sub" id="ringSub" x="60" y="80">of 0 kcal</text>
+        </svg>
+        <div>
+          <p class="status" id="statusLine">Nothing logged yet</p>
+          <p class="muted small" id="statusSub" style="margin:0"></p>
+        </div>
+      </div>
+      <ul class="nudges" id="nudges"></ul>
+    </div>
+    <div class="card tip" id="tipCard">
+      <h2>Why it matters</h2>
+      <p id="tipText"></p>
+    </div>
+    <div id="meals"></div>
+  </section>
+
+  <section class="view" id="view-history" aria-label="History">
+    <div class="card">
+      <h2>Last 14 days</h2>
+      <p class="muted small" style="margin:0">Dashed line is your daily limit.</p>
+      <div class="bars" id="bars"></div>
+      <div class="bar-labels" id="barLabels"></div>
+    </div>
+    <div class="card">
+      <h2>Last 7 days</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="card">
+      <h2>What the pattern says</h2>
+      <ul class="insights" id="insights"></ul>
+    </div>
+  </section>
+
+  <section class="view" id="view-settings" aria-label="Settings">
+    <div class="card" id="profileCard">
+      <h2>Your daily limit</h2>
+      <p class="muted small" style="margin-top:0">Estimated from your body and activity with the Mifflin–St Jeor formula. It is an estimate, not a prescription: if your weight doesn't move after 3–4 weeks, adjust it.</p>
+      <div class="grid2">
+        <label class="field"><span>Age</span><input type="number" id="pAge" inputmode="numeric" min="15" max="90"></label>
+        <label class="field"><span>Sex</span>
+          <select id="pSex"><option value="m">Male</option><option value="f">Female</option></select></label>
+        <label class="field"><span>Height (cm)</span><input type="number" id="pHeight" inputmode="numeric" min="120" max="220"></label>
+        <label class="field"><span>Weight (kg)</span><input type="number" id="pWeight" inputmode="decimal" min="30" max="250" step="0.1"></label>
+      </div>
+      <label class="field"><span>How active are you?</span>
+        <select id="pActivity">
+          <option value="1.2">Mostly sitting</option>
+          <option value="1.375">Light: yoga or walking 1–3 days a week</option>
+          <option value="1.55">Moderate: exercise 3–5 days a week</option>
+          <option value="1.725">Very active: hard exercise most days</option>
+        </select></label>
+      <label class="field"><span>Goal</span>
+        <select id="pGoal">
+          <option value="lose">Lose weight slowly (about 400 kcal below maintenance)</option>
+          <option value="maintain">Stay where I am</option>
+        </select></label>
+      <label class="field"><span>Daily limit (kcal). Leave blank to use the estimate</span>
+        <input type="number" id="pOverride" inputmode="numeric" min="1000" max="5000" placeholder=""></label>
+      <p class="small" id="estimateLine"></p>
+      <button class="btn primary block" id="saveProfile">Save</button>
+    </div>
+
+    <div class="card">
+      <h2>Reminders</h2>
+      <p class="muted small" style="margin-top:0">A reminder is skipped if you have already logged that meal.</p>
+      <div id="reminderList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Get the reminders on your phone</h2>
+      <p class="small" style="margin-top:0"><strong>Most reliable: add them to your calendar.</strong> Your phone's calendar alerts you even when this app is closed, on iPhone and Android.</p>
+      <div class="row" style="margin-bottom:8px">
+        <button class="btn" id="icsBtn">Download calendar file (.ics)</button>
+      </div>
+      <p class="muted small">iPhone: open the file and tap <em>Add All</em>. Android: Google Calendar can't open .ics files, so use the links below. Each one adds a daily repeating event. In Google Calendar, set its notification to "at time of event".</p>
+      <div id="gcalLinks" class="row" style="margin-bottom:14px"></div>
+      <p class="small"><strong>App notifications</strong> <span id="notifState" class="muted"></span></p>
+      <p class="muted small">These fire while the app is open or recently used. On Android, if you install the app to your home screen, Chrome may also check in the background, but it decides when, so treat that as a bonus. On iPhone, notifications only work after you <em>Add to Home Screen</em> from Safari's share menu.</p>
+      <div class="row">
+        <button class="btn" id="notifBtn">Turn on notifications</button>
+        <button class="btn" id="testNotif">Send a test</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Habits</h2>
+      <div class="switch-row">
+        <div class="grow"><strong>Ask how hungry I am</strong><br><span class="muted small">Before logging, a one-tap hunger check. If you're not really hungry, it suggests waiting 10 minutes.</span></div>
+        <input type="checkbox" class="toggle" id="hungerToggle" aria-label="Ask how hungry I am">
+      </div>
+      <div class="switch-row">
+        <div class="grow"><strong>Theme</strong></div>
+        <select id="themeSel" style="width:140px">
+          <option value="">Follow phone</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Your data</h2>
+      <p class="muted small" style="margin-top:0">Everything is stored only in this browser on this phone. Nothing is sent anywhere. Clearing browser data or changing phones will erase it, so export a backup now and then.</p>
+      <div class="row">
+        <button class="btn" id="exportBtn">Export backup</button>
+        <button class="btn" id="importBtn">Import backup</button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+      </div>
+      <p style="margin-bottom:0"><button class="btn danger slim" id="resetBtn">Erase everything</button></p>
+    </div>
+    <p class="muted small">Calorie values are typical home-style portions and can be off by 20% or more. Oil and ghee are the usual culprits. Log them separately when you can see them.</p>
+  </section>
+</main>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" role="tablist">
+    <button role="tab" aria-selected="true" data-view="today"><span>◐</span>Today</button>
+    <button role="tab" aria-selected="false" data-view="history"><span>▥</span>History</button>
+    <button role="tab" aria-selected="false" data-view="settings"><span>⚙</span>Settings</button>
+  </div>
+</nav>
+
+<dialog id="addDialog" aria-labelledby="addTitle">
+  <div class="sheet">
+    <div class="sheet-head">
+      <button class="icon-btn" id="addClose" aria-label="Close">✕</button>
+      <h2 id="addTitle">Add food</h2>
+    </div>
+    <div class="sheet-body" id="addBody"></div>
+    <div class="sheet-foot" id="addFoot" hidden>
+      <ul class="tray" id="tray"></ul>
+      <div class="foot-warn" id="footWarn"></div>
+      <button class="btn primary block" id="addConfirm">Add</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+
+/* ---------- Food list ----------
+   Approximate calories for a typical home-style portion. Tags drive the
+   diet-quality nudges: fried, sweet, protein, plant (vegetable/fruit/pulse). */
+const FOODS = [
+  // Tiffin
+  { id:'idli', cat:'Tiffin', name:'Idli', unit:'1 piece', kcal:60, tags:[] },
+  { id:'dosa', cat:'Tiffin', name:'Plain dosa', unit:'1 dosa', kcal:135, tags:[] },
+  { id:'masaladosa', cat:'Tiffin', name:'Masala dosa', unit:'1 dosa', kcal:280, tags:[] },
+  { id:'gheeroast', cat:'Tiffin', name:'Ghee roast', unit:'1 dosa', kcal:300, tags:['fried'] },
+  { id:'ravadosa', cat:'Tiffin', name:'Rava dosa', unit:'1 dosa', kcal:180, tags:[] },
+  { id:'uthappam', cat:'Tiffin', name:'Onion uthappam', unit:'1 piece', kcal:200, tags:[] },
+  { id:'pesarattu', cat:'Tiffin', name:'Pesarattu', unit:'1 piece', kcal:150, tags:['protein','plant'] },
+  { id:'ragidosa', cat:'Tiffin', name:'Ragi dosa', unit:'1 dosa', kcal:110, tags:[] },
+  { id:'pongal', cat:'Tiffin', name:'Ven pongal', unit:'1 cup', kcal:280, tags:[] },
+  { id:'upma', cat:'Tiffin', name:'Upma', unit:'1 cup', kcal:220, tags:[] },
+  { id:'poori', cat:'Tiffin', name:'Poori', unit:'1 piece', kcal:100, tags:['fried'] },
+  { id:'chapati', cat:'Tiffin', name:'Chapati', unit:'1 piece', kcal:100, tags:[] },
+  { id:'parotta', cat:'Tiffin', name:'Parotta', unit:'1 piece', kcal:260, tags:['fried'] },
+  { id:'appam', cat:'Tiffin', name:'Appam', unit:'1 piece', kcal:120, tags:[] },
+  { id:'idiyappam', cat:'Tiffin', name:'Idiyappam', unit:'1 piece', kcal:45, tags:[] },
+  { id:'vada', cat:'Tiffin', name:'Medu vada', unit:'1 piece', kcal:130, tags:['fried'] },
+  { id:'oats', cat:'Tiffin', name:'Oats with milk', unit:'1 bowl', kcal:220, tags:[] },
+  // Rice & meals
+  { id:'rice', cat:'Rice & meals', name:'White rice', unit:'1 cup cooked', kcal:200, tags:[] },
+  { id:'brownrice', cat:'Rice & meals', name:'Brown / red rice', unit:'1 cup cooked', kcal:215, tags:[] },
+  { id:'curdrice', cat:'Rice & meals', name:'Curd rice', unit:'1 cup', kcal:230, tags:[] },
+  { id:'lemonrice', cat:'Rice & meals', name:'Lemon / tamarind rice', unit:'1 cup', kcal:260, tags:[] },
+  { id:'sambarrice', cat:'Rice & meals', name:'Sambar rice', unit:'1 cup', kcal:240, tags:['plant'] },
+  { id:'vegbiryani', cat:'Rice & meals', name:'Veg biryani', unit:'1 plate', kcal:400, tags:[] },
+  { id:'chkbiryani', cat:'Rice & meals', name:'Chicken biryani', unit:'1 plate', kcal:550, tags:['protein'] },
+  { id:'meals', cat:'Rice & meals', name:'Full meals (hotel)', unit:'1 plate', kcal:800, tags:['plant'] },
+  { id:'friedrice', cat:'Rice & meals', name:'Fried rice / noodles', unit:'1 plate', kcal:450, tags:['fried'] },
+  // Curries & sides
+  { id:'sambar', cat:'Curries & sides', name:'Sambar', unit:'1 cup', kcal:130, tags:['plant','protein'] },
+  { id:'rasam', cat:'Curries & sides', name:'Rasam', unit:'1 cup', kcal:60, tags:[] },
+  { id:'dal', cat:'Curries & sides', name:'Dal / paruppu', unit:'1 cup', kcal:180, tags:['plant','protein'] },
+  { id:'kootu', cat:'Curries & sides', name:'Kootu', unit:'1 cup', kcal:150, tags:['plant'] },
+  { id:'poriyal', cat:'Curries & sides', name:'Poriyal (vegetable)', unit:'1 cup', kcal:100, tags:['plant'] },
+  { id:'avial', cat:'Curries & sides', name:'Avial', unit:'1 cup', kcal:150, tags:['plant'] },
+  { id:'kurma', cat:'Curries & sides', name:'Veg kurma', unit:'1 cup', kcal:200, tags:['plant'] },
+  { id:'salad', cat:'Curries & sides', name:'Cucumber / carrot salad', unit:'1 cup', kcal:30, tags:['plant'] },
+  { id:'cchutney', cat:'Curries & sides', name:'Coconut chutney', unit:'2 tbsp', kcal:70, tags:[] },
+  { id:'tchutney', cat:'Curries & sides', name:'Tomato / onion chutney', unit:'2 tbsp', kcal:40, tags:[] },
+  { id:'curd', cat:'Curries & sides', name:'Curd', unit:'1 cup', kcal:100, tags:['protein'] },
+  { id:'paneer', cat:'Curries & sides', name:'Paneer curry', unit:'1 cup', kcal:300, tags:['protein'] },
+  { id:'appalam', cat:'Curries & sides', name:'Appalam / papad', unit:'1 piece', kcal:60, tags:['fried'] },
+  { id:'ghee', cat:'Curries & sides', name:'Ghee', unit:'1 tsp', kcal:45, tags:[] },
+  { id:'oil', cat:'Curries & sides', name:'Extra oil', unit:'1 tsp', kcal:40, tags:[] },
+  // Non-veg
+  { id:'egg', cat:'Egg, meat & fish', name:'Boiled egg', unit:'1 egg', kcal:75, tags:['protein'] },
+  { id:'omelette', cat:'Egg, meat & fish', name:'Omelette', unit:'2 eggs', kcal:180, tags:['protein'] },
+  { id:'chkcurry', cat:'Egg, meat & fish', name:'Chicken curry', unit:'1 cup', kcal:250, tags:['protein'] },
+  { id:'chk65', cat:'Egg, meat & fish', name:'Chicken 65 / fry', unit:'100 g', kcal:300, tags:['protein','fried'] },
+  { id:'fishcurry', cat:'Egg, meat & fish', name:'Fish curry', unit:'1 cup', kcal:200, tags:['protein'] },
+  { id:'fishfry', cat:'Egg, meat & fish', name:'Fish fry', unit:'1 piece', kcal:200, tags:['protein','fried'] },
+  { id:'mutton', cat:'Egg, meat & fish', name:'Mutton curry', unit:'1 cup', kcal:350, tags:['protein'] },
+  // Snacks
+  { id:'sundal', cat:'Snacks', name:'Sundal', unit:'1 cup', kcal:180, tags:['protein','plant'] },
+  { id:'nuts', cat:'Snacks', name:'Nuts / peanuts', unit:'1 handful', kcal:170, tags:['protein'] },
+  { id:'murukku', cat:'Snacks', name:'Murukku / mixture', unit:'1 handful', kcal:160, tags:['fried'] },
+  { id:'bajji', cat:'Snacks', name:'Bajji / bonda', unit:'1 piece', kcal:90, tags:['fried'] },
+  { id:'samosa', cat:'Snacks', name:'Samosa', unit:'1 piece', kcal:260, tags:['fried'] },
+  { id:'puffs', cat:'Snacks', name:'Veg / egg puffs', unit:'1 piece', kcal:280, tags:['fried'] },
+  { id:'biscuit', cat:'Snacks', name:'Biscuits', unit:'2 plain', kcal:60, tags:['sweet'] },
+  { id:'chips', cat:'Snacks', name:'Chips', unit:'1 small pack', kcal:160, tags:['fried'] },
+  // Sweets
+  { id:'laddu', cat:'Sweets', name:'Laddu', unit:'1 piece', kcal:180, tags:['sweet'] },
+  { id:'mysorepak', cat:'Sweets', name:'Mysore pak', unit:'1 piece', kcal:200, tags:['sweet'] },
+  { id:'payasam', cat:'Sweets', name:'Payasam', unit:'1 cup', kcal:250, tags:['sweet'] },
+  { id:'jamun', cat:'Sweets', name:'Gulab jamun', unit:'1 piece', kcal:150, tags:['sweet','fried'] },
+  { id:'kesari', cat:'Sweets', name:'Kesari', unit:'1 cup', kcal:300, tags:['sweet'] },
+  { id:'chocolate', cat:'Sweets', name:'Chocolate', unit:'1 small bar', kcal:130, tags:['sweet'] },
+  { id:'icecream', cat:'Sweets', name:'Ice cream', unit:'1 scoop', kcal:140, tags:['sweet'] },
+  // Drinks
+  { id:'tea', cat:'Drinks', name:'Tea (milk, sugar)', unit:'1 cup', kcal:80, tags:['sweet'] },
+  { id:'coffee', cat:'Drinks', name:'Filter coffee (milk, sugar)', unit:'1 tumbler', kcal:90, tags:['sweet'] },
+  { id:'blackcoffee', cat:'Drinks', name:'Black tea / coffee, no sugar', unit:'1 cup', kcal:5, tags:[] },
+  { id:'milk', cat:'Drinks', name:'Milk', unit:'1 glass', kcal:150, tags:['protein'] },
+  { id:'buttermilk', cat:'Drinks', name:'Buttermilk (mor)', unit:'1 glass', kcal:40, tags:[] },
+  { id:'juice', cat:'Drinks', name:'Fruit juice', unit:'1 glass', kcal:120, tags:['sweet'] },
+  { id:'soda', cat:'Drinks', name:'Soft drink', unit:'300 ml', kcal:130, tags:['sweet'] },
+  { id:'tender', cat:'Drinks', name:'Tender coconut', unit:'1 nut', kcal:60, tags:[] },
+  // Fruit
+  { id:'banana', cat:'Fruit', name:'Banana', unit:'1 medium', kcal:105, tags:['plant'] },
+  { id:'apple', cat:'Fruit', name:'Apple', unit:'1 medium', kcal:95, tags:['plant'] },
+  { id:'guava', cat:'Fruit', name:'Guava', unit:'1 medium', kcal:60, tags:['plant'] },
+  { id:'papaya', cat:'Fruit', name:'Papaya', unit:'1 cup', kcal:60, tags:['plant'] },
+  { id:'orange', cat:'Fruit', name:'Orange / sathukudi', unit:'1 medium', kcal:60, tags:['plant'] },
+  { id:'mango', cat:'Fruit', name:'Mango', unit:'1 cup', kcal:100, tags:['plant','sweet'] },
+  { id:'watermelon', cat:'Fruit', name:'Watermelon', unit:'1 cup', kcal:45, tags:['plant'] },
+];
+
+const MEALS = [
+  { id:'breakfast', label:'Breakfast' },
+  { id:'lunch', label:'Lunch' },
+  { id:'snack', label:'Snacks' },
+  { id:'dinner', label:'Dinner' },
+];
+
+const HUNGER = [
+  { v:1, t:'Not hungry', d:'Eating because it’s there, or out of habit' },
+  { v:2, t:'A little peckish', d:'Could wait an hour easily' },
+  { v:3, t:'Hungry', d:'Ready for a meal' },
+  { v:4, t:'Very hungry', d:'Stomach growling, hard to focus' },
+  { v:5, t:'Starving', d:'Shaky or irritable. Eat something now' },
+];
+
+/* Tips are phrased only as strongly as the evidence behind them. */
+const TIPS = [
+  'Eat slowly. Feeling full lags behind eating, so a short pause before a second helping often shows you didn’t need it.',
+  'India’s ICMR-NIN dietary guidelines suggest vegetables and fruit make up about half of what you eat in a day. Start the plate with poriyal or salad, then add rice.',
+  'The WHO recommends keeping added sugar below 10% of your daily calories. Two sweet teas and a biscuit can already be a big part of that.',
+  'The WHO recommends under 5 g of salt a day, about one level teaspoon in total. Pickle, appalam and packaged snacks use it up fast.',
+  'Protein and fibre keep you full for longer. Dal, sambar, sundal, curd, eggs or fish at each meal make the next snack less tempting.',
+  'Serve on a smaller plate and put the pot back in the kitchen. What you can’t reach without getting up, you eat less of.',
+  'Eating in front of a screen is linked to eating more, and to feeling hungry again sooner. Try one meal a day with the phone face-down.',
+  'Thirst can feel like hunger. Before a snack, drink a glass of water and wait ten minutes.',
+  'Short sleep can raise appetite the next day, especially for sweet and fried food. A tired day is a day to plan meals in advance.',
+  'Drinks count. Juice, sweet coffee and soft drinks add calories without filling you up the way food does.',
+  'Oil is the invisible part of Indian cooking. Each extra teaspoon is about 40 kcal. Measure it into the pan instead of pouring.',
+  'Stop at about 80% full, when you could eat more but don’t need to. The feeling of fullness catches up a little later.',
+  'Weigh yourself weekly, at the same time, not daily. Day-to-day changes are mostly water and will only discourage you.',
+  'Fried snacks with evening tea are one of the easiest daily habits to cut: roasted chana or a fruit is a fraction of the calories.',
+  'A calorie limit is a budget, not a target. Being a little under on most days matters more than being perfect once.',
+  'Planning tomorrow’s meals tonight removes most of the decisions that happen when you’re hungry and tired.',
+  'Rice itself isn’t the enemy; the size of the heap is. One cup of cooked rice is about 200 kcal. Use the same cup every time.',
+  'Whole fruit beats juice: the fibre slows you down and fills you up.',
+  'Over-eating one day doesn’t need fixing by starving the next. Go back to your normal plan. Skipping meals often leads to overeating later.',
+  'Keep tempting foods out of sight. People eat more of what they see often.',
+];
+
+const DEFAULT_REMINDERS = [
+  { id:'breakfast', label:'Breakfast', time:'08:00', on:true, meal:'breakfast' },
+  { id:'lunch', label:'Lunch', time:'13:00', on:true, meal:'lunch' },
+  { id:'snack', label:'Evening snack', time:'16:30', on:true, meal:'snack' },
+  { id:'dinner', label:'Dinner', time:'20:00', on:true, meal:'dinner' },
+  { id:'checkin', label:'Kitchen-closed check-in', time:'21:30', on:true, meal:null },
+];
+
+/* ---------- State ---------- */
+const KEY = 'plate-check.v1';
+let state = load();
+let viewDay = todayKey();
+let currentView = 'today';
+
+function blankState() {
+  return {
+    profile: null,          // { age, sex, height, weight, activity, goal, override }
+    settings: { hungerCheck: true, theme: '', reminders: DEFAULT_REMINDERS.map(r => ({...r})) },
+    customFoods: [],
+    log: {},                // { 'YYYY-MM-DD': [ { f, name, unit, kcal, tags, qty, meal, hunger, b, t } ] }
+    fired: {},              // { 'YYYY-MM-DD:reminderId': true }
+  };
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return blankState();
+    const s = Object.assign(blankState(), JSON.parse(raw));
+    s.settings = Object.assign(blankState().settings, s.settings);
+    return s;
+  } catch (e) { return blankState(); }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { toast('Could not save: storage is full or blocked'); }
+  mirrorForWorker();
+}
+/* The service worker can't read localStorage, so a small summary is copied
+   into the Cache API for background reminder checks. */
+function mirrorForWorker() {
+  if (!('caches' in window)) return;
+  const days = {};
+  for (let i = 0; i < 2; i++) {
+    const k = dayKeyOffset(todayKey(), -i);
+    const entries = state.log[k] || [];
+    days[k] = { meals: [...new Set(entries.map(e => e.meal))], total: sumKcal(entries) };
+  }
+  const summary = { reminders: state.settings.reminders, target: dailyTarget(), days, fired: state.fired };
+  caches.open('plate-check-state').then(c => c.put('state.json', new Response(JSON.stringify(summary), { headers: { 'Content-Type': 'application/json' } }))).catch(() => {});
+}
+async function mergeWorkerFired() {
+  if (!('caches' in window)) return;
+  try {
+    const c = await caches.open('plate-check-state');
+    const r = await c.match('sw-fired.json');
+    if (!r) return;
+    const f = await r.json();
+    Object.assign(state.fired, f);
+  } catch (e) {}
+}
+
+/* ---------- Dates ---------- */
+function todayKey() { return keyOf(new Date()); }
+function keyOf(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function parseKey(k) { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); }
+function dayKeyOffset(k, n) { const d = parseKey(k); d.setDate(d.getDate() + n); return keyOf(d); }
+function dayLabel(k) {
+  const t = todayKey();
+  if (k === t) return 'Today';
+  if (k === dayKeyOffset(t, -1)) return 'Yesterday';
+  return parseKey(k).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+function mealForNow() {
+  const h = new Date().getHours() + new Date().getMinutes() / 60;
+  if (h < 11) return 'breakfast';
+  if (h < 15.5) return 'lunch';
+  if (h < 18.5) return 'snack';
+  return 'dinner';
+}
+function minutesOf(hhmm) { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; }
+
+/* ---------- Numbers ---------- */
+function estimate(p) {
+  if (!p || !p.age || !p.height || !p.weight) return null;
+  const bmr = 10 * p.weight + 6.25 * p.height - 5 * p.age + (p.sex === 'f' ? -161 : 5);
+  const tdee = bmr * Number(p.activity || 1.2);
+  let t = p.goal === 'lose' ? tdee - 400 : tdee;
+  const floor = p.sex === 'f' ? 1200 : 1500;
+  t = Math.max(floor, t);
+  return { bmr: Math.round(bmr), tdee: Math.round(tdee), target: Math.round(t / 10) * 10, floored: t === floor && p.goal === 'lose' };
+}
+function dailyTarget() {
+  const p = state.profile;
+  if (!p) return 0;
+  if (p.override) return Number(p.override);
+  const e = estimate(p);
+  return e ? e.target : 0;
+}
+function sumKcal(entries) { return Math.round(entries.reduce((a, e) => a + e.kcal * e.qty, 0)); }
+function fmt(n) { return Math.round(n).toLocaleString('en-IN'); }
+function levelFor(total, target) {
+  if (!target) return 'ok';
+  const p = total / target;
+  return p > 1 ? 'over' : p >= 0.8 ? 'warn' : 'ok';
+}
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+let toastTimer;
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+function allFoods() { return [...state.customFoods, ...FOODS]; }
+function applyTheme() {
+  const t = state.settings.theme;
+  if (t) document.documentElement.setAttribute('data-theme', t);
+  else document.documentElement.removeAttribute('data-theme');
+}
+
+/* ---------- Today view ---------- */
+function renderToday() {
+  const entries = state.log[viewDay] || [];
+  const total = sumKcal(entries);
+  const target = dailyTarget();
+  const level = levelFor(total, target);
+  const isToday = viewDay === todayKey();
+
+  $('#dayTitle').textContent = dayLabel(viewDay);
+  $('#nextDay').disabled = isToday;
+
+  // Ring
+  const C = 314.16;
+  const frac = target ? Math.min(total / target, 1) : 0;
+  $('#ringBar').setAttribute('stroke-dashoffset', String(C * (1 - frac)));
+  $('#ring').setAttribute('class', 'ring ' + level);
+  $('#ringNum').textContent = fmt(total);
+  $('#ringSub').textContent = target ? 'of ' + fmt(target) + ' kcal' : 'kcal';
+
+  // Status
+  const left = target - total;
+  const st = $('#statusLine'), sub = $('#statusSub');
+  st.className = 'status ' + level;
+  if (!target) { st.textContent = 'Set your daily limit'; sub.textContent = 'Go to Settings. It takes 20 seconds.'; }
+  else if (!entries.length) { st.textContent = isToday ? 'Nothing logged yet' : 'Nothing logged'; sub.textContent = fmt(target) + ' kcal available ' + (isToday ? 'today' : 'that day'); }
+  else if (level === 'over') { st.textContent = fmt(-left) + ' kcal over'; sub.textContent = isToday ? 'Stop here for today. Tomorrow starts fresh, so don’t skip meals to make up.' : 'Went past the limit that day.'; }
+  else if (level === 'warn') { st.textContent = fmt(left) + ' kcal left'; sub.textContent = isToday ? 'You’re past 80%. Keep the next meal light: vegetables, dal, buttermilk.' : 'Close to the limit.'; }
+  else { st.textContent = fmt(left) + ' kcal left'; sub.textContent = Math.round(total / target * 100) + '% of your limit used'; }
+
+  // Alert banner (today only)
+  const slot = $('#alertSlot');
+  slot.innerHTML = '';
+  if (isToday && target && level === 'over') {
+    slot.innerHTML = '<div class="banner over"><strong>You’ve passed today’s limit.</strong>If you’re still hungry, drink water or buttermilk, or have cucumber or a fruit. Close the kitchen for today.</div>';
+  } else if (isToday && target && level === 'warn') {
+    slot.innerHTML = '<div class="banner warn"><strong>' + fmt(left) + ' kcal left for the rest of today.</strong>Think about what you’ll eat next before you get hungry.</div>';
+  }
+
+  // Quality nudges
+  const n = [];
+  const count = tag => entries.filter(e => (e.tags || []).includes(tag)).reduce((a, e) => a + e.qty, 0);
+  const fried = count('fried'), sweet = count('sweet'), plant = count('plant'), protein = count('protein');
+  const hour = new Date().getHours();
+  if (fried >= 3) n.push('🍳 ' + fried + ' fried items so far. Fried food is the fastest way to use up a day’s calories.');
+  else if (fried === 2) n.push('🍳 Two fried items already. Make the rest of today’s food non-fried.');
+  if (sweet >= 3) n.push('🍬 ' + sweet + ' sweet items today, including sweet tea and coffee. Try one without sugar next time.');
+  if (entries.length && plant === 0 && (!isToday || hour >= 14)) n.push('🥦 No vegetables or fruit logged ' + (isToday ? 'yet' : 'that day') + '. Aim for about half your plate.');
+  if (entries.length >= 3 && protein === 0) n.push('🥚 No protein yet. Dal, sundal, curd or eggs will keep you fuller.');
+  const unhungry = entries.filter(e => e.hunger && e.hunger <= 2);
+  const unhungryBatches = new Set(unhungry.map(e => e.b)).size;
+  if (unhungryBatches >= 2) n.push('🧭 You ate ' + unhungryBatches + ' times ' + (isToday ? 'today' : 'that day') + ' without being hungry. That’s where overeating usually starts.');
+  if (isToday && hour >= 22 && entries.some(e => new Date(e.t).getHours() >= 22)) n.push('🌙 Late-night eating tends to be habit rather than hunger. Try brushing your teeth after dinner to close the kitchen.');
+  $('#nudges').innerHTML = n.map(x => '<li>' + esc(x) + '</li>').join('');
+
+  // Tip — changes daily
+  const dayNum = Math.floor(parseKey(viewDay).getTime() / 864e5);
+  $('#tipText').textContent = TIPS[((dayNum % TIPS.length) + TIPS.length) % TIPS.length];
+
+  // Meals
+  $('#meals').innerHTML = MEALS.map(m => {
+    const list = entries.map((e, i) => ({ e, i })).filter(x => x.e.meal === m.id);
+    const sub = sumKcal(list.map(x => x.e));
+    return '<div class="card"><div class="meal-head"><h2>' + m.label + '</h2><span class="muted small">' + (list.length ? fmt(sub) + ' kcal' : '') + '</span></div>' +
+      (list.length ? '<ul class="entries">' + list.map(({ e, i }) =>
+        '<li><span class="name">' + esc(e.name) + ' <span class="muted small">' + (e.qty === 1 ? '' : e.qty + ' × ') + esc(e.unit) + '</span></span>' +
+        (e.hunger ? '<span class="hungerTag" title="Hunger when logged">hunger ' + e.hunger + '/5</span>' : '') +
+        '<span class="kcal">' + fmt(e.kcal * e.qty) + '</span>' +
+        '<button class="del" data-del="' + i + '" aria-label="Remove ' + esc(e.name) + '">×</button></li>').join('') + '</ul>' : '') +
+      '<div style="margin-top:10px"><button class="btn slim" data-add="' + m.id + '">＋ Add to ' + m.label.toLowerCase() + '</button></div></div>';
+  }).join('');
+}
+
+document.addEventListener('click', e => {
+  const add = e.target.closest('[data-add]');
+  if (add) { openAdd(add.dataset.add); return; }
+  const del = e.target.closest('[data-del]');
+  if (del) {
+    const i = Number(del.dataset.del);
+    const list = state.log[viewDay] || [];
+    const [removed] = list.splice(i, 1);
+    if (!list.length) delete state.log[viewDay];
+    save(); renderToday();
+    toast('Removed ' + removed.name);
+  }
+});
+$('#prevDay').onclick = () => { viewDay = dayKeyOffset(viewDay, -1); renderToday(); };
+$('#nextDay').onclick = () => { if (viewDay !== todayKey()) { viewDay = dayKeyOffset(viewDay, 1); renderToday(); } };
+
+/* ---------- Add sheet ---------- */
+let add = null; // { meal, hunger, tray: Map(foodId -> qty), q, cat }
+
+function openAdd(meal, opts = {}) {
+  if (!dailyTarget()) { showView('settings'); toast('Set your daily limit first'); return; }
+  add = { meal: meal || mealForNow(), hunger: null, tray: new Map(), q: '', cat: '' };
+  const askHunger = state.settings.hungerCheck && viewDay === todayKey() && !opts.skipHunger;
+  $('#addDialog').showModal();
+  if (askHunger) renderHunger(); else renderPicker();
+}
+function closeAdd() { $('#addDialog').close(); add = null; }
+$('#addClose').onclick = closeAdd;
+$('#addDialog').addEventListener('cancel', () => { add = null; });
+
+function renderHunger() {
+  $('#addTitle').textContent = 'Before you eat';
+  $('#addFoot').hidden = true;
+  $('#addBody').innerHTML =
+    '<p style="margin-top:4px"><strong>How hungry are you right now?</strong></p>' +
+    '<div class="hunger">' + HUNGER.map(h => '<button data-h="' + h.v + '"><b>' + h.v + '</b><span><strong>' + h.t + '</strong><br><span class="muted small">' + h.d + '</span></span></button>').join('') + '</div>' +
+    '<button class="btn block" id="skipHunger">I already ate. Just log it</button>';
+  $('#addBody').querySelectorAll('[data-h]').forEach(b => b.onclick = () => {
+    add.hunger = Number(b.dataset.h);
+    if (add.hunger <= 2) renderPause(); else renderPicker();
+  });
+  $('#skipHunger').onclick = () => renderPicker();
+}
+function renderPause() {
+  const tip = add.hunger === 1 ? 'You said you’re not hungry.' : 'You’re only a little hungry.';
+  $('#addTitle').textContent = 'Pause for a moment';
+  $('#addBody').innerHTML =
+    '<div class="banner warn" style="margin-top:4px"><strong>' + tip + '</strong>Boredom, stress, tiredness and food just being there all feel like hunger. Drink a glass of water, wait 10 minutes, then decide.</div>' +
+    '<div class="row"><button class="btn primary" id="wait10">Wait 10 minutes</button><button class="btn" id="eatAnyway">Log it anyway</button></div>';
+  $('#wait10').onclick = () => {
+    closeAdd();
+    const when = Date.now() + 10 * 60 * 1000;
+    try { localStorage.setItem('plate-check.wait', String(when)); } catch (e) {}
+    setTimeout(waitDone, 10 * 60 * 1000);
+    toast('Good call. I’ll check back in 10 minutes.');
+  };
+  $('#eatAnyway').onclick = () => renderPicker();
+}
+function waitDone() {
+  try { localStorage.removeItem('plate-check.wait'); } catch (e) {}
+  notify('10 minutes are up', 'Still hungry? Then eat, and log it. If the craving has passed, you just skipped a snack.', 'wait');
+}
+
+function renderPicker() {
+  $('#addTitle').textContent = 'Add food';
+  $('#addFoot').hidden = false;
+  const recent = recentFoods();
+  const cats = [...new Set(allFoods().map(f => f.cat))];
+  $('#addBody').innerHTML =
+    '<div class="chips" role="group" aria-label="Meal">' + MEALS.map(m => '<button data-meal="' + m.id + '" aria-pressed="' + (m.id === add.meal) + '">' + m.label + '</button>').join('') + '</div>' +
+    '<input type="search" id="foodSearch" placeholder="Search: idli, rice, tea…" autocomplete="off" aria-label="Search foods">' +
+    '<div class="chips" role="group" aria-label="Category" style="margin-top:10px">' +
+      '<button data-cat="" aria-pressed="' + (add.cat === '') + '">All</button>' +
+      cats.map(c => '<button data-cat="' + esc(c) + '" aria-pressed="' + (add.cat === c) + '">' + esc(c) + '</button>').join('') + '</div>' +
+    '<div id="foodList"></div>' +
+    '<details class="custom"><summary>＋ Add a food that isn’t listed</summary>' +
+      '<label class="field"><span>Name</span><input type="text" id="cfName" maxlength="40"></label>' +
+      '<div class="grid2"><label class="field"><span>Portion</span><input type="text" id="cfUnit" placeholder="1 cup" maxlength="20"></label>' +
+      '<label class="field"><span>kcal per portion</span><input type="number" id="cfKcal" inputmode="numeric" min="0" max="3000"></label></div>' +
+      '<div class="row" style="margin-bottom:12px">' +
+        '<label class="small"><input type="checkbox" id="cfFried"> Fried</label>' +
+        '<label class="small"><input type="checkbox" id="cfSweet"> Sweet</label>' +
+        '<label class="small"><input type="checkbox" id="cfProtein"> Protein</label>' +
+        '<label class="small"><input type="checkbox" id="cfPlant"> Veg / fruit</label></div>' +
+      '<button class="btn block" id="cfSave">Save and add</button></details>';
+  $('#addBody').querySelectorAll('[data-meal]').forEach(b => b.onclick = () => {
+    add.meal = b.dataset.meal;
+    $('#addBody').querySelectorAll('[data-meal]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  });
+  $('#addBody').querySelectorAll('[data-cat]').forEach(b => b.onclick = () => {
+    add.cat = b.dataset.cat;
+    $('#addBody').querySelectorAll('[data-cat]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    renderFoodList(recent);
+  });
+  $('#foodSearch').oninput = e => { add.q = e.target.value.trim().toLowerCase(); renderFoodList(recent); };
+  $('#cfSave').onclick = saveCustom;
+  renderFoodList(recent);
+  renderTray();
+}
+function recentFoods() {
+  const seen = new Set(), out = [];
+  const days = Object.keys(state.log).sort().reverse().slice(0, 14);
+  for (const d of days) for (const e of [...state.log[d]].reverse()) {
+    if (!seen.has(e.f)) { seen.add(e.f); const f = allFoods().find(x => x.id === e.f); if (f) out.push(f); }
+    if (out.length >= 8) return out;
+  }
+  return out;
+}
+function foodButton(f) {
+  return '<button class="food' + (add.tray.has(f.id) ? ' in' : '') + '" data-food="' + esc(f.id) + '"><span class="n">' + esc(f.name) + '</span><span class="u">' + esc(f.unit) + ' · ' + f.kcal + ' kcal</span></button>';
+}
+function renderFoodList(recent) {
+  const q = add.q;
+  let html = '';
+  if (!q && !add.cat && recent.length) html += '<div class="cat">Recent</div><div class="foods">' + recent.map(foodButton).join('') + '</div>';
+  const list = allFoods().filter(f => (!add.cat || f.cat === add.cat) && (!q || f.name.toLowerCase().includes(q) || f.cat.toLowerCase().includes(q)));
+  if (!list.length) html += '<p class="muted">No match. Add it as a custom food below.</p>';
+  const byCat = {};
+  list.forEach(f => (byCat[f.cat] = byCat[f.cat] || []).push(f));
+  for (const c in byCat) html += '<div class="cat">' + esc(c) + '</div><div class="foods">' + byCat[c].map(foodButton).join('') + '</div>';
+  $('#foodList').innerHTML = html;
+  $('#foodList').querySelectorAll('[data-food]').forEach(b => b.onclick = () => {
+    const id = b.dataset.food;
+    add.tray.set(id, (add.tray.get(id) || 0) + 1);
+    $('#foodList').querySelectorAll('[data-food="' + CSS.escape(id) + '"]').forEach(x => x.classList.add('in'));
+    renderTray();
+  });
+}
+function renderTray() {
+  const foods = allFoods();
+  const items = [...add.tray].map(([id, qty]) => ({ f: foods.find(x => x.id === id), qty })).filter(x => x.f);
+  const addKcal = Math.round(items.reduce((a, x) => a + x.f.kcal * x.qty, 0));
+  $('#tray').innerHTML = items.map(({ f, qty }) =>
+    '<li><span class="name">' + esc(f.name) + ' <span class="muted small">' + esc(f.unit) + '</span></span>' +
+    '<span class="stepper"><button data-dec="' + esc(f.id) + '" aria-label="Less">−</button><output>' + qty + '</output><button data-inc="' + esc(f.id) + '" aria-label="More">+</button></span>' +
+    '<span class="muted small" style="width:56px;text-align:right">' + fmt(f.kcal * qty) + '</span></li>').join('');
+  $('#tray').querySelectorAll('[data-inc]').forEach(b => b.onclick = () => { add.tray.set(b.dataset.inc, add.tray.get(b.dataset.inc) + 0.5); renderTray(); });
+  $('#tray').querySelectorAll('[data-dec]').forEach(b => b.onclick = () => {
+    const id = b.dataset.dec, q = add.tray.get(id) - 0.5;
+    if (q <= 0) { add.tray.delete(id); $('#foodList').querySelectorAll('[data-food="' + CSS.escape(id) + '"]').forEach(x => x.classList.remove('in')); }
+    else add.tray.set(id, q);
+    renderTray();
+  });
+
+  const target = dailyTarget();
+  const before = sumKcal(state.log[viewDay] || []);
+  const after = before + addKcal;
+  const w = $('#footWarn');
+  const btn = $('#addConfirm');
+  if (!items.length) {
+    w.className = 'foot-warn muted'; w.textContent = 'Tap foods to add them. Tap again for more.';
+    btn.disabled = true; btn.textContent = 'Add';
+    return;
+  }
+  btn.disabled = false;
+  const lvl = levelFor(after, target);
+  w.className = 'foot-warn ' + lvl;
+  if (lvl === 'over') w.textContent = 'This takes you to ' + fmt(after) + ' of ' + fmt(target) + ' kcal, ' + fmt(after - target) + ' over your limit. Could you eat half?';
+  else if (lvl === 'warn') w.textContent = 'After this: ' + fmt(target - after) + ' kcal left for the day.';
+  else w.textContent = 'After this: ' + fmt(target - after) + ' kcal left.';
+  btn.textContent = (lvl === 'over' ? 'Add anyway · ' : 'Add · ') + fmt(addKcal) + ' kcal';
+}
+$('#addConfirm').onclick = () => {
+  if (!add || !add.tray.size) return;
+  const foods = allFoods();
+  const b = Date.now().toString(36);
+  const list = state.log[viewDay] = state.log[viewDay] || [];
+  const t = viewDay === todayKey() ? Date.now() : parseKey(viewDay).getTime() + 12 * 3600e3;
+  for (const [id, qty] of add.tray) {
+    const f = foods.find(x => x.id === id);
+    if (f) list.push({ f: f.id, name: f.name, unit: f.unit, kcal: f.kcal, tags: f.tags || [], qty, meal: add.meal, hunger: add.hunger, b, t });
+  }
+  save();
+  closeAdd();
+  renderToday();
+  const target = dailyTarget(), total = sumKcal(list);
+  if (target && total > target) toast('Over today’s limit. Close the kitchen for today.');
+  else if (target && total >= target * 0.8) toast(fmt(target - total) + ' kcal left. Keep the next meal light.');
+  else toast('Logged');
+};
+function saveCustom() {
+  const name = $('#cfName').value.trim();
+  const kcal = Number($('#cfKcal').value);
+  if (!name || !(kcal >= 0) || $('#cfKcal').value === '') { toast('Add a name and calories'); return; }
+  const tags = [['cfFried', 'fried'], ['cfSweet', 'sweet'], ['cfProtein', 'protein'], ['cfPlant', 'plant']].filter(([id]) => $('#' + id).checked).map(([, t]) => t);
+  const f = { id: 'c_' + Date.now().toString(36), cat: 'My foods', name, unit: $('#cfUnit').value.trim() || '1 portion', kcal: Math.round(kcal), tags };
+  state.customFoods.unshift(f);
+  save();
+  add.tray.set(f.id, 1);
+  add.cat = '';
+  renderPicker();
+}
+
+/* ---------- History ---------- */
+function renderHistory() {
+  const target = dailyTarget();
+  const t = todayKey();
+  const days = [];
+  for (let i = 13; i >= 0; i--) { const k = dayKeyOffset(t, -i); days.push({ k, total: sumKcal(state.log[k] || []), n: (state.log[k] || []).length }); }
+  const max = Math.max(target * 1.3, ...days.map(d => d.total), 1);
+  $('#bars').innerHTML = days.map(d => {
+    const cls = !d.n ? 'empty' : levelFor(d.total, target);
+    return '<div class="b ' + cls + '" title="' + dayLabel(d.k) + ': ' + fmt(d.total) + ' kcal"><i style="height:' + (d.n ? Math.max(2, d.total / max * 100) : 2) + '%"></i></div>';
+  }).join('') + (target ? '<div class="line" style="bottom:' + (target / max * 100) + '%"></div>' : '');
+  $('#barLabels').innerHTML = days.map(d => '<span>' + parseKey(d.k).toLocaleDateString('en-IN', { weekday: 'narrow' }) + '</span>').join('');
+
+  const week = days.slice(-7).filter(d => d.n);
+  const avg = week.length ? week.reduce((a, d) => a + d.total, 0) / week.length : 0;
+  const within = week.filter(d => d.total <= target).length;
+  let streak = 0;
+  for (let i = days.length - 1; i >= 0; i--) {
+    const d = days[i];
+    if (i === days.length - 1 && !d.n) continue; // today not started yet
+    if (d.n && d.total <= target) streak++; else break;
+  }
+  $('#stats').innerHTML =
+    '<div class="stat"><b>' + (week.length ? fmt(avg) : '–') + '</b><span>average kcal per logged day</span></div>' +
+    '<div class="stat"><b>' + within + '/' + week.length + '</b><span>logged days within limit</span></div>' +
+    '<div class="stat"><b>' + streak + '</b><span>days in a row within limit</span></div>' +
+    '<div class="stat"><b>' + week.length + '/7</b><span>days you logged</span></div>';
+
+  // Insights
+  const ins = [];
+  const weekEntries = days.slice(-7).flatMap(d => state.log[d.k] || []);
+  if (!weekEntries.length) ins.push('Log for a few days and patterns will show up here.');
+  else {
+    if (week.length < 5) ins.push('You logged on ' + week.length + ' of the last 7 days. Missing days are usually the days you overate. Logging those matters most.');
+    const byMeal = {};
+    weekEntries.forEach(e => byMeal[e.meal] = (byMeal[e.meal] || 0) + e.kcal * e.qty);
+    const top = Object.entries(byMeal).sort((a, b) => b[1] - a[1])[0];
+    if (top) {
+      const share = Math.round(top[1] / weekEntries.reduce((a, e) => a + e.kcal * e.qty, 0) * 100);
+      const label = MEALS.find(m => m.id === top[0]).label.toLowerCase();
+      ins.push('Your biggest meal is ' + label + ', at ' + share + '% of your calories. ' + (top[0] === 'dinner' && share > 40 ? 'A heavy dinner is often a sign of eating too little earlier in the day.' : top[0] === 'snack' && share > 25 ? 'Snacks are adding up. That’s usually the easiest place to cut.' : 'Keeping this meal steady will keep the whole day steady.'));
+    }
+    const batches = {};
+    weekEntries.forEach(e => { if (e.hunger) batches[e.b] = e.hunger; });
+    const hs = Object.values(batches);
+    if (hs.length >= 3) {
+      const low = hs.filter(h => h <= 2).length;
+      const pct = Math.round(low / hs.length * 100);
+      ins.push(pct >= 30 ? 'You weren’t really hungry for ' + low + ' of ' + hs.length + ' meals and snacks (' + pct + '%). That’s the overeating to work on, more than portion size.'
+        : 'You ate when you were actually hungry most of the time (' + (100 - pct) + '%). Good.');
+    }
+    const friedDays = days.slice(-7).filter(d => (state.log[d.k] || []).some(e => (e.tags || []).includes('fried'))).length;
+    if (friedDays >= 5) ins.push('You had fried food on ' + friedDays + ' of 7 days. Cutting that to 2–3 days is probably the easiest single change you can make.');
+    const foodKcal = {};
+    weekEntries.forEach(e => foodKcal[e.name] = (foodKcal[e.name] || 0) + e.kcal * e.qty);
+    const topFood = Object.entries(foodKcal).sort((a, b) => b[1] - a[1])[0];
+    if (topFood) ins.push('Most calories this week came from ' + topFood[0] + ': ' + fmt(topFood[1]) + ' kcal.');
+  }
+  $('#insights').innerHTML = ins.map(x => '<li>' + esc(x) + '</li>').join('');
+}
+
+/* ---------- Settings ---------- */
+function renderSettings() {
+  const p = state.profile || { age: '', sex: 'm', height: '', weight: '', activity: '1.375', goal: 'lose', override: '' };
+  $('#pAge').value = p.age; $('#pSex').value = p.sex; $('#pHeight').value = p.height; $('#pWeight').value = p.weight;
+  $('#pActivity').value = String(p.activity); $('#pGoal').value = p.goal; $('#pOverride').value = p.override || '';
+  updateEstimate();
+  $('#hungerToggle').checked = !!state.settings.hungerCheck;
+  $('#themeSel').value = state.settings.theme || '';
+  renderReminders();
+  renderNotifState();
+}
+function readProfile() {
+  return { age: Number($('#pAge').value), sex: $('#pSex').value, height: Number($('#pHeight').value), weight: Number($('#pWeight').value),
+    activity: Number($('#pActivity').value), goal: $('#pGoal').value, override: $('#pOverride').value ? Number($('#pOverride').value) : '' };
+}
+function updateEstimate() {
+  const e = estimate(readProfile());
+  const o = $('#pOverride');
+  o.placeholder = e ? String(e.target) : '';
+  $('#estimateLine').innerHTML = e ? 'Maintenance is about <strong>' + fmt(e.tdee) + ' kcal</strong> a day. Suggested limit: <strong>' + fmt(e.target) + ' kcal</strong>.' + (e.floored ? ' This is held at a safe minimum, so don’t go lower without a doctor.' : '') : '<span class="muted">Fill in the four boxes to get an estimate.</span>';
+}
+['#pAge', '#pSex', '#pHeight', '#pWeight', '#pActivity', '#pGoal'].forEach(s => $(s).addEventListener('input', updateEstimate));
+$('#saveProfile').onclick = () => {
+  const p = readProfile();
+  if (!estimate(p) && !p.override) { toast('Fill in age, height and weight, or set a limit'); return; }
+  if (p.override && p.override < 1000) { toast('A limit below 1000 kcal needs a doctor, not an app'); return; }
+  state.profile = p; save();
+  toast('Daily limit: ' + fmt(dailyTarget()) + ' kcal');
+  showView('today');
+};
+function renderReminders() {
+  $('#reminderList').innerHTML = state.settings.reminders.map((r, i) =>
+    '<div class="switch-row"><input type="checkbox" class="toggle" data-ron="' + i + '" ' + (r.on ? 'checked' : '') + ' aria-label="' + esc(r.label) + ' on">' +
+    '<div class="grow">' + esc(r.label) + '</div><input type="time" data-rtime="' + i + '" value="' + r.time + '" aria-label="' + esc(r.label) + ' time"></div>').join('');
+  $('#reminderList').querySelectorAll('[data-ron]').forEach(el => el.onchange = () => { state.settings.reminders[el.dataset.ron].on = el.checked; save(); renderGcal(); });
+  $('#reminderList').querySelectorAll('[data-rtime]').forEach(el => el.onchange = () => { if (el.value) { state.settings.reminders[el.dataset.rtime].time = el.value; save(); renderGcal(); } });
+  renderGcal();
+}
+function reminderText(r) {
+  return r.meal ? 'Log your ' + r.label.toLowerCase() + ' in Plate Check. Check how hungry you are first, eat slowly, stop at 80% full.'
+    : 'Kitchen closed. Check Plate Check: how much of today’s limit is left? Brush your teeth to end the eating day.';
+}
+function icsStamp(d) { return d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0'); }
+function renderGcal() {
+  const today = icsStamp(new Date());
+  $('#gcalLinks').innerHTML = state.settings.reminders.filter(r => r.on).map(r => {
+    const st = r.time.replace(':', '') + '00';
+    const endMin = minutesOf(r.time) + 10;
+    const en = String(Math.floor(endMin / 60) % 24).padStart(2, '0') + String(endMin % 60).padStart(2, '0') + '00';
+    const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent('🍽 ' + r.label + ' · Plate Check') +
+      '&details=' + encodeURIComponent(reminderText(r) + '\n\n' + location.origin + location.pathname) +
+      '&dates=' + today + 'T' + st + '/' + today + 'T' + en +
+      '&recur=' + encodeURIComponent('RRULE:FREQ=DAILY');
+    return '<a class="btn slim" target="_blank" rel="noopener" href="' + esc(url) + '">+ ' + esc(r.label) + '</a>';
+  }).join('');
+}
+$('#icsBtn').onclick = () => {
+  const on = state.settings.reminders.filter(r => r.on);
+  if (!on.length) { toast('Turn on at least one reminder'); return; }
+  const now = new Date();
+  const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  const d = icsStamp(now);
+  const escIcs = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Plate Check//Food tracker//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+  on.forEach(r => {
+    lines.push('BEGIN:VEVENT', 'UID:platecheck-' + r.id + '-' + d + '@platecheck', 'DTSTAMP:' + stamp,
+      'DTSTART:' + d + 'T' + r.time.replace(':', '') + '00', 'DURATION:PT10M', 'RRULE:FREQ=DAILY',
+      'SUMMARY:' + escIcs('🍽 ' + r.label + ' · Plate Check'),
+      'DESCRIPTION:' + escIcs(reminderText(r) + '\n' + location.origin + location.pathname),
+      'URL:' + location.origin + location.pathname,
+      'TRANSP:TRANSPARENT',
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + escIcs(r.label), 'TRIGGER:PT0M', 'END:VALARM',
+      'END:VEVENT');
+  });
+  lines.push('END:VCALENDAR');
+  download('plate-check-reminders.ics', lines.join('\r\n'), 'text/calendar');
+};
+function download(name, text, type) {
+  const url = URL.createObjectURL(new Blob([text], { type }));
+  const a = document.createElement('a');
+  a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+$('#hungerToggle').onchange = e => { state.settings.hungerCheck = e.target.checked; save(); };
+$('#themeSel').onchange = e => { state.settings.theme = e.target.value; save(); applyTheme(); };
+$('#exportBtn').onclick = () => download('plate-check-backup-' + todayKey() + '.json', JSON.stringify(state, null, 1), 'application/json');
+$('#importBtn').onclick = () => $('#importFile').click();
+$('#importFile').onchange = async e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const data = JSON.parse(await file.text());
+    if (!data || typeof data.log !== 'object') throw new Error('bad');
+    if (!confirm('Replace everything on this phone with this backup?')) return;
+    state = Object.assign(blankState(), data);
+    state.settings = Object.assign(blankState().settings, data.settings);
+    save(); applyTheme(); renderAll(); toast('Backup restored');
+  } catch (err) { toast('That file isn’t a Plate Check backup'); }
+  e.target.value = '';
+};
+$('#resetBtn').onclick = () => {
+  if (!confirm('Erase all your logs, foods and settings from this phone? This can’t be undone.')) return;
+  state = blankState(); save(); applyTheme(); renderAll(); showView('settings'); toast('Erased');
+};
+
+/* ---------- Notifications ---------- */
+let swReg = null;
+function renderNotifState() {
+  const s = $('#notifState'), b = $('#notifBtn');
+  if (!('Notification' in window)) { s.textContent = '(not supported here: on iPhone, add to Home Screen first)'; b.disabled = true; $('#testNotif').disabled = true; return; }
+  const p = Notification.permission;
+  s.textContent = p === 'granted' ? '(on)' : p === 'denied' ? '(blocked: allow them in your browser’s site settings)' : '(off)';
+  b.disabled = p !== 'default';
+  b.textContent = p === 'granted' ? 'Notifications on' : 'Turn on notifications';
+  $('#testNotif').disabled = p !== 'granted';
+}
+$('#notifBtn').onclick = async () => {
+  const p = await Notification.requestPermission();
+  renderNotifState();
+  if (p === 'granted') { await registerPeriodic(); toast('Notifications on'); }
+};
+$('#testNotif').onclick = () => notify('Plate Check is working', 'This is what a meal reminder looks like.', 'test');
+async function notify(title, body, tag) {
+  if (!('Notification' in window) || Notification.permission !== 'granted') { if (document.visibilityState === 'visible') toast(title + ': ' + body); return; }
+  const opts = { body, tag: 'plate-check-' + tag, icon: 'icon-192.png', badge: 'icon-192.png', data: { url: location.pathname + '?add=1' } };
+  try {
+    const reg = swReg || await navigator.serviceWorker?.ready;
+    if (reg) { await reg.showNotification(title, opts); return; }
+  } catch (e) {}
+  try { new Notification(title, opts); } catch (e) {}
+}
+async function registerPeriodic() {
+  try {
+    const reg = swReg || await navigator.serviceWorker.ready;
+    if (!reg || !('periodicSync' in reg)) return;
+    const st = await navigator.permissions.query({ name: 'periodic-background-sync' });
+    if (st.state === 'granted') await reg.periodicSync.register('meal-reminders', { minInterval: 60 * 60 * 1000 });
+  } catch (e) {}
+}
+/* While the app is open (or kept in the background by the browser), check
+   every 30 s whether a reminder is due. */
+function reminderMessage(r) {
+  const target = dailyTarget(), total = sumKcal(state.log[todayKey()] || []);
+  const left = target - total;
+  if (!r.meal) return left >= 0 ? 'You have ' + fmt(left) + ' kcal left, and that’s fine to leave unused. The kitchen is closed for today.' : 'You’re ' + fmt(-left) + ' kcal over today. No more snacks tonight. Tomorrow resets.';
+  return (left > 0 ? fmt(left) + ' kcal left today. ' : 'Already at your limit. Keep it light. ') + 'Check how hungry you are, then eat slowly.';
+}
+function checkReminders() {
+  const now = new Date(), k = todayKey(), mins = now.getHours() * 60 + now.getMinutes();
+  const logged = new Set((state.log[k] || []).map(e => e.meal));
+  let changed = false;
+  for (const r of state.settings.reminders) {
+    if (!r.on) continue;
+    const due = minutesOf(r.time);
+    const fk = k + ':' + r.id;
+    if (mins < due || mins > due + 60 || state.fired[fk]) continue;
+    state.fired[fk] = true; changed = true;
+    if (r.meal && logged.has(r.meal)) continue;
+    notify(r.meal ? r.label + ' time' : 'Kitchen closed?', reminderMessage(r), r.id);
+  }
+  // Tidy up flags older than 3 days
+  const cutoff = dayKeyOffset(k, -3);
+  for (const key in state.fired) if (key.slice(0, 10) < cutoff) { delete state.fired[key]; changed = true; }
+  if (changed) save();
+  const w = Number(localStorage.getItem('plate-check.wait') || 0);
+  if (w && Date.now() >= w) waitDone();
+}
+
+/* ---------- Views ---------- */
+function showView(v) {
+  currentView = v;
+  document.querySelectorAll('section.view').forEach(s => s.classList.toggle('active', s.id === 'view-' + v));
+  document.querySelectorAll('nav.tabs [data-view]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === v)));
+  const showDay = v === 'today';
+  $('#prevDay').style.visibility = showDay ? '' : 'hidden';
+  $('#nextDay').style.visibility = showDay ? '' : 'hidden';
+  if (v === 'today') renderToday();
+  if (v === 'history') { $('#dayTitle').textContent = 'History'; renderHistory(); }
+  if (v === 'settings') { $('#dayTitle').textContent = 'Settings'; renderSettings(); }
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('nav.tabs [data-view]').forEach(b => b.onclick = () => showView(b.dataset.view));
+function renderAll() { showView(currentView); }
+
+/* ---------- Boot ---------- */
+applyTheme();
+(async () => {
+  if ('serviceWorker' in navigator) {
+    try { swReg = await navigator.serviceWorker.register('sw.js'); } catch (e) {}
+  }
+  await mergeWorkerFired();
+  if (!state.profile) showView('settings'); else showView('today');
+  const params = new URLSearchParams(location.search);
+  if (params.has('add') && state.profile) { history.replaceState(null, '', location.pathname); openAdd(); }
+  mirrorForWorker();
+  checkReminders();
+  setInterval(checkReminders, 30000);
+  let lastToday = todayKey();
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      // Past midnight since last seen: follow the date if you were on "today".
+      if (todayKey() !== lastToday) { if (viewDay === lastToday && !$('#addDialog').open) viewDay = todayKey(); lastToday = todayKey(); }
+      checkReminders(); if (currentView === 'today') renderToday();
+    }
+  });
+  if ('Notification' in window && Notification.permission === 'granted') registerPeriodic();
+})();
+</script>
+</body>
+</html>
