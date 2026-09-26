@@ -10,5 +10,19 @@
         }
       ]
     }
-  ]
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ta",
+      "destination": "/ta/index.html",
+      "permanent": true
+    }
+  ],
+  "cleanUrls": false,
+  "trailingSlash": false
 }

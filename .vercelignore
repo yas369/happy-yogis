@@ -1,0 +1,3 @@
+# The site is generated; src/ builds it and must never be served.
+src/
+.gitignore
