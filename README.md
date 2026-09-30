@@ -16,6 +16,16 @@ robots.txt / sitemap.xml              Crawl rules + sitemap
 site.webmanifest                      Add-to-home-screen metadata
 ```
 
+## `food-tracker/` — personal app, not part of the site
+
+`food-tracker/` is a personal food tracker (a small installable web app), not
+a Happy Yogis page. It is marked `noindex`, is not in `sitemap.xml` or any
+navigation, and stores everything in the visitor's own browser — nothing is
+sent anywhere. Open it at `/food-tracker/` and "Add to Home Screen". Reminders
+are most reliable via the calendar export in its Settings; web notifications
+only fire while the app is open or, on installed Android Chrome, when the
+browser chooses to run a background check.
+
 ## Confirmed business facts
 
 These were confirmed by the owner and must not be changed without asking:
