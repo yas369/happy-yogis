@@ -13,6 +13,11 @@ const WIDTHS=[1280,768,390];
   await p.route(/googletagmanager/,r=>r.fulfill({status:200,contentType:'application/javascript',body:''}));
   await p.goto('http://127.0.0.1:8123/'+f,{waitUntil:'networkidle'});
   await p.evaluate(()=>document.fonts.ready);
+  // Kill transitions BEFORE revealing. .reveal elements animate in over .7s
+  // with per-element delays; measuring 250ms later caught the staggered ones
+  // mid-transform and reported 2-3px of "drift" that exists only during the
+  // animation. Same trap axeall.js hit with colour.
+  await p.addStyleTag({content:'*,*::before,*::after{transition:none!important;animation:none!important}'});
   await p.evaluate(()=>document.querySelectorAll('.reveal,.up').forEach(e=>e.classList.add('is-in','in')));
   await p.waitForTimeout(250);
   const r=await p.evaluate(()=>{

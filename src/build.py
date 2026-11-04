@@ -188,7 +188,9 @@ CSS = FONT_FACE + TAILWIND + """
            before, while everything class-driven moved on without them. */
         :root {
             --ink:#10263A; --blue:#1F4E79; --sky:#4DA8DA;
-            --sand:#E3EDF5; --paper:#F2F6FA; --line:#D3E0EA; --muted:#5A6B7B;
+            /* Mirrors tw.config.js. `line` stays at D3E0EA while the two
+               grounds lighten - see the note there. */
+            --sand:#EEF4F9; --paper:#FAFCFE; --line:#D3E0EA; --muted:#5A6B7B;
         }
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
@@ -364,6 +366,8 @@ CSS = FONT_FACE + TAILWIND + """
                the sans lining figures in the same schedule row. */
             font-variant-numeric:lining-nums;
         }
+        /* 300 is the bottom of the variable range. At 7rem it is the whole
+           point of the headline: large and light rather than large and loud. */
         h1, .text-d1 { font-weight:300; }
 
         /* An italic serif label instead of a tracked-out uppercase one. */
@@ -373,17 +377,10 @@ CSS = FONT_FACE + TAILWIND + """
         }
         :lang(ta) .lbl { font-family:'Noto Sans Tamil', serif; font-style:normal;
                          font-size:1.05rem; }
-        /* The label over the hero photograph. The brass that works on paper
-           measures 2.95:1 against the scrimmed image - this lighter tone is
-           5.64:1 on the same backdrop. */
-        .lbl--dark { color:#F3E2C8; }
         /* A heading used as a control label is interface, not display type.
            Cormorant at 15.5px is too delicate to tap confidently, so the FAQ
            questions keep the body face even though they are h3 for structure. */
         .faq-q, .faq-q span { font-family:'DM Sans', system-ui, sans-serif; }
-        /* 15ch is a good measure for the English headline but far too tight
-           for Tamil, whose compounds then broke mid-cluster. */
-        :lang(ta) .bleed__in h1 { max-width:24ch; }
 
         /* Softer geometry throughout: cards and photographs get a real
            radius, and anything that reads as a button becomes a pill. */
@@ -467,26 +464,58 @@ CSS = FONT_FACE + TAILWIND + """
         /* A face wants even less than that. */
         .grade--portrait > picture > img { filter:saturate(1.02) contrast(1.02); }
 
-        /* The opening screen: one photograph, edge to edge, with the headline
-           and a single call to action over it. Everything else waits below. */
-        .bleed { position:relative; isolation:isolate; overflow:hidden;
-                 background:#0E2740; }
-        .bleed__img { position:absolute; inset:0; z-index:0; }
-        .bleed__img img { width:100%; height:100%; object-fit:cover;
-                          transform:scale(1.04); animation:slowpan 30s ease-in-out infinite alternate; }
-        @keyframes slowpan { to { transform:scale(1.13) translate3d(0,-2%,0); } }
-        /* Two scrims: a wash that carries the grade, and a foot that gives the
-           text a floor to sit on. Measured, not guessed - see the contrast
-           check in the commit. */
-        /* The headline sits at the foot of the hero, so only the foot needs to
-           be dark. Covering the whole frame - which is what this did, on top
-           of a blue blended across every pixel - was most of why the opening
-           screen looked murky. The top two thirds are now the photograph. */
-        .bleed__foot { position:absolute; inset:0; z-index:2;
-            background:linear-gradient(to bottom,
-                rgba(6,20,34,0) 0%, rgba(6,20,34,.04) 16%, rgba(6,20,34,.22) 30%,
-                rgba(6,20,34,.46) 52%, rgba(6,20,34,.74) 78%, rgba(6,20,34,.90) 100%); }
-        .bleed__in { position:relative; z-index:3; }
+        /* ---- the opening screen ------------------------------------------
+           It used to be one photograph edge to edge with white type over a
+           scrim. That meant the first thing a visitor met was a dark panel,
+           and the headline could only ever be as light as the scrim allowed.
+           It is near-white now: dark type on paper, the photograph placed
+           beneath as a contained band. Nothing is scrimmed, so the room's own
+           light carries the page and the headline is free to be large and
+           thin, which is the whole look. */
+        .hero { position:relative; isolation:isolate; }
+        /* The only colour in the opening screen that is not a photograph: one
+           wide, very weak wash of daylight behind the headline, keyed off the
+           decorative blue.
+
+           It is pinned to the section's own edges rather than centred at
+           140vw. An absolutely positioned box wider than the viewport adds
+           real scrollable width to the document: the first version of this
+           put 120vw of scrollWidth on both home pages at every phone size.
+           Its vertical offsets are in rem, not vw, so the glow stays behind
+           the headline instead of riding up the page as the screen narrows. */
+        .hero__wash {
+            position:absolute; z-index:-1; pointer-events:none;
+            left:0; right:0; top:-10rem; height:56rem;
+            background:radial-gradient(62% 46% at 50% 50%,
+                rgba(77,168,218,.13) 0%, rgba(77,168,218,.05) 42%, transparent 78%);
+        }
+        /* The measure for the headline. 19ch at d1 breaks into three lines on
+           a desktop, which is the shape the size wants; Tamil needs more
+           characters to fill the same width. */
+        .hero h1 { max-width:19ch; }
+        :lang(ta) .hero h1 { max-width:26ch; }
+
+        /* The photograph, contained. Wide and letterbox on a desktop; nearer
+           four-thirds on a phone, where 16:7 of a twelve-person room leaves
+           nobody recognisable. */
+        .hero__shot { position:relative; aspect-ratio:16/7;
+                      border-radius:1.15rem; overflow:hidden;
+                      box-shadow:0 40px 70px -48px rgba(16,38,58,.45); }
+        @media (max-width:52rem) {
+            .hero__shot { aspect-ratio:4/3; border-radius:.9rem; }
+        }
+        .hero__shot img { width:100%; height:100%; object-fit:cover; display:block;
+                          transform:scale(1.03);
+                          animation:slowpan 34s ease-in-out infinite alternate; }
+        @keyframes slowpan { to { transform:scale(1.1) translate3d(0,-1.6%,0); } }
+
+        /* The scroll cue: a quiet second action beside the primary one. The
+           chevron nudges on its own so the pair reads as "there is more
+           below" rather than as two buttons of equal weight. */
+        .cue { display:inline-flex; align-items:center; gap:.45rem; }
+        .cue svg { animation:nudge 2.6s ease-in-out infinite; }
+        @keyframes nudge { 0%,100% { transform:translateY(0); }
+                           50%     { transform:translateY(4px); } }
 
         /* Same idea for the one band where copy sits over a photograph: the
            text is a column on the left, so the cover is heaviest there and
@@ -566,7 +595,7 @@ def head(*, title, desc, path, schema, preload=None, preload_srcset=None,
     <meta name="description" content="{desc}">
     <link rel="canonical" href="{url}">{alts}
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-    <meta name="theme-color" content="#1F4E79">
+    <meta name="theme-color" content="#FAFCFE">
 
     <meta name="geo.region" content="IN-TN">
     <meta name="geo.placename" content="New Perungalathur, Chennai">

@@ -169,8 +169,15 @@ def reviews_section():
 
 ASSET_PREFIX = ""   # "/" for pages served below the root
 
+# The hero photograph's rendered width: the content rail (max-w-6xl, 1152px)
+# once the viewport is wide enough, the viewport less its gutters below that.
+# Named once because the <link rel=preload> and the <picture> both have to
+# use it - they drifted apart once and every phone downloaded the hero twice.
+HERO_SIZES = ("(min-width:1216px) 1152px, (min-width:640px) calc(100vw - 4rem), "
+              "calc(100vw - 2.5rem)")
 
-def photo(key, *, cls, sizes, box=None, priority=False, caption=None):
+
+def photo(key, *, cls, sizes, box=None, priority=False, eager=False, caption=None):
     """A <picture> for one of the centre's photographs.
 
     Three widths, always with the real intrinsic dimensions so nothing reflows
@@ -184,7 +191,14 @@ def photo(key, *, cls, sizes, box=None, priority=False, caption=None):
     """
     from PIL import Image
     w, h = Image.open(os.path.join(OUT, f"{key}.jpeg")).size
+    # Three tiers, not two. `priority` is for an image that is the LCP
+    # element: high priority and a matching <link rel=preload>. `eager` is for
+    # one that sits just below the first screen - it must not be lazy, because
+    # the reader reaches it within a scroll, but boosting it would make it
+    # compete with whatever is actually painting first. Everything else is
+    # lazy.
     load = ('fetchpriority="high" decoding="async"' if priority
+            else 'decoding="async"' if eager
             else 'loading="lazy" decoding="async"')
     img = (f'<img src="{ASSET_PREFIX}{key}.jpeg" width="{w}" height="{h}" alt="{C.PHOTOS[key]}"\n'
            f'                     class="{cls}" {load}>')
@@ -228,7 +242,7 @@ def photo_cta(key):
             {photo(key, cls='w-full h-full object-cover object-[center_40%]', sizes='100vw')}
             <div class="cta-scrim" role="presentation"></div>
         </div>
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 lg:py-36">
             <div class="max-w-xl">
                 <h2 id="cta-h" class="text-d2 text-white">Four batches a day, Monday to Friday</h2>
                 <p class="mt-4 text-[16px] leading-relaxed text-white/85">
@@ -315,12 +329,17 @@ def build_index():
     h = head(title="Yoga Centre in Perungalathur & Tambaram | Happy Yogis",
              desc=("Yoga classes in New Perungalathur for ladies, gents and children. "
                    "Four batches daily, Mon-Fri, plus online classes. 3-day trial."),
+             # The hero photograph is still the largest paint, even though it
+             # is a contained band now rather than the whole screen: at 412px
+             # it occupies most of the first screen below the headline, and
+             # dropping this preload measured 1,664 ms against 1,212 ms with
+             # it. The sizes string must match the <picture> below exactly -
+             # if the preload and the element resolve to different candidates
+             # the browser fetches both.
              path="", schema=schema, preload="ima6.webp",
-             # must match the hero <picture> exactly - if the preload and the
-             # element resolve to different widths the browser fetches both
              preload_srcset=("ima6-xs.webp 320w, ima6-sm.webp 640w, "
                              "ima6-md.webp 768w, ima6.webp 1280w"),
-             preload_sizes="100vw",
+             preload_sizes=HERO_SIZES,
              alt=("ta", "ta/index.html"))
 
     filters, class_items = classes_section()
@@ -330,42 +349,51 @@ def build_index():
 {nav(home=True, alt_href="/ta/index.html")}
     <main id="main">
 
-    <!-- Hero: serif headline and the class photograph on the left, the live
-         schedule held to the right as a narrow column. Nothing here is marked
-         .reveal - the first screen must never wait on a script. -->
-    <!-- The opening screen is one photograph, edge to edge, carrying the
-         headline and a single call to action. The timetable follows directly
-         beneath it, where it can be read rather than competed with. Nothing
-         here is marked .reveal - the first screen must never wait on a script. -->
-    <section aria-labelledby="hero-h" class="bleed min-h-[78svh] flex items-end pt-16">
-        <div class="bleed__img">
-            {photo('ima6', cls='w-full h-full object-cover object-[center_38%]',
-                   sizes='100vw', priority=True)}
-        </div>
-        <div class="bleed__foot" role="presentation"></div>
+    <!-- The opening screen. Near-white: the headline is dark type on paper at
+         the top of the display scale, with air around it, and the photograph
+         sits beneath as a contained band. It used to be the photograph edge to
+         edge with white type over a scrim, which meant the first thing a
+         visitor met was a dark panel and the headline could only ever be as
+         light as the scrim allowed.
 
-        <div class="bleed__in w-full max-w-6xl mx-auto px-5 sm:px-8 pb-14 lg:pb-20 pt-28 enter">
-            <p class="lbl lbl--dark">SSM Nagar, New Perungalathur &middot; Chennai</p>
-            <h1 id="hero-h" class="mt-4 text-d1 text-white max-w-[15ch]">
-                Yoga classes in Perungalathur and Tambaram
-            </h1>
-            <p class="lede mt-6 text-white/85 max-w-xl">
-                Four small batches a day, Monday to Friday, for ladies, gents and
-                children. Most who join have never done yoga before; the practice is
-                adjusted person by person.
-            </p>
-            <div class="mt-9">
-                <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
-                   target="_blank" rel="noopener"
-                   class="inline-flex items-center px-8 py-4 bg-paper text-ink font-medium rounded text-[17px] hover:bg-white transition-colors">
-                    Book a 3-day trial
-                </a>
+         Nothing here is marked .reveal - the first screen must never wait on a
+         script - and the photograph is outside .enter for the same reason: an
+         element animating up from opacity 0 is not painted, so wrapping it
+         would have pushed the largest paint later rather than earlier. -->
+    <section aria-labelledby="hero-h" class="hero pt-28 lg:pt-40 pb-16 lg:pb-24">
+        <div class="hero__wash" role="presentation"></div>
+
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="enter text-center">
+                <p class="lbl">Two centres in New Perungalathur &middot; Chennai</p>
+                <h1 id="hero-h" class="mt-4 text-d1 text-ink mx-auto">
+                    Yoga classes in Perungalathur and Tambaram
+                </h1>
+                <p class="lede mt-8 text-ink/70 max-w-xl mx-auto">
+                    Four small batches a day, Monday to Friday, for ladies, gents and
+                    children. Most who join have never done yoga before; the practice is
+                    adjusted person by person.
+                </p>
+                <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+                    <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center px-8 py-4 bg-ink text-white font-medium rounded text-[17px] hover:bg-blue transition-colors">
+                        Book a 3-day trial
+                    </a>
+                    <a href="#schedule" class="cue px-1 py-2 text-[15px] font-medium text-ink/70 hover:text-ink transition-colors">
+                        See the timetable {icon('chevron-down', 'w-4 h-4')}
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero__shot grade mt-16 lg:mt-24">
+                {photo('ima6', cls='object-[center_38%]', priority=True, sizes=HERO_SIZES)}
             </div>
         </div>
     </section>
 
     <section aria-label="Batch times" class="bg-paper" id="schedule">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-14 lg:pt-20">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 lg:pt-24">
             <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
                 <div class="lg:col-span-5">
                     <p class="lbl">One day at the centre</p>
@@ -401,7 +429,7 @@ def build_index():
                 </div>
             </div>
 
-            <ul class="factline pb-14 lg:pb-20 pt-6 border-t border-line text-[15px] text-ink/80">
+            <ul class="factline pb-16 lg:pb-24 pt-6 border-t border-line text-[15px] text-ink/80">
                 <li>Four classes a day</li>
                 <li>Monday to Friday</li>
                 <li>Special care for women</li>
@@ -411,7 +439,7 @@ def build_index():
     </section>
 
     <!-- About -->
-    <section id="about" aria-labelledby="about-h" class="py-16 lg:py-24">
+    <section id="about" aria-labelledby="about-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4">
                 <h2 id="about-h" class="text-d2 text-ink reveal">A neighbourhood centre, not a fitness chain</h2>
@@ -448,7 +476,7 @@ def build_index():
     </section>
 
     <!-- Classes -->
-    <section id="classes" aria-labelledby="classes-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="classes" aria-labelledby="classes-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="lg:flex lg:items-end lg:justify-between lg:gap-10">
                 <div class="max-w-xl reveal">
@@ -487,7 +515,7 @@ def build_index():
     </section>
 
     <!-- Yogi's Upadesha: newest posts, from the same list the section renders -->
-    <section id="journal" aria-labelledby="journal-h" class="py-16 lg:py-24">
+    <section id="journal" aria-labelledby="journal-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="sm:flex sm:items-end sm:justify-between sm:gap-10">
                 <div class="max-w-xl reveal">
@@ -512,7 +540,7 @@ def build_index():
 
 {band("ima15", f"{C.EVENT['name']} at {C.EVENT['place']}, {C.EVENT['date']} &mdash; a one-off. Regular batches are taught at the centre in SSM Nagar, New Perungalathur.")}
     <!-- Health -->
-    <section id="health" aria-labelledby="health-h" class="py-16 lg:py-24">
+    <section id="health" aria-labelledby="health-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4 reveal">
                 <h2 id="health-h" class="text-d2 text-ink">Practising around a health condition</h2>
@@ -539,7 +567,7 @@ def build_index():
     </section>
 
     <!-- Teacher -->
-    <section id="teacher" aria-labelledby="teacher-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="teacher" aria-labelledby="teacher-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <div class="lg:col-span-4 reveal">
                 <div class="arch zoom grade grade--portrait w-full max-w-xs">
@@ -579,7 +607,7 @@ def build_index():
     </section>
 
     <!-- Studio photos -->
-    <section id="studio" aria-labelledby="studio-h" class="py-16 lg:py-24">
+    <section id="studio" aria-labelledby="studio-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="max-w-xl reveal">
                 <h2 id="studio-h" class="text-d2 text-ink">Inside the centre</h2>
@@ -595,7 +623,7 @@ def build_index():
     </section>
 
     <!-- Reviews -->
-    <section id="reviews" aria-labelledby="reviews-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="reviews" aria-labelledby="reviews-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <h2 id="reviews-h" class="text-d2 text-ink reveal">What students say</h2>
             <div class="mt-4 reveal" style="--d:90ms">
@@ -606,7 +634,7 @@ def build_index():
 
 {photo_cta("ima1")}
     <!-- Areas -->
-    <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
+    <section id="areas" aria-labelledby="areas-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-5 reveal">
                 <h2 id="areas-h" class="text-d2 text-ink">Two centres, both in New Perungalathur</h2>
@@ -632,7 +660,7 @@ def build_index():
 
 {band("ima13", f"The whole group at {C.EVENT['name']} &mdash; students, parents and teachers together.", h="h-[220px] sm:h-[300px] lg:h-[380px]")}
     <!-- Enquiry + visit -->
-    <section id="visit" aria-labelledby="visit-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="visit" aria-labelledby="visit-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
 
             <div class="lg:col-span-6 reveal" id="enquire">
@@ -737,7 +765,7 @@ def build_index():
     </section>
 
     <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-h" class="py-16 lg:py-24">
+    <section id="faq" aria-labelledby="faq-h" class="py-20 lg:py-32">
         <div class="max-w-3xl mx-auto px-5 sm:px-8">
             <h2 id="faq-h" class="text-d2 text-ink reveal">Before you join</h2>
             <div class="mt-8 border-t border-line reveal" style="--d:90ms">

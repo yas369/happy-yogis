@@ -52,6 +52,16 @@ components written by hand — the review carousel, the FAQ, the mobile menu,
 the lightbox. If the two ever disagree, those components silently keep the old
 palette while everything class-driven moves on.
 
+The site is **near-white**: `paper` is `#FAFCFE` and `sand` `#EEF4F9`. Two
+things follow from that and are easy to undo by accident.
+
+- **`line` did not lighten with them.** A hairline at `#E2EAF1` measures
+  1.18:1 against the new paper, which is a rule nobody can see. Held at
+  `#D3E0EA` it reads 1.31:1, so the rules got *crisper* as the grounds got
+  lighter. Lighten `line` and the whole grid quietly disappears.
+- **Text at `ink/60` now fails.** It composites to 4.17:1 on the new paper.
+  Nothing on the site goes below `ink/70` (5.75:1); keep it that way.
+
 ## Checks
 
 ```bash
@@ -80,6 +90,10 @@ Two things the checks get wrong if you write your own:
   silently. Re-run `getfonts.py` then `subset.py`.
 - **A preload must resolve to the same file as its `srcset`.** They drifted
   apart once and every phone downloaded the hero twice, one of them wasted.
+  The home hero's width is now a single constant, `HERO_SIZES` in `pages.py`,
+  which both the `<link rel=preload>` and the `<picture>` use. The English
+  page preloads it and the Tamil page does not, because measurement says the
+  Tamil largest paint is the headline, not the photograph.
 - **Tamil sets wider than Latin** at the same size, so its headings have their
   own smaller steps in `build.py`. Long compounds otherwise overflow their
   column and scroll the page sideways.

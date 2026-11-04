@@ -219,7 +219,7 @@ def photo_cta(key):
             {P.photo(key, cls='w-full h-full object-cover object-[center_40%]', sizes='100vw')}
             <div class="cta-scrim" role="presentation"></div>
         </div>
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 lg:py-36">
             <div class="max-w-xl">
                 <h2 id="cta-h" class="text-d2 text-white">{T.CTA_H}</h2>
                 <p class="mt-4 text-[16px] leading-relaxed text-white/85">{T.CTA_BODY}</p>
@@ -273,40 +273,50 @@ def build_index():
 
     h = B.head(title=meta["title"], desc=meta["desc"], path="ta/index.html",
                schema=schema_for("ta/index.html", meta["title"], meta["desc"]),
-               preload="/ima6.webp",
-               preload_srcset=("/ima6-xs.webp 320w, /ima6-sm.webp 640w, "
-                               "/ima6-md.webp 768w, /ima6.webp 1280w"),
-               preload_sizes="100vw",
+               # No hero preload here, unlike the English page. Measured on
+               # a throttled phone profile the Tamil LCP element is the
+               # headline, not the photograph - Tamil sets taller, so the h1
+               # fills more of the first screen - and a high-priority image
+               # would only take bandwidth from the 50 KB Tamil face the
+               # headline is waiting on. The photograph is eager, not lazy.
                lang="ta", alt=("en", ""), pre_path="/")
 
     body = f"""<body class="font-body bg-paper text-ink text-[15px]">
 {nav(home=True)}
     <main id="main">
 
-    <!-- Same opening as the English page: one photograph edge to edge with
-         the headline and a single call to action, the timetable directly under it. -->
-    <section aria-labelledby="hero-h" class="bleed min-h-[78svh] flex items-end pt-16">
-        <div class="bleed__img">
-            {P.photo('ima6', cls='w-full h-full object-cover object-[center_38%]', sizes='100vw', priority=True)}
-        </div>
-        <div class="bleed__foot" role="presentation"></div>
+    <!-- Same opening as the English page: a near-white screen carrying a
+         large, light headline, with the class photograph beneath it as a
+         contained band. Tamil sets wider than Latin at the same size, so the
+         headline keeps its own measure (26ch, set in build.py). -->
+    <section aria-labelledby="hero-h" class="hero pt-28 lg:pt-40 pb-16 lg:pb-24">
+        <div class="hero__wash" role="presentation"></div>
 
-        <div class="bleed__in w-full max-w-6xl mx-auto px-5 sm:px-8 pb-14 lg:pb-20 pt-28 enter">
-            <p class="lbl lbl--dark">{T.EYEBROW}</p>
-            <h1 id="hero-h" class="mt-4 text-d1 text-white max-w-[15ch]">{T.H1}</h1>
-            <p class="lede mt-6 text-white/85 max-w-xl">{T.LEDE}</p>
-            <div class="mt-9">
-                <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
-                   target="_blank" rel="noopener"
-                   class="inline-flex items-center px-8 py-4 bg-paper text-ink font-medium rounded text-[17px] hover:bg-white transition-colors">
-                    {T.BOOK_TRIAL}
-                </a>
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="enter text-center">
+                <p class="lbl">{T.EYEBROW}</p>
+                <h1 id="hero-h" class="mt-4 text-d1 text-ink mx-auto">{T.H1}</h1>
+                <p class="lede mt-8 text-ink/70 max-w-xl mx-auto">{T.LEDE}</p>
+                <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+                    <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center px-8 py-4 bg-ink text-white font-medium rounded text-[17px] hover:bg-blue transition-colors">
+                        {T.BOOK_TRIAL}
+                    </a>
+                    <a href="#schedule" class="cue px-1 py-2 text-[15px] font-medium text-ink/70 hover:text-ink transition-colors">
+                        {T.SEE_SCHEDULE} {B.icon('chevron-down', 'w-4 h-4')}
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero__shot grade mt-16 lg:mt-24">
+                {P.photo('ima6', cls='object-[center_38%]', eager=True, sizes=P.HERO_SIZES)}
             </div>
         </div>
     </section>
 
     <section aria-label="{T.TODAY}" class="bg-paper" id="schedule">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-14 lg:pt-20">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 lg:pt-24">
             <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
                 <div class="lg:col-span-5">
                     <p class="lbl">{T.SCHEDULE_LBL}</p>
@@ -334,14 +344,14 @@ def build_index():
                 </div>
             </div>
 
-            <ul class="factline pb-14 lg:pb-20 pt-6 border-t border-line text-[15px] text-ink/80">
+            <ul class="factline pb-16 lg:pb-24 pt-6 border-t border-line text-[15px] text-ink/80">
 {chr(10).join(f'                <li>{x}</li>' for x in T.FACTLINE)}
             </ul>
         </div>
     </section>
 
     <!-- About -->
-    <section id="about" aria-labelledby="about-h" class="py-16 lg:py-24">
+    <section id="about" aria-labelledby="about-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4">
                 <h2 id="about-h" class="text-d2 text-ink reveal">{T.ABOUT_H}</h2>
@@ -360,7 +370,7 @@ def build_index():
     </section>
 
     <!-- Classes -->
-    <section id="classes" aria-labelledby="classes-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="classes" aria-labelledby="classes-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="lg:flex lg:items-end lg:justify-between lg:gap-10">
                 <div class="max-w-xl reveal">
@@ -379,7 +389,7 @@ def build_index():
 
 {P.band("ima15", "சர்வதேச யோகா தினம் 2026, சென்னை புளூ ஃபிளாக் கடற்கரை, 12 ஜூன் 2026 &mdash; ஒரு நாள் நிகழ்வு. வழக்கமான வகுப்புகள் எஸ்.எஸ்.எம். நகர், புதிய பெருங்களத்தூர் மையத்தில் நடைபெறுகின்றன.")}
     <!-- Health -->
-    <section id="health" aria-labelledby="health-h" class="py-16 lg:py-24">
+    <section id="health" aria-labelledby="health-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4 reveal">
                 <h2 id="health-h" class="text-d2 text-ink">{T.HEALTH_H}</h2>
@@ -398,7 +408,7 @@ def build_index():
     </section>
 
     <!-- Teacher -->
-    <section id="teacher" aria-labelledby="teacher-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="teacher" aria-labelledby="teacher-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <div class="lg:col-span-4 reveal">
                 <div class="arch zoom grade grade--portrait w-full max-w-xs">
@@ -427,7 +437,7 @@ def build_index():
     </section>
 
     <!-- Studio -->
-    <section id="studio" aria-labelledby="studio-h" class="py-16 lg:py-24">
+    <section id="studio" aria-labelledby="studio-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="max-w-xl reveal">
                 <h2 id="studio-h" class="text-d2 text-ink">{T.STUDIO_H}</h2>
@@ -440,7 +450,7 @@ def build_index():
     </section>
 
     <!-- Reviews -->
-    <section id="reviews" aria-labelledby="reviews-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="reviews" aria-labelledby="reviews-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <h2 id="reviews-h" class="text-d2 text-ink reveal">{T.REVIEWS_H}</h2>
             <div class="mt-4 reveal" style="--d:90ms">
@@ -451,7 +461,7 @@ def build_index():
 
 {photo_cta("ima1")}
     <!-- Areas -->
-    <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
+    <section id="areas" aria-labelledby="areas-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-5 reveal">
                 <h2 id="areas-h" class="text-d2 text-ink">{T.AREAS_H}</h2>
@@ -469,7 +479,7 @@ def build_index():
     </section>
 
     <!-- Visit -->
-    <section id="visit" aria-labelledby="visit-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="visit" aria-labelledby="visit-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-6 reveal" id="enquire">
                 <h2 id="visit-h" class="text-d2 text-ink">{T.VISIT_H}</h2>
@@ -547,7 +557,7 @@ def build_index():
     </section>
 
     <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-h" class="py-16 lg:py-24">
+    <section id="faq" aria-labelledby="faq-h" class="py-20 lg:py-32">
         <div class="max-w-3xl mx-auto px-5 sm:px-8">
             <h2 id="faq-h" class="text-d2 text-ink reveal">{T.FAQ_H}</h2>
             <div class="mt-8 border-t border-line reveal" style="--d:90ms">

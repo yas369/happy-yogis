@@ -39,7 +39,10 @@ NAV_LINKS = [
 
 # ---------------------------------------------------------------- hero
 H1 = "பெருங்களத்தூர் மற்றும் தாம்பரத்தில் யோகா வகுப்புகள்"
-EYEBROW = "எஸ்.எஸ்.எம். நகர், புதிய பெருங்களத்தூர் &middot; சென்னை"
+# The hero label named one centre until the Sriram Apartments room
+# opened; the English page now says "Two centres in New Perungalathur".
+# Still to be checked by a native speaker.
+EYEBROW = "புதிய பெருங்களத்தூரில் இரண்டு மையங்கள் &middot; சென்னை"
 LEDE = ("திங்கள் முதல் வெள்ளி வரை நாளொன்றுக்கு நான்கு சிறிய வகுப்புகள் &mdash; "
         "பெண்கள், ஆண்கள், குழந்தைகள் அனைவருக்கும். சேருபவர்களில் பெரும்பாலோர் "
         "இதற்கு முன் யோகா செய்ததில்லை; ஒவ்வொருவருக்கும் ஏற்ப பயிற்சி "
