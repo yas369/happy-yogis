@@ -407,29 +407,61 @@ def build_index():
         </div>
     </section>
 
-    <!-- Teacher -->
+    <!-- Teachers. Same two-column pair as the English page. -->
     <section id="teacher" aria-labelledby="teacher-h" class="py-20 lg:py-32 bg-sand border-y border-line">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            <div class="lg:col-span-4 reveal">
-                <div class="arch zoom grade grade--portrait w-full max-w-xs">
-                    <picture>
-                        <source type="image/webp"
-                                srcset="/instructor-portrait-xs.webp 300w, /instructor-portrait-sm.webp 560w, /instructor-portrait.webp 720w"
-                                sizes="(min-width:1024px) 320px, 80vw">
-                        <img src="/instructor-portrait.jpeg" width="720" height="900"
-                             alt="கார்த்திகா, Happy Yogis யோகா மையத்தின் ஆசிரியர், புதிய பெருங்களத்தூர்"
-                             class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
-                    </picture>
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="reveal">
+                <p class="lbl">{T.TEACHER_LBL}</p>
+                <h2 id="teacher-h" class="mt-3 text-d2 text-ink">{T.TEACHERS_H}</h2>
+            </div>
+
+            <div class="mt-12 lg:mt-16 grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+                <div class="reveal">
+                    <div class="arch zoom grade grade--portrait w-full max-w-xs">
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="/instructor-portrait-xs.webp 300w, /instructor-portrait-sm.webp 560w, /instructor-portrait.webp 720w"
+                                    sizes="(min-width:768px) 320px, 80vw">
+                            <img src="/instructor-portrait.jpeg" width="720" height="900"
+                                 alt="கார்த்திகா, Happy Yogis யோகா மையத்தின் ஆசிரியர், புதிய பெருங்களத்தூர்"
+                                 class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <h3 class="mt-7 text-d3 display text-ink">கார்த்திகா</h3>
+                    <p class="mt-1 text-[14px] text-muted">{T.TEACHER_ROLE}</p>
+                    <div class="mt-4 space-y-4 text-[16px] leading-relaxed text-ink/80">
+{chr(10).join(f'                        <p>{x}</p>' for x in T.TEACHER)}
+                    </div>
+                    <a href="{B.PHONE_HREF}" class="mt-5 inline-flex items-center gap-2 py-1 text-blue font-medium hover:underline">
+                        {B.icon('phone', 'w-4 h-4')}{B.PHONE_TEXT}
+                    </a>
+                </div>
+
+                <div class="reveal" style="--d:90ms">
+                    <div class="arch zoom grade grade--portrait w-full max-w-xs">
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="/surekha-portrait-xs.webp 300w, /surekha-portrait-sm.webp 560w, /surekha-portrait.webp 720w"
+                                    sizes="(min-width:768px) 320px, 80vw">
+                            <img src="/surekha-portrait.jpeg" width="720" height="900"
+                                 alt="{T.SUREKHA_ALT}"
+                                 class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <h3 class="mt-7 text-d3 display text-ink">{T.SUREKHA}</h3>
+                    <p class="mt-1 text-[14px] text-muted">{T.SUREKHA_ROLE}</p>
+                    <div class="mt-4 space-y-4 text-[16px] leading-relaxed text-ink/80">
+                        <p>{T.SUREKHA_BODY}</p>
+                    </div>
+                    <a href="{P.SRIRAM['phone_href']}" class="mt-5 inline-flex items-center gap-2 py-1 text-blue font-medium hover:underline">
+                        {B.icon('phone', 'w-4 h-4')}{P.SRIRAM['phone_text']}
+                    </a>
                 </div>
             </div>
-            <div class="lg:col-span-8 reveal" style="--d:90ms">
-                <h2 id="teacher-h" class="text-d2 text-ink">கார்த்திகா</h2>
-                <p class="mt-1 text-[14px] text-muted">{T.TEACHER_ROLE}</p>
-                <div class="mt-5 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl">
-{chr(10).join(f'                    <p>{x}</p>' for x in T.TEACHER)}
-                </div>
+
+            <div class="mt-12 lg:mt-14 reveal">
                 <a href="{wa(TRIAL_MSG)}" target="_blank" rel="noopener"
-                   class="mt-7 inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
+                   class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
                     {T.BOOK_TRIAL}
                 </a>
             </div>

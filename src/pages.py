@@ -173,6 +173,10 @@ ASSET_PREFIX = ""   # "/" for pages served below the root
 # once the viewport is wide enough, the viewport less its gutters below that.
 # Named once because the <link rel=preload> and the <picture> both have to
 # use it - they drifted apart once and every phone downloaded the hero twice.
+# The second centre, for the places that name its teacher or its number
+# directly. One lookup, so a change in content.py reaches all of them.
+SRIRAM = C.CENTRE["sriram"]
+
 HERO_SIZES = ("(min-width:1216px) 1152px, (min-width:640px) calc(100vw - 4rem), "
               "calc(100vw - 2.5rem)")
 
@@ -566,40 +570,79 @@ def build_index():
         </div>
     </section>
 
-    <!-- Teacher -->
+    <!-- Teachers. Two of them since the Sriram Apartments room opened, so this
+         is a pair of columns rather than one portrait and a bio. Karthika's
+         column runs longer; items-start lets it, instead of centring Surekha's
+         shorter one against nothing. -->
     <section id="teacher" aria-labelledby="teacher-h" class="py-20 lg:py-32 bg-sand border-y border-line">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            <div class="lg:col-span-4 reveal">
-                <div class="arch zoom grade grade--portrait w-full max-w-xs">
-                    <picture>
-                        <source type="image/webp"
-                                srcset="instructor-portrait-xs.webp 300w, instructor-portrait-sm.webp 560w, instructor-portrait.webp 720w"
-                                sizes="(min-width:1024px) 320px, 80vw">
-                        <img src="instructor-portrait.jpeg" width="720" height="900"
-                             alt="Karthika, yoga teacher at Happy Yogis Yoga Centre, New Perungalathur"
-                             class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
-                    </picture>
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="reveal">
+                <p class="lbl">Who teaches</p>
+                <h2 id="teacher-h" class="mt-3 text-d2 text-ink">Two teachers, two centres</h2>
+            </div>
+
+            <div class="mt-12 lg:mt-16 grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+                <div class="reveal">
+                    <div class="arch zoom grade grade--portrait w-full max-w-xs">
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="instructor-portrait-xs.webp 300w, instructor-portrait-sm.webp 560w, instructor-portrait.webp 720w"
+                                    sizes="(min-width:768px) 320px, 80vw">
+                            <img src="instructor-portrait.jpeg" width="720" height="900"
+                                 alt="Karthika, yoga teacher at Happy Yogis Yoga Centre, New Perungalathur"
+                                 class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <h3 class="mt-7 text-d3 display text-ink">Karthika</h3>
+                    <p class="mt-1 text-[14px] text-muted">Teaches every batch at SSM Nagar</p>
+                    <div class="mt-4 space-y-4 text-[16px] leading-relaxed text-ink/80">
+                        <p>
+                            Karthika has practised and taught yoga for more than ten years,
+                            and takes every batch at the SSM Nagar centre herself.
+                        </p>
+                        <p>
+                            She meets people where they are. Beginners are not pushed into
+                            postures they are not ready for, and anyone working around an
+                            injury or a health condition gets the practice adapted rather
+                            than being told to sit it out.
+                        </p>
+                    </div>
+                    <a href="{PHONE_HREF}" class="mt-5 inline-flex items-center gap-2 py-1 text-blue font-medium hover:underline">
+                        {icon('phone', 'w-4 h-4')}{PHONE_TEXT}
+                    </a>
+                </div>
+
+                <div class="reveal" style="--d:90ms">
+                    <div class="arch zoom grade grade--portrait w-full max-w-xs">
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="surekha-portrait-xs.webp 300w, surekha-portrait-sm.webp 560w, surekha-portrait.webp 720w"
+                                    sizes="(min-width:768px) 320px, 80vw">
+                            <img src="surekha-portrait.jpeg" width="720" height="900"
+                                 alt="Surekha, yoga teacher at the Happy Yogis centre in Sriram Apartments, New Perungalathur"
+                                 class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <h3 class="mt-7 text-d3 display text-ink">Surekha</h3>
+                    <p class="mt-1 text-[14px] text-muted">Teaches the morning batch at Sriram Apartments</p>
+                    <div class="mt-4 space-y-4 text-[16px] leading-relaxed text-ink/80">
+                        <p>
+                            Surekha takes the 5:30&ndash;6:30 am batch, Monday to Friday, in
+                            the yoga room at Tower&nbsp;20, Sriram Apartments. It is the same
+                            practice taught at SSM Nagar, a short walk from home for anyone
+                            living on the campus.
+                        </p>
+                    </div>
+                    <a href="{SRIRAM['phone_href']}" class="mt-5 inline-flex items-center gap-2 py-1 text-blue font-medium hover:underline">
+                        {icon('phone', 'w-4 h-4')}{SRIRAM['phone_text']}
+                    </a>
                 </div>
             </div>
-            <div class="lg:col-span-8 reveal" style="--d:90ms">
-                <h2 id="teacher-h" class="text-d2 text-ink">Karthika</h2>
-                <p class="mt-1 text-[14px] text-muted">Teaches every batch at SSM Nagar</p>
-                <div class="mt-5 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl">
-                    <p>
-                        Karthika has practised and taught yoga for more than ten years, and
-                        takes every batch at the SSM Nagar centre herself. Surekha teaches
-                        the morning batch at Sriram Apartments.
-                    </p>
-                    <p>
-                        She meets people where they are. Beginners are not pushed into
-                        postures they are not ready for, and anyone working around an injury
-                        or a health condition gets the practice adapted rather than being
-                        told to sit it out.
-                    </p>
-                </div>
-                <a href="{wa('Hello Happy Yogis! I would like to book a 3-day trial with Karthika.')}"
+
+            <div class="mt-12 lg:mt-14 reveal">
+                <a href="{wa('Hello Happy Yogis! I would like to book a 3-day trial.')}"
                    target="_blank" rel="noopener"
-                   class="mt-7 inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
+                   class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
                     Book a 3-day trial
                 </a>
             </div>

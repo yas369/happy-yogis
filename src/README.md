@@ -43,6 +43,7 @@ out of the stylesheet as class names, and each build would drift from the last.
 | `ta_pages.py` | Builds every Tamil page from the above |
 | `sitemap.py` | `sitemap.xml`, including the image entries |
 | `validate.py` | The build guard — run it before committing |
+| `make_portrait.py` | Teacher portraits: `<source> <stem>` → 4:5 at 720/560/300 |
 | `tw.config.js` | Colour tokens, the display/body faces and the type scale |
 
 Design changes usually belong in **two** places: the colour tokens and type

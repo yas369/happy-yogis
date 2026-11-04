@@ -357,6 +357,7 @@ def surekha_node():
         "@id": f"{BASE}/#surekha",
         "name": "Surekha",
         "jobTitle": "Yoga teacher",
+        "image": f"{BASE}/surekha-portrait.jpeg",
         "description": ("Teacher at the Happy Yogis centre in Sriram Apartments, New "
                         "Perungalathur."),
         "worksFor": {"@id": f"{BASE}/#sriram"},
