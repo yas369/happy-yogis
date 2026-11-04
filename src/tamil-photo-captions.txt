@@ -1,0 +1,114 @@
+# Tamil photo captions for happyyogis.in
+#
+# These are the alt descriptions on the Tamil pages. They are English
+# today, so a Tamil reader using a screen reader hears English, and the
+# sitemap advertises the Tamil pages' photographs with English titles.
+#
+# Write the Tamil after each '>'. Leave a line blank and it keeps the
+# English. The photo file is named so you can open it and look.
+#
+# 26 captions.
+
+ima6.jpeg
+  en: Students of all ages holding tree pose together
+  ta> 
+
+ima4.jpeg
+  en: Morning batch seated in meditation at the New Perungalathur centre
+  ta> 
+
+ima15.jpeg
+  en: The group seated on mats as the sun comes up over the water
+  ta> 
+
+ima5.jpeg
+  en: Teacher leading a seated breathing practice for a mixed-age group
+  ta> 
+
+ima1.jpeg
+  en: Adults and children seated in meditation facing their teacher at Happy Yogis
+  ta> 
+
+ima13.jpeg
+  en: The Happy Yogis group photographed together at the beach session
+  ta> 
+
+ima14.jpeg
+  en: A student stretching both arms overhead in the morning light at the beach
+  ta> 
+
+ima23.jpeg
+  en: A young boy balancing on his hands in a wide-legged arm balance
+  ta> 
+
+ima31.jpeg
+  en: A student lowering into the plank of a sun salutation on the sand
+  ta> 
+
+ima21.jpeg
+  en: Two students in cobra pose, chests lifted and heads back
+  ta> 
+
+ima8.jpeg
+  en: Children practising cobra pose in a class at Happy Yogis
+  ta> 
+
+ima12.jpeg
+  en: Men from the centre seated on their mats at the beach session at sunset
+  ta> 
+
+ima20.jpeg
+  en: A student holding a wide-legged seated forward fold on a mat at the centre
+  ta> 
+
+ima10.jpeg
+  en: Ladies batch moving through cat-cow stretches
+  ta> 
+
+ima16.jpeg
+  en: Students in a wide-legged forward bend together on the sand
+  ta> 
+
+ima3.jpeg
+  en: Student holding downward dog on a mat at the centre
+  ta> 
+
+ima26.jpeg
+  en: A student in a seated side split, arms stretched overhead
+  ta> 
+
+ima7.jpeg
+  en: Yoga teacher demonstrating a seated spinal twist
+  ta> 
+
+ima11.jpeg
+  en: Students seated on mats at a Happy Yogis beach session, the sea behind them
+  ta> 
+
+ima9.jpeg
+  en: Members of the Happy Yogis community together at a centre event
+  ta> 
+
+ima22.jpeg
+  en: Three children folded forward together on one mat
+  ta> 
+
+ima17.jpeg
+  en: A row of students in a seated forward bend, the city skyline behind
+  ta> 
+
+ima25.jpeg
+  en: A student holding an inverted shoulder-supported pose, legs overhead
+  ta> 
+
+ima19.jpeg
+  en: The group holding a standing forward bend on the beach
+  ta> 
+
+ima24.jpeg
+  en: A student in a standing forward bend with the palms flat on the mat
+  ta> 
+
+ima18.jpeg
+  en: Members of the men's group sitting together on the sand at the beach session
+  ta> 
