@@ -445,7 +445,7 @@
       "@id": "https://happyyogis.in/#business",
       "name": "Happy Yogis Yoga Centre",
       "alternateName": "Happy Yogis",
-      "description": "A single yoga centre in SSM Nagar, New Perungalathur, Chennai, teaching morning and evening batches for ladies, gents and children, plus online classes and health-focused practice. Students travel in from Perungalathur, Tambaram, Selaiyur, Chromepet, Vandalur and Guduvanchery.",
+      "description": "Two yoga centres in New Perungalathur, Chennai - SSM Nagar and Sriram Apartments - teaching morning and evening batches for ladies, gents and children, plus online classes and health-focused practice. Students travel in from Perungalathur, Tambaram, Selaiyur, Chromepet, Vandalur and Guduvanchery.",
       "url": "https://happyyogis.in/",
       "logo": {
         "@type": "ImageObject",
@@ -542,8 +542,16 @@
         "en",
         "ta"
       ],
-      "employee": {
-        "@id": "https://happyyogis.in/#karthika"
+      "employee": [
+        {
+          "@id": "https://happyyogis.in/#karthika"
+        },
+        {
+          "@id": "https://happyyogis.in/#surekha"
+        }
+      ],
+      "subOrganization": {
+        "@id": "https://happyyogis.in/#sriram"
       },
       "availableChannel": {
         "@type": "ServiceChannel",
@@ -687,6 +695,49 @@
           }
         ]
       }
+    },
+    {
+      "@type": [
+        "LocalBusiness",
+        "SportsActivityLocation"
+      ],
+      "@id": "https://happyyogis.in/#sriram",
+      "name": "Happy Yogis Yoga Centre – Sriram Apartments",
+      "description": "The second Happy Yogis centre, open since 21 October 2026, in the yoga room at Tower 20, Sriram Apartments, New Perungalathur. One morning batch in person, 5:30 to 6:30 am.",
+      "url": "https://happyyogis.in/",
+      "parentOrganization": {
+        "@id": "https://happyyogis.in/#business"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Yoga Room, Tower 20, Sriram Apartments, New Perungalathur",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "600063",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-90256-29706",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "05:30",
+          "closes": "06:30"
+        }
+      ],
+      "employee": {
+        "@id": "https://happyyogis.in/#surekha"
+      },
+      "knowsLanguage": [
+        "en",
+        "ta"
+      ]
     },
     {
       "@type": "WebPage",
@@ -899,7 +950,8 @@
                         <a href="tel:+919994247450" class="inline-block py-1 text-white hover:text-sky transition-colors">+91 99942 47450</a>
                     </address>
                     <p class="mt-4 text-sm">Monday to Friday, 5:30 am to 7:00 pm.<br>Closed Saturday, Sunday and public holidays.</p>
-                    <p class="mt-4 text-sm">One centre, in New Perungalathur. We have no other branches.</p>
+                    <p class="mt-4 text-sm">Two centres, both in New Perungalathur:<br>
+                       SSM Nagar, and the yoga room at Tower&nbsp;20, Sriram Apartments.</p>
                 </div>
 
                 <nav aria-labelledby="f-site">

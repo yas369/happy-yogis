@@ -447,7 +447,7 @@
       "@id": "https://happyyogis.in/#business",
       "name": "Happy Yogis Yoga Centre",
       "alternateName": "Happy Yogis",
-      "description": "A single yoga centre in SSM Nagar, New Perungalathur, Chennai, teaching morning and evening batches for ladies, gents and children, plus online classes and health-focused practice. Students travel in from Perungalathur, Tambaram, Selaiyur, Chromepet, Vandalur and Guduvanchery.",
+      "description": "Two yoga centres in New Perungalathur, Chennai - SSM Nagar and Sriram Apartments - teaching morning and evening batches for ladies, gents and children, plus online classes and health-focused practice. Students travel in from Perungalathur, Tambaram, Selaiyur, Chromepet, Vandalur and Guduvanchery.",
       "url": "https://happyyogis.in/",
       "logo": {
         "@type": "ImageObject",
@@ -544,8 +544,16 @@
         "en",
         "ta"
       ],
-      "employee": {
-        "@id": "https://happyyogis.in/#karthika"
+      "employee": [
+        {
+          "@id": "https://happyyogis.in/#karthika"
+        },
+        {
+          "@id": "https://happyyogis.in/#surekha"
+        }
+      ],
+      "subOrganization": {
+        "@id": "https://happyyogis.in/#sriram"
       },
       "availableChannel": {
         "@type": "ServiceChannel",
@@ -691,12 +699,55 @@
       }
     },
     {
+      "@type": [
+        "LocalBusiness",
+        "SportsActivityLocation"
+      ],
+      "@id": "https://happyyogis.in/#sriram",
+      "name": "Happy Yogis Yoga Centre – Sriram Apartments",
+      "description": "The second Happy Yogis centre, open since 21 October 2026, in the yoga room at Tower 20, Sriram Apartments, New Perungalathur. One morning batch in person, 5:30 to 6:30 am.",
+      "url": "https://happyyogis.in/",
+      "parentOrganization": {
+        "@id": "https://happyyogis.in/#business"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Yoga Room, Tower 20, Sriram Apartments, New Perungalathur",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "600063",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-90256-29706",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "05:30",
+          "closes": "06:30"
+        }
+      ],
+      "employee": {
+        "@id": "https://happyyogis.in/#surekha"
+      },
+      "knowsLanguage": [
+        "en",
+        "ta"
+      ]
+    },
+    {
       "@type": "Person",
       "@id": "https://happyyogis.in/#karthika",
       "name": "Karthika",
       "jobTitle": "Yoga teacher",
       "image": "https://happyyogis.in/instructor.jpeg",
-      "description": "Teacher at Happy Yogis Yoga Centre, New Perungalathur, with more than ten years of yoga practice and teaching experience.",
+      "description": "Teacher at the Happy Yogis centre in SSM Nagar, New Perungalathur, with more than ten years of yoga practice and teaching experience.",
       "worksFor": {
         "@id": "https://happyyogis.in/#business"
       },
@@ -708,6 +759,16 @@
         "Prenatal Yoga",
         "Therapeutic Yoga"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://happyyogis.in/#surekha",
+      "name": "Surekha",
+      "jobTitle": "Yoga teacher",
+      "description": "Teacher at the Happy Yogis centre in Sriram Apartments, New Perungalathur.",
+      "worksFor": {
+        "@id": "https://happyyogis.in/#sriram"
+      }
     },
     {
       "@type": "WebSite",
@@ -1384,11 +1445,12 @@
             </div>
             <div class="lg:col-span-8 reveal" style="--d:90ms">
                 <h2 id="teacher-h" class="text-d2 text-ink">Karthika</h2>
-                <p class="mt-1 text-[14px] text-muted">Teaches every batch at the centre</p>
+                <p class="mt-1 text-[14px] text-muted">Teaches every batch at SSM Nagar</p>
                 <div class="mt-5 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl">
                     <p>
                         Karthika has practised and taught yoga for more than ten years, and
-                        takes every batch at the centre herself.
+                        takes every batch at the SSM Nagar centre herself. Surekha teaches
+                        the morning batch at Sriram Apartments.
                     </p>
                     <p>
                         She meets people where they are. Beginners are not pushed into
@@ -1868,12 +1930,14 @@
     <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-5 reveal">
-                <h2 id="areas-h" class="text-d2 text-ink">One centre, in New Perungalathur</h2>
+                <h2 id="areas-h" class="text-d2 text-ink">Two centres, both in New Perungalathur</h2>
                 <p class="mt-4 text-[16px] leading-relaxed text-ink/75">
-                    One centre, in SSM Nagar &mdash; just off the GST Road stretch between
-                    Tambaram and Vandalur, close to Perungalathur railway station. There are
-                    no other branches. Students travel in from the neighbourhoods nearby,
-                    and we teach online for anyone who cannot travel.
+                    Both are just off the GST Road stretch between Tambaram and Vandalur,
+                    close to Perungalathur railway station. SSM Nagar runs all four
+                    batches; the yoga room at Tower&nbsp;20, Sriram Apartments has run the
+                    early morning batch since October. Students travel in from the
+                    neighbourhoods nearby, and we teach online for anyone who cannot
+                    travel to either.
                 </p>
                 <h3 class="mt-8 text-[13.5px] font-medium text-ink">Students travel in from</h3>
                 <ul class="mt-3 flex flex-wrap gap-2">
@@ -1991,32 +2055,37 @@
             </div>
 
             <div class="lg:col-span-6 reveal" style="--d:90ms">
-                <h2 class="text-d2 text-ink">Visit the centre</h2>
+                <h2 class="text-d2 text-ink">Visit us</h2>
 
                 <!-- bento: the map holds the wide tile, the three facts sit under it -->
                 <div class="bento mt-6 sm:grid-cols-2">
                     <div class="sm:col-span-2 bg-paper">
-                        <iframe title="Map showing Happy Yogis Yoga Centre, New Perungalathur"
+                        <iframe title="Map showing the Happy Yogis centre at SSM Nagar, New Perungalathur"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8938068!2d80.1131382!3d12.8938068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5259bd7762301f%3A0xbb838e445fc93a!2sHAPPY%20YOGIS%20YOGA%20CENTRE!5e0!3m2!1sen!2sin!4v1234567890"
                                 width="100%" height="280" style="border:0;display:block" allowfullscreen=""
                                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <div class="sm:col-span-2 bg-paper p-6">
-                        <p class="text-[13px] text-muted">Address</p>
+                    <div class="bg-paper p-6">
+                        <p class="text-[13px] text-muted">SSM Nagar &middot; all four batches</p>
                         <address class="mt-1.5 not-italic display text-d3 text-ink">SSM Nagar, New Perungalathur,<br>Chennai, Tamil Nadu 600063</address>
+                        <p class="mt-2 text-[14px] text-muted">Taught by Karthika</p>
+                        <a href="tel:+919994247450" class="mt-1 block py-1 text-[15px] font-medium text-ink hover:text-blue transition-colors">+91 99942 47450</a>
                         <a href="https://www.google.com/maps/search/?api=1&query=SSM+Nagar+New+Perungalathur+Chennai" target="_blank" rel="noopener"
                            class="mt-3 py-1 inline-flex items-center gap-1.5 text-[14px] font-medium text-blue hover:underline">
                             Get directions <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-arrow-up-right"></use></svg>
                         </a>
                     </div>
                     <div class="bg-paper p-6">
-                        <p class="text-[13px] text-muted">Phone</p>
-                        <a href="tel:+919994247450" class="mt-1.5 block display text-d3 text-ink hover:text-blue transition-colors">+91 99942 47450</a>
+                        <p class="text-[13px] text-muted">Sriram Apartments &middot; 5:30 &ndash; 6:30 am</p>
+                        <address class="mt-1.5 not-italic display text-d3 text-ink">Yoga Room, Tower 20,<br>Sriram Apartments, New Perungalathur</address>
+                        <p class="mt-2 text-[14px] text-muted">Taught by Surekha &middot; open since October</p>
+                        <a href="tel:+919025629706" class="mt-1 block py-1 text-[15px] font-medium text-ink hover:text-blue transition-colors">+91 90256 29706</a>
                     </div>
-                    <div class="bg-paper p-6">
+                    <div class="sm:col-span-2 bg-paper p-6">
                         <p class="text-[13px] text-muted">Open</p>
                         <p class="mt-1.5 text-[15px] leading-relaxed text-ink">Monday to Friday, 5:30 am &ndash; 7:00 pm</p>
                         <p class="text-[14px] text-muted">Closed Saturday, Sunday and public holidays</p>
+                        <p class="mt-2 text-[14px] text-muted">Online classes run at all four times, from either centre.</p>
                     </div>
                 </div>
             </div>
@@ -2156,7 +2225,8 @@
                         <a href="tel:+919994247450" class="inline-block py-1 text-white hover:text-sky transition-colors">+91 99942 47450</a>
                     </address>
                     <p class="mt-4 text-sm">Monday to Friday, 5:30 am to 7:00 pm.<br>Closed Saturday, Sunday and public holidays.</p>
-                    <p class="mt-4 text-sm">One centre, in New Perungalathur. We have no other branches.</p>
+                    <p class="mt-4 text-sm">Two centres, both in New Perungalathur:<br>
+                       SSM Nagar, and the yoga room at Tower&nbsp;20, Sriram Apartments.</p>
                 </div>
 
                 <nav aria-labelledby="f-site">

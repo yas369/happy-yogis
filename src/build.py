@@ -747,7 +747,8 @@ def footer():
                         <a href="{PHONE_HREF}" class="inline-block py-1 text-white hover:text-sky transition-colors">{PHONE_TEXT}</a>
                     </address>
                     <p class="mt-4 text-sm">Monday to Friday, 5:30 am to 7:00 pm.<br>Closed Saturday, Sunday and public holidays.</p>
-                    <p class="mt-4 text-sm">One centre, in New Perungalathur. We have no other branches.</p>
+                    <p class="mt-4 text-sm">Two centres, both in New Perungalathur:<br>
+                       SSM Nagar, and the yoga room at Tower&nbsp;20, Sriram Apartments.</p>
                 </div>
 
                 <nav aria-labelledby="f-site">

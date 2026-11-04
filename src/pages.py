@@ -295,7 +295,9 @@ def build_index():
         "@context": "https://schema.org",
         "@graph": [
             C.business_node(),
+            C.branch_node(),
             C.person_node(),
+            C.surekha_node(),
             {"@type": "WebSite", "@id": f"{BASE}/#website", "url": f"{BASE}/",
              "name": "Happy Yogis Yoga Centre", "inLanguage": "en-IN",
              "publisher": {"@id": f"{BASE}/#business"}},
@@ -553,11 +555,12 @@ def build_index():
             </div>
             <div class="lg:col-span-8 reveal" style="--d:90ms">
                 <h2 id="teacher-h" class="text-d2 text-ink">Karthika</h2>
-                <p class="mt-1 text-[14px] text-muted">Teaches every batch at the centre</p>
+                <p class="mt-1 text-[14px] text-muted">Teaches every batch at SSM Nagar</p>
                 <div class="mt-5 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl">
                     <p>
                         Karthika has practised and taught yoga for more than ten years, and
-                        takes every batch at the centre herself.
+                        takes every batch at the SSM Nagar centre herself. Surekha teaches
+                        the morning batch at Sriram Apartments.
                     </p>
                     <p>
                         She meets people where they are. Beginners are not pushed into
@@ -606,12 +609,14 @@ def build_index():
     <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-5 reveal">
-                <h2 id="areas-h" class="text-d2 text-ink">One centre, in New Perungalathur</h2>
+                <h2 id="areas-h" class="text-d2 text-ink">Two centres, both in New Perungalathur</h2>
                 <p class="mt-4 text-[16px] leading-relaxed text-ink/75">
-                    One centre, in SSM Nagar &mdash; just off the GST Road stretch between
-                    Tambaram and Vandalur, close to Perungalathur railway station. There are
-                    no other branches. Students travel in from the neighbourhoods nearby,
-                    and we teach online for anyone who cannot travel.
+                    Both are just off the GST Road stretch between Tambaram and Vandalur,
+                    close to Perungalathur railway station. SSM Nagar runs all four
+                    batches; the yoga room at Tower&nbsp;20, Sriram Apartments has run the
+                    early morning batch since October. Students travel in from the
+                    neighbourhoods nearby, and we teach online for anyone who cannot
+                    travel to either.
                 </p>
                 <h3 class="mt-8 text-[13.5px] font-medium text-ink">Students travel in from</h3>
                 <ul class="mt-3 flex flex-wrap gap-2">
@@ -694,32 +699,37 @@ def build_index():
             </div>
 
             <div class="lg:col-span-6 reveal" style="--d:90ms">
-                <h2 class="text-d2 text-ink">Visit the centre</h2>
+                <h2 class="text-d2 text-ink">Visit us</h2>
 
                 <!-- bento: the map holds the wide tile, the three facts sit under it -->
                 <div class="bento mt-6 sm:grid-cols-2">
                     <div class="sm:col-span-2 bg-paper">
-                        <iframe title="Map showing Happy Yogis Yoga Centre, New Perungalathur"
+                        <iframe title="Map showing the Happy Yogis centre at SSM Nagar, New Perungalathur"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8938068!2d80.1131382!3d12.8938068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5259bd7762301f%3A0xbb838e445fc93a!2sHAPPY%20YOGIS%20YOGA%20CENTRE!5e0!3m2!1sen!2sin!4v1234567890"
                                 width="100%" height="280" style="border:0;display:block" allowfullscreen=""
                                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <div class="sm:col-span-2 bg-paper p-6">
-                        <p class="text-[13px] text-muted">Address</p>
+                    <div class="bg-paper p-6">
+                        <p class="text-[13px] text-muted">SSM Nagar &middot; all four batches</p>
                         <address class="mt-1.5 not-italic display text-d3 text-ink">SSM Nagar, New Perungalathur,<br>Chennai, Tamil Nadu 600063</address>
+                        <p class="mt-2 text-[14px] text-muted">Taught by Karthika</p>
+                        <a href="{PHONE_HREF}" class="mt-1 block py-1 text-[15px] font-medium text-ink hover:text-blue transition-colors">{PHONE_TEXT}</a>
                         <a href="{MAPS}" target="_blank" rel="noopener"
                            class="mt-3 py-1 inline-flex items-center gap-1.5 text-[14px] font-medium text-blue hover:underline">
                             Get directions {icon('arrow-up-right', 'w-4 h-4')}
                         </a>
                     </div>
                     <div class="bg-paper p-6">
-                        <p class="text-[13px] text-muted">Phone</p>
-                        <a href="{PHONE_HREF}" class="mt-1.5 block display text-d3 text-ink hover:text-blue transition-colors">{PHONE_TEXT}</a>
+                        <p class="text-[13px] text-muted">Sriram Apartments &middot; 5:30 &ndash; 6:30 am</p>
+                        <address class="mt-1.5 not-italic display text-d3 text-ink">Yoga Room, Tower 20,<br>Sriram Apartments, New Perungalathur</address>
+                        <p class="mt-2 text-[14px] text-muted">Taught by Surekha &middot; open since October</p>
+                        <a href="{C.CENTRE['sriram']['phone_href']}" class="mt-1 block py-1 text-[15px] font-medium text-ink hover:text-blue transition-colors">{C.CENTRE['sriram']['phone_text']}</a>
                     </div>
-                    <div class="bg-paper p-6">
+                    <div class="sm:col-span-2 bg-paper p-6">
                         <p class="text-[13px] text-muted">Open</p>
                         <p class="mt-1.5 text-[15px] leading-relaxed text-ink">{C.HOURS_TEXT}</p>
                         <p class="text-[14px] text-muted">{C.CLOSED_TEXT}</p>
+                        <p class="mt-2 text-[14px] text-muted">Online classes run at all four times, from either centre.</p>
                     </div>
                 </div>
             </div>
@@ -753,9 +763,9 @@ LOCATIONS = {
         "desc": ("Yoga centre in New Perungalathur, SSM Nagar. Four daily batches for "
                  "ladies, gents and children, Mon-Fri. 3-day trial available."),
         "h1": "Yoga classes in Perungalathur",
-        "lede": ("Happy Yogis is a yoga centre in SSM Nagar, New Perungalathur &mdash; our "
-                 "only location. If you live in Perungalathur, this is your local "
-                 "class, not a drive across the city."),
+        "lede": ("Happy Yogis has two centres in New Perungalathur &mdash; SSM Nagar and "
+                 "the yoga room at Tower 20, Sriram Apartments. If you live in "
+                 "Perungalathur, this is your local class, not a drive across the city."),
         "body": [
             ("Where we are",
              "SSM Nagar, New Perungalathur, close to Perungalathur railway station and "
@@ -825,6 +835,7 @@ def build_location(slug, cfg):
         "@context": "https://schema.org",
         "@graph": [
             C.business_node(),
+            C.branch_node(),
             {"@type": "WebPage", "@id": f"{BASE}/{slug}#webpage",
              "url": f"{BASE}/{slug}", "name": cfg["title"], "description": cfg["desc"],
              "inLanguage": "en-IN", "isPartOf": {"@id": f"{BASE}/#website"},

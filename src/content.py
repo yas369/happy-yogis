@@ -235,15 +235,58 @@ REVIEWS = [
 ]
 
 
+# ---------------------------------------------------------------- centres
+# Two locations as of 21 October 2026. Everything that states an address or a
+# teacher reads from here, so the footer, the visit panel, the areas section
+# and the JSON-LD cannot drift apart - which is exactly what happened to the
+# "we have no other branches" line, left asserting the opposite on 25 pages.
+CENTRES = [
+    {
+        "key": "ssm",
+        "name": "SSM Nagar",
+        "street": "SSM Nagar, New Perungalathur",
+        "postal": "600063",
+        "teacher": "Karthika",
+        "phone_text": "+91 99942 47450",
+        "phone_href": "tel:+919994247450",
+        "batches": "All four batches, Monday to Friday",
+        "geo": (12.8938068, 80.1131382),
+        "maps": ("https://www.google.com/maps/search/?api=1"
+                 "&query=SSM+Nagar+New+Perungalathur+Chennai"),
+    },
+    {
+        "key": "sriram",
+        "name": "Sriram Apartments",
+        "street": "Yoga Room, Tower 20, Sriram Apartments, New Perungalathur",
+        "postal": "600063",
+        "teacher": "Surekha",
+        "phone_text": "+91 90256 29706",
+        "phone_href": "tel:+919025629706",
+        "batches": "The 5:30 &ndash; 6:30 am batch, Monday to Friday",
+        "geo": None,          # not surveyed yet; no map link until it is
+        "maps": None,
+    },
+]
+CENTRE = {c["key"]: c for c in CENTRES}
+
+
+def address_node(c):
+    """PostalAddress for one centre."""
+    return {"@type": "PostalAddress", "streetAddress": c["street"],
+            "addressLocality": "Chennai", "addressRegion": "Tamil Nadu",
+            "postalCode": c["postal"], "addressCountry": "IN"}
+
+
 def business_node():
     return {
         "@type": ["LocalBusiness", "HealthAndBeautyBusiness", "SportsActivityLocation"],
         "@id": f"{BASE}/#business",
         "name": "Happy Yogis Yoga Centre",
         "alternateName": "Happy Yogis",
-        "description": ("A single yoga centre in SSM Nagar, New Perungalathur, Chennai, "
-                        "teaching morning and evening batches for ladies, gents and "
-                        "children, plus online classes and health-focused practice. "
+        "description": ("Two yoga centres in New Perungalathur, Chennai - SSM Nagar and "
+                        "Sriram Apartments - teaching morning and evening batches for "
+                        "ladies, gents and children, plus online classes and "
+                        "health-focused practice. "
                         "Students travel in from Perungalathur, Tambaram, Selaiyur, "
                         "Chromepet, Vandalur and Guduvanchery."),
         "url": f"{BASE}/",
@@ -251,14 +294,7 @@ def business_node():
                  "width": 320, "height": 362},
         "image": [f"{BASE}/og-image.jpg", f"{BASE}/ima4.jpeg", f"{BASE}/ima6.jpeg"],
         "telephone": "+91-99942-47450",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "SSM Nagar, New Perungalathur",
-            "addressLocality": "Chennai",
-            "addressRegion": "Tamil Nadu",
-            "postalCode": "600063",
-            "addressCountry": "IN",
-        },
+        "address": address_node(CENTRE["ssm"]),
         "geo": {"@type": "GeoCoordinates", "latitude": 12.8938068, "longitude": 80.1131382},
         "hasMap": ("https://www.google.com/maps/search/?api=1"
                    "&query=SSM+Nagar+New+Perungalathur+Chennai"),
@@ -269,7 +305,8 @@ def business_node():
         }],
         "areaServed": [{"@type": "Place", "name": n} for n in AREAS + ["Chennai"]],
         "knowsLanguage": ["en", "ta"],
-        "employee": {"@id": f"{BASE}/#karthika"},
+        "employee": [{"@id": f"{BASE}/#karthika"}, {"@id": f"{BASE}/#surekha"}],
+        "subOrganization": {"@id": f"{BASE}/#sriram"},
         "availableChannel": {"@type": "ServiceChannel", "serviceType": "Online yoga class",
                              "availableLanguage": ["en", "ta"]},
         "hasOfferCatalog": {
@@ -286,6 +323,46 @@ def business_node():
     }
 
 
+def branch_node():
+    """The Sriram Apartments centre. A separate LocalBusiness rather than a
+    second address on the main one, because they are two places with two
+    teachers and two timetables. No geo or hasMap: the location has not been
+    surveyed and has no Google listing yet, and inventing either would be
+    worse than leaving them out."""
+    c = CENTRE["sriram"]
+    return {
+        "@type": ["LocalBusiness", "SportsActivityLocation"],
+        "@id": f"{BASE}/#sriram",
+        "name": "Happy Yogis Yoga Centre \u2013 Sriram Apartments",
+        "description": ("The second Happy Yogis centre, open since 21 October 2026, in "
+                        "the yoga room at Tower 20, Sriram Apartments, New "
+                        "Perungalathur. One morning batch in person, 5:30 to 6:30 am."),
+        "url": f"{BASE}/",
+        "parentOrganization": {"@id": f"{BASE}/#business"},
+        "address": address_node(c),
+        "telephone": "+91-90256-29706",
+        "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "05:30", "closes": "06:30",
+        }],
+        "employee": {"@id": f"{BASE}/#surekha"},
+        "knowsLanguage": ["en", "ta"],
+    }
+
+
+def surekha_node():
+    return {
+        "@type": "Person",
+        "@id": f"{BASE}/#surekha",
+        "name": "Surekha",
+        "jobTitle": "Yoga teacher",
+        "description": ("Teacher at the Happy Yogis centre in Sriram Apartments, New "
+                        "Perungalathur."),
+        "worksFor": {"@id": f"{BASE}/#sriram"},
+    }
+
+
 def person_node():
     return {
         "@type": "Person",
@@ -293,8 +370,9 @@ def person_node():
         "name": "Karthika",
         "jobTitle": "Yoga teacher",
         "image": f"{BASE}/instructor.jpeg",
-        "description": ("Teacher at Happy Yogis Yoga Centre, New Perungalathur, with more "
-                        "than ten years of yoga practice and teaching experience."),
+        "description": ("Teacher at the Happy Yogis centre in SSM Nagar, New "
+                        "Perungalathur, with more than ten years of yoga practice "
+                        "and teaching experience."),
         "worksFor": {"@id": f"{BASE}/#business"},
         "knowsAbout": ["Hatha Yoga", "Power Yoga", "Pranayama", "Meditation",
                        "Prenatal Yoga", "Therapeutic Yoga"],

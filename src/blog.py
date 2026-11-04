@@ -283,8 +283,8 @@ POSTS = [{
                 "not padding; it is where the practice settles.")
             + photo("ima7", "A seated spinal twist &mdash; one of the shapes that answers "
                             "a week of desk work.")
-            + para("Karthika takes every batch herself and has practised and "
-                   "taught for more than ten years. Batches stay small enough "
+            + para("Karthika takes every batch at SSM Nagar herself and has practised "
+                   "and taught for more than ten years. Batches stay small enough "
                    "that she knows what each person is working with &mdash; "
                    "the whole reason the practice can be adapted rather than "
                    "simply delivered.")),
@@ -339,8 +339,9 @@ POSTS = [{
         ("Where we are, and who travels in", para(
             "We teach from a single hall in SSM Nagar, New Perungalathur "
             "&mdash; just off the GST Road stretch between Tambaram and "
-            "Vandalur, close to Perungalathur railway station. No other "
-            "branches, no franchise: one centre, one teacher.",
+            "Vandalur, close to Perungalathur railway station. A second centre "
+            "opened in October in the yoga room at Tower 20, Sriram Apartments, "
+            "a few streets away. No franchise, no other towns.",
             'Students travel in from Old Perungalathur, East and West Tambaram, '
             'Selaiyur, Chromepet, Vandalur, Urapakkam, Guduvanchery and Medavakkam. If '
             'you are looking for <a href="yoga-classes-perungalathur.html" '
@@ -487,8 +488,9 @@ POSTS = [{
                    "homemaker and a retired member &mdash; and the person next to you "
                    "working on mobility after a knee problem is doing a different version "
                    "of the same sequence than the person working on stamina. Karthika "
-                   "takes every batch herself and has been teaching for more than ten "
-                   "years, which is what makes that practical rather than theoretical.")
+                   "takes every batch at SSM Nagar herself and has been teaching for "
+                   "more than ten years, which is what makes that practical rather "
+                   "than theoretical.")
             + photo("ima6", "The same standing posture, held by a room of different bodies "
                             "at different depths.")),
 
@@ -994,6 +996,7 @@ def post_schema(p):
              "mainEntityOfPage": {"@id": f"{BASE}/{p['slug']}#webpage"},
              "isPartOf": {"@id": f"{BASE}/blog.html#blog"}},
             C.person_node(),
+            C.surekha_node(),
             {"@type": "BreadcrumbList", "@id": f"{BASE}/{p['slug']}#breadcrumb",
              "itemListElement": [
                  {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{BASE}/"},
