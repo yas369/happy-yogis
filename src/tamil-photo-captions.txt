@@ -1,0 +1,126 @@
+# Tamil photo captions for happyyogis.in - FOR REVIEW
+#
+# These are live. They are the alt text on the Tamil pages (what a screen
+# reader says) and the titles the sitemap gives those pages' images.
+#
+# I drafted them from the photographs, not from the English alone. They are
+# still machine-drafted Tamil, so please correct anything that reads wrong.
+# Edit src/ta_strings.py (PHOTOS), or mark this file up and send it back.
+#
+# 26 captions.
+
+ima6.jpeg
+  en: Students of all ages holding tree pose together
+  ta: எல்லா வயதினரும் சேர்ந்து விருட்சாசனம் செய்கிறார்கள்
+
+ima4.jpeg
+  en: Morning batch seated in meditation at the New Perungalathur centre
+  ta: புதிய பெருங்களத்தூர் மையத்தில் காலை வகுப்பினர் தியானத்தில் அமர்ந்திருக்கிறார்கள்
+
+ima15.jpeg
+  en: The group seated on mats as the sun comes up over the water
+  ta: கடலுக்கு மேல் சூரியன் உதிக்கும்போது பாய்களில் அமர்ந்திருக்கும் குழு
+
+ima5.jpeg
+  en: Teacher leading a seated breathing practice for a mixed-age group
+  ta: பல்வேறு வயதினர் கொண்ட குழுவுக்கு ஆசிரியர் அமர்ந்த நிலையில் மூச்சுப் பயிற்சி நடத்துகிறார்
+
+ima1.jpeg
+  en: Adults and children seated in meditation facing their teacher at Happy Yogis
+  ta: Happy Yogis மையத்தில் ஆசிரியரை நோக்கி பெரியவர்களும் குழந்தைகளும் தியானத்தில் அமர்ந்திருக்கிறார்கள்
+
+ima13.jpeg
+  en: The Happy Yogis group photographed together at the beach session
+  ta: கடற்கரைப் பயிற்சியின்போது Happy Yogis குழு ஒன்றாக எடுத்த புகைப்படம்
+
+ima14.jpeg
+  en: A student stretching both arms overhead in the morning light at the beach
+  ta: கடற்கரையில் காலை வெளிச்சத்தில் ஒரு மாணவி இரு கைகளையும் தலைக்கு மேல் நீட்டுகிறார்
+
+ima23.jpeg
+  en: A young boy balancing on his hands in a wide-legged arm balance
+  ta: ஒரு சிறுவன் கால்களை அகல விரித்து கைகளில் உடலைத் தாங்கி சமநிலையில் இருக்கிறான்
+
+ima31.jpeg
+  en: A student lowering into the plank of a sun salutation on the sand
+  ta: மணலில் சூரிய நமஸ்காரத்தின் பலகை நிலைக்கு ஒரு மாணவி இறங்குகிறார்
+
+ima21.jpeg
+  en: Two students in cobra pose, chests lifted and heads back
+  ta: இரு மாணவிகள் புஜங்காசனத்தில், மார்பை உயர்த்தி தலையைப் பின்னால் சாய்த்து
+
+ima8.jpeg
+  en: Children practising cobra pose in a class at Happy Yogis
+  ta: Happy Yogis வகுப்பில் குழந்தைகள் புஜங்காசனம் பயில்கிறார்கள்
+
+ima12.jpeg
+  en: Men from the centre seated on their mats at the beach session at sunset
+  ta: சூரிய அஸ்தமனத்தில் கடற்கரைப் பயிற்சியில் மையத்தின் ஆண்கள் பாய்களில் அமர்ந்திருக்கிறார்கள்
+
+ima20.jpeg
+  en: A student holding a wide-legged seated forward fold on a mat at the centre
+  ta: மையத்தில் ஒரு மாணவி பாயில் கால்களை அகல விரித்து முன்னோக்கி வளைந்திருக்கிறார்
+
+ima10.jpeg
+  en: Ladies batch moving through cat-cow stretches
+  ta: மகளிர் வகுப்பினர் பூனை–பசு நீட்சிப் பயிற்சி செய்கிறார்கள்
+
+ima16.jpeg
+  en: Students in a wide-legged forward bend together on the sand
+  ta: மணலில் மாணவர்கள் ஒன்றாக கால்களை அகல விரித்து முன்னோக்கி வளைகிறார்கள்
+
+ima3.jpeg
+  en: Student holding downward dog on a mat at the centre
+  ta: மையத்தில் ஒரு மாணவி பாயில் அதோமுக ஸ்வானாசனம் செய்கிறார்
+
+ima26.jpeg
+  en: A student in a seated side split, arms stretched overhead
+  ta: ஒரு மாணவி கால்களை இருபுறமும் அகல விரித்து அமர்ந்து, கைகளைத் தலைக்கு மேல் நீட்டுகிறார்
+
+ima7.jpeg
+  en: Yoga teacher demonstrating a seated spinal twist
+  ta: யோகா ஆசிரியர் அமர்ந்த நிலையில் முதுகுத்தண்டு முறுக்கு ஆசனத்தைச் செய்து காட்டுகிறார்
+
+ima11.jpeg
+  en: Students seated on mats at a Happy Yogis beach session, the sea behind them
+  ta: Happy Yogis கடற்கரைப் பயிற்சியில் மாணவர்கள் பாய்களில் அமர்ந்திருக்கிறார்கள், பின்னால் கடல்
+
+ima9.jpeg
+  en: Members of the Happy Yogis community together at a centre event
+  ta: மைய நிகழ்ச்சி ஒன்றில் Happy Yogis குழுவினர் ஒன்றாக
+
+ima22.jpeg
+  en: Three children folded forward together on one mat
+  ta: ஒரே பாயில் மூன்று குழந்தைகள் ஒன்றாக முன்னோக்கி வளைந்திருக்கிறார்கள்
+
+ima17.jpeg
+  en: A row of students in a seated forward bend, the city skyline behind
+  ta: வரிசையாக அமர்ந்த மாணவர்கள் முன்னோக்கி வளைகிறார்கள், பின்னணியில் நகரத் தோற்றம்
+
+ima25.jpeg
+  en: A student holding an inverted shoulder-supported pose, legs overhead
+  ta: ஒரு மாணவி தோள்களில் உடலைத் தாங்கி, கால்களை மேல்நோக்கி உயர்த்திய தலைகீழ் நிலையில்
+
+ima19.jpeg
+  en: The group holding a standing forward bend on the beach
+  ta: கடற்கரையில் குழுவினர் நின்றபடி முன்னோக்கி வளைந்திருக்கிறார்கள்
+
+ima24.jpeg
+  en: A student in a standing forward bend with the palms flat on the mat
+  ta: ஒரு மாணவி நின்றபடி முன்னோக்கி வளைந்து, உள்ளங்கைகளைப் பாயில் பதித்திருக்கிறார்
+
+ima18.jpeg
+  en: Members of the men's group sitting together on the sand at the beach session
+  ta: கடற்கரைப் பயிற்சியில் ஆண்கள் குழுவினர் மணலில் ஒன்றாக அமர்ந்திருக்கிறார்கள்
+
+# ---------------------------------------------------------------
+# One to check against the photo, not the Tamil:
+#
+# ima16 - English says 'a wide-legged forward bend'. In the photograph
+#   several students have one leg raised straight up in a standing split.
+#   I translated the English as it stands rather than quietly diverging
+#   the two languages. If the English is wrong, say so and I will fix
+#   both together.
+#
+# I also doubted ima23 and ima19 from thumbnails, checked both at full
+# size, and the English is right in each case. No change needed there.

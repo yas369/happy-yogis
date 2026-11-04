@@ -2,6 +2,7 @@
 """Pre-flight checks for the Happy Yogis static site."""
 import json
 import os
+import urllib.parse
 import datetime
 import re
 import sys
@@ -206,10 +207,15 @@ else:
         for loc in locs:
             if loc not in canon.values():
                 errors.append(f"sitemap.xml: {loc} matches no page canonical")
+        # Resolve the whole path, not just the basename. Checking the
+        # basename alone meant https://happyyogis.in/ta/ima6.jpeg passed
+        # because ima6.jpeg exists at the root - which is exactly the bug
+        # the sitemap had: images on the Tamil pages were being advertised
+        # one directory down from where they are served.
         for img in sm.findall(".//i:loc", SNS):
-            f = img.text.rsplit("/", 1)[-1]
-            if not os.path.exists(f"{ROOT}/{f}"):
-                errors.append(f"sitemap.xml: image {f} does not exist")
+            path = urllib.parse.urlparse(img.text).path.lstrip("/")
+            if not os.path.exists(f"{ROOT}/{path}"):
+                errors.append(f"sitemap.xml: image /{path} does not exist")
         # one domain across pages, sitemap and robots
         domains = {re.match(r"https?://[^/]+", c).group(0) for c in canon.values() if c}
         robots = open(f"{ROOT}/robots.txt").read()

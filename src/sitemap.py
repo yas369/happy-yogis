@@ -8,18 +8,18 @@ Two rules this enforces that a hand-written sitemap kept breaking:
   * a page's <lastmod> only moves when the page actually changed. Restamping
     every URL on every build teaches Google to ignore the field entirely.
 
-Image entries list the full-size photographs on each page (not the gallery
-thumbnails and not the social card), titled with the alt text they already
-carry, which is the description written from the real photo.
+Image entries list the full-size photographs on each page (not the responsive
+derivatives and not the social card), titled with the alt text they already
+carry, which is the description written from the real photo - so a Tamil page
+lists its images with their Tamil descriptions.
 """
+import html as _html
 import os
 import re
 import subprocess
 import sys
 from datetime import date
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import content as C
+from urllib.parse import urljoin
 
 # The site root, derived from this file's location so a clone works
 # wherever it sits. HAPPY_YOGIS_ROOT overrides it if ever needed.
@@ -61,7 +61,44 @@ PAGES = [
 
 CANON = re.compile(r'<link rel="canonical" href="([^"]+)"')
 ROBOTS = re.compile(r'<meta name="robots" content="([^"]+)"')
-PHOTO = re.compile(r'(?:src|data-full)="(ima\d+|instructor)\.(?:jpe?g)"')
+
+# Every photograph on a page, with the description it already carries: an
+# <img> with its alt, or a gallery button with its caption (the button holds
+# the full-size file; its <img> is only the thumbnail).
+#
+# This used to be one regex anchored on the filename - `(ima\d+|instructor)`
+# - and it had gone quietly wrong twice. A leading slash stopped it matching,
+# so all eight Tamil pages listed no images at all; and the teacher portrait
+# was renamed to instructor-portrait.jpeg, so the `instructor` branch had
+# matched nothing for a long time. Matching the attribute rather than the
+# filename means a new photograph is picked up because it is on the page, not
+# because its name was added here.
+IMG = re.compile(r'<img\s[^>]*?src="([^"]+\.jpe?g)"[^>]*?\salt="([^"]*)"')
+FULL = re.compile(r'data-full="([^"]+\.jpe?g)"[^>]*?\sdata-caption="([^"]*)"')
+
+# -xs/-sm/-md are the responsive derivatives. The sitemap lists the full-size
+# file, so a thumbnail that reaches here is a duplicate of one, not a photo of
+# its own.
+DERIVATIVE = re.compile(r"-(?:xs|sm|md)$")
+
+
+def photos(html, loc):
+    """(absolute url, title) for each distinct photograph on one page.
+
+    `loc` is the page's own canonical, so a src is resolved the way a browser
+    would resolve it - which is the whole point: the Tamil pages address their
+    images from the site root (/ima6.jpeg) while they themselves live a
+    directory down, and joining those by hand put them in /ta/."""
+    out, seen = [], set()
+    for src, title in IMG.findall(html) + FULL.findall(html):
+        url = urljoin(loc, src)
+        stem = url.rsplit("/", 1)[-1].rsplit(".", 1)[0]
+        if DERIVATIVE.search(stem) or url in seen:
+            continue
+        seen.add(url)
+        # The alt came out of the markup, so it is already escaped once.
+        out.append((url, _html.unescape(title)))
+    return out
 
 
 def previous_lastmods():
@@ -108,7 +145,6 @@ def build():
             continue
 
         lastmod = TODAY if (changed(page) or loc not in old) else old[loc]
-        base = loc.rsplit("/", 1)[0] if loc.endswith(".html") else loc.rstrip("/")
 
         out += ["", "  <url>",
                 f"    <loc>{esc(loc)}</loc>",
@@ -116,17 +152,9 @@ def build():
                 f"    <changefreq>{freq}</changefreq>",
                 f"    <priority>{priority}</priority>"]
 
-        seen = []
-        for key in PHOTO.findall(html):
-            if key in seen:
-                continue
-            seen.append(key)
-            title = C.PHOTOS.get(key)
-            if title is None:                       # the teacher portrait
-                title = "Karthika, yoga teacher at Happy Yogis Yoga Centre"
-            ext = "jpeg" if os.path.exists(os.path.join(OUT, f"{key}.jpeg")) else "jpg"
+        for url, title in photos(html, loc):
             out += ["    <image:image>",
-                    f"      <image:loc>{base}/{key}.{ext}</image:loc>",
+                    f"      <image:loc>{esc(url)}</image:loc>",
                     f"      <image:title>{esc(title)}</image:title>",
                     "    </image:image>"]
         out.append("  </url>")
