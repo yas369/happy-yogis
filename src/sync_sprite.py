@@ -8,8 +8,12 @@ import re
 # wherever it sits. HAPPY_YOGIS_ROOT overrides it if ever needed.
 _SITE = os.environ.get("HAPPY_YOGIS_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ICONS = ("/tmp/claude-0/-home-user-happy-yogis/a6357452-d0ea-57e6-a208-ae557941866f/"
-         "scratchpad/node_modules/lucide-static/icons")
+# The icons ship with the lucide-static dependency, beside this file. This
+# pointed at the scratch directory the source used to live in, so a clone built
+# every page with its <use> elements referencing symbols that were never
+# inlined - every icon on the site silently blank.
+ICONS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                     "node_modules", "lucide-static", "icons")
 PAGES = ["index.html", "privacy-policy.html", "terms-of-service.html",
          "yoga-classes-perungalathur.html", "yoga-classes-tambaram.html",
          "blog.html", "what-happens-in-your-first-yoga-class.html", "yoga-for-weight-loss-in-chennai.html", "yoga-classes-for-men-perungalathur.html", "yoga-classes-for-children-perungalathur.html", "international-yoga-day-beach.html", "108-suryanamaskar-challenge.html",

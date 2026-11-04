@@ -169,8 +169,19 @@ def reviews_section():
 
 ASSET_PREFIX = ""   # "/" for pages served below the root
 
+# The hero photograph's rendered width: the content rail (max-w-6xl, 1152px)
+# once the viewport is wide enough, the viewport less its gutters below that.
+# Named once because the <link rel=preload> and the <picture> both have to
+# use it - they drifted apart once and every phone downloaded the hero twice.
+# The second centre, for the places that name its teacher or its number
+# directly. One lookup, so a change in content.py reaches all of them.
+SRIRAM = C.CENTRE["sriram"]
 
-def photo(key, *, cls, sizes, box=None, priority=False, caption=None):
+HERO_SIZES = ("(min-width:1216px) 1152px, (min-width:640px) calc(100vw - 4rem), "
+              "calc(100vw - 2.5rem)")
+
+
+def photo(key, *, cls, sizes, box=None, priority=False, eager=False, caption=None):
     """A <picture> for one of the centre's photographs.
 
     Three widths, always with the real intrinsic dimensions so nothing reflows
@@ -184,7 +195,14 @@ def photo(key, *, cls, sizes, box=None, priority=False, caption=None):
     """
     from PIL import Image
     w, h = Image.open(os.path.join(OUT, f"{key}.jpeg")).size
+    # Three tiers, not two. `priority` is for an image that is the LCP
+    # element: high priority and a matching <link rel=preload>. `eager` is for
+    # one that sits just below the first screen - it must not be lazy, because
+    # the reader reaches it within a scroll, but boosting it would make it
+    # compete with whatever is actually painting first. Everything else is
+    # lazy.
     load = ('fetchpriority="high" decoding="async"' if priority
+            else 'decoding="async"' if eager
             else 'loading="lazy" decoding="async"')
     img = (f'<img src="{ASSET_PREFIX}{key}.jpeg" width="{w}" height="{h}" alt="{C.PHOTOS[key]}"\n'
            f'                     class="{cls}" {load}>')
@@ -228,7 +246,7 @@ def photo_cta(key):
             {photo(key, cls='w-full h-full object-cover object-[center_40%]', sizes='100vw')}
             <div class="cta-scrim" role="presentation"></div>
         </div>
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 lg:py-36">
             <div class="max-w-xl">
                 <h2 id="cta-h" class="text-d2 text-white">Four batches a day, Monday to Friday</h2>
                 <p class="mt-4 text-[16px] leading-relaxed text-white/85">
@@ -295,7 +313,9 @@ def build_index():
         "@context": "https://schema.org",
         "@graph": [
             C.business_node(),
+            C.branch_node(),
             C.person_node(),
+            C.surekha_node(),
             {"@type": "WebSite", "@id": f"{BASE}/#website", "url": f"{BASE}/",
              "name": "Happy Yogis Yoga Centre", "inLanguage": "en-IN",
              "publisher": {"@id": f"{BASE}/#business"}},
@@ -313,12 +333,17 @@ def build_index():
     h = head(title="Yoga Centre in Perungalathur & Tambaram | Happy Yogis",
              desc=("Yoga classes in New Perungalathur for ladies, gents and children. "
                    "Four batches daily, Mon-Fri, plus online classes. 3-day trial."),
+             # The hero photograph is still the largest paint, even though it
+             # is a contained band now rather than the whole screen: at 412px
+             # it occupies most of the first screen below the headline, and
+             # dropping this preload measured 1,664 ms against 1,212 ms with
+             # it. The sizes string must match the <picture> below exactly -
+             # if the preload and the element resolve to different candidates
+             # the browser fetches both.
              path="", schema=schema, preload="ima6.webp",
-             # must match the hero <picture> exactly - if the preload and the
-             # element resolve to different widths the browser fetches both
              preload_srcset=("ima6-xs.webp 320w, ima6-sm.webp 640w, "
                              "ima6-md.webp 768w, ima6.webp 1280w"),
-             preload_sizes="100vw",
+             preload_sizes=HERO_SIZES,
              alt=("ta", "ta/index.html"))
 
     filters, class_items = classes_section()
@@ -328,42 +353,51 @@ def build_index():
 {nav(home=True, alt_href="/ta/index.html")}
     <main id="main">
 
-    <!-- Hero: serif headline and the class photograph on the left, the live
-         schedule held to the right as a narrow column. Nothing here is marked
-         .reveal - the first screen must never wait on a script. -->
-    <!-- The opening screen is one photograph, edge to edge, carrying the
-         headline and a single call to action. The timetable follows directly
-         beneath it, where it can be read rather than competed with. Nothing
-         here is marked .reveal - the first screen must never wait on a script. -->
-    <section aria-labelledby="hero-h" class="bleed min-h-[78svh] flex items-end pt-16">
-        <div class="bleed__img">
-            {photo('ima6', cls='w-full h-full object-cover object-[center_38%]',
-                   sizes='100vw', priority=True)}
-        </div>
-        <div class="bleed__foot" role="presentation"></div>
+    <!-- The opening screen. Near-white: the headline is dark type on paper at
+         the top of the display scale, with air around it, and the photograph
+         sits beneath as a contained band. It used to be the photograph edge to
+         edge with white type over a scrim, which meant the first thing a
+         visitor met was a dark panel and the headline could only ever be as
+         light as the scrim allowed.
 
-        <div class="bleed__in w-full max-w-6xl mx-auto px-5 sm:px-8 pb-14 lg:pb-20 pt-28 enter">
-            <p class="lbl lbl--dark">SSM Nagar, New Perungalathur &middot; Chennai</p>
-            <h1 id="hero-h" class="mt-4 text-d1 text-white max-w-[15ch]">
-                Yoga classes in Perungalathur and Tambaram
-            </h1>
-            <p class="lede mt-6 text-white/85 max-w-xl">
-                Four small batches a day, Monday to Friday, for ladies, gents and
-                children. Most who join have never done yoga before; the practice is
-                adjusted person by person.
-            </p>
-            <div class="mt-9">
-                <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
-                   target="_blank" rel="noopener"
-                   class="inline-flex items-center px-8 py-4 bg-paper text-ink font-medium rounded text-[17px] hover:bg-white transition-colors">
-                    Book a 3-day trial
-                </a>
+         Nothing here is marked .reveal - the first screen must never wait on a
+         script - and the photograph is outside .enter for the same reason: an
+         element animating up from opacity 0 is not painted, so wrapping it
+         would have pushed the largest paint later rather than earlier. -->
+    <section aria-labelledby="hero-h" class="hero pt-28 lg:pt-40 pb-16 lg:pb-24">
+        <div class="hero__wash" role="presentation"></div>
+
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="enter text-center">
+                <p class="lbl">Two centres in New Perungalathur &middot; Chennai</p>
+                <h1 id="hero-h" class="mt-4 text-d1 text-ink mx-auto">
+                    Yoga classes in Perungalathur and Tambaram
+                </h1>
+                <p class="lede mt-8 text-ink/70 max-w-xl mx-auto">
+                    Four small batches a day, Monday to Friday, for ladies, gents and
+                    children. Most who join have never done yoga before; the practice is
+                    adjusted person by person.
+                </p>
+                <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+                    <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center px-8 py-4 bg-ink text-white font-medium rounded text-[17px] hover:bg-blue transition-colors">
+                        Book a 3-day trial
+                    </a>
+                    <a href="#schedule" class="cue px-1 py-2 text-[15px] font-medium text-ink/70 hover:text-ink transition-colors">
+                        See the timetable {icon('chevron-down', 'w-4 h-4')}
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero__shot grade mt-16 lg:mt-24">
+                {photo('ima6', cls='object-[center_38%]', priority=True, sizes=HERO_SIZES)}
             </div>
         </div>
     </section>
 
     <section aria-label="Batch times" class="bg-paper" id="schedule">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-14 lg:pt-20">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 lg:pt-24">
             <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
                 <div class="lg:col-span-5">
                     <p class="lbl">One day at the centre</p>
@@ -399,7 +433,7 @@ def build_index():
                 </div>
             </div>
 
-            <ul class="factline pb-14 lg:pb-20 pt-6 border-t border-line text-[15px] text-ink/80">
+            <ul class="factline pb-16 lg:pb-24 pt-6 border-t border-line text-[15px] text-ink/80">
                 <li>Four classes a day</li>
                 <li>Monday to Friday</li>
                 <li>Special care for women</li>
@@ -409,7 +443,7 @@ def build_index():
     </section>
 
     <!-- About -->
-    <section id="about" aria-labelledby="about-h" class="py-16 lg:py-24">
+    <section id="about" aria-labelledby="about-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4">
                 <h2 id="about-h" class="text-d2 text-ink reveal">A neighbourhood centre, not a fitness chain</h2>
@@ -446,7 +480,7 @@ def build_index():
     </section>
 
     <!-- Classes -->
-    <section id="classes" aria-labelledby="classes-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="classes" aria-labelledby="classes-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="lg:flex lg:items-end lg:justify-between lg:gap-10">
                 <div class="max-w-xl reveal">
@@ -485,7 +519,7 @@ def build_index():
     </section>
 
     <!-- Yogi's Upadesha: newest posts, from the same list the section renders -->
-    <section id="journal" aria-labelledby="journal-h" class="py-16 lg:py-24">
+    <section id="journal" aria-labelledby="journal-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="sm:flex sm:items-end sm:justify-between sm:gap-10">
                 <div class="max-w-xl reveal">
@@ -510,7 +544,7 @@ def build_index():
 
 {band("ima15", f"{C.EVENT['name']} at {C.EVENT['place']}, {C.EVENT['date']} &mdash; a one-off. Regular batches are taught at the centre in SSM Nagar, New Perungalathur.")}
     <!-- Health -->
-    <section id="health" aria-labelledby="health-h" class="py-16 lg:py-24">
+    <section id="health" aria-labelledby="health-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4 reveal">
                 <h2 id="health-h" class="text-d2 text-ink">Practising around a health condition</h2>
@@ -536,39 +570,79 @@ def build_index():
         </div>
     </section>
 
-    <!-- Teacher -->
-    <section id="teacher" aria-labelledby="teacher-h" class="py-16 lg:py-24 bg-sand border-y border-line">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            <div class="lg:col-span-4 reveal">
-                <div class="arch zoom grade grade--portrait w-full max-w-xs">
-                    <picture>
-                        <source type="image/webp"
-                                srcset="instructor-portrait-xs.webp 300w, instructor-portrait-sm.webp 560w, instructor-portrait.webp 720w"
-                                sizes="(min-width:1024px) 320px, 80vw">
-                        <img src="instructor-portrait.jpeg" width="720" height="900"
-                             alt="Karthika, yoga teacher at Happy Yogis Yoga Centre, New Perungalathur"
-                             class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
-                    </picture>
+    <!-- Teachers. Two of them since the Sriram Apartments room opened, so this
+         is a pair of columns rather than one portrait and a bio. Karthika's
+         column runs longer; items-start lets it, instead of centring Surekha's
+         shorter one against nothing. -->
+    <section id="teacher" aria-labelledby="teacher-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="reveal">
+                <p class="lbl">Who teaches</p>
+                <h2 id="teacher-h" class="mt-3 text-d2 text-ink">Two teachers, two centres</h2>
+            </div>
+
+            <div class="mt-12 lg:mt-16 grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+                <div class="reveal">
+                    <div class="arch zoom grade grade--portrait w-full max-w-xs">
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="instructor-portrait-xs.webp 300w, instructor-portrait-sm.webp 560w, instructor-portrait.webp 720w"
+                                    sizes="(min-width:768px) 320px, 80vw">
+                            <img src="instructor-portrait.jpeg" width="720" height="900"
+                                 alt="Karthika, yoga teacher at Happy Yogis Yoga Centre, New Perungalathur"
+                                 class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <h3 class="mt-7 text-d3 display text-ink">Karthika</h3>
+                    <p class="mt-1 text-[14px] text-muted">Teaches every batch at SSM Nagar</p>
+                    <div class="mt-4 space-y-4 text-[16px] leading-relaxed text-ink/80">
+                        <p>
+                            Karthika has practised and taught yoga for more than ten years,
+                            and takes every batch at the SSM Nagar centre herself.
+                        </p>
+                        <p>
+                            She meets people where they are. Beginners are not pushed into
+                            postures they are not ready for, and anyone working around an
+                            injury or a health condition gets the practice adapted rather
+                            than being told to sit it out.
+                        </p>
+                    </div>
+                    <a href="{PHONE_HREF}" class="mt-5 inline-flex items-center gap-2 py-1 text-blue font-medium hover:underline">
+                        {icon('phone', 'w-4 h-4')}{PHONE_TEXT}
+                    </a>
+                </div>
+
+                <div class="reveal" style="--d:90ms">
+                    <div class="arch zoom grade grade--portrait w-full max-w-xs">
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="surekha-portrait-xs.webp 300w, surekha-portrait-sm.webp 560w, surekha-portrait.webp 720w"
+                                    sizes="(min-width:768px) 320px, 80vw">
+                            <img src="surekha-portrait.jpeg" width="720" height="900"
+                                 alt="Surekha, yoga teacher at the Happy Yogis centre in Sriram Apartments, New Perungalathur"
+                                 class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <h3 class="mt-7 text-d3 display text-ink">Surekha</h3>
+                    <p class="mt-1 text-[14px] text-muted">Teaches the morning batch at Sriram Apartments</p>
+                    <div class="mt-4 space-y-4 text-[16px] leading-relaxed text-ink/80">
+                        <p>
+                            Surekha takes the 5:30&ndash;6:30 am batch, Monday to Friday, in
+                            the yoga room at Tower&nbsp;20, Sriram Apartments. It is the same
+                            practice taught at SSM Nagar, a short walk from home for anyone
+                            living on the campus.
+                        </p>
+                    </div>
+                    <a href="{SRIRAM['phone_href']}" class="mt-5 inline-flex items-center gap-2 py-1 text-blue font-medium hover:underline">
+                        {icon('phone', 'w-4 h-4')}{SRIRAM['phone_text']}
+                    </a>
                 </div>
             </div>
-            <div class="lg:col-span-8 reveal" style="--d:90ms">
-                <h2 id="teacher-h" class="text-d2 text-ink">Karthika</h2>
-                <p class="mt-1 text-[14px] text-muted">Teaches every batch at the centre</p>
-                <div class="mt-5 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl">
-                    <p>
-                        Karthika has practised and taught yoga for more than ten years, and
-                        takes every batch at the centre herself.
-                    </p>
-                    <p>
-                        She meets people where they are. Beginners are not pushed into
-                        postures they are not ready for, and anyone working around an injury
-                        or a health condition gets the practice adapted rather than being
-                        told to sit it out.
-                    </p>
-                </div>
-                <a href="{wa('Hello Happy Yogis! I would like to book a 3-day trial with Karthika.')}"
+
+            <div class="mt-12 lg:mt-14 reveal">
+                <a href="{wa('Hello Happy Yogis! I would like to book a 3-day trial.')}"
                    target="_blank" rel="noopener"
-                   class="mt-7 inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
+                   class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
                     Book a 3-day trial
                 </a>
             </div>
@@ -576,7 +650,7 @@ def build_index():
     </section>
 
     <!-- Studio photos -->
-    <section id="studio" aria-labelledby="studio-h" class="py-16 lg:py-24">
+    <section id="studio" aria-labelledby="studio-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="max-w-xl reveal">
                 <h2 id="studio-h" class="text-d2 text-ink">Inside the centre</h2>
@@ -592,7 +666,7 @@ def build_index():
     </section>
 
     <!-- Reviews -->
-    <section id="reviews" aria-labelledby="reviews-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="reviews" aria-labelledby="reviews-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <h2 id="reviews-h" class="text-d2 text-ink reveal">What students say</h2>
             <div class="mt-4 reveal" style="--d:90ms">
@@ -603,15 +677,17 @@ def build_index():
 
 {photo_cta("ima1")}
     <!-- Areas -->
-    <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
+    <section id="areas" aria-labelledby="areas-h" class="py-20 lg:py-32">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-5 reveal">
-                <h2 id="areas-h" class="text-d2 text-ink">One centre, in New Perungalathur</h2>
+                <h2 id="areas-h" class="text-d2 text-ink">Two centres, both in New Perungalathur</h2>
                 <p class="mt-4 text-[16px] leading-relaxed text-ink/75">
-                    One centre, in SSM Nagar &mdash; just off the GST Road stretch between
-                    Tambaram and Vandalur, close to Perungalathur railway station. There are
-                    no other branches. Students travel in from the neighbourhoods nearby,
-                    and we teach online for anyone who cannot travel.
+                    Both are just off the GST Road stretch between Tambaram and Vandalur,
+                    close to Perungalathur railway station. SSM Nagar runs all four
+                    batches; the yoga room at Tower&nbsp;20, Sriram Apartments has run the
+                    early morning batch since October. Students travel in from the
+                    neighbourhoods nearby, and we teach online for anyone who cannot
+                    travel to either.
                 </p>
                 <h3 class="mt-8 text-[13.5px] font-medium text-ink">Students travel in from</h3>
                 <ul class="mt-3 flex flex-wrap gap-2">
@@ -627,7 +703,7 @@ def build_index():
 
 {band("ima13", f"The whole group at {C.EVENT['name']} &mdash; students, parents and teachers together.", h="h-[220px] sm:h-[300px] lg:h-[380px]")}
     <!-- Enquiry + visit -->
-    <section id="visit" aria-labelledby="visit-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+    <section id="visit" aria-labelledby="visit-h" class="py-20 lg:py-32 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
 
             <div class="lg:col-span-6 reveal" id="enquire">
@@ -694,32 +770,37 @@ def build_index():
             </div>
 
             <div class="lg:col-span-6 reveal" style="--d:90ms">
-                <h2 class="text-d2 text-ink">Visit the centre</h2>
+                <h2 class="text-d2 text-ink">Visit us</h2>
 
                 <!-- bento: the map holds the wide tile, the three facts sit under it -->
                 <div class="bento mt-6 sm:grid-cols-2">
                     <div class="sm:col-span-2 bg-paper">
-                        <iframe title="Map showing Happy Yogis Yoga Centre, New Perungalathur"
+                        <iframe title="Map showing the Happy Yogis centre at SSM Nagar, New Perungalathur"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8938068!2d80.1131382!3d12.8938068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5259bd7762301f%3A0xbb838e445fc93a!2sHAPPY%20YOGIS%20YOGA%20CENTRE!5e0!3m2!1sen!2sin!4v1234567890"
                                 width="100%" height="280" style="border:0;display:block" allowfullscreen=""
                                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <div class="sm:col-span-2 bg-paper p-6">
-                        <p class="text-[13px] text-muted">Address</p>
+                    <div class="bg-paper p-6">
+                        <p class="text-[13px] text-muted">SSM Nagar &middot; all four batches</p>
                         <address class="mt-1.5 not-italic display text-d3 text-ink">SSM Nagar, New Perungalathur,<br>Chennai, Tamil Nadu 600063</address>
+                        <p class="mt-2 text-[14px] text-muted">Taught by Karthika</p>
+                        <a href="{PHONE_HREF}" class="mt-1 block py-1 text-[15px] font-medium text-ink hover:text-blue transition-colors">{PHONE_TEXT}</a>
                         <a href="{MAPS}" target="_blank" rel="noopener"
                            class="mt-3 py-1 inline-flex items-center gap-1.5 text-[14px] font-medium text-blue hover:underline">
                             Get directions {icon('arrow-up-right', 'w-4 h-4')}
                         </a>
                     </div>
                     <div class="bg-paper p-6">
-                        <p class="text-[13px] text-muted">Phone</p>
-                        <a href="{PHONE_HREF}" class="mt-1.5 block display text-d3 text-ink hover:text-blue transition-colors">{PHONE_TEXT}</a>
+                        <p class="text-[13px] text-muted">Sriram Apartments &middot; 5:30 &ndash; 6:30 am</p>
+                        <address class="mt-1.5 not-italic display text-d3 text-ink">Yoga Room, Tower 20,<br>Sriram Apartments, New Perungalathur</address>
+                        <p class="mt-2 text-[14px] text-muted">Taught by Surekha &middot; open since October</p>
+                        <a href="{C.CENTRE['sriram']['phone_href']}" class="mt-1 block py-1 text-[15px] font-medium text-ink hover:text-blue transition-colors">{C.CENTRE['sriram']['phone_text']}</a>
                     </div>
-                    <div class="bg-paper p-6">
+                    <div class="sm:col-span-2 bg-paper p-6">
                         <p class="text-[13px] text-muted">Open</p>
                         <p class="mt-1.5 text-[15px] leading-relaxed text-ink">{C.HOURS_TEXT}</p>
                         <p class="text-[14px] text-muted">{C.CLOSED_TEXT}</p>
+                        <p class="mt-2 text-[14px] text-muted">Online classes run at all four times, from either centre.</p>
                     </div>
                 </div>
             </div>
@@ -727,7 +808,7 @@ def build_index():
     </section>
 
     <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-h" class="py-16 lg:py-24">
+    <section id="faq" aria-labelledby="faq-h" class="py-20 lg:py-32">
         <div class="max-w-3xl mx-auto px-5 sm:px-8">
             <h2 id="faq-h" class="text-d2 text-ink reveal">Before you join</h2>
             <div class="mt-8 border-t border-line reveal" style="--d:90ms">
@@ -753,9 +834,9 @@ LOCATIONS = {
         "desc": ("Yoga centre in New Perungalathur, SSM Nagar. Four daily batches for "
                  "ladies, gents and children, Mon-Fri. 3-day trial available."),
         "h1": "Yoga classes in Perungalathur",
-        "lede": ("Happy Yogis is a yoga centre in SSM Nagar, New Perungalathur &mdash; our "
-                 "only location. If you live in Perungalathur, this is your local "
-                 "class, not a drive across the city."),
+        "lede": ("Happy Yogis has two centres in New Perungalathur &mdash; SSM Nagar and "
+                 "the yoga room at Tower 20, Sriram Apartments. If you live in "
+                 "Perungalathur, this is your local class, not a drive across the city."),
         "body": [
             ("Where we are",
              "SSM Nagar, New Perungalathur, close to Perungalathur railway station and "
@@ -825,6 +906,7 @@ def build_location(slug, cfg):
         "@context": "https://schema.org",
         "@graph": [
             C.business_node(),
+            C.branch_node(),
             {"@type": "WebPage", "@id": f"{BASE}/{slug}#webpage",
              "url": f"{BASE}/{slug}", "name": cfg["title"], "description": cfg["desc"],
              "inLanguage": "en-IN", "isPartOf": {"@id": f"{BASE}/#website"},
