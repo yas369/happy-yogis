@@ -90,10 +90,10 @@ def gallery():
     for i, k in enumerate(C.GALLERY):
         w, h = Image.open(os.path.join(OUT, f"{k}-sm.jpg")).size
         tiles.append(f"""                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded reveal" style="--d:{i * 45}ms"
-                        data-full="{ASSET_PREFIX}{k}.jpeg" data-full-webp="{ASSET_PREFIX}{k}.webp" data-caption="{C.PHOTOS[k]}">
+                        data-full="{ASSET_PREFIX}{k}.jpeg" data-full-webp="{ASSET_PREFIX}{k}.webp" data-caption="{alt_text(k)}">
                     <picture>
                         <source srcset="{ASSET_PREFIX}{k}-sm.webp" type="image/webp">
-                        <img src="{ASSET_PREFIX}{k}-sm.jpg" width="{w}" height="{h}" alt="{C.PHOTOS[k]}"
+                        <img src="{ASSET_PREFIX}{k}-sm.jpg" width="{w}" height="{h}" alt="{alt_text(k)}"
                              class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                              loading="lazy" decoding="async">
                     </picture>
@@ -169,6 +169,19 @@ def reviews_section():
 
 ASSET_PREFIX = ""   # "/" for pages served below the root
 
+# Photo captions, which are also the alt text and the lightbox captions.
+# ta_pages swaps this for the Tamil set the same way it swaps ASSET_PREFIX,
+# and falls back per key, so a photograph with no Tamil caption yet keeps its
+# English one rather than losing its description altogether.
+CAPTIONS = {}
+
+
+def alt_text(key):
+    """Not named caption(): photo() already takes a `caption` argument, and a
+    module function of that name resolves to the parameter inside it - which
+    is None by default, so every call site silently became None()."""
+    return CAPTIONS.get(key) or C.PHOTOS[key]
+
 # The hero photograph's rendered width: the content rail (max-w-6xl, 1152px)
 # once the viewport is wide enough, the viewport less its gutters below that.
 # Named once because the <link rel=preload> and the <picture> both have to
@@ -204,7 +217,7 @@ def photo(key, *, cls, sizes, box=None, priority=False, eager=False, caption=Non
     load = ('fetchpriority="high" decoding="async"' if priority
             else 'decoding="async"' if eager
             else 'loading="lazy" decoding="async"')
-    img = (f'<img src="{ASSET_PREFIX}{key}.jpeg" width="{w}" height="{h}" alt="{C.PHOTOS[key]}"\n'
+    img = (f'<img src="{ASSET_PREFIX}{key}.jpeg" width="{w}" height="{h}" alt="{alt_text(key)}"\n'
            f'                     class="{cls}" {load}>')
     pic = (f"""<picture>
                     <source type="image/webp" sizes="{sizes}"
@@ -225,7 +238,7 @@ def band(key, caption, *, h="h-[240px] sm:h-[340px] lg:h-[420px]"):
     """A photograph running the full width of the page between two sections.
     Beach frames carry a caption saying what they are - classes are taught in
     the hall, and nothing here should suggest otherwise."""
-    return f"""    <section aria-label="{C.PHOTOS[key]}" class="border-y border-line">
+    return f"""    <section aria-label="{alt_text(key)}" class="border-y border-line">
         <figure>
             {photo(key, cls=f'w-full {h} object-cover object-[center_45%] block',
                    sizes='100vw')}
@@ -969,7 +982,7 @@ def build_location(slug, cfg):
                     srcset="{cfg['photo']}-xs.webp 320w, {cfg['photo']}-sm.webp 640w, {cfg['photo']}-md.webp 768w, {cfg['photo']}.webp 1280w">
             <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
                     srcset="{cfg['photo']}-xs.jpg 320w, {cfg['photo']}-sm.jpg 640w, {cfg['photo']}-md.jpg 768w, {cfg['photo']}.jpeg 1280w">
-            <img src="{cfg['photo']}.jpeg" width="1280" height="960" alt="{C.PHOTOS[cfg['photo']]}"
+            <img src="{cfg['photo']}.jpeg" width="1280" height="960" alt="{alt_text(cfg['photo'])}"
                  class="w-full rounded mt-10" fetchpriority="high" decoding="async">
         </picture>
 

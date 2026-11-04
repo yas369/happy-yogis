@@ -757,7 +757,7 @@ def build_post(p):
                         srcset="/{p['photo']}-xs.webp 320w, /{p['photo']}-sm.webp 640w, /{p['photo']}-md.webp 768w, /{p['photo']}.webp {w}w">
                 <source type="image/jpeg" sizes="(min-width:768px) 720px, 92vw"
                         srcset="/{p['photo']}-xs.jpg 320w, /{p['photo']}-sm.jpg 640w, /{p['photo']}-md.jpg 768w, /{p['photo']}.jpeg {w}w">
-                <img src="/{p['photo']}.jpeg" width="{w}" height="{h}" alt="{C.PHOTOS[p['photo']]}"
+                <img src="/{p['photo']}.jpeg" width="{w}" height="{h}" alt="{P.alt_text(p['photo'])}"
                      class="w-full rounded" loading="lazy" decoding="async">
             </picture>
             </div>
@@ -838,6 +838,7 @@ def build_blog_index():
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     P.ASSET_PREFIX = "/"
+    P.CAPTIONS = T.PHOTOS          # Tamil alt text for the photographs
     try:
         open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(build_index())
         print("ta/index.html written")
@@ -851,3 +852,4 @@ if __name__ == "__main__":
             print(f"ta/{post['slug']} written")
     finally:
         P.ASSET_PREFIX = ""
+        P.CAPTIONS = {}
