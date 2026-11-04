@@ -98,10 +98,18 @@ Two things the checks get wrong if you write your own:
 - **Tamil sets wider than Latin** at the same size, so its headings have their
   own smaller steps in `build.py`. Long compounds otherwise overflow their
   column and scroll the page sideways.
-- **`sitemap.py` stamps `<lastmod>` with today's date on every URL**, whether
-  or not that page changed. Google's guidance is that `lastmod` should be the
-  real modification date, so this is worth fixing if the sitemap is ever
-  leaned on for crawl scheduling.
+- **The sitemap's image entries come from the markup, not from a list of
+  filenames.** They used to be matched by a regex anchored on the filename,
+  which went wrong silently twice: a leading slash stopped it matching, so
+  every Tamil page advertised no images at all, and the teacher portrait was
+  renamed to `instructor-portrait.jpeg`, after which the `instructor` branch
+  matched nothing. Both were invisible because `validate.py` only checked an
+  image's *basename* against the site root. It resolves the full path now.
+- **The Tamil pages carry English `alt` text on their photographs** - 32 of
+  their 34 image entries. `P.photo()` reads `C.PHOTOS`, which is English
+  only, so a Tamil reader on a screen reader hears English descriptions.
+  Fixing it means Tamil captions for the ten gallery photographs, which wants
+  a native speaker rather than a machine.
 
 ## Not in here
 
