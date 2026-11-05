@@ -18,40 +18,58 @@ TRIAL_MSG = "Hello Happy Yogis! I would like to book a 3-day trial."
 # ------------------------------------------------------------------ fragments
 
 def batch_list():
-    """The hero's schedule panel. Each row expands on click; the CTA below
-    rewrites itself to name whichever batch is open."""
+    """The timetable. A row per batch: the time set large and tabular because
+    that is what people scan for, a pill saying who it suits, the length, and
+    a note that opens on click. The page script marks the next one today with
+    .slot--next, so the row a visitor wants is the row that is lit."""
     rows = []
     for i, (t24, label, length, who, note) in enumerate(C.BATCHES):
         plain = label.replace("&ndash;", "-")
+        pill = "pill--blue" if who == "Ladies only" else "pill--quiet"
         rows.append(f"""                    <li>
-                        <button type="button" class="batch group" data-start="{t24}" data-label="{plain}"
+                        <button type="button" class="batch slot group w-full text-left" data-start="{t24}" data-label="{plain}"
                                 aria-expanded="false" aria-controls="batch-d{i}">
-                            <span class="flex items-baseline justify-between gap-4">
-                                <span class="display text-[17px] text-ink">{label}</span>
-                                <span class="text-[13px] text-muted whitespace-nowrap">{length}</span>
-                            </span>
-                            <span class="mt-0.5 block text-[13px] {'text-blue font-medium' if who == 'Ladies only' else 'text-muted'}">{who}</span>
+                            <span class="slot__t">{label}</span>
+                            <span class="pill {pill}">{who}</span>
+                            <span class="slot__m">{length}</span>
                         </button>
                         <div id="batch-d{i}" class="batch-detail">
-                            <p class="pb-4 text-[14px] leading-relaxed text-muted max-w-md">{note}</p>
+                            <p class="px-[1.1rem] pb-4 text-[14px] leading-relaxed text-muted max-w-md">{note}</p>
                         </div>
                     </li>""")
     return "\n".join(rows)
 
 
 def classes_section():
+    """What we teach, as a grid of tiles rather than hairline rows. The rows
+    read exactly like the timetable and the journal index above and below
+    them; a tile with an icon reads as one of a set of parallel things, which
+    is what these are. The filter chips sit directly above the grid they
+    filter - they used to float opposite the intro paragraph, nowhere near
+    the list they act on."""
     groups = [g for g, _ in C.CLASS_GROUPS]
-    filters = ['                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded lift-full text-ink transition-colors" data-group="all" aria-pressed="true">Everything</button>']
+    def chip(g, label, on):
+        return (f'                    <button type="button" class="filter px-3.5 py-2 text-[13.5px] '
+                f'border border-line rounded-full text-ink transition-colors" '
+                f'data-group="{g}" aria-pressed="{"true" if on else "false"}">{label}</button>')
+    filters = [chip("all", "Everything", True)]
+    filters += [chip(g, g, False) for g in groups]
+
+    # One icon per group, so a tile says which family it belongs to before
+    # the heading is read.
+    ICON = {groups[0] if groups else "": "sprout"}
     for g in groups:
-        filters.append(f'                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded lift-full text-ink transition-colors" data-group="{g}" aria-pressed="false">{g}</button>')
+        ICON[g] = {"Start here": "sprout", "Build strength": "flame",
+                   "Breath and mind": "wind", "Beyond the batches": "sun"}.get(g, "circle")
 
     items = []
     for g, entries in C.CLASS_GROUPS:
         for name, desc in entries:
-            items.append(f"""                <li class="class-item border-t border-line py-6" data-group="{g}">
-                    <div class="sm:flex sm:items-baseline sm:gap-8">
-                        <h3 class="display text-d3 text-ink sm:w-64 sm:shrink-0">{name}</h3>
-                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">{desc}</p>
+            items.append(f"""                <li class="class-item" data-group="{g}">
+                    <div class="tile">
+                        <span class="tile__i">{icon(ICON[g], 'w-[1.15rem] h-[1.15rem]')}</span>
+                        <h3 class="display text-d3 text-ink">{name}</h3>
+                        <p class="mt-2 text-[14.5px] leading-relaxed text-muted">{desc}</p>
                     </div>
                 </li>""")
     return "\n".join(filters), "\n".join(items)
@@ -72,22 +90,29 @@ def health_list():
     return "\n".join(out)
 
 
-def faq_list():
-    return "\n".join(f"""                <div class="faq-item border-b border-line">
-                    <h3>
+def faq_list(level=3):
+    """`level` because the same accordion is an h3 under a section heading on
+    a long page, but sits directly under the h1 on faq.html, where an h3
+    would skip a rank."""
+    return "\\n".join(f"""                <div class="faq-item border-b border-line">
+                    <h{level}>
                         <button type="button" class="faq-q w-full flex items-start justify-between gap-6 py-5 text-left">
                             <span class="text-[16px] font-medium text-ink">{q}</span>
                             <span class="shrink-0 mt-0.5 text-muted">{icon('plus', 'w-5 h-5')}</span>
                         </button>
-                    </h3>
+                    </h{level}>
                     <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">{a}</div>
                 </div>""" for q, a in C.FAQS)
 
 
-def gallery():
+def gallery(limit=None):
     from PIL import Image
     tiles = []
-    for i, k in enumerate(C.GALLERY):
+    # The home page showed all 26, which alone was 1,932px - a sixth of the
+    # whole page. Twelve still reads as "plenty of real photographs", and the
+    # rest keep their sitemap entries through the blog, area and event pages
+    # that also carry them.
+    for i, k in enumerate(C.GALLERY if limit is None else C.GALLERY[:limit]):
         w, h = Image.open(os.path.join(OUT, f"{k}-sm.jpg")).size
         tiles.append(f"""                <button type="button" class="gallery-item group block w-full mb-4 break-inside-avoid overflow-hidden rounded reveal" style="--d:{i * 45}ms"
                         data-full="{ASSET_PREFIX}{k}.jpeg" data-full-webp="{ASSET_PREFIX}{k}.webp" data-caption="{alt_text(k)}">
@@ -99,6 +124,34 @@ def gallery():
                     </picture>
                 </button>""")
     return "\n".join(tiles)
+
+
+def review_cards(limit=None, *, prefix=""):
+    """Reviews as plain cards.
+
+    The home page carried all twelve in an auto-advancing carousel - 936 of
+    its 2,285 words, and a thing moving on its own next to a timetable people
+    are trying to read. Three cards and a link to the rest say the same thing.
+    Still no AggregateRating or Review schema, for the reason reviews_section
+    gives: feeding a centre's own Google reviews back to Google as markup is
+    what its guidelines prohibit. These stay attributed quotes."""
+    if not C.REVIEWS:
+        return f"""                <li class="card p-6 sm:p-7">
+                    <p class="text-[15px] leading-relaxed text-muted">
+                        We are collecting reviews from our students on Google. Once they
+                        are up, they will appear here &mdash; in their words, not ours.
+                    </p>
+                </li>"""
+    picked = C.REVIEWS if limit is None else C.REVIEWS[:limit]
+    return "\n".join(f"""                <li class="reveal" style="--d:{min(i, 3) * 70}ms">
+                    <figure class="card h-full flex flex-col p-6 sm:p-7">
+                        <span class="pill pill--amber self-start">{icon('star', 'w-3.5 h-3.5')}Google review</span>
+                        <blockquote class="mt-4 display text-[18px] leading-[1.55] text-ink">&ldquo;{r['text']}&rdquo;</blockquote>
+                        <figcaption class="mt-auto pt-5 text-[13px] text-ink/70">
+                            {r['name']} <span aria-hidden="true">&middot;</span> <span class="text-muted">{r['when']}</span>
+                        </figcaption>
+                    </figure>
+                </li>""" for i, r in enumerate(picked))
 
 
 def reviews_section():
@@ -284,16 +337,25 @@ def photo_cta(key):
 
 
 def journal_block(limit=None):
-    """Every post, two to a row. A list rather than a carousel: six headlines
-    are read in a glance, where a slider would show two and hide the rest
-    behind a wait - and the page already has one thing moving on its own."""
+    """The journal index, as cards with a thumbnail.
+
+    These were date / serif title / two grey lines separated by hairlines,
+    which is the same shape as the timetable and the class list - nothing
+    said these rows were things to open and read. A picture does, and every
+    post already names a photograph, so this costs no new asset."""
     posts = newest_first() if limit is None else newest_first()[:limit]
     rows = []
     for i, post in enumerate(posts):
-        rows.append(f"""                <li class="border-t border-line reveal" style="--d:{min(i, 3) * 70}ms">
-                    <a href="{post['slug']}" class="group block py-5 sm:pr-6">
-                        <time datetime="{post['date']}" class="text-[13px] text-muted">{post['date_text']}</time>
-                        <h3 class="mt-1.5 display text-d3 text-ink group-hover:text-blue transition-colors">{post['title']}</h3>
+        rows.append(f"""                <li class="reveal" style="--d:{min(i, 3) * 70}ms">
+                    <a href="{post['slug']}" class="post tile !p-3 sm:!p-4">
+                        <span class="post__img">
+                            {photo(post['photo'], cls='', sizes='(min-width:640px) 176px, 120px')}
+                        </span>
+                        <span class="block min-w-0 py-1">
+                            <time datetime="{post['date']}" class="text-[12.5px] text-muted">{post['date_text']}</time>
+                            <span class="post__h mt-1 block display text-d3 text-ink">{post['title']}</span>
+                            <span class="mt-1.5 hidden sm:block text-[14px] leading-relaxed text-muted">{post['standfirst']}</span>
+                        </span>
                     </a>
                 </li>""")
     return "\n".join(rows)
@@ -336,10 +398,6 @@ def build_index():
              "name": "Yoga Centre in Perungalathur & Tambaram | Happy Yogis",
              "isPartOf": {"@id": f"{BASE}/#website"},
              "about": {"@id": f"{BASE}/#business"}, "inLanguage": "en-IN"},
-            {"@type": "FAQPage", "@id": f"{BASE}/#faq",
-             "mainEntity": [{"@type": "Question", "name": q,
-                             "acceptedAnswer": {"@type": "Answer", "text": a}}
-                            for q, a in C.FAQS]},
         ],
     }
 
@@ -377,7 +435,7 @@ def build_index():
          script - and the photograph is outside .enter for the same reason: an
          element animating up from opacity 0 is not painted, so wrapping it
          would have pushed the largest paint later rather than earlier. -->
-    <section aria-labelledby="hero-h" class="hero pt-28 lg:pt-40 pb-16 lg:pb-24">
+    <section aria-labelledby="hero-h" class="hero pt-24 lg:pt-32 pb-14 lg:pb-20">
         <div class="hero__wash" role="presentation"></div>
 
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
@@ -403,161 +461,81 @@ def build_index():
                 </div>
             </div>
 
-            <div class="hero__shot grade mt-16 lg:mt-24">
+            <div class="hero__shot grade mt-12 lg:mt-16">
                 {photo('ima6', cls='object-[center_38%]', priority=True, sizes=HERO_SIZES)}
             </div>
         </div>
     </section>
 
-    <section aria-label="Batch times" class="bg-paper" id="schedule">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 lg:pt-24">
-            <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+    <!-- The timetable. It sits on the sand band with the rows on a white
+         card, which is what lets the pills read: a tinted pill on the band
+         itself measures 1.03:1 and disappears. -->
+    <section aria-label="Batch times" class="bg-sand border-y border-line" id="schedule">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-24">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
                 <div class="lg:col-span-5">
                     <p class="lbl">One day at the centre</p>
                     <h2 class="mt-3 text-d2 text-ink">The room fills four times over</h2>
                     <p class="mt-5 text-[17px] leading-relaxed text-ink/75">
-                        Each batch has its own character. Pick the hour that suits your
-                        life &mdash; you can move between them when your week changes.
+                        Pick the hour that suits your life. You can move between
+                        batches when your week changes.
                     </p>
-                    <div class="mt-7">
-                        <a href="#classes" class="inline-flex items-center px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">
-                            See what we teach
-                        </a>
-                    </div>
+                    <ul class="mt-7 space-y-2.5 text-[15px] text-ink/80">
+                        <li class="flex items-center gap-2.5">{icon('check', 'w-4 h-4 text-blue shrink-0')}Monday to Friday, four times a day</li>
+                        <li class="flex items-center gap-2.5">{icon('check', 'w-4 h-4 text-blue shrink-0')}A ladies-only batch mid-morning</li>
+                        <li class="flex items-center gap-2.5">{icon('check', 'w-4 h-4 text-blue shrink-0')}Online and in person</li>
+                    </ul>
                 </div>
 
                 <div class="lg:col-span-7">
-                    <div class="border border-line rounded lift p-6 sm:p-7 bg-sand/60">
-                        <div class="flex items-baseline justify-between gap-4">
+                    <div class="card p-4 sm:p-5">
+                        <div class="flex items-baseline justify-between gap-4 px-[1.1rem] pt-1">
                             <h3 class="display text-d4 text-ink">Today at the centre</h3>
-                            <span class="text-[13px] text-muted">Mon&ndash;Fri</span>
+                            <span class="pill pill--quiet">Mon&ndash;Fri</span>
                         </div>
-                        <p id="next-class" class="mt-1.5 text-[13.5px] text-muted">Batches run Monday to Friday.</p>
+                        <p id="next-class" class="px-[1.1rem] mt-1 text-[13.5px] text-muted">Batches run Monday to Friday.</p>
 
-                        <ul class="mt-5">
+                        <ul class="mt-3">
 {batch_list()}
                         </ul>
 
-                        <p class="mt-5 pt-4 border-t border-line text-[13px] leading-relaxed text-muted">
+                        <p class="mx-[1.1rem] mt-3 pt-3.5 border-t border-line text-[13px] leading-relaxed text-muted">
                             Every batch is warm-up, asanas, pranayama and relaxation.
-                            Select a batch to see who it suits.
+                            Select one to see who it suits.
                         </p>
                     </div>
                 </div>
             </div>
-
-            <ul class="factline pb-16 lg:pb-24 pt-6 border-t border-line text-[15px] text-ink/80">
-                <li>Four classes a day</li>
-                <li>Monday to Friday</li>
-                <li>Special care for women</li>
-                <li>Online and in person</li>
-            </ul>
         </div>
     </section>
 
-    <!-- About -->
-    <section id="about" aria-labelledby="about-h" class="py-20 lg:py-32">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
-            <div class="lg:col-span-4">
-                <h2 id="about-h" class="text-d2 text-ink reveal">A neighbourhood centre, not a fitness chain</h2>
-            </div>
-            <div class="lg:col-span-8 space-y-4 text-[16px] leading-relaxed text-ink/80 max-w-2xl reveal" style="--d:90ms">
-                <p>
-                    Happy Yogis runs out of a hall in SSM Nagar, New Perungalathur. On any
-                    morning, school children, people on their way to work, homemakers and
-                    retired members share the mats. That mix is deliberate; it keeps the
-                    room relaxed.
-                </p>
-                <p>
-                    Batches are small enough that the teacher knows what each person is
-                    working with &mdash; a bad knee, a desk job, a thyroid condition, a first
-                    week of yoga &mdash; and the practice is adjusted around that.
-                </p>
-                <p class="display text-d3 text-ink pt-2">
-                    It does not matter whether you can put your leg behind your head. It
-                    matters that you turn up, breathe properly, and leave better than you
-                    walked in.
-                </p>
-            </div>
-
-            <div class="lg:col-span-12 reveal" style="--d:120ms">
-                <div class="overflow-hidden rounded zoom grade">
-                    {photo('ima4', cls='w-full h-[220px] sm:h-[300px] lg:h-[360px] object-cover object-[center_45%]',
-                           sizes='(min-width:1024px) 1152px, 100vw')}
-                </div>
-                <p class="mt-2.5 text-[13px] text-muted">
-                    A weekday morning batch &mdash; children and adults on the mats together.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Classes -->
-    <section id="classes" aria-labelledby="classes-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <!-- What we teach. Tiles in a grid, on paper so the sand timetable band
+         above reads as a separate block. The chips sit directly over the grid
+         they filter. -->
+    <section id="classes" aria-labelledby="classes-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="lg:flex lg:items-end lg:justify-between lg:gap-10">
-                <div class="max-w-xl reveal">
-                    <h2 id="classes-h" class="text-d2 text-ink">What we teach</h2>
-                    <p class="mt-3 text-[16px] leading-relaxed text-ink/75">
-                        All of it is taught inside the regular batches; there is no separate
-                        course to book. Tell us what you are working towards and the teacher
-                        builds it in.
-                    </p>
-                </div>
-                <div class="mt-6 lg:mt-0 flex flex-wrap gap-2" role="group" aria-label="Filter classes">
+            <div class="max-w-2xl reveal">
+                <p class="lbl">What we teach</p>
+                <h2 id="classes-h" class="mt-3 text-d2 text-ink">Everything is taught inside the regular batch</h2>
+                <p class="mt-4 text-[16px] leading-relaxed text-ink/75">
+                    There is no separate course to book. Tell the teacher what you
+                    are working towards and it gets built in.
+                </p>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-2 reveal" role="group" aria-label="Filter classes">
 {filters}
-                </div>
             </div>
 
             <p id="filter-status" class="sr-only" role="status" aria-live="polite"></p>
-            <ul class="mt-10 border-b border-line">
+            <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 {class_items}
             </ul>
-
-            <div class="mt-10 grid grid-cols-3 gap-3 reveal">
-                <div class="overflow-hidden rounded zoom grade">
-                    {photo('ima8', cls='w-full h-[150px] sm:h-[230px] lg:h-[280px] object-cover',
-                           sizes='(min-width:1024px) 370px, 33vw')}
-                </div>
-                <div class="overflow-hidden rounded zoom grade">
-                    {photo('ima20', cls='w-full h-[150px] sm:h-[230px] lg:h-[280px] object-cover object-[center_40%]',
-                           sizes='(min-width:1024px) 370px, 33vw')}
-                </div>
-                <div class="overflow-hidden rounded zoom grade">
-                    {photo('ima25', cls='w-full h-[150px] sm:h-[230px] lg:h-[280px] object-cover object-[center_40%]',
-                           sizes='(min-width:1024px) 370px, 33vw')}
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Yogi's Upadesha: newest posts, from the same list the section renders -->
-    <section id="journal" aria-labelledby="journal-h" class="py-20 lg:py-32">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="sm:flex sm:items-end sm:justify-between sm:gap-10">
-                <div class="max-w-xl reveal">
-                    <h2 id="journal-h" class="text-d2 text-ink">What people ask before they start</h2>
-                    <p class="mt-3 text-[16px] leading-relaxed text-ink/75">
-                        The questions we get on the phone, answered properly &mdash; what an
-                        hour contains, who each batch suits, and what yoga does and does not
-                        do.
-                    </p>
-                </div>
-                <a href="blog.html"
-                   class="mt-5 sm:mt-0 inline-flex shrink-0 items-center px-4 py-2.5 border border-line rounded lift text-[14px] font-medium text-ink hover:border-ink transition-colors">
-                    All entries
-                </a>
-            </div>
-
-            <ul class="mt-10 border-b border-line grid sm:grid-cols-2 sm:gap-x-12">
-{journal_block()}
-            </ul>
-        </div>
-    </section>
-
-{band("ima15", f"{C.EVENT['name']} at {C.EVENT['place']}, {C.EVENT['date']} &mdash; a one-off. Regular batches are taught at the centre in SSM Nagar, New Perungalathur.")}
     <!-- Health -->
-    <section id="health" aria-labelledby="health-h" class="py-20 lg:py-32">
+    <section id="health" aria-labelledby="health-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4 reveal">
                 <h2 id="health-h" class="text-d2 text-ink">Practising around a health condition</h2>
@@ -587,11 +565,16 @@ def build_index():
          is a pair of columns rather than one portrait and a bio. Karthika's
          column runs longer; items-start lets it, instead of centring Surekha's
          shorter one against nothing. -->
-    <section id="teacher" aria-labelledby="teacher-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <section id="teacher" aria-labelledby="teacher-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="reveal">
+            <div class="max-w-2xl reveal">
                 <p class="lbl">Who teaches</p>
                 <h2 id="teacher-h" class="mt-3 text-d2 text-ink">Two teachers, two centres</h2>
+                <p class="mt-4 text-[16px] leading-relaxed text-ink/75">
+                    Batches are small enough that the teacher knows what each person
+                    is working with &mdash; a bad knee, a desk job, a first week of
+                    yoga &mdash; and the practice is adjusted around that.
+                </p>
             </div>
 
             <div class="mt-12 lg:mt-16 grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
@@ -663,7 +646,7 @@ def build_index():
     </section>
 
     <!-- Studio photos -->
-    <section id="studio" aria-labelledby="studio-h" class="py-20 lg:py-32">
+    <section id="studio" aria-labelledby="studio-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="max-w-xl reveal">
                 <h2 id="studio-h" class="text-d2 text-ink">Inside the centre</h2>
@@ -672,25 +655,54 @@ def build_index():
                     photo to see it larger.
                 </p>
             </div>
-            <div class="mt-10 columns-2 lg:columns-3 xl:columns-4 gap-4">
-{gallery()}
+            <div class="mt-8 columns-2 sm:columns-3 lg:columns-4 xl:columns-6 gap-3">
+{gallery(12)}
             </div>
         </div>
     </section>
 
-    <!-- Reviews -->
-    <section id="reviews" aria-labelledby="reviews-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <!-- Reviews. Twelve of these used to sit here, 936 words of the home
+         page's 2,285. Three and a link carry the same signal. -->
+    <section id="reviews" aria-labelledby="reviews-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <h2 id="reviews-h" class="text-d2 text-ink reveal">What students say</h2>
-            <div class="mt-4 reveal" style="--d:90ms">
-{reviews_section()}
+            <div class="sm:flex sm:items-end sm:justify-between sm:gap-10">
+                <div class="max-w-xl reveal">
+                    <p class="lbl">In their words</p>
+                    <h2 id="reviews-h" class="mt-3 text-d2 text-ink">What students say</h2>
+                </div>
+                <a href="reviews.html"
+                   class="mt-5 sm:mt-0 inline-flex shrink-0 items-center gap-1.5 px-4 py-2.5 border border-line rounded-full text-[14px] font-medium text-ink hover:border-ink transition-colors">
+                    All {len(C.REVIEWS)} reviews {icon('arrow-right', 'w-4 h-4')}
+                </a>
             </div>
+            <ul class="mt-8 grid md:grid-cols-3 gap-4">
+{review_cards(3)}
+            </ul>
         </div>
     </section>
 
-{photo_cta("ima1")}
+    <!-- Yogi's Upadesha: newest posts, from the same list the section renders -->
+    <section id="journal" aria-labelledby="journal-h" class="py-16 lg:py-24 bg-sand border-y border-line">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="sm:flex sm:items-end sm:justify-between sm:gap-10">
+                <div class="max-w-xl reveal">
+                    <p class="lbl">Yogi&rsquo;s Upadesha</p>
+                    <h2 id="journal-h" class="mt-3 text-d2 text-ink">What people ask before they start</h2>
+                </div>
+                <a href="blog.html"
+                   class="mt-5 sm:mt-0 inline-flex shrink-0 items-center gap-1.5 px-4 py-2.5 border border-line rounded-full text-[14px] font-medium text-ink hover:border-ink transition-colors">
+                    All entries {icon('arrow-right', 'w-4 h-4')}
+                </a>
+            </div>
+
+            <ul class="mt-8 grid sm:grid-cols-2 gap-4">
+{journal_block(2)}
+            </ul>
+        </div>
+    </section>
+
     <!-- Areas -->
-    <section id="areas" aria-labelledby="areas-h" class="py-20 lg:py-32">
+    <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-5 reveal">
                 <h2 id="areas-h" class="text-d2 text-ink">Two centres, both in New Perungalathur</h2>
@@ -714,9 +726,8 @@ def build_index():
         </div>
     </section>
 
-{band("ima13", f"The whole group at {C.EVENT['name']} &mdash; students, parents and teachers together.", h="h-[220px] sm:h-[300px] lg:h-[380px]")}
     <!-- Enquiry + visit -->
-    <section id="visit" aria-labelledby="visit-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <section id="visit" aria-labelledby="visit-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
 
             <div class="lg:col-span-6 reveal" id="enquire">
@@ -816,16 +827,6 @@ def build_index():
                         <p class="mt-2 text-[14px] text-muted">Online classes run at all four times, from either centre.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-h" class="py-20 lg:py-32">
-        <div class="max-w-3xl mx-auto px-5 sm:px-8">
-            <h2 id="faq-h" class="text-d2 text-ink reveal">Before you join</h2>
-            <div class="mt-8 border-t border-line reveal" style="--d:90ms">
-{faq_list()}
             </div>
         </div>
     </section>
@@ -1033,9 +1034,128 @@ def build_location(slug, cfg):
     return head_html + body
 
 
+def build_simple(*, slug, title, desc, lbl, h1, lede, inner, extra_nodes=(),
+                 crumb, alt=None):
+    """A short standalone page: breadcrumb, heading, one block of content.
+
+    reviews.html and faq.html are built with it. Both were sections of the
+    home page; between them they were a quarter of its words, and neither is
+    something a visitor reads on the way to booking a class."""
+    schema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            C.business_node(),
+            {"@type": "WebPage", "@id": f"{BASE}/{slug}#webpage",
+             "url": f"{BASE}/{slug}", "name": title, "description": desc,
+             "inLanguage": "en-IN", "isPartOf": {"@id": f"{BASE}/#website"},
+             "about": {"@id": f"{BASE}/#business"}},
+            {"@type": "BreadcrumbList", "@id": f"{BASE}/{slug}#breadcrumb",
+             "itemListElement": [
+                 {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{BASE}/"},
+                 {"@type": "ListItem", "position": 2, "name": crumb,
+                  "item": f"{BASE}/{slug}"}]},
+            *extra_nodes,
+        ],
+    }
+    body = f"""<body class="font-body bg-paper text-ink text-[15px]">
+{nav(alt_href=alt[1] if alt else None)}
+    <main id="main" class="pt-16">
+
+    <nav aria-label="Breadcrumb" class="max-w-4xl mx-auto px-5 sm:px-8 pt-8">
+        <ol class="flex flex-wrap items-center gap-2 text-[13.5px] text-muted">
+            <li><a href="/" class="inline-block py-1 hover:text-ink transition-colors">Home</a></li>
+            <li aria-hidden="true">/</li>
+            <li><span aria-current="page" class="text-ink">{crumb}</span></li>
+        </ol>
+    </nav>
+
+    <header class="max-w-4xl mx-auto px-5 sm:px-8 pt-8 pb-12 lg:pb-16">
+        <p class="lbl">{lbl}</p>
+        <h1 class="mt-3 text-d2 text-ink">{h1}</h1>
+        <p class="lede mt-5 text-ink/75 max-w-2xl">{lede}</p>
+    </header>
+
+{inner}
+
+    </main>
+{footer()}
+{SCRIPT}"""
+    return head(title=title, desc=desc, path=slug, schema=schema,
+                alt=alt) + body
+
+
+def build_reviews():
+    inner = f"""    <section aria-label="Reviews" class="pb-20 lg:pb-28">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+{review_cards()}
+            </ul>
+            <p class="mt-10 text-[15px] text-muted max-w-2xl">
+                These are the reviews students have left on our Google profile,
+                quoted as written. We do not mark them up as rating data here
+                &mdash; a business feeding its own reviews back to Google as
+                structured data is what its guidelines prohibit.
+            </p>
+            <a href="{C.REVIEWS_URL}" target="_blank" rel="noopener"
+               class="mt-5 inline-flex items-center gap-1.5 text-[15px] font-medium text-blue hover:underline">
+                Read them on Google {icon('arrow-up-right', 'w-4 h-4')}
+            </a>
+        </div>
+    </section>"""
+    return build_simple(
+        slug="reviews.html",
+        title="What students say | Happy Yogis Yoga Centre",
+        desc=("Reviews from students at Happy Yogis Yoga Centre, New Perungalathur, "
+              "quoted from our Google profile."),
+        lbl="In their words", h1="What students say",
+        lede=("Left by students on our Google profile, quoted as written."),
+        crumb="Reviews", inner=inner)
+
+
+def build_faq():
+    faq_node = {"@type": "FAQPage", "@id": f"{BASE}/faq.html#faq",
+                "mainEntity": [{"@type": "Question", "name": q,
+                                "acceptedAnswer": {"@type": "Answer", "text": a}}
+                               for q, a in C.FAQS]}
+    inner = f"""    <section aria-label="Questions" class="pb-20 lg:pb-28">
+        <div class="max-w-3xl mx-auto px-5 sm:px-8">
+            <div class="card px-5 sm:px-7">
+{faq_list(2)}
+            </div>
+            <div class="mt-10 card px-5 py-6 sm:p-7">
+                <h2 class="display text-d3 text-ink">Still not sure?</h2>
+                <p class="mt-2 text-[15px] leading-relaxed text-ink/75">
+                    Ask us on WhatsApp, or call the centre. Nobody is put on a list.
+                </p>
+                <div class="mt-5 flex flex-wrap gap-3">
+                    <a href="{wa(TRIAL_MSG)}" target="_blank" rel="noopener"
+                       class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
+                        Book a 3-day trial
+                    </a>
+                    <a href="{PHONE_HREF}"
+                       class="inline-flex items-center gap-2 px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">
+                        {icon('phone', 'w-4 h-4')}{PHONE_TEXT}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>"""
+    return build_simple(
+        slug="faq.html",
+        title="Questions before you join | Happy Yogis Yoga Centre",
+        desc=("Common questions about yoga classes at Happy Yogis, New Perungalathur "
+              "- batches, what to bring, and who the classes suit."),
+        lbl="Before you join", h1="Questions people ask",
+        lede=("What an hour contains, what to bring, and who each batch suits."),
+        crumb="Questions", inner=inner, extra_nodes=(faq_node,))
+
+
 if __name__ == "__main__":
     open(os.path.join(OUT, "index.html"), "w").write(build_index())
     print("index.html written")
+    for name, fn in (("reviews.html", build_reviews), ("faq.html", build_faq)):
+        open(os.path.join(OUT, name), "w").write(fn())
+        print(f"{name} written")
     for slug, cfg in LOCATIONS.items():
         open(os.path.join(OUT, slug), "w").write(build_location(slug, cfg))
         print(f"{slug} written")

@@ -12,14 +12,21 @@ module.exports = {
     // follow. A hairline at E2EAF1 measures 1.18:1 against the new paper,
     // which is a rule you cannot see - held at D3E0EA it reads 1.31:1, so
     // the rules got crisper as the grounds got lighter. All five text
-    // tokens still clear 4.5:1 on the lightest ground (worst: clay, 4.86).
+    // tokens still clear 4.5:1 on the lightest ground.
+    //
+    // `sand` then went the other way: at EEF4F9 it measured 1.078:1 against
+    // paper, which is a band you cannot see you have entered, and the page
+    // read as one undifferentiated scroll. At E4EDF6 it is 1.151:1 - still
+    // pale, now legible as a band. That is the darkest it can go: clay, the
+    // weakest text token, lands at 4.55:1 on it, so clay was deepened to
+    // 755C36 to buy margin. Worst pairing anywhere is now sky on sand, 4.59.
     // Cool paper and the brand indigo. sky/muted/clay are the darkened,
     // text-safe members - each clears 4.5:1 on sand, the lightest ground
     // they sit on. sage/amber are decorative only and never carry text;
     // deep is the dark band the hero and closing sections sit on.
-    colors: { ink:'#10263A', blue:'#1F4E79', sky:'#21709C', sand:'#EEF4F9',
+    colors: { ink:'#10263A', blue:'#1F4E79', sky:'#21709C', sand:'#E4EDF6',
               paper:'#FAFCFE', line:'#D3E0EA', muted:'#5A6B7B',
-              clay:'#81663D', amber:'#B08D57', sage:'#4DA8DA', deep:'#0E2740' },
+              clay:'#755C36', amber:'#B08D57', sage:'#4DA8DA', deep:'#0E2740' },
     fontFamily: { display:['Cormorant Garamond','Georgia','Times New Roman','serif'],
                   body:['DM Sans','system-ui','-apple-system','Segoe UI','sans-serif'] },
     // Display sizes. d1 is deliberately far larger than a sans headline

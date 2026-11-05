@@ -11,7 +11,8 @@ from html.parser import HTMLParser
 # The site root, derived from this file's location so a clone works
 # wherever it sits. HAPPY_YOGIS_ROOT overrides it if ever needed.
 ROOT = os.environ.get("HAPPY_YOGIS_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ["index.html", "privacy-policy.html", "terms-of-service.html",
+PAGES = ["index.html", "reviews.html", "faq.html",
+         "privacy-policy.html", "terms-of-service.html",
          "yoga-classes-perungalathur.html", "yoga-classes-tambaram.html",
          "blog.html", "what-happens-in-your-first-yoga-class.html", "yoga-for-weight-loss-in-chennai.html", "yoga-classes-for-men-perungalathur.html", "yoga-classes-for-children-perungalathur.html", "international-yoga-day-beach.html", "108-suryanamaskar-challenge.html",
          "hatha-yoga-in-chennai.html",

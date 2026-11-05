@@ -44,6 +44,8 @@ PAGES = [
     ("yoga-classes-perungalathur.html",            "0.9", "monthly"),
     ("yoga-classes-tambaram.html",                 "0.9", "monthly"),
     ("blog.html",                                  "0.6", "monthly"),
+    ("faq.html",                                   "0.6", "monthly"),
+    ("reviews.html",                               "0.5", "monthly"),
     ("hatha-yoga-in-chennai.html",                 "0.7", "yearly"),
     ("how-often-should-you-do-yoga.html",            "0.7", "yearly"),
     ("yoga-or-gym-which-should-you-pick.html",       "0.7", "yearly"),

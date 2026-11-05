@@ -14,7 +14,8 @@ _SITE = os.environ.get("HAPPY_YOGIS_ROOT") or os.path.dirname(os.path.dirname(os
 # inlined - every icon on the site silently blank.
 ICONS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                      "node_modules", "lucide-static", "icons")
-PAGES = ["index.html", "privacy-policy.html", "terms-of-service.html",
+PAGES = ["index.html", "reviews.html", "faq.html",
+         "privacy-policy.html", "terms-of-service.html",
          "yoga-classes-perungalathur.html", "yoga-classes-tambaram.html",
          "blog.html", "what-happens-in-your-first-yoga-class.html", "yoga-for-weight-loss-in-chennai.html", "yoga-classes-for-men-perungalathur.html", "yoga-classes-for-children-perungalathur.html", "international-yoga-day-beach.html", "108-suryanamaskar-challenge.html",
          "hatha-yoga-in-chennai.html",
