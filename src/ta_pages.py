@@ -95,39 +95,48 @@ def footer():
 # --------------------------------------------------------------- fragments
 
 def batch_list():
+    """Same slots as the English timetable - see pages.batch_list."""
     rows = []
     for i, (t24, label, length, who, _note) in enumerate(C.BATCHES):
         plain = label.replace("&ndash;", "-")
         ta_who = T.LADIES_ONLY if who == "Ladies only" else T.EVERYONE
+        pill = "pill--blue" if who == "Ladies only" else "pill--quiet"
         mins = length.split()[0]
         rows.append(f"""                    <li>
-                        <button type="button" class="batch group" data-start="{t24}" data-label="{plain}"
+                        <button type="button" class="batch slot group w-full text-left" data-start="{t24}" data-label="{plain}"
                                 aria-expanded="false" aria-controls="batch-d{i}">
-                            <span class="flex items-baseline justify-between gap-4">
-                                <span class="display text-[17px] text-ink">{label}</span>
-                                <span class="text-[13px] text-muted whitespace-nowrap">{mins} {T.MIN}</span>
-                            </span>
-                            <span class="mt-0.5 block text-[13px] {'text-blue font-medium' if who == 'Ladies only' else 'text-muted'}">{ta_who}</span>
+                            <span class="slot__t">{label}</span>
+                            <span class="pill {pill}">{ta_who}</span>
+                            <span class="slot__m">{mins} {T.MIN}</span>
                         </button>
                         <div id="batch-d{i}" class="batch-detail">
-                            <p class="pb-4 text-[14px] leading-relaxed text-muted max-w-md">{T.BATCH_NOTES[i]}</p>
+                            <p class="px-[1.1rem] pb-4 text-[14px] leading-relaxed text-muted max-w-md">{T.BATCH_NOTES[i]}</p>
                         </div>
                     </li>""")
     return "\n".join(rows)
 
 
 def classes_section():
+    """Same tiles as the English grid - see pages.classes_section."""
     groups = [g for g, _ in T.CLASS_GROUPS]
-    filters = [f'                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded lift-full text-ink transition-colors" data-group="all" aria-pressed="true">{T.EVERYTHING}</button>']
-    for g in groups:
-        filters.append(f'                    <button type="button" class="filter px-3 py-1.5 text-[13.5px] border border-line rounded lift-full text-ink transition-colors" data-group="{g}" aria-pressed="false">{g}</button>')
+    def chip(g, label, on):
+        return (f'                    <button type="button" class="filter px-3.5 py-2 text-[13.5px] '
+                f'border border-line rounded-full text-ink transition-colors" '
+                f'data-group="{g}" aria-pressed="{"true" if on else "false"}">{label}</button>')
+    filters = [chip("all", T.EVERYTHING, True)] + [chip(g, g, False) for g in groups]
+
+    # Group order matches content.CLASS_GROUPS, so the icons line up with the
+    # English page even though the group names here are Tamil.
+    ICONS = ["sprout", "flame", "wind", "sun"]
     items = []
-    for g, entries in T.CLASS_GROUPS:
+    for gi, (g, entries) in enumerate(T.CLASS_GROUPS):
+        ic = ICONS[gi] if gi < len(ICONS) else "circle"
         for name, desc in entries:
-            items.append(f"""                <li class="class-item border-t border-line py-6" data-group="{g}">
-                    <div class="sm:flex sm:items-baseline sm:gap-8">
-                        <h3 class="display text-d3 text-ink sm:w-64 sm:shrink-0">{name}</h3>
-                        <p class="mt-1.5 sm:mt-0 text-[15px] leading-relaxed text-muted max-w-2xl">{desc}</p>
+            items.append(f"""                <li class="class-item" data-group="{g}">
+                    <div class="tile">
+                        <span class="tile__i">{B.icon(ic, 'w-[1.15rem] h-[1.15rem]')}</span>
+                        <h3 class="display text-d3 text-ink">{name}</h3>
+                        <p class="mt-2 text-[14.5px] leading-relaxed text-muted">{desc}</p>
                     </div>
                 </li>""")
     return "\n".join(filters), "\n".join(items)
@@ -289,7 +298,7 @@ def build_index():
          large, light headline, with the class photograph beneath it as a
          contained band. Tamil sets wider than Latin at the same size, so the
          headline keeps its own measure (26ch, set in build.py). -->
-    <section aria-labelledby="hero-h" class="hero pt-28 lg:pt-40 pb-16 lg:pb-24">
+    <section aria-labelledby="hero-h" class="hero pt-24 lg:pt-32 pb-14 lg:pb-20">
         <div class="hero__wash" role="presentation"></div>
 
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
@@ -309,49 +318,47 @@ def build_index():
                 </div>
             </div>
 
-            <div class="hero__shot grade mt-16 lg:mt-24">
+            <div class="hero__shot grade mt-12 lg:mt-16">
                 {P.photo('ima6', cls='object-[center_38%]', eager=True, sizes=P.HERO_SIZES)}
             </div>
         </div>
     </section>
 
-    <section aria-label="{T.TODAY}" class="bg-paper" id="schedule">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 lg:pt-24">
-            <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+    <!-- The timetable, on the sand band with its rows on a white card -
+         the pills only read on white. Same as the English page. -->
+    <section aria-label="{T.TODAY}" class="bg-sand border-y border-line" id="schedule">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-24">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
                 <div class="lg:col-span-5">
                     <p class="lbl">{T.SCHEDULE_LBL}</p>
                     <h2 class="mt-3 text-d2 text-ink">{T.SCHEDULE_H}</h2>
                     <p class="mt-5 text-[17px] leading-relaxed text-ink/75">{T.SCHEDULE_LEDE}</p>
-                    <div class="mt-7">
-                        <a href="#classes" class="inline-flex items-center px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">
-                            {T.SEE_CLASSES}
-                        </a>
-                    </div>
+                    <ul class="mt-7 space-y-2.5 text-[15px] text-ink/80">
+{chr(10).join(f'                        <li class="flex items-center gap-2.5">{B.icon("check", "w-4 h-4 text-blue shrink-0")}{x}</li>' for x in T.FACTLINE[:3])}
+                    </ul>
                 </div>
 
                 <div class="lg:col-span-7">
-                    <div class="border border-line rounded lift p-6 sm:p-7 bg-sand/60">
-                        <div class="flex items-baseline justify-between gap-4">
+                    <div class="card p-4 sm:p-5">
+                        <div class="flex items-baseline justify-between gap-4 px-[1.1rem] pt-1">
                             <h3 class="display text-d4 text-ink">{T.TODAY}</h3>
-                            <span class="text-[13px] text-muted">{T.MON_FRI}</span>
+                            <span class="pill pill--quiet">{T.MON_FRI}</span>
                         </div>
-                        <p id="next-class" class="mt-1.5 text-[13.5px] text-muted">{T.RUNS_MON_FRI}</p>
-                        <ul class="mt-5">
+                        <p id="next-class" class="px-[1.1rem] mt-1 text-[13.5px] text-muted"
+                           data-today="{T.NEXT_TODAY}" data-tomorrow="{T.NEXT_TOMORROW}"
+                           data-on="{T.NEXT_ON}" data-days="{T.DAY_NAMES}">{T.RUNS_MON_FRI}</p>
+                        <ul class="mt-3">
 {batch_list()}
                         </ul>
-                        <p class="mt-5 pt-4 border-t border-line text-[13px] leading-relaxed text-muted">{T.BATCH_NOTE}</p>
+                        <p class="mx-[1.1rem] mt-3 pt-3.5 border-t border-line text-[13px] leading-relaxed text-muted">{T.BATCH_NOTE}</p>
                     </div>
                 </div>
             </div>
-
-            <ul class="factline pb-16 lg:pb-24 pt-6 border-t border-line text-[15px] text-ink/80">
-{chr(10).join(f'                <li>{x}</li>' for x in T.FACTLINE)}
-            </ul>
         </div>
     </section>
 
     <!-- About -->
-    <section id="about" aria-labelledby="about-h" class="py-20 lg:py-32">
+    <section id="about" aria-labelledby="about-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4">
                 <h2 id="about-h" class="text-d2 text-ink reveal">{T.ABOUT_H}</h2>
@@ -370,18 +377,16 @@ def build_index():
     </section>
 
     <!-- Classes -->
-    <section id="classes" aria-labelledby="classes-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <section id="classes" aria-labelledby="classes-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
-            <div class="lg:flex lg:items-end lg:justify-between lg:gap-10">
-                <div class="max-w-xl reveal">
-                    <h2 id="classes-h" class="text-d2 text-ink">{T.CLASSES_H}</h2>
-                    <p class="mt-3 text-[16px] leading-relaxed text-ink/75">{T.CLASSES_INTRO}</p>
-                </div>
-                <div class="mt-6 lg:mt-0 flex flex-wrap gap-2 reveal" style="--d:60ms">
-{filters}
-                </div>
+            <div class="max-w-2xl reveal">
+                <h2 id="classes-h" class="text-d2 text-ink">{T.CLASSES_H}</h2>
+                <p class="mt-4 text-[16px] leading-relaxed text-ink/75">{T.CLASSES_INTRO}</p>
             </div>
-            <ul class="mt-10 border-b border-line">
+            <div class="mt-8 flex flex-wrap gap-2 reveal" role="group" aria-label="{T.CLASSES_H}">
+{filters}
+            </div>
+            <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 {items}
             </ul>
         </div>
@@ -389,7 +394,7 @@ def build_index():
 
 {P.band("ima15", "சர்வதேச யோகா தினம் 2026, சென்னை புளூ ஃபிளாக் கடற்கரை, 12 ஜூன் 2026 &mdash; ஒரு நாள் நிகழ்வு. வழக்கமான வகுப்புகள் எஸ்.எஸ்.எம். நகர், புதிய பெருங்களத்தூர் மையத்தில் நடைபெறுகின்றன.")}
     <!-- Health -->
-    <section id="health" aria-labelledby="health-h" class="py-20 lg:py-32">
+    <section id="health" aria-labelledby="health-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-4 reveal">
                 <h2 id="health-h" class="text-d2 text-ink">{T.HEALTH_H}</h2>
@@ -408,7 +413,7 @@ def build_index():
     </section>
 
     <!-- Teachers. Same two-column pair as the English page. -->
-    <section id="teacher" aria-labelledby="teacher-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <section id="teacher" aria-labelledby="teacher-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="reveal">
                 <p class="lbl">{T.TEACHER_LBL}</p>
@@ -469,20 +474,20 @@ def build_index():
     </section>
 
     <!-- Studio -->
-    <section id="studio" aria-labelledby="studio-h" class="py-20 lg:py-32">
+    <section id="studio" aria-labelledby="studio-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="max-w-xl reveal">
                 <h2 id="studio-h" class="text-d2 text-ink">{T.STUDIO_H}</h2>
                 <p class="mt-3 text-[16px] leading-relaxed text-ink/75">{T.STUDIO_INTRO}</p>
             </div>
             <div class="mt-10 columns-2 lg:columns-3 xl:columns-4 gap-4">
-{P.gallery()}
+{P.gallery(12)}
             </div>
         </div>
     </section>
 
     <!-- Reviews -->
-    <section id="reviews" aria-labelledby="reviews-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <section id="reviews" aria-labelledby="reviews-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <h2 id="reviews-h" class="text-d2 text-ink reveal">{T.REVIEWS_H}</h2>
             <div class="mt-4 reveal" style="--d:90ms">
@@ -493,7 +498,7 @@ def build_index():
 
 {photo_cta("ima1")}
     <!-- Areas -->
-    <section id="areas" aria-labelledby="areas-h" class="py-20 lg:py-32">
+    <section id="areas" aria-labelledby="areas-h" class="py-16 lg:py-24">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-5 reveal">
                 <h2 id="areas-h" class="text-d2 text-ink">{T.AREAS_H}</h2>
@@ -511,7 +516,7 @@ def build_index():
     </section>
 
     <!-- Visit -->
-    <section id="visit" aria-labelledby="visit-h" class="py-20 lg:py-32 bg-sand border-y border-line">
+    <section id="visit" aria-labelledby="visit-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-6 reveal" id="enquire">
                 <h2 id="visit-h" class="text-d2 text-ink">{T.VISIT_H}</h2>
@@ -589,7 +594,7 @@ def build_index():
     </section>
 
     <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-h" class="py-20 lg:py-32">
+    <section id="faq" aria-labelledby="faq-h" class="py-16 lg:py-24">
         <div class="max-w-3xl mx-auto px-5 sm:px-8">
             <h2 id="faq-h" class="text-d2 text-ink reveal">{T.FAQ_H}</h2>
             <div class="mt-8 border-t border-line reveal" style="--d:90ms">
@@ -797,11 +802,18 @@ def build_blog_index():
     PAGE_EN_ABS[path] = "/blog.html"
     I = TP.INDEX
 
-    rows = "\n".join(f"""                <li class="border-t border-line reveal" style="--d:{min(i, 3) * 70}ms">
-                    <a href="{p['slug']}" class="group block py-6 sm:pr-6">
-                        <time datetime="{p['date']}" class="text-[13px] text-muted">{p['date_text']}</time>
-                        <h2 class="mt-1.5 display text-d3 text-ink group-hover:text-blue transition-colors">{p['title']}</h2>
-                        <p class="mt-1.5 text-[15px] leading-relaxed text-muted max-w-2xl">{p['standfirst']}</p>
+    # Cards with a thumbnail, like the English index: hairline rows looked
+    # exactly like the timetable and the class list.
+    rows = "\n".join(f"""                <li class="reveal" style="--d:{min(i, 3) * 70}ms">
+                    <a href="{p['slug']}" class="post tile !p-3 sm:!p-4">
+                        <span class="post__img">
+                            {P.photo(p['photo'], cls='', sizes='(min-width:640px) 176px, 120px')}
+                        </span>
+                        <span class="block min-w-0 py-1">
+                            <time datetime="{p['date']}" class="text-[12.5px] text-muted">{p['date_text']}</time>
+                            <span class="post__h mt-1 block display text-d3 text-ink">{p['title']}</span>
+                            <span class="mt-1.5 block text-[14px] leading-relaxed text-muted">{p['standfirst']}</span>
+                        </span>
                     </a>
                 </li>""" for i, p in enumerate(sorted(TP.POSTS, key=lambda x: x["date"], reverse=True)))
 
@@ -824,7 +836,7 @@ def build_blog_index():
         <h1 class="text-d1 text-ink">{I["h1"]}</h1>
         <p class="mt-5 text-[17px] leading-relaxed text-ink/80 max-w-2xl">{I["lede"]}</p>
         <p class="mt-3 text-[14px] leading-relaxed text-muted max-w-2xl">{TP.ONLY_FOUR}</p>
-        <ul class="mt-10 border-b border-line">
+        <ul class="mt-10 grid gap-4">
 {rows}
         </ul>
     </section>

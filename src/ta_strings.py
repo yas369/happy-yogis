@@ -59,6 +59,13 @@ SCHEDULE_LEDE = ("ஒவ்வொரு வகுப்பும் அதன்
                  "ஏற்ற நேரத்தைத் தேர்ந்தெடுங்கள் &mdash; உங்கள் வாரம் மாறும்போது "
                  "வகுப்புகளுக்கு இடையே மாறிக்கொள்ளலாம்.")
 MON_FRI = "திங்கள்&ndash;வெள்ளி"
+# Wording for the "next class" panel, which the page script writes. These
+# used to be English literals in the script, so every Tamil page said
+# "Next class tomorrow". Still to be checked by a native speaker.
+NEXT_TODAY = "அடுத்த வகுப்பு இன்று"
+NEXT_TOMORROW = "அடுத்த வகுப்பு நாளை"
+NEXT_ON = "அடுத்த வகுப்பு"
+DAY_NAMES = "ஞாயிறு,திங்கள்,செவ்வாய்,புதன்,வியாழன்,வெள்ளி,சனி"
 RUNS_MON_FRI = "வகுப்புகள் திங்கள் முதல் வெள்ளி வரை நடைபெறும்."
 BATCH_NOTE = ("ஒவ்வொரு வகுப்பிலும் வார்ம்-அப், ஆசனங்கள், பிராணாயாமம், "
               "ஓய்வு. யாருக்கு ஏற்றது என்பதைப் பார்க்க ஒரு வகுப்பைத் தேர்வு செய்யுங்கள்.")

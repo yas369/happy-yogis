@@ -39,6 +39,18 @@ def dims(key):
     return Image.open(os.path.join(OUT, f"{key}.jpeg")).size
 
 
+def thumb(key):
+    """A small 4:3 crop for an index card. Deliberately local rather than
+    reusing pages.photo(): pages already imports newest_first from here, so
+    importing it back would close the cycle."""
+    return f"""<picture>
+                            <source type="image/webp" sizes="(min-width:640px) 176px, 120px"
+                                    srcset="{key}-xs.webp 320w, {key}-sm.webp 640w">
+                            <img src="{key}-sm.jpg" width="640" height="427" alt="{C.PHOTOS[key]}"
+                                 loading="lazy" decoding="async">
+                        </picture>"""
+
+
 def photo(key, caption=None):
     cap = (f'\n                <figcaption class="mt-2.5 text-[13px] text-muted">'
            f'{caption}</figcaption>' if caption else "")
@@ -1030,13 +1042,22 @@ def build_index_page():
         ],
     }
 
-    entries = "\n".join(f"""            <li class="border-t border-line">
-                <a href="{p['slug']}" class="group block py-7 transition-colors hover:bg-sand/60">
-                    <time datetime="{p['date']}" class="text-[13px] text-muted">{p['date_text']}</time>
-                    <h2 class="mt-1.5 text-d3 text-ink group-hover:text-blue transition-colors">{p['title']}</h2>
-                    <p class="mt-1.5 text-[15px] leading-relaxed text-muted max-w-2xl">{p['standfirst']}</p>
+    # Cards with a thumbnail, not hairline rows. Eleven posts dated the same
+    # day, each a date over a serif title over two grey lines, were impossible
+    # to tell apart - and looked exactly like the timetable and the class list
+    # on the home page. Every post already names a photograph.
+    entries = "\n".join(f"""            <li class="reveal" style="--d:{min(i, 3) * 60}ms">
+                <a href="{p['slug']}" class="post tile !p-3 sm:!p-4">
+                    <span class="post__img">
+                        {thumb(p['photo'])}
+                    </span>
+                    <span class="block min-w-0 py-1">
+                        <time datetime="{p['date']}" class="text-[12.5px] text-muted">{p['date_text']}</time>
+                        <span class="post__h mt-1 block display text-d3 text-ink">{p['title']}</span>
+                        <span class="mt-1.5 block text-[14px] leading-relaxed text-muted">{p['standfirst']}</span>
+                    </span>
                 </a>
-            </li>""" for p in newest_first())
+            </li>""" for i, p in enumerate(newest_first()))
 
     h = head(title=f"{JOURNAL_PLAIN} | Happy Yogis Yoga Centre",
              desc=("Notes from Happy Yogis Yoga Centre in New Perungalathur, Chennai "
@@ -1062,7 +1083,7 @@ def build_index_page():
             work around the things people arrive with.
         </p>
 
-        <ul class="mt-12 border-b border-line">
+        <ul class="mt-12 grid gap-4">
 {entries}
         </ul>
     </div>

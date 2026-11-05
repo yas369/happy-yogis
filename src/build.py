@@ -190,7 +190,8 @@ CSS = FONT_FACE + TAILWIND + """
             --ink:#10263A; --blue:#1F4E79; --sky:#4DA8DA;
             /* Mirrors tw.config.js. `line` stays at D3E0EA while the two
                grounds lighten - see the note there. */
-            --sand:#EEF4F9; --paper:#FAFCFE; --line:#D3E0EA; --muted:#5A6B7B;
+            --sand:#E4EDF6; --paper:#FAFCFE; --line:#D3E0EA; --muted:#5A6B7B;
+            --clay:#755C36;
         }
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
@@ -373,7 +374,7 @@ CSS = FONT_FACE + TAILWIND + """
         /* An italic serif label instead of a tracked-out uppercase one. */
         .lbl {
             font-family:'Cormorant Garamond', Georgia, serif; font-style:italic;
-            font-size:1.2rem; line-height:1.4; color:#81663D; margin:0;
+            font-size:1.2rem; line-height:1.4; color:var(--clay); margin:0;
         }
         :lang(ta) .lbl { font-family:'Noto Sans Tamil', serif; font-style:normal;
                          font-size:1.05rem; }
@@ -508,6 +509,97 @@ CSS = FONT_FACE + TAILWIND + """
                           transform:scale(1.03);
                           animation:slowpan 34s ease-in-out infinite alternate; }
         @keyframes slowpan { to { transform:scale(1.1) translate3d(0,-1.6%,0); } }
+
+        /* ---- telling one block from another --------------------------
+           Four different things on this site had settled into one shape: a
+           hairline, a serif title on the left, grey text on the right. The
+           timetable, the class list, the health grid and the journal index
+           all looked alike, so nothing said which rows you could click and
+           which were reference. These give each one its own form. */
+
+        /* A card. White on a tinted band, so the band separates sections and
+           the card separates items within one. Tinted pills only read on
+           white, which is the other reason items that carry them sit here. */
+        .card { background:var(--card); border:1px solid var(--line);
+                border-radius:.9rem; }
+
+        /* Pills carry the fact someone came for: who a batch suits, how long
+           it runs, what a post is about. Measured on white: the blue pair is
+           7.07:1 and the amber 5.31:1. They are near-invisible on the sand
+           band (1.03:1), which is why they never sit directly on one. */
+        .pill { display:inline-flex; align-items:center; gap:.3rem;
+                padding:.2rem .6rem; border-radius:999px; white-space:nowrap;
+                font-family:'DM Sans', system-ui, sans-serif;
+                font-size:.78rem; font-weight:500; line-height:1.5; }
+        .pill--blue  { background:#DCEAF6; color:#1A4367; }
+        .pill--amber { background:#FBEFD9; color:#6B5230; }
+        .pill--quiet { background:var(--sand); color:var(--muted); }
+        .pill--solid { background:var(--blue); color:#fff; }
+
+        /* A timetable row. The time is the thing people scan for, so it is
+           set large and lining; everything else hangs off it. */
+        .slot { display:flex; align-items:baseline; gap:.75rem 1rem;
+                flex-wrap:wrap; padding:.95rem 1.1rem; border-radius:.6rem;
+                transition:background .35s ease; }
+        .slot + .slot { border-top:1px solid var(--line); }
+        .slot__t { font-family:'DM Sans', system-ui, sans-serif;
+                   font-size:1.0625rem; font-weight:500; color:var(--ink);
+                   font-variant-numeric:lining-nums tabular-nums; }
+        .slot__m { margin-left:auto; font-size:.8125rem; color:var(--muted); }
+        .slot:hover { background:#F4F8FC; }
+        /* On a narrow phone the time, the pill and the duration do not fit on
+           one line, and the duration wrapped alone to the next one looking
+           orphaned. Below 26rem the pill takes its own row instead, so the
+           first line is always the two numbers. */
+        @media (max-width:26rem) {
+            .slot__m { order:2; }
+            /* A zero-height item that fills the line forces the wrap. Giving
+               the pill flex-basis:100% instead made the pill itself span the
+               row, which looked like a banner rather than a label. */
+            .slot::after { content:''; order:2; flex-basis:100%; height:0; }
+            .slot .pill { order:3; }
+        }
+        /* The next class. A solid left edge rather than a tint alone, so it
+           survives printing and colour filtering. Keyed off [data-next],
+           which is what the page script actually sets - this was written as
+           .slot--next first and silently never matched anything. */
+        .slot[data-next] { background:#F2F8FD; box-shadow:inset 3px 0 0 var(--blue); }
+        .slot[data-next] .slot__t { color:var(--blue); }
+
+        /* A class in "what we teach", or a post in the journal: a tile you
+           can click, which is what the hairline rows never looked like. */
+        .tile { display:block; background:var(--card); border:1px solid var(--line);
+                border-radius:.9rem; padding:1.35rem 1.4rem; height:100%;
+                transition:border-color .35s ease, box-shadow .45s ease,
+                           transform .45s var(--ease); }
+        a.tile:hover, a.tile:focus-visible {
+            border-color:#A9C6DE; transform:translateY(-3px);
+            box-shadow:0 20px 34px -26px rgba(16,38,58,.45); }
+        .tile__i { display:inline-flex; align-items:center; justify-content:center;
+                   width:2.25rem; height:2.25rem; border-radius:.6rem;
+                   background:#E7F0F8; color:var(--blue); margin-bottom:.9rem; }
+
+        /* The journal index. A thumbnail is the difference between a list of
+           rows and a list of things to read. */
+        .post { display:grid; grid-template-columns:7.5rem 1fr; gap:1.1rem;
+                align-items:start; }
+        @media (min-width:40rem) { .post { grid-template-columns:11rem 1fr; gap:1.5rem; } }
+        .post__img { aspect-ratio:4/3; border-radius:.7rem; overflow:hidden;
+                     background:var(--sand); }
+        .post__img img { width:100%; height:100%; object-fit:cover; display:block;
+                         transition:transform 1s var(--ease); }
+        a.post:hover .post__img img { transform:scale(1.06); }
+        a.post:hover .post__h { color:var(--blue); }
+        .post__h { transition:color .3s ease; }
+
+        /* Where am I. The nav marks the section currently under the reader on
+           a long page; set by the observer in the page script, and purely
+           additive - with no script the nav is exactly as it was. */
+        .nav-link { position:relative; }
+        .nav-link.is-on { color:var(--ink); }
+        .nav-link.is-on::after {
+            content:''; position:absolute; left:0; right:0; bottom:-.4rem;
+            height:2px; border-radius:2px; background:var(--blue); }
 
         /* The scroll cue: a quiet second action beside the primary one. The
            chevron nudges on its own so the pair reads as "there is more
@@ -675,7 +767,7 @@ def nav(home=False, words=None, links_data=None, trial_msg=None,
         return h.replace("index.html", "") if home and h.startswith("index.html#") else h
 
     links = "\n".join(
-        f'                    <a href="{href(h)}" class="text-[13.5px] text-ink/70 hover:text-ink transition-colors">{t}</a>'
+        f'                    <a href="{href(h)}" class="nav-link text-[13.5px] text-ink/70 hover:text-ink transition-colors">{t}</a>'
         for h, t in data)
     mlinks = "\n".join(
         f'                <a href="{href(h)}" class="mobile-link block px-6 py-3.5 text-[17px] text-ink border-b border-line hover:bg-sand transition-colors">{t}</a>'
@@ -788,7 +880,8 @@ def footer():
                         <li><a href="/#teacher" class="inline-block py-1 hover:text-sky transition-colors">Your teacher</a></li>
                         <li><a href="/#studio" class="inline-block py-1 hover:text-sky transition-colors">Photos</a></li>
                         <li><a href="blog.html" class="inline-block py-1 hover:text-sky transition-colors">{JOURNAL}</a></li>
-                        <li><a href="/#faq" class="inline-block py-1 hover:text-sky transition-colors">Questions</a></li>
+                        <li><a href="faq.html" class="inline-block py-1 hover:text-sky transition-colors">Questions</a></li>
+                        <li><a href="reviews.html" class="inline-block py-1 hover:text-sky transition-colors">What students say</a></li>
                     </ul>
                 </nav>
 
@@ -835,6 +928,34 @@ SCRIPT = """    <script>
                 ticking = false;
             });
         }, { passive: true });
+
+        /* Which section am I in. The home page is long; without this the nav
+           is six links that never say where you are. Matched by href, so a
+           link to another page is simply never a candidate and the whole
+           thing no-ops on pages that have none of these sections. */
+        (function () {
+            var links = [].slice.call(document.querySelectorAll('.nav-link'));
+            var pairs = [];
+            links.forEach(function (a) {
+                var hash = (a.getAttribute('href') || '').split('#')[1];
+                if (!hash) return;
+                var el = document.getElementById(hash);
+                if (el) pairs.push({ link: a, el: el });
+            });
+            if (!pairs.length || !('IntersectionObserver' in window)) return;
+            var seen = {};
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting; });
+                var on = null;
+                for (var i = 0; i < pairs.length; i++) {
+                    if (seen[pairs[i].el.id]) { on = pairs[i].link; break; }
+                }
+                pairs.forEach(function (p) {
+                    p.link.classList.toggle('is-on', p.link === on);
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            pairs.forEach(function (p) { io.observe(p.el); });
+        })();
 
         /* Keep Tab inside an open modal dialog. */
         function focusables(root) {
@@ -904,15 +1025,23 @@ SCRIPT = """    <script>
                     if (toMins(batches[i].start) > mins) { upcoming = batches[i]; break; }
                 }
             }
+            /* Wording comes off the element, so the Tamil page can supply
+               Tamil. It read "Next class tomorrow" in English on every Tamil
+               page before this. English stays the default. */
+            function word(name, fallback) {
+                return nextEl.getAttribute('data-' + name) || fallback;
+            }
             var when;
             if (upcoming) {
-                when = 'Next class today';
+                when = word('today', 'Next class today');
             } else {
                 upcoming = batches[0];
-                var names = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                var names = word('days', 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday').split(',');
                 var d = day;
                 do { d = (d + 1) % 7; } while (d < 1 || d > 5);
-                when = 'Next class ' + (d === (day + 1) % 7 ? 'tomorrow' : names[d]);
+                when = (d === (day + 1) % 7)
+                    ? word('tomorrow', 'Next class tomorrow')
+                    : word('on', 'Next class') + ' ' + names[d];
             }
             nextEl.innerHTML = '<span class="batch-now">' + when + '</span> &middot; ' + upcoming.label;
             nextEl.classList.add('settle');
