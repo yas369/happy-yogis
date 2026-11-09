@@ -184,6 +184,15 @@ PHOTOS = {
     "ima38": "A finisher receiving her certificate and memento",
     "ima39": "A finisher receiving his certificate and memento",
     "ima40": "A finisher with his medal, receiving his certificate",
+    # Navaratri at Park 63. Described from the frames and nothing more: no
+    # names, and nothing about who organised it or how many came, because we
+    # were not told and did not count.
+    "ima41": ("The Happy Yogis group mid-demonstration at the Navaratri celebration "
+              "in Park 63, residents watching from both sides of the hall"),
+    "ima42": ("Children and adults holding the formation together &mdash; a standing "
+              "stretch, an arm balance and side poses at the same moment"),
+    "ima43": ("Backbends, standing balances and an inversion in the second half of "
+              "the Navaratri demonstration at Park 63"),
 }
 
 GALLERY = ["ima13", "ima4", "ima14", "ima6", "ima23", "ima1", "ima15", "ima31",
