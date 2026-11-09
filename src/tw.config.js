@@ -33,7 +33,12 @@ module.exports = {
     // would dare: Cormorant at 300 gets thinner as it grows, so the weight
     // the eye reads falls as the size rises. The leading tightens with it -
     // 1.06 at 5rem opens gaps you can see through at 7rem.
-    fontSize: { d1:['clamp(3.05rem,8.2vw,7rem)',{lineHeight:'1.0',letterSpacing:'-.014em'}],
+    //
+    // The ceiling came back from 7rem to 6rem when both centres moved under
+    // the hero: at 7rem the headline alone pushed them off the first screen,
+    // and where the classes are is worth more than the last rem of display
+    // type.
+    fontSize: { d1:['clamp(2.9rem,7.4vw,6rem)',{lineHeight:'1.0',letterSpacing:'-.014em'}],
                 d2:['clamp(2.2rem,4.4vw,3.65rem)',{lineHeight:'1.07',letterSpacing:'-.008em'}],
                 d3:['clamp(1.45rem,2.05vw,1.8rem)',{lineHeight:'1.26',letterSpacing:'0'}],
                 d4:['1.3rem',{lineHeight:'1.35'}] }

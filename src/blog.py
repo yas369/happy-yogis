@@ -352,7 +352,7 @@ POSTS = [{
             "We teach from a single hall in SSM Nagar, New Perungalathur "
             "&mdash; just off the GST Road stretch between Tambaram and "
             "Vandalur, close to Perungalathur railway station. A second centre "
-            "opened in October in the yoga room at Tower 20, Sriram Apartments, "
+            "opened in October in the yoga room at Tower 20, Park 63, "
             "a few streets away. No franchise, no other towns.",
             'Students travel in from Old Perungalathur, East and West Tambaram, '
             'Selaiyur, Chromepet, Vandalur, Urapakkam, Guduvanchery and Medavakkam. If '
