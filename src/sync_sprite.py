@@ -19,6 +19,7 @@ PAGES = ["index.html", "reviews.html", "faq.html",
          "yoga-classes-perungalathur.html", "yoga-classes-tambaram.html",
          "blog.html", "what-happens-in-your-first-yoga-class.html", "yoga-for-weight-loss-in-chennai.html", "yoga-classes-for-men-perungalathur.html", "yoga-classes-for-children-perungalathur.html", "international-yoga-day-beach.html", "108-suryanamaskar-challenge.html",
          "new-yoga-centre-park-63-perungalathur.html", "early-morning-yoga-batch-park-63.html",
+         "navaratri-yoga-demonstration-park-63.html",
          "hatha-yoga-in-chennai.html",
          "how-often-should-you-do-yoga.html", "yoga-or-gym-which-should-you-pick.html", "morning-or-evening-yoga-class.html", "yoga-for-back-pain-chennai.html",
          # the Tamil pages carry the same icons and need the same sprite

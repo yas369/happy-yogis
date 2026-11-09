@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Six posts answering what people actually type into Google before joining.
+"""Seven posts: what people type into Google before joining, and what the
+centre has been up to.
 
 Same rules as the rest of the journal: nothing claimed that the cited health
 authorities do not support, no promised outcomes, no invented numbers, and
@@ -494,6 +495,88 @@ def make(para, bullets, photo, qa, cite, DISCLAIMER):
             "an evening batch that a lot of school and college students use. "
             "Park&nbsp;63 is an extra room, not a replacement &mdash; pick "
             "whichever hour you can actually keep.")),
+     ],
+     "related": ("new-yoga-centre-park-63-perungalathur.html",
+                 "A second centre: the yoga room at Park 63",
+                 "What has opened at Tower 20, who teaches it and how to start."),
+    },
+
+    # ------------------------------------------------------------------ 7
+    # Navaratri at Park 63. Written from the three photographs and nothing
+    # else: no attendance figure, no names, no quotes, and no date for the
+    # evening itself, because we were not given one. The post is dated the
+    # day it was written.
+    {
+     "slug": "navaratri-yoga-demonstration-park-63.html",
+     "date": "2026-11-09", "date_text": "9 November 2026",
+     "title": "Navaratri at Park 63, in three photographs",
+     "standfirst": ("Marigold garlands across the wall, mats down the middle of the "
+                    "hall, and the youngest students holding poses beside the "
+                    "oldest. Three photographs from the Navaratri evening."),
+     "meta": ("Happy Yogis students - children and adults together - gave a yoga "
+              "demonstration at the Navaratri celebration in Park 63, New "
+              "Perungalathur, Chennai."),
+     "photo": "ima41",
+     "short": [
+       "A yoga demonstration at the Park 63 Navaratri celebration.",
+       "Children and adults performed together, in the same blue shirts.",
+       "The regular 5:30 am batch runs there every weekday.",
+     ],
+     "body": [
+      ("A hall, some garlands, and a lot of mats",
+       para("Somebody had strung marigolds the whole way across the wall. The "
+            "whiteboard was still there. Chairs and tables went down one side "
+            "for the people who came to watch, and the mats &mdash; pink, "
+            "blue, a long teal one &mdash; went down the middle.",
+            "Into the middle of that went a row of blue Happy Yogis shirts, "
+            "which is a good use of a community hall on a festival night.")
+       + photo("ima41", "The hall at Park 63 during the Navaratri "
+                        "demonstration.")),
+
+      ("Children and adults, on the same floor",
+       para("This is the part worth noticing. There is no children's troupe "
+            "and no adults' troupe. In one frame a small girl sits in a wide "
+            "split with her palms pressed together, a few feet from a grown "
+            "man holding his whole body up on his hands. Everybody is in the "
+            "same shirt.",
+            "That is not staging for a performance. That is what a Happy "
+            "Yogis batch is on an ordinary Tuesday &mdash; school children, "
+            "people on their way to work and retired members sharing the same "
+            "floor, each doing the version of the pose their body will do "
+            "that day. Put it in front of an audience and it simply looks "
+            "more impressive than it feels.")
+       + photo("ima42", "Children and adults in the same formation.")),
+
+      ("What they actually did",
+       para("The opening looks simple and upright: a tall standing stretch, "
+            "arms overhead, everyone at once. Then it fans out &mdash; side "
+            "poses with one arm reaching for the ceiling, wide-legged seated "
+            "folds, hands in namaskar for the ones holding still.",
+            "The third photograph is the harder end of it. "
+            "Backbends with the crown of the head to the mat. A standing "
+            "balance with one leg lifted and held overhead. An arm balance "
+            "with the legs stretched wide and nothing but palms on the "
+            "floor. One of the youngest went upside down entirely.")
+       + photo("ima43", "The second half of the demonstration.")),
+
+      ("A demonstration is not a class",
+       para("Worth saying plainly, because a video of a child doing a "
+            "headstand is how a lot of people decide yoga is not for them. "
+            "A festival demonstration is the showy end of a practice, "
+            "rehearsed, by students who have been at it a while.",
+            "An ordinary hour at Happy Yogis is warm-up, then asanas, then "
+            "pranayama, then a few minutes lying still. Nobody is upside "
+            "down. Nobody is asked to do anything they are not ready for. "
+            "Most people who join have never done yoga before, and nothing "
+            "in that hour assumes otherwise.")),
+
+      ("Come and see for yourself",
+       para("The yoga room at Tower&nbsp;20, Park&nbsp;63 runs a batch every "
+            "weekday morning, 5:30 to 6:30, taught by Surekha &mdash; call "
+            "90256&nbsp;29706. The SSM Nagar centre runs four batches a day, "
+            "Monday to Friday, including a ladies-only hour mid-morning.",
+            "Both do a 2-day trial. Come for two mornings, do the class, and "
+            "decide afterwards. You will not be asked to do a headstand.")),
      ],
      "related": ("new-yoga-centre-park-63-perungalathur.html",
                  "A second centre: the yoga room at Park 63",
