@@ -94,6 +94,29 @@ def footer():
 
 # --------------------------------------------------------------- fragments
 
+def centre_cards():
+    """Both centres as cards under the hero - see pages.centre_cards."""
+    out = []
+    for i, c in enumerate(C.CENTRES):
+        maps = (f"""
+                        <a href="{c['maps']}" target="_blank" rel="noopener"
+                           class="mt-3 py-1 inline-flex items-center gap-1.5 text-[13.5px] font-medium text-blue hover:underline">
+                            {T.DIRECTIONS} {B.icon('arrow-up-right', 'w-3.5 h-3.5')}
+                        </a>""" if c["maps"] else "")
+        out.append(f"""                <li>
+                    <div class="card h-full p-5 sm:p-6">
+                        <div class="flex flex-wrap items-start justify-between gap-x-3 gap-y-1.5">
+                            <h2 class="display text-d3 text-ink">{T.CENTRE_NAMES[i]}</h2>
+                            <span class="pill {'pill--blue' if i == 0 else 'pill--quiet'} shrink-0">{T.CENTRE_BADGES[i]}</span>
+                        </div>
+                        <address class="mt-2 not-italic text-[14.5px] leading-relaxed text-muted">{T.CENTRE_STREETS[i]}</address>
+                        <p class="mt-2 text-[13.5px] text-muted">{T.TAUGHT_BY}: {T.TEACHER_NAMES[i]}</p>
+                        <a href="{c['phone_href']}" class="mt-1 inline-block py-1 text-[14.5px] font-medium text-ink hover:text-blue transition-colors">{c['phone_text']}</a>{maps}
+                    </div>
+                </li>""")
+    return "\n".join(out)
+
+
 def batch_list():
     """Same slots as the English timetable - see pages.batch_list."""
     rows = []
@@ -298,15 +321,15 @@ def build_index():
          large, light headline, with the class photograph beneath it as a
          contained band. Tamil sets wider than Latin at the same size, so the
          headline keeps its own measure (26ch, set in build.py). -->
-    <section aria-labelledby="hero-h" class="hero pt-24 lg:pt-32 pb-14 lg:pb-20">
+    <section aria-labelledby="hero-h" class="hero pt-20 lg:pt-24 pb-14 lg:pb-20">
         <div class="hero__wash" role="presentation"></div>
 
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="enter text-center">
                 <p class="lbl">{T.EYEBROW}</p>
                 <h1 id="hero-h" class="mt-4 text-d1 text-ink mx-auto">{T.H1}</h1>
-                <p class="lede mt-8 text-ink/70 max-w-xl mx-auto">{T.LEDE}</p>
-                <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+                <p class="lede mt-6 text-ink/70 max-w-xl mx-auto">{T.LEDE}</p>
+                <div class="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
                     <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
                        target="_blank" rel="noopener"
                        class="inline-flex items-center px-8 py-4 bg-ink text-white font-medium rounded text-[17px] hover:bg-blue transition-colors">
@@ -318,7 +341,13 @@ def build_index():
                 </div>
             </div>
 
-            <div class="hero__shot grade mt-12 lg:mt-16">
+            <!-- Both centres, directly under the hero - same as the English
+                 page. They were only in the Visit panel far down the page. -->
+            <ul class="mt-8 lg:mt-10 grid sm:grid-cols-2 gap-3 lg:gap-4 text-left">
+{centre_cards()}
+            </ul>
+
+            <div class="hero__shot grade mt-10 lg:mt-14">
                 {P.photo('ima6', cls='object-[center_38%]', eager=True, sizes=P.HERO_SIZES)}
             </div>
         </div>

@@ -256,15 +256,23 @@ CENTRES = [
     },
     {
         "key": "sriram",
-        "name": "Sriram Apartments",
-        "street": "Yoga Room, Tower 20, Sriram Apartments, New Perungalathur",
+        "name": "Park 63",
+        "street": "Yoga Room, Tower 20, Park 63, Sriram Apartments, New Perungalathur",
         "postal": "600063",
         "teacher": "Surekha",
         "phone_text": "+91 90256 29706",
         "phone_href": "tel:+919025629706",
         "batches": "The 5:30 &ndash; 6:30 am batch, Monday to Friday",
-        "geo": None,          # not surveyed yet; no map link until it is
-        "maps": None,
+        # Still no coordinates. Google serves its map page as a JavaScript
+        # shell, so the listing gives a verified URL but no lat/lng, and a
+        # guessed one is worse than none. The pin in the link is the centre's
+        # own, which is what a visitor actually needs.
+        "geo": None,
+        # The owner's short link, checked: it resolves to "Tower 20, Happy
+        # Yogis Yoga Centre - Park63, Park 63, Yoga room, New Perungalathur,
+        # Tamil Nadu 600063". The ?g_st= tracking parameter is dropped and it
+        # still resolves to the same place.
+        "maps": "https://maps.app.goo.gl/rk2vP6Sfuvw3FS347",
     },
 ]
 CENTRE = {c["key"]: c for c in CENTRES}
@@ -284,7 +292,7 @@ def business_node():
         "name": "Happy Yogis Yoga Centre",
         "alternateName": "Happy Yogis",
         "description": ("Two yoga centres in New Perungalathur, Chennai - SSM Nagar and "
-                        "Sriram Apartments - teaching morning and evening batches for "
+                        "Park 63 - teaching morning and evening batches for "
                         "ladies, gents and children, plus online classes and "
                         "health-focused practice. "
                         "Students travel in from Perungalathur, Tambaram, Selaiyur, "
@@ -324,23 +332,26 @@ def business_node():
 
 
 def branch_node():
-    """The Sriram Apartments centre. A separate LocalBusiness rather than a
-    second address on the main one, because they are two places with two
-    teachers and two timetables. No geo or hasMap: the location has not been
-    surveyed and has no Google listing yet, and inventing either would be
-    worse than leaving them out."""
+    """The Sriram Apartments / Park 63 centre. A separate LocalBusiness rather
+    than a second address on the main one, because they are two places with
+    two teachers and two timetables.
+
+    It has a Google listing now, so hasMap is real. Still no geo: Google
+    serves the map page as a JavaScript shell and gives no coordinates, and a
+    guessed pair is worse than none."""
     c = CENTRE["sriram"]
     return {
         "@type": ["LocalBusiness", "SportsActivityLocation"],
         "@id": f"{BASE}/#sriram",
-        "name": "Happy Yogis Yoga Centre \u2013 Sriram Apartments",
+        "name": "Happy Yogis Yoga Centre \u2013 Park63",
         "description": ("The second Happy Yogis centre, open since 21 October 2026, in "
-                        "the yoga room at Tower 20, Sriram Apartments, New "
+                        "the yoga room at Tower 20, Park 63, New "
                         "Perungalathur. One morning batch in person, 5:30 to 6:30 am."),
         "url": f"{BASE}/",
         "parentOrganization": {"@id": f"{BASE}/#business"},
         "address": address_node(c),
         "telephone": "+91-90256-29706",
+        "hasMap": CENTRE["sriram"]["maps"],
         "openingHoursSpecification": [{
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -358,7 +369,7 @@ def surekha_node():
         "name": "Surekha",
         "jobTitle": "Yoga teacher",
         "image": f"{BASE}/surekha-portrait.jpeg",
-        "description": ("Teacher at the Happy Yogis centre in Sriram Apartments, New "
+        "description": ("Teacher at the Happy Yogis centre at Park 63, New "
                         "Perungalathur."),
         "worksFor": {"@id": f"{BASE}/#sriram"},
     }
