@@ -347,7 +347,7 @@ def build_index():
 {centre_cards()}
             </ul>
 
-            <div class="hero__shot grade mt-10 lg:mt-14">
+            <div class="hero__shot grade par mt-10 lg:mt-14">
                 {P.photo('ima6', cls='object-[center_38%]', eager=True, sizes=P.HERO_SIZES)}
             </div>
         </div>

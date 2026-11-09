@@ -188,7 +188,7 @@ POSTS = [{
          "came back for. You will leave looser than you arrived, and probably "
          "more awake."),
         ("What it costs to find out",
-         "We run a 3-day trial so you can sit in on a batch before committing to "
+         "We run a 2-day trial so you can sit in on a batch before committing to "
          "anything. Message us on WhatsApp and we will tell you which of the four "
          "batches has room."),
     ],
@@ -318,7 +318,7 @@ POSTS = [{
                    'where one bad evening on the road costs you an hour. You can see '
                    'which batch is next on the <a href="/#schedule" '
                    'class="text-blue font-medium hover:underline">schedule on the '
-                   'homepage</a>, and there is a 3-day trial so you can sit in before '
+                   'homepage</a>, and there is a 2-day trial so you can sit in before '
                    'deciding anything.')),
 
         ("Practising around what you arrive with",
@@ -388,7 +388,7 @@ POSTS = [{
             "If you have read this far, the useful next step is not more "
             "reading. Come to one class, at whichever of the four times you "
             "could keep to, and see what an hour of hatha yoga does to a "
-            "Chennai working day. The 3-day trial exists for that.")),
+            "Chennai working day. The 2-day trial exists for that.")),
     ],
 }, {
     "slug": "yoga-for-weight-loss-in-chennai.html",
@@ -592,14 +592,14 @@ POSTS = [{
              "and you should be wary of anyone at a yoga centre who offers "
              "one. Speak to a doctor or a dietitian for that half."),
             ("Can I try before joining?",
-             "Yes. There is a 3-day trial, so you can sit in on a batch and see whether it "
+             "Yes. There is a 2-day trial, so you can sit in on a batch and see whether it "
              "suits you before committing to anything. Message us on WhatsApp and we will "
              "tell you which batches have room."),
         ])),
 
         ("Where to start", para(
             "Pick the batch you could attend on a bad week, not the one you "
-            "would attend in an ideal one. Come for three days on the trial, "
+            "would attend in an ideal one. Come for both days of the trial, "
             "see how your body feels on the fourth morning, and decide then.")),
     ],
 }, {
@@ -607,11 +607,11 @@ POSTS = [{
     "short": [
         "Three of the four batches are mixed. Only the 10 am is women only.",
         "Most men arrive stiff from a desk and a commute. That is expected.",
-        "There is a 3-day trial, and no need to touch your toes first.",
+        "There is a 2-day trial, and no need to touch your toes first.",
     ],
     "title": "Yoga classes for men in Perungalathur",
     "meta": ("Yoga classes for men at Happy Yogis in New Perungalathur, Chennai. Three "
-             "of the four daily batches are mixed, Monday to Friday, with a 3-day trial."),
+             "of the four daily batches are mixed, Monday to Friday, with a 2-day trial."),
     "date": "2026-09-02",
     "date_text": "2 September 2026",
     "standfirst": ("The question we are asked most often by men on the phone is whether "
@@ -643,7 +643,7 @@ POSTS = [{
 
         ("Coming for a look", para(
             "Batches run Monday to Friday at our hall in SSM Nagar, New Perungalathur, "
-            "with a 3-day trial so you can sit in before deciding anything. We teach "
+            "with a 2-day trial so you can sit in before deciding anything. We teach "
             "online as well, for weeks when the road wins.")),
     ],
 }, {
@@ -655,7 +655,7 @@ POSTS = [{
     ],
     "title": "Yoga classes for children in New Perungalathur",
     "meta": ("Yoga classes for children in New Perungalathur, Chennai. Kids practise in "
-             "the morning and evening batches alongside their parents, with a 3-day trial."),
+             "the morning and evening batches alongside their parents, with a 2-day trial."),
     "date": "2026-09-03",
     "date_text": "3 September 2026",
     "standfirst": ("Children are on the mats in almost every batch we run. "
@@ -728,7 +728,7 @@ POSTS = [{
             "t-shirt, and once you join, mats can stay at the centre. Tell us "
             "before the first class if your child has a health condition, an "
             "old injury or anything else the teacher should plan around.",
-            "There is a 3-day trial, so your child can sit in on a batch and you can see "
+            "There is a 2-day trial, so your child can sit in on a batch and you can see "
             "how they take to it before committing to anything.")),
 
         ("Finding us", para(
@@ -894,7 +894,7 @@ POSTS = [{
             'own account with the rules, the two slots and the finishers.',
             "The beach was a one-off, for the occasion. The rest of the year we teach "
             "where we always teach &mdash; a hall in SSM Nagar, New Perungalathur, four "
-            "batches a day, Monday to Friday, fan on. There is a 3-day trial, and you "
+            "batches a day, Monday to Friday, fan on. There is a 2-day trial, and you "
             "need not wait for June.")),
     ],
 }, {
@@ -985,7 +985,7 @@ POSTS = [{
             "This was one morning at the Blue Flag beach. The regular "
             "practice is a hall in SSM Nagar, New Perungalathur &mdash; four "
             "batches a day, Monday to Friday, sun salutations included but "
-            "rather fewer than 108 at a time. There is a 3-day trial if you "
+            "rather fewer than 108 at a time. There is a 2-day trial if you "
             "want to see an ordinary morning.")),
     ],
 }]
@@ -1174,10 +1174,10 @@ def build_post(p):
                 Four batches a day, Monday to Friday, at our centre in New Perungalathur.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
-                <a href="{wa("Hello Happy Yogis! I read Yogi's Upadesha and would like to book a 3-day trial.")}"
+                <a href="{wa("Hello Happy Yogis! I read Yogi's Upadesha and would like to book a 2-day trial.")}"
                    target="_blank" rel="noopener"
                    class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
-                    Book a 3-day trial
+                    Book a 2-day trial
                 </a>
                 <a href="/#schedule" class="inline-flex items-center px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">
                     See the schedule

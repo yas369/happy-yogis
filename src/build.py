@@ -11,6 +11,7 @@ Motion: one page-load moment (the next-class panel resolving). Everything
 else responds to a real user action.
 """
 import os
+import html as _html
 import json
 from urllib.parse import quote
 
@@ -402,10 +403,15 @@ CSS = FONT_FACE + TAILWIND + """
         /* 1. Page to page. Same-origin navigations cross-fade instead of
               blinking white. Costs nothing and is ignored where unsupported. */
         @view-transition { navigation: auto; }
-        ::view-transition-old(root) { animation:vt-out .28s ease both; }
-        ::view-transition-new(root) { animation:vt-in .38s var(--ease) both; }
-        @keyframes vt-out { to { opacity:0; } }
-        @keyframes vt-in { from { opacity:0; transform:translateY(10px); } }
+        ::view-transition-old(root) { animation:vt-out .3s var(--ease) both; }
+        ::view-transition-new(root) { animation:vt-in .42s var(--ease) both; }
+        /* The outgoing page slides off to the left as the new one comes in
+           from the right - the gesture of turning a page rather than a
+           cross-fade. Transform and opacity only, so neither frame costs a
+           layout. The distance is small: 3vw reads as movement without the
+           page appearing to fly. */
+        @keyframes vt-out { to { opacity:0; transform:translate3d(-3vw,0,0); } }
+        @keyframes vt-in  { from { opacity:0; transform:translate3d(3vw,0,0); } }
 
         /* 3. Hover and press. Photographs breathe inside their frame, cards
               lift, rows warm and step aside, links draw their underline. */
@@ -601,6 +607,31 @@ CSS = FONT_FACE + TAILWIND + """
             content:''; position:absolute; left:0; right:0; bottom:-.4rem;
             height:2px; border-radius:2px; background:var(--blue); }
 
+        /* ---- parallax ----------------------------------------------------
+           A photograph inside .par drifts against the page as it scrolls.
+           The movement is one transform on the image, written by the page
+           script from a single scroll listener, so it costs no layout and no
+           repaint of anything else.
+
+           The image is scaled up first. Without the extra height, moving it
+           would expose the edge of its own frame at the top or bottom of the
+           travel; 1.18 covers the largest offset the script will apply. */
+        .par { overflow:hidden; }
+        .par > img, .par > picture > img {
+            transform:scale(1.18) translate3d(0,var(--par,0px),0);
+            will-change:transform;
+        }
+        /* The hero photograph already drifts on its own. Parallax replaces
+           that: two sources of movement on one image fight each other, and
+           the slow pan is the one a reader never asked for. */
+        .hero__shot.par img { animation:none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .par > img, .par > picture > img {
+                transform:none !important; will-change:auto;
+            }
+        }
+
         /* The scroll cue: a quiet second action beside the primary one. The
            chevron nudges on its own so the pair reads as "there is more
            below" rather than as two buttons of equal weight. */
@@ -664,7 +695,22 @@ def head(*, title, desc, path, schema, preload=None, preload_srcset=None,
     tamil_pre = ('\n    <link rel="preload" href="/noto-tamil.woff2" as="font" '
                  'type="font/woff2" crossorigin>') if lang == "ta" else ""
     locale = "ta_IN" if lang == "ta" else "en_IN"
-    payload = json.dumps(schema, indent=2, ensure_ascii=False)
+    # Copy written for HTML carries entities - &mdash;, &nbsp;, &rsquo;. They
+    # are right in markup and wrong here: a JSON string is data, so Google
+    # reads the six characters "&mdash;" rather than a dash. Seven pages were
+    # shipping FAQ answers and descriptions that way. Decoding here fixes
+    # every page at once and stops the next one reintroducing it, which is
+    # why it is not done at each call site.
+    def plain(v):
+        if isinstance(v, str):
+            return _html.unescape(v)
+        if isinstance(v, list):
+            return [plain(x) for x in v]
+        if isinstance(v, dict):
+            return {k: plain(x) for k, x in v.items()}
+        return v
+
+    payload = json.dumps(plain(schema), indent=2, ensure_ascii=False)
     assert json.loads(payload)
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -754,7 +800,7 @@ NAV_LINKS = [
 NAV_WORDS = dict(skip="Skip to main content", menu="Menu", open_menu="Open menu",
                  phone_cls="hidden sm:inline-flex",
                  close_menu="Close menu", trial="Book a trial",
-                 trial_full="Book a 3-day trial",
+                 trial_full="Book a 2-day trial",
                  switch=None, switch_href=None, switch_lang=None)
 
 
@@ -842,7 +888,7 @@ def nav(home=False, words=None, links_data=None, trial_msg=None,
             </nav>
             <div class="p-5 space-y-2.5 border-t border-line">
                 <a href="{('' if home else 'index.html')}#enquire" class="mobile-link flex items-center justify-center w-full px-5 py-3.5 bg-ink text-white font-medium rounded">
-                    Book a 3-day trial
+                    Book a 2-day trial
                 </a>
                 <a href="{PHONE_HREF}" class="mobile-link flex items-center justify-center gap-2 w-full px-5 py-3.5 border border-line text-ink font-medium rounded">
                     {icon('phone', 'w-4 h-4')}{PHONE_TEXT}
@@ -928,6 +974,54 @@ SCRIPT = """    <script>
                 ticking = false;
             });
         }, { passive: true });
+
+        /* Parallax. One listener, one rAF, one transform per image, and only
+           for images actually on screen - the observer keeps the loop from
+           touching anything it cannot see. Honours prefers-reduced-motion by
+           never starting, so the CSS fallback is belt and braces.
+
+           The offset is computed from how far the frame's centre sits from
+           the viewport's centre, which makes the movement symmetric: the
+           image is centred in its frame exactly when the frame is centred on
+           screen, so nobody sees it mid-drift at rest. */
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var frames = [].slice.call(document.querySelectorAll('.par'));
+            if (!frames.length) return;
+            var live = [], ticking = false;
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    var i = live.indexOf(e.target);
+                    if (e.isIntersecting && i < 0) live.push(e.target);
+                    else if (!e.isIntersecting && i >= 0) live.splice(i, 1);
+                });
+                if (live.length) place();
+            }, { rootMargin: '10% 0px' });
+            frames.forEach(function (f) { io.observe(f); });
+
+            /* How far the image may travel, in px. Kept well inside what the
+               1.18 scale affords at any frame height we use. */
+            var RANGE = 42;
+
+            function place() {
+                var mid = window.innerHeight / 2;
+                live.forEach(function (f) {
+                    var r = f.getBoundingClientRect();
+                    var off = ((r.top + r.height / 2) - mid) / mid;   // -1 .. 1
+                    if (off > 1) off = 1; else if (off < -1) off = -1;
+                    f.style.setProperty('--par', (off * RANGE).toFixed(1) + 'px');
+                });
+                ticking = false;
+            }
+            function onScroll() {
+                if (ticking || !live.length) return;
+                ticking = true;
+                requestAnimationFrame(place);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll, { passive: true });
+            place();
+        })();
 
         /* Which section am I in. The home page is long; without this the nav
            is six links that never say where you are. Matched by href, so a
@@ -1067,7 +1161,7 @@ SCRIPT = """    <script>
                 var cta = document.getElementById('batch-cta');
                 if (cta) {
                     if (open) {
-                        cta.textContent = 'Book a 3-day trial';
+                        cta.textContent = 'Book a 2-day trial';
                         cta.setAttribute('href', cta.getAttribute('data-base'));
                     } else {
                         var label = btn.getAttribute('data-label');
@@ -1107,7 +1201,7 @@ SCRIPT = """    <script>
                 var mode = form.elements.mode.value;
                 var notes = form.elements.notes.value.trim();
 
-                var msg = 'Hello Happy Yogis! I would like to book a 3-day trial.';
+                var msg = 'Hello Happy Yogis! I would like to book a 2-day trial.';
                 if (name) msg += '\\nName: ' + name;
                 if (phone) msg += '\\nPhone: ' + phone;
                 if (batch) msg += '\\nPreferred batch: ' + batch;

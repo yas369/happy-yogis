@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Four posts answering what people actually type into Google before joining.
+"""Six posts answering what people actually type into Google before joining.
 
 Same rules as the rest of the journal: nothing claimed that the cited health
 authorities do not support, no promised outcomes, no invented numbers, and
@@ -253,7 +253,7 @@ def make(para, bullets, photo, qa, cite, DISCLAIMER):
                "Are you sleeping enough to get up for 5:30 am without cutting "
                "sleep short?",
                "Would a women-only room make you more likely to come?")
-       + para("The 3-day trial exists for exactly this. Come three times, at "
+       + para("The 2-day trial exists for exactly this. Come three times, at "
               "whichever hour you could keep to, and see how the fourth morning "
               "feels before deciding.")),
 
@@ -366,5 +366,137 @@ def make(para, bullets, photo, qa, cite, DISCLAIMER):
      "related": ("hatha-yoga-in-chennai.html",
                  "Hatha yoga in Chennai for a working week",
                  "What the practice is, why it suits desk work and long commutes."),
+    },
+
+    # ------------------------------------------------------------------ 5
+    # The Park 63 opening. Everything here is a fact the centre has given us:
+    # the room, the tower, the one batch, its hours, who teaches it and the
+    # number to reach her on. Nothing about Surekha's training or background,
+    # because we have not been told any of it, and nothing about how many
+    # people come, because we have not counted.
+    {
+     "slug": "new-yoga-centre-park-63-perungalathur.html",
+     "date": "2026-10-21", "date_text": "21 October 2026",
+     "title": "A second centre: the yoga room at Park 63",
+     "standfirst": ("Happy Yogis now teaches in two places in New Perungalathur. "
+                    "The second is a morning batch in the yoga room at "
+                    "Tower\u00a020, Park\u00a063, taught by Surekha."),
+     "meta": ("A second Happy Yogis centre in the yoga room at Tower 20, Park 63, "
+              "New Perungalathur. One batch, 5:30-6:30 am, Mon-Fri, with Surekha."),
+     "photo": "ima4",
+     "short": [
+       "In the yoga room at Tower 20, Park 63, New Perungalathur.",
+       "One batch: 5:30 to 6:30 am, Monday to Friday, taught by Surekha.",
+       "The same practice taught at SSM Nagar, on your own doorstep.",
+     ],
+     "body": [
+      ("What has opened",
+       para("Since 21 October there is a second Happy Yogis. It runs in the "
+            "yoga room at Tower&nbsp;20, Park&nbsp;63, New Perungalathur, and "
+            "Surekha teaches it.",
+            "It is one batch, not four: 5:30 to 6:30 in the morning, Monday "
+            "to Friday. The SSM Nagar centre carries on exactly as before, "
+            "with all four batches and Karthika teaching every one of them.")),
+
+      ("Who it is for",
+       para("Mostly, people who live in Park&nbsp;63. The thing that stops "
+            "people practising is almost never the hour itself &mdash; it is "
+            "the twenty minutes at either end of it. If the room is in your "
+            "own complex, there is no commute to lose, no autorickshaw to "
+            "find at half past five, and no reason the rain should end your "
+            "week.",
+            "You do not have to live there to come. If the 5:30 hour suits "
+            "you and Park&nbsp;63 is the easier of the two to reach, it is "
+            "open to you.")),
+
+      ("It is the same practice",
+       para("Nothing about the teaching changes between the two rooms. The "
+            "hour is warm-up, then asanas, then pranayama, then lying still "
+            "&mdash; the same shape, built around whoever is on the mats that "
+            "morning. Beginners are not pushed into postures they are not "
+            "ready for, and anyone working around an injury or a health "
+            "condition gets the practice adapted rather than being told to "
+            "sit it out.",
+            "If you have never done yoga before, that is the ordinary case "
+            "here, not the exception.")),
+
+      ("How to start",
+       para("Message or call Surekha on 90256&nbsp;29706. The 2-day trial "
+            "works the same way at Park&nbsp;63 as at SSM Nagar: you come "
+            "for two mornings, do the class, and decide afterwards. Nobody "
+            "is put on a list and nothing is owed for turning up.")
+       + bullets("<strong>Where</strong> &mdash; yoga room, Tower&nbsp;20, "
+                 "Park&nbsp;63, New Perungalathur",
+                 "<strong>When</strong> &mdash; 5:30 to 6:30 am, Monday to Friday",
+                 "<strong>Who</strong> &mdash; Surekha, on +91 90256 29706")),
+     ],
+     "related": ("morning-or-evening-yoga-class.html",
+                 "Morning or evening? Choosing your batch",
+                 "Which hour suits you has less to do with yoga than with your "
+                 "commute, your sleep and who else is in the room."),
+    },
+
+    # ------------------------------------------------------------------ 6
+    {
+     "slug": "early-morning-yoga-batch-park-63.html",
+     "date": "2026-10-28", "date_text": "28 October 2026",
+     "title": "An hour before the day starts",
+     "standfirst": ("The Park\u00a063 batch runs at 5:30 in the morning, which is "
+                    "the first thing people ask about and the main reason the "
+                    "ones who come keep coming."),
+     "meta": ("What a 5:30 am yoga batch is like, and why an early hour is easier "
+              "to keep than a convenient one - the Happy Yogis batch at Park 63, "
+              "New Perungalathur."),
+     "photo": "ima5",
+     "short": [
+       "5:30 is early. It is also the hour nothing else competes for.",
+       "Come as you wake up; the warm-up is built for a stiff body.",
+       "An hour you can keep beats a better hour you cannot.",
+     ],
+     "body": [
+      ("Why so early",
+       para("The usual reaction to 5:30 is that it is too early. The usual "
+            "experience, a fortnight in, is that it is the only hour of the "
+            "day nothing else wants. Evening classes lose to traffic, to "
+            "work running late, to a child needing something. A 5:30 class "
+            "competes with sleep, and that is a fight you can settle once by "
+            "going to bed earlier, rather than every single evening.",
+            "For a batch inside the complex it matters even more. There is no "
+            "journey to fail.")),
+
+      ("Your body at 5:30",
+       para("You will be stiffer than you are at ten in the morning. "
+            "Everybody is. The hour is built for that &mdash; it opens with "
+            "joint rotations and gentle stretches before anything is asked of "
+            "you, and nothing in the first fifteen minutes needs flexibility "
+            "you do not have.",
+            "Come on a reasonably empty stomach. Wear whatever you can move "
+            "in. If you are working around a knee, a back or a thyroid "
+            "condition, say so at the start, which is "
+            + cite("nccih_safe", "the standard advice") + " for beginning yoga "
+            "under a teacher and the reason Surekha asks.")),
+
+      ("What the hour does for the rest of the day",
+       para("Finishing before six leaves the day in front of you rather than "
+            "behind you. Beyond that we will not promise much: the honest "
+            "position is the one the "
+            + cite("who_pa", "World Health Organization") + " takes on regular "
+            "activity generally &mdash; it helps, it is worth doing, and the "
+            "benefit comes from repetition rather than from any single "
+            "session.",
+            "Students often say the pranayama and the few minutes of "
+            "stillness at the end are what they actually came back for. That "
+            "is not a claim about outcomes; it is just what gets said.")),
+
+      ("If 5:30 is genuinely impossible",
+       para("Then come to SSM Nagar instead. There are four batches there, "
+            "Monday to Friday, including a ladies-only hour mid-morning and "
+            "an evening batch that a lot of school and college students use. "
+            "Park&nbsp;63 is an extra room, not a replacement &mdash; pick "
+            "whichever hour you can actually keep.")),
+     ],
+     "related": ("new-yoga-centre-park-63-perungalathur.html",
+                 "A second centre: the yoga room at Park 63",
+                 "What has opened at Tower 20, who teaches it and how to start."),
     },
     ]

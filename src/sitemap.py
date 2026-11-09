@@ -53,6 +53,8 @@ PAGES = [
     ("yoga-for-back-pain-chennai.html",              "0.7", "yearly"),
     ("yoga-for-weight-loss-in-chennai.html",       "0.7", "yearly"),
     ("108-suryanamaskar-challenge.html",            "0.7", "yearly"),
+    ("new-yoga-centre-park-63-perungalathur.html",  "0.8", "monthly"),
+    ("early-morning-yoga-batch-park-63.html",       "0.7", "yearly"),
     ("international-yoga-day-beach.html",           "0.6", "yearly"),
     ("yoga-classes-for-children-perungalathur.html","0.7", "yearly"),
     ("yoga-classes-for-men-perungalathur.html",     "0.7", "yearly"),

@@ -319,10 +319,15 @@
         /* 1. Page to page. Same-origin navigations cross-fade instead of
               blinking white. Costs nothing and is ignored where unsupported. */
         @view-transition { navigation: auto; }
-        ::view-transition-old(root) { animation:vt-out .28s ease both; }
-        ::view-transition-new(root) { animation:vt-in .38s var(--ease) both; }
-        @keyframes vt-out { to { opacity:0; } }
-        @keyframes vt-in { from { opacity:0; transform:translateY(10px); } }
+        ::view-transition-old(root) { animation:vt-out .3s var(--ease) both; }
+        ::view-transition-new(root) { animation:vt-in .42s var(--ease) both; }
+        /* The outgoing page slides off to the left as the new one comes in
+           from the right - the gesture of turning a page rather than a
+           cross-fade. Transform and opacity only, so neither frame costs a
+           layout. The distance is small: 3vw reads as movement without the
+           page appearing to fly. */
+        @keyframes vt-out { to { opacity:0; transform:translate3d(-3vw,0,0); } }
+        @keyframes vt-in  { from { opacity:0; transform:translate3d(3vw,0,0); } }
 
         /* 3. Hover and press. Photographs breathe inside their frame, cards
               lift, rows warm and step aside, links draw their underline. */
@@ -518,6 +523,31 @@
             content:''; position:absolute; left:0; right:0; bottom:-.4rem;
             height:2px; border-radius:2px; background:var(--blue); }
 
+        /* ---- parallax ----------------------------------------------------
+           A photograph inside .par drifts against the page as it scrolls.
+           The movement is one transform on the image, written by the page
+           script from a single scroll listener, so it costs no layout and no
+           repaint of anything else.
+
+           The image is scaled up first. Without the extra height, moving it
+           would expose the edge of its own frame at the top or bottom of the
+           travel; 1.18 covers the largest offset the script will apply. */
+        .par { overflow:hidden; }
+        .par > img, .par > picture > img {
+            transform:scale(1.18) translate3d(0,var(--par,0px),0);
+            will-change:transform;
+        }
+        /* The hero photograph already drifts on its own. Parallax replaces
+           that: two sources of movement on one image fight each other, and
+           the slow pan is the one a reader never asked for. */
+        .hero__shot.par img { animation:none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .par > img, .par > picture > img {
+                transform:none !important; will-change:auto;
+            }
+        }
+
         /* The scroll cue: a quiet second action beside the primary one. The
            chevron nudges on its own so the pair reads as "there is more
            below" rather than as two buttons of equal weight. */
@@ -696,7 +726,7 @@
             </nav>
             <div class="p-5 space-y-2.5 border-t border-line">
                 <a href="index.html#enquire" class="mobile-link flex items-center justify-center w-full px-5 py-3.5 bg-ink text-white font-medium rounded">
-                    Book a 3-day trial
+                    Book a 2-day trial
                 </a>
                 <a href="tel:+919994247450" class="mobile-link flex items-center justify-center gap-2 w-full px-5 py-3.5 border border-line text-ink font-medium rounded">
                     <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
@@ -777,7 +807,7 @@
                 <li><strong>6:15 &ndash; 7:15 am, 60 minutes.</strong> The busiest hour, and where most beginners start.</li>
                 <li><strong>10:00 &ndash; 11:00 am, 60 minutes, ladies only.</strong> Mid-morning, after the school run and before the afternoon.</li>
                 <li><strong>5:00 &ndash; 6:00 pm, 60 minutes.</strong> The evening batch, for anyone whose mornings are not negotiable.</li>
-            </ul>            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">We also teach the same practice online, and students move between online and in-person as their week allows &mdash; useful in a city where one bad evening on the road costs you an hour. You can see which batch is next on the <a href="/#schedule" class="text-blue font-medium hover:underline">schedule on the homepage</a>, and there is a 3-day trial so you can sit in before deciding anything.</p>
+            </ul>            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">We also teach the same practice online, and students move between online and in-person as their week allows &mdash; useful in a city where one bad evening on the road costs you an hour. You can see which batch is next on the <a href="/#schedule" class="text-blue font-medium hover:underline">schedule on the homepage</a>, and there is a 2-day trial so you can sit in before deciding anything.</p>
             <h2 class="text-d2 text-ink mt-12">Practising around what you arrive with</h2>
             <p class="mt-4 text-[16px] leading-relaxed text-ink/80">A good number of students come to us because a doctor suggested it. The practice is planned around the condition rather than in spite of it.</p>            <ul class="mt-4 space-y-2.5 text-[16px] leading-relaxed text-ink/80 list-disc pl-5 marker:text-muted">
                 <li>PCOD and hormonal health, sequenced at a manageable pace</li>
@@ -817,7 +847,7 @@
                 </div>
             </dl>
             <h2 class="text-d2 text-ink mt-12">Where to start</h2>
-            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">If you have read this far, the useful next step is not more reading. Come to one class, at whichever of the four times you could keep to, and see what an hour of hatha yoga does to a Chennai working day. The 3-day trial exists for that.</p>
+            <p class="mt-4 text-[16px] leading-relaxed text-ink/80">If you have read this far, the useful next step is not more reading. Come to one class, at whichever of the four times you could keep to, and see what an hour of hatha yoga does to a Chennai working day. The 2-day trial exists for that.</p>
 
         <aside class="mt-14 border-t border-line pt-6" aria-labelledby="health-note">
             <h2 id="health-note" class="text-[13.5px] font-medium text-ink">A note on health information</h2>
@@ -862,10 +892,10 @@
                 Four batches a day, Monday to Friday, at our centre in New Perungalathur.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
-                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20read%20Yogi%27s%20Upadesha%20and%20would%20like%20to%20book%20a%203-day%20trial."
+                <a href="https://wa.me/919994247450?text=Hello%20Happy%20Yogis%21%20I%20read%20Yogi%27s%20Upadesha%20and%20would%20like%20to%20book%20a%202-day%20trial."
                    target="_blank" rel="noopener"
                    class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
-                    Book a 3-day trial
+                    Book a 2-day trial
                 </a>
                 <a href="/#schedule" class="inline-flex items-center px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">
                     See the schedule
@@ -950,6 +980,54 @@
                 ticking = false;
             });
         }, { passive: true });
+
+        /* Parallax. One listener, one rAF, one transform per image, and only
+           for images actually on screen - the observer keeps the loop from
+           touching anything it cannot see. Honours prefers-reduced-motion by
+           never starting, so the CSS fallback is belt and braces.
+
+           The offset is computed from how far the frame's centre sits from
+           the viewport's centre, which makes the movement symmetric: the
+           image is centred in its frame exactly when the frame is centred on
+           screen, so nobody sees it mid-drift at rest. */
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var frames = [].slice.call(document.querySelectorAll('.par'));
+            if (!frames.length) return;
+            var live = [], ticking = false;
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    var i = live.indexOf(e.target);
+                    if (e.isIntersecting && i < 0) live.push(e.target);
+                    else if (!e.isIntersecting && i >= 0) live.splice(i, 1);
+                });
+                if (live.length) place();
+            }, { rootMargin: '10% 0px' });
+            frames.forEach(function (f) { io.observe(f); });
+
+            /* How far the image may travel, in px. Kept well inside what the
+               1.18 scale affords at any frame height we use. */
+            var RANGE = 42;
+
+            function place() {
+                var mid = window.innerHeight / 2;
+                live.forEach(function (f) {
+                    var r = f.getBoundingClientRect();
+                    var off = ((r.top + r.height / 2) - mid) / mid;   // -1 .. 1
+                    if (off > 1) off = 1; else if (off < -1) off = -1;
+                    f.style.setProperty('--par', (off * RANGE).toFixed(1) + 'px');
+                });
+                ticking = false;
+            }
+            function onScroll() {
+                if (ticking || !live.length) return;
+                ticking = true;
+                requestAnimationFrame(place);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll, { passive: true });
+            place();
+        })();
 
         /* Which section am I in. The home page is long; without this the nav
            is six links that never say where you are. Matched by href, so a
@@ -1089,7 +1167,7 @@
                 var cta = document.getElementById('batch-cta');
                 if (cta) {
                     if (open) {
-                        cta.textContent = 'Book a 3-day trial';
+                        cta.textContent = 'Book a 2-day trial';
                         cta.setAttribute('href', cta.getAttribute('data-base'));
                     } else {
                         var label = btn.getAttribute('data-label');
@@ -1129,7 +1207,7 @@
                 var mode = form.elements.mode.value;
                 var notes = form.elements.notes.value.trim();
 
-                var msg = 'Hello Happy Yogis! I would like to book a 3-day trial.';
+                var msg = 'Hello Happy Yogis! I would like to book a 2-day trial.';
                 if (name) msg += '\nName: ' + name;
                 if (phone) msg += '\nPhone: ' + phone;
                 if (batch) msg += '\nPreferred batch: ' + batch;

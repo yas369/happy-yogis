@@ -15,8 +15,8 @@
         gtag('config', 'G-86VPTR7ERW');
     </script>
 
-    <title>பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis</title>
-    <meta name="description" content="புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 3 நாள் முயற்சி வகுப்பு உண்டு.">
+    <title>புதிய பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis</title>
+    <meta name="description" content="புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 2 நாள் முயற்சி வகுப்பு உண்டு.">
     <link rel="canonical" href="https://happyyogis.in/ta/index.html">
     <link rel="alternate" hreflang="ta-IN" href="https://happyyogis.in/ta/index.html">
     <link rel="alternate" hreflang="en-IN" href="https://happyyogis.in/">
@@ -33,14 +33,14 @@
     <meta property="og:site_name" content="Happy Yogis Yoga Centre">
     <meta property="og:locale" content="ta_IN">
     <meta property="og:url" content="https://happyyogis.in/ta/index.html">
-    <meta property="og:title" content="பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis">
-    <meta property="og:description" content="புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 3 நாள் முயற்சி வகுப்பு உண்டு.">
+    <meta property="og:title" content="புதிய பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis">
+    <meta property="og:description" content="புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 2 நாள் முயற்சி வகுப்பு உண்டு.">
     <meta property="og:image" content="https://happyyogis.in/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis">
-    <meta name="twitter:description" content="புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 3 நாள் முயற்சி வகுப்பு உண்டு.">
+    <meta name="twitter:title" content="புதிய பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis">
+    <meta name="twitter:description" content="புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 2 நாள் முயற்சி வகுப்பு உண்டு.">
     <meta name="twitter:image" content="https://happyyogis.in/og-image.jpg">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -323,10 +323,15 @@
         /* 1. Page to page. Same-origin navigations cross-fade instead of
               blinking white. Costs nothing and is ignored where unsupported. */
         @view-transition { navigation: auto; }
-        ::view-transition-old(root) { animation:vt-out .28s ease both; }
-        ::view-transition-new(root) { animation:vt-in .38s var(--ease) both; }
-        @keyframes vt-out { to { opacity:0; } }
-        @keyframes vt-in { from { opacity:0; transform:translateY(10px); } }
+        ::view-transition-old(root) { animation:vt-out .3s var(--ease) both; }
+        ::view-transition-new(root) { animation:vt-in .42s var(--ease) both; }
+        /* The outgoing page slides off to the left as the new one comes in
+           from the right - the gesture of turning a page rather than a
+           cross-fade. Transform and opacity only, so neither frame costs a
+           layout. The distance is small: 3vw reads as movement without the
+           page appearing to fly. */
+        @keyframes vt-out { to { opacity:0; transform:translate3d(-3vw,0,0); } }
+        @keyframes vt-in  { from { opacity:0; transform:translate3d(3vw,0,0); } }
 
         /* 3. Hover and press. Photographs breathe inside their frame, cards
               lift, rows warm and step aside, links draw their underline. */
@@ -522,6 +527,31 @@
             content:''; position:absolute; left:0; right:0; bottom:-.4rem;
             height:2px; border-radius:2px; background:var(--blue); }
 
+        /* ---- parallax ----------------------------------------------------
+           A photograph inside .par drifts against the page as it scrolls.
+           The movement is one transform on the image, written by the page
+           script from a single scroll listener, so it costs no layout and no
+           repaint of anything else.
+
+           The image is scaled up first. Without the extra height, moving it
+           would expose the edge of its own frame at the top or bottom of the
+           travel; 1.18 covers the largest offset the script will apply. */
+        .par { overflow:hidden; }
+        .par > img, .par > picture > img {
+            transform:scale(1.18) translate3d(0,var(--par,0px),0);
+            will-change:transform;
+        }
+        /* The hero photograph already drifts on its own. Parallax replaces
+           that: two sources of movement on one image fight each other, and
+           the slow pan is the one a reader never asked for. */
+        .hero__shot.par img { animation:none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .par > img, .par > picture > img {
+                transform:none !important; will-change:auto;
+            }
+        }
+
         /* The scroll cue: a quiet second action beside the primary one. The
            chevron nudges on its own so the pair reads as "there is more
            below" rather than as two buttons of equal weight. */
@@ -630,8 +660,8 @@
       "@type": "WebPage",
       "@id": "https://happyyogis.in/ta/index.html",
       "url": "https://happyyogis.in/ta/index.html",
-      "name": "பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis",
-      "description": "புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 3 நாள் முயற்சி வகுப்பு உண்டு.",
+      "name": "புதிய பெருங்களத்தூரில் யோகா வகுப்புகள் | Happy Yogis",
+      "description": "புதிய பெருங்களத்தூர், எஸ்.எஸ்.எம். நகரில் யோகா மையம். திங்கள் முதல் வெள்ளி வரை நாளுக்கு நான்கு வகுப்புகள். 2 நாள் முயற்சி வகுப்பு உண்டு.",
       "inLanguage": "ta-IN",
       "isPartOf": {
         "@id": "https://happyyogis.in/#website"
@@ -722,7 +752,7 @@
             </nav>
             <div class="p-5 space-y-2.5 border-t border-line">
                 <a href="#enquire" class="mobile-link flex items-center justify-center w-full px-5 py-3.5 bg-ink text-white font-medium rounded">
-                    Book a 3-day trial
+                    Book a 2-day trial
                 </a>
                 <a href="tel:+919994247450" class="mobile-link flex items-center justify-center gap-2 w-full px-5 py-3.5 border border-line text-ink font-medium rounded">
                     <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>+91 99942 47450
@@ -743,13 +773,13 @@
         <div class="max-w-6xl mx-auto px-5 sm:px-8">
             <div class="enter text-center">
                 <p class="lbl">புதிய பெருங்களத்தூரில் இரண்டு மையங்கள் &middot; சென்னை</p>
-                <h1 id="hero-h" class="mt-4 text-d1 text-ink mx-auto">பெருங்களத்தூர் மற்றும் தாம்பரத்தில் யோகா வகுப்புகள்</h1>
+                <h1 id="hero-h" class="mt-4 text-d1 text-ink mx-auto">புதிய பெருங்களத்தூர், சென்னையில் யோகா வகுப்புகள்</h1>
                 <p class="lede mt-6 text-ink/70 max-w-xl mx-auto">திங்கள் முதல் வெள்ளி வரை நாளொன்றுக்கு நான்கு சிறிய வகுப்புகள் &mdash; பெண்கள், ஆண்கள், குழந்தைகள் அனைவருக்கும். சேருபவர்களில் பெரும்பாலோர் இதற்கு முன் யோகா செய்ததில்லை; ஒவ்வொருவருக்கும் ஏற்ப பயிற்சி அமைக்கப்படுகிறது.</p>
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
                     <a id="batch-cta" href="https://wa.me/919994247450?text=%E0%AE%B5%E0%AE%A3%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%AE%E0%AF%8D%20Happy%20Yogis%21%203%20%E0%AE%A8%E0%AE%BE%E0%AE%B3%E0%AF%8D%20%E0%AE%AE%E0%AF%81%E0%AE%AF%E0%AE%B1%E0%AF%8D%E0%AE%9A%E0%AE%BF%20%E0%AE%B5%E0%AE%95%E0%AF%81%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%20%E0%AE%AA%E0%AE%B1%E0%AF%8D%E0%AE%B1%E0%AE%BF%20%E0%AE%85%E0%AE%B1%E0%AE%BF%E0%AE%AF%20%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%BF%E0%AE%B1%E0%AF%87%E0%AE%A9%E0%AF%8D." data-base="https://wa.me/919994247450?text=%E0%AE%B5%E0%AE%A3%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%AE%E0%AF%8D%20Happy%20Yogis%21%203%20%E0%AE%A8%E0%AE%BE%E0%AE%B3%E0%AF%8D%20%E0%AE%AE%E0%AF%81%E0%AE%AF%E0%AE%B1%E0%AF%8D%E0%AE%9A%E0%AE%BF%20%E0%AE%B5%E0%AE%95%E0%AF%81%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%20%E0%AE%AA%E0%AE%B1%E0%AF%8D%E0%AE%B1%E0%AE%BF%20%E0%AE%85%E0%AE%B1%E0%AE%BF%E0%AE%AF%20%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%BF%E0%AE%B1%E0%AF%87%E0%AE%A9%E0%AF%8D."
                        target="_blank" rel="noopener"
                        class="inline-flex items-center px-8 py-4 bg-ink text-white font-medium rounded text-[17px] hover:bg-blue transition-colors">
-                        3 நாள் முயற்சி வகுப்பு
+                        2 நாள் முயற்சி வகுப்பு
                     </a>
                     <a href="#schedule" class="cue px-1 py-2 text-[15px] font-medium text-ink/70 hover:text-ink transition-colors">
                         நேர அட்டவணையைப் பாருங்கள் <svg class="i w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-chevron-down"></use></svg>
@@ -792,7 +822,7 @@
                 </li>
             </ul>
 
-            <div class="hero__shot grade mt-10 lg:mt-14">
+            <div class="hero__shot grade par mt-10 lg:mt-14">
                 <picture>
                     <source type="image/webp" sizes="(min-width:1216px) 1152px, (min-width:640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
                             srcset="/ima6-xs.webp 320w, /ima6-sm.webp 640w, /ima6-md.webp 768w, /ima6.webp 1280w">
@@ -986,7 +1016,7 @@
     </section>
 
     <section aria-label="கடலுக்கு மேல் சூரியன் உதிக்கும்போது பாய்களில் அமர்ந்திருக்கும் குழு" class="border-y border-line">
-        <figure>
+        <figure class="par">
             <picture>
                     <source type="image/webp" sizes="100vw"
                             srcset="/ima15-xs.webp 320w, /ima15-sm.webp 640w, /ima15-md.webp 768w, /ima15.webp 1280w">
@@ -1106,7 +1136,7 @@
             <div class="mt-12 lg:mt-14 reveal">
                 <a href="https://wa.me/919994247450?text=%E0%AE%B5%E0%AE%A3%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%AE%E0%AF%8D%20Happy%20Yogis%21%203%20%E0%AE%A8%E0%AE%BE%E0%AE%B3%E0%AF%8D%20%E0%AE%AE%E0%AF%81%E0%AE%AF%E0%AE%B1%E0%AF%8D%E0%AE%9A%E0%AE%BF%20%E0%AE%B5%E0%AE%95%E0%AF%81%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%20%E0%AE%AA%E0%AE%B1%E0%AF%8D%E0%AE%B1%E0%AE%BF%20%E0%AE%85%E0%AE%B1%E0%AE%BF%E0%AE%AF%20%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%BF%E0%AE%B1%E0%AF%87%E0%AE%A9%E0%AF%8D." target="_blank" rel="noopener"
                    class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
-                    3 நாள் முயற்சி வகுப்பு
+                    2 நாள் முயற்சி வகுப்பு
                 </a>
             </div>
         </div>
@@ -1419,11 +1449,11 @@
         <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 lg:py-36">
             <div class="max-w-xl">
                 <h2 id="cta-h" class="text-d2 text-white">நாளுக்கு நான்கு வகுப்புகள், திங்கள் முதல் வெள்ளி வரை</h2>
-                <p class="mt-4 text-[16px] leading-relaxed text-white/85">பெண்கள், ஆண்கள், குழந்தைகள் &mdash; புதிய பெருங்களத்தூரின் ஒரே அரங்கில். சேருபவர்களில் பெரும்பாலோர் இதற்கு முன் யோகா செய்ததில்லை. முடிவு செய்வதற்கு முன் 3 நாள் முயற்சி வகுப்பில் கலந்துகொள்ளுங்கள்.</p>
+                <p class="mt-4 text-[16px] leading-relaxed text-white/85">பெண்கள், ஆண்கள், குழந்தைகள் &mdash; புதிய பெருங்களத்தூரின் ஒரே அரங்கில். சேருபவர்களில் பெரும்பாலோர் இதற்கு முன் யோகா செய்ததில்லை. முடிவு செய்வதற்கு முன் 2 நாள் முயற்சி வகுப்பில் கலந்துகொள்ளுங்கள்.</p>
                 <div class="mt-7 flex flex-wrap gap-3">
                     <a href="https://wa.me/919994247450?text=%E0%AE%B5%E0%AE%A3%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%AE%E0%AF%8D%20Happy%20Yogis%21%203%20%E0%AE%A8%E0%AE%BE%E0%AE%B3%E0%AF%8D%20%E0%AE%AE%E0%AF%81%E0%AE%AF%E0%AE%B1%E0%AF%8D%E0%AE%9A%E0%AE%BF%20%E0%AE%B5%E0%AE%95%E0%AF%81%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%20%E0%AE%AA%E0%AE%B1%E0%AF%8D%E0%AE%B1%E0%AE%BF%20%E0%AE%85%E0%AE%B1%E0%AE%BF%E0%AE%AF%20%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%BF%E0%AE%B1%E0%AF%87%E0%AE%A9%E0%AF%8D." target="_blank" rel="noopener"
                        class="inline-flex items-center px-5 py-3 bg-white text-ink font-medium rounded hover:bg-sand transition-colors">
-                        3 நாள் முயற்சி வகுப்பு
+                        2 நாள் முயற்சி வகுப்பு
                     </a>
                     <a href="#schedule"
                        class="inline-flex items-center px-5 py-3 border border-white/40 text-white font-medium rounded hover:border-white transition-colors">
@@ -1473,7 +1503,7 @@
     <section id="visit" aria-labelledby="visit-h" class="py-16 lg:py-24 bg-sand border-y border-line">
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div class="lg:col-span-6 reveal" id="enquire">
-                <h2 id="visit-h" class="text-d2 text-ink">3 நாள் முயற்சி வகுப்பைப் பதிவு செய்யுங்கள்</h2>
+                <h2 id="visit-h" class="text-d2 text-ink">2 நாள் முயற்சி வகுப்பைப் பதிவு செய்யுங்கள்</h2>
                 <p class="mt-3 text-[16px] leading-relaxed text-ink/75 max-w-lg">இதை நிரப்புங்கள் &mdash; உங்கள் விவரங்களுடன் WhatsApp திறக்கும், அனுப்பினால் எந்த வகுப்பில் இடம் இருக்கிறது என்று சொல்கிறோம்.</p>
                 <form id="enquiry-form" class="mt-7 space-y-4 max-w-lg" novalidate>
                     <div>
@@ -1580,7 +1610,7 @@
                             <span class="shrink-0 mt-0.5 text-muted"><svg class="i w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg></span>
                         </button>
                     </h3>
-                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">ஆம். 3 நாள் முயற்சி வகுப்பு மூலம், முடிவு செய்வதற்கு முன் ஒரு வகுப்பில் கலந்துகொள்ளலாம். WhatsApp-இல் தெரிவியுங்கள், பதிவு செய்கிறோம்.</div>
+                    <div class="faq-a pb-5 -mt-1 text-[15px] leading-relaxed text-muted max-w-2xl">ஆம். 2 நாள் முயற்சி வகுப்பு மூலம், முடிவு செய்வதற்கு முன் ஒரு வகுப்பில் கலந்துகொள்ளலாம். WhatsApp-இல் தெரிவியுங்கள், பதிவு செய்கிறோம்.</div>
                 </div>
                 <div class="faq-item border-b border-line">
                     <h3>
@@ -1733,6 +1763,54 @@
             });
         }, { passive: true });
 
+        /* Parallax. One listener, one rAF, one transform per image, and only
+           for images actually on screen - the observer keeps the loop from
+           touching anything it cannot see. Honours prefers-reduced-motion by
+           never starting, so the CSS fallback is belt and braces.
+
+           The offset is computed from how far the frame's centre sits from
+           the viewport's centre, which makes the movement symmetric: the
+           image is centred in its frame exactly when the frame is centred on
+           screen, so nobody sees it mid-drift at rest. */
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var frames = [].slice.call(document.querySelectorAll('.par'));
+            if (!frames.length) return;
+            var live = [], ticking = false;
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    var i = live.indexOf(e.target);
+                    if (e.isIntersecting && i < 0) live.push(e.target);
+                    else if (!e.isIntersecting && i >= 0) live.splice(i, 1);
+                });
+                if (live.length) place();
+            }, { rootMargin: '10% 0px' });
+            frames.forEach(function (f) { io.observe(f); });
+
+            /* How far the image may travel, in px. Kept well inside what the
+               1.18 scale affords at any frame height we use. */
+            var RANGE = 42;
+
+            function place() {
+                var mid = window.innerHeight / 2;
+                live.forEach(function (f) {
+                    var r = f.getBoundingClientRect();
+                    var off = ((r.top + r.height / 2) - mid) / mid;   // -1 .. 1
+                    if (off > 1) off = 1; else if (off < -1) off = -1;
+                    f.style.setProperty('--par', (off * RANGE).toFixed(1) + 'px');
+                });
+                ticking = false;
+            }
+            function onScroll() {
+                if (ticking || !live.length) return;
+                ticking = true;
+                requestAnimationFrame(place);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll, { passive: true });
+            place();
+        })();
+
         /* Which section am I in. The home page is long; without this the nav
            is six links that never say where you are. Matched by href, so a
            link to another page is simply never a candidate and the whole
@@ -1871,7 +1949,7 @@
                 var cta = document.getElementById('batch-cta');
                 if (cta) {
                     if (open) {
-                        cta.textContent = 'Book a 3-day trial';
+                        cta.textContent = 'Book a 2-day trial';
                         cta.setAttribute('href', cta.getAttribute('data-base'));
                     } else {
                         var label = btn.getAttribute('data-label');
@@ -1911,7 +1989,7 @@
                 var mode = form.elements.mode.value;
                 var notes = form.elements.notes.value.trim();
 
-                var msg = 'Hello Happy Yogis! I would like to book a 3-day trial.';
+                var msg = 'Hello Happy Yogis! I would like to book a 2-day trial.';
                 if (name) msg += '\nName: ' + name;
                 if (phone) msg += '\nPhone: ' + phone;
                 if (batch) msg += '\nPreferred batch: ' + batch;
