@@ -5,7 +5,7 @@ Every business fact here was confirmed by the owner in the requirements
 interview. Nothing in this file may be invented or inferred:
   - 4 batches (the 8-9am batch was removed; it does not run)
   - opening hours Mon-Fri 05:30-19:00 (classes to 18:00, reception to 19:00)
-  - a 3-day trial, with NO price shown anywhere on the site
+  - a 2-day trial, with NO price shown anywhere on the site
   - no fees of any kind published
   - no social links (sameAs removed at the owner's instruction)
 """
@@ -39,7 +39,7 @@ EVENT = {
     "place": "the Blue Flag beach, Chennai",
 }
 
-TRIAL = "3-day trial"        # price is deliberately not published
+TRIAL = "2-day trial"        # price is deliberately not published
 
 CLASS_GROUPS = [
     ("Start here", [
@@ -109,7 +109,7 @@ FAQS = [
      "Any of them. Every batch is mixed ability and the practice is adjusted "
      "person by person. Most beginners pick the 6:15 am or the 5:00 pm batch."),
     ("Can I try before joining properly?",
-     "Yes. A 3-day trial lets you sit in on a batch before committing. "
+     "Yes. A 2-day trial lets you sit in on a batch before committing. "
      "Message us on WhatsApp and we will book you in."),
     ("Do I need to bring a mat?",
      "Bring one for the trial if you have it. Once you join you can leave your "

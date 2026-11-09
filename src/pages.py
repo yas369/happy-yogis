@@ -12,7 +12,7 @@ from blog import newest_first
 # The site root, derived from this file's location so a clone works
 # wherever it sits. HAPPY_YOGIS_ROOT overrides it if ever needed.
 OUT = os.environ.get("HAPPY_YOGIS_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TRIAL_MSG = "Hello Happy Yogis! I would like to book a 3-day trial."
+TRIAL_MSG = "Hello Happy Yogis! I would like to book a 2-day trial."
 
 
 # ------------------------------------------------------------------ fragments
@@ -321,7 +321,7 @@ def band(key, caption, *, h="h-[240px] sm:h-[340px] lg:h-[420px]"):
     Beach frames carry a caption saying what they are - classes are taught in
     the hall, and nothing here should suggest otherwise."""
     return f"""    <section aria-label="{alt_text(key)}" class="border-y border-line">
-        <figure>
+        <figure class="par">
             {photo(key, cls=f'w-full {h} object-cover object-[center_45%] block',
                    sizes='100vw')}
             <figcaption class="max-w-6xl mx-auto px-5 sm:px-8 py-3 text-[13px] text-muted">
@@ -346,13 +346,13 @@ def photo_cta(key):
                 <h2 id="cta-h" class="text-d2 text-white">Four batches a day, Monday to Friday</h2>
                 <p class="mt-4 text-[16px] leading-relaxed text-white/85">
                     Ladies, gents and children, in one hall in New Perungalathur. Most who
-                    join have never done yoga before. Sit in on a batch on the 3-day trial
+                    join have never done yoga before. Sit in on a batch on the 2-day trial
                     before deciding anything.
                 </p>
                 <div class="mt-7 flex flex-wrap gap-3">
                     <a href="{wa(TRIAL_MSG)}" target="_blank" rel="noopener"
                        class="inline-flex items-center px-5 py-3 bg-white text-ink font-medium rounded hover:bg-sand transition-colors">
-                        Book a 3-day trial
+                        Book a 2-day trial
                     </a>
                     <a href="#schedule"
                        class="inline-flex items-center px-5 py-3 border border-white/40 text-white font-medium rounded hover:border-white transition-colors">
@@ -424,15 +424,15 @@ def build_index():
              "name": "Happy Yogis Yoga Centre", "inLanguage": "en-IN",
              "publisher": {"@id": f"{BASE}/#business"}},
             {"@type": "WebPage", "@id": f"{BASE}/#webpage", "url": f"{BASE}/",
-             "name": "Yoga Centre in Perungalathur & Tambaram | Happy Yogis",
+             "name": "Yoga Centre in New Perungalathur, Chennai | Happy Yogis",
              "isPartOf": {"@id": f"{BASE}/#website"},
              "about": {"@id": f"{BASE}/#business"}, "inLanguage": "en-IN"},
         ],
     }
 
-    h = head(title="Yoga Centre in Perungalathur & Tambaram | Happy Yogis",
+    h = head(title="Yoga Centre in New Perungalathur, Chennai | Happy Yogis",
              desc=("Yoga classes in New Perungalathur for ladies, gents and children. "
-                   "Four batches daily, Mon-Fri, plus online classes. 3-day trial."),
+                   "Four batches daily, Mon-Fri, plus online classes. 2-day trial."),
              # No hero preload. It had one while the photograph was the
              # largest paint, but both centres now sit between the buttons
              # and the photograph, which puts the photograph below the fold
@@ -467,7 +467,7 @@ def build_index():
             <div class="enter text-center">
                 <p class="lbl">SSM Nagar and Park&nbsp;63 &middot; New Perungalathur, Chennai</p>
                 <h1 id="hero-h" class="mt-4 text-d1 text-ink mx-auto">
-                    Yoga classes in Perungalathur and Tambaram
+                    Yoga classes in New Perungalathur, Chennai
                 </h1>
                 <p class="lede mt-6 text-ink/70 max-w-xl mx-auto">
                     Four small batches a day, Monday to Friday, for ladies, gents and
@@ -477,7 +477,7 @@ def build_index():
                     <a id="batch-cta" href="{wa(TRIAL_MSG)}" data-base="{wa(TRIAL_MSG)}"
                        target="_blank" rel="noopener"
                        class="inline-flex items-center px-8 py-4 bg-ink text-white font-medium rounded text-[17px] hover:bg-blue transition-colors">
-                        Book a 3-day trial
+                        Book a 2-day trial
                     </a>
                     <a href="#schedule" class="cue px-1 py-2 text-[15px] font-medium text-ink/70 hover:text-ink transition-colors">
                         See the timetable {icon('chevron-down', 'w-4 h-4')}
@@ -494,7 +494,7 @@ def build_index():
 {centre_cards()}
             </ul>
 
-            <div class="hero__shot grade mt-10 lg:mt-14">
+            <div class="hero__shot grade par mt-10 lg:mt-14">
                 {photo('ima6', cls='object-[center_38%]', eager=True, sizes=HERO_SIZES)}
             </div>
         </div>
@@ -669,10 +669,10 @@ def build_index():
             </div>
 
             <div class="mt-12 lg:mt-14 reveal">
-                <a href="{wa('Hello Happy Yogis! I would like to book a 3-day trial.')}"
+                <a href="{wa('Hello Happy Yogis! I would like to book a 2-day trial.')}"
                    target="_blank" rel="noopener"
                    class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
-                    Book a 3-day trial
+                    Book a 2-day trial
                 </a>
             </div>
         </div>
@@ -764,7 +764,7 @@ def build_index():
         <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16">
 
             <div class="lg:col-span-6 reveal" id="enquire">
-                <h2 id="visit-h" class="text-d2 text-ink">Book a 3-day trial</h2>
+                <h2 id="visit-h" class="text-d2 text-ink">Book a 2-day trial</h2>
                 <p class="mt-3 text-[16px] leading-relaxed text-ink/75 max-w-lg">
                     Fill this in and it opens WhatsApp with your details ready to send. We
                     will tell you which batches have room.
@@ -883,7 +883,7 @@ LOCATIONS = {
         "area": "Perungalathur",
         "title": "Yoga Classes in Perungalathur, Chennai | Happy Yogis",
         "desc": ("Yoga centre in New Perungalathur, SSM Nagar. Four daily batches for "
-                 "ladies, gents and children, Mon-Fri. 3-day trial available."),
+                 "ladies, gents and children, Mon-Fri. 2-day trial available."),
         "h1": "Yoga classes in Perungalathur",
         "lede": ("Happy Yogis has two centres in New Perungalathur &mdash; SSM Nagar and "
                  "the yoga room at Tower 20, Park 63. If you live in "
@@ -906,7 +906,7 @@ LOCATIONS = {
              "condition, tell the teacher beforehand and the practice is adjusted for "
              "you."),
             ("Getting started",
-             "Message us on WhatsApp for a 3-day trial in whichever batch has room. "
+             "Message us on WhatsApp for a 2-day trial in whichever batch has room. "
              "Bring a mat if you have one; once you join, you can leave it at the "
              "centre."),
         ],
@@ -1002,10 +1002,10 @@ def build_location(slug, cfg):
         <h1 class="text-d1 text-ink">{cfg["h1"]}</h1>
         <p class="mt-5 text-[17px] leading-relaxed text-ink/80">{cfg["lede"]}</p>
         <div class="mt-7 flex flex-wrap gap-3">
-            <a href="{wa(f'Hello Happy Yogis! I am from {area} and would like to book a 3-day trial.')}"
+            <a href="{wa(f'Hello Happy Yogis! I am from {area} and would like to book a 2-day trial.')}"
                target="_blank" rel="noopener"
                class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
-                Book a 3-day trial
+                Book a 2-day trial
             </a>
             <a href="{PHONE_HREF}" class="inline-flex items-center gap-2 px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">
                 {icon('phone', 'w-4 h-4')}{PHONE_TEXT}
@@ -1167,7 +1167,7 @@ def build_faq():
                 <div class="mt-5 flex flex-wrap gap-3">
                     <a href="{wa(TRIAL_MSG)}" target="_blank" rel="noopener"
                        class="inline-flex items-center px-5 py-3 bg-ink text-white font-medium rounded hover:bg-blue transition-colors">
-                        Book a 3-day trial
+                        Book a 2-day trial
                     </a>
                     <a href="{PHONE_HREF}"
                        class="inline-flex items-center gap-2 px-5 py-3 border border-line text-ink font-medium rounded hover:border-ink transition-colors">

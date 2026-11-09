@@ -176,20 +176,12 @@
       <image:title>Surekha, yoga teacher at the Happy Yogis centre at Park 63, New Perungalathur</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://happyyogis.in/ima7.jpeg</image:loc>
-      <image:title>Yoga teacher demonstrating a seated spinal twist</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://happyyogis.in/ima20.jpeg</image:loc>
-      <image:title>A student holding a wide-legged seated forward fold on a mat at the centre</image:title>
+      <image:loc>https://happyyogis.in/ima4.jpeg</image:loc>
+      <image:title>Morning batch seated in meditation at the New Perungalathur centre</image:title>
     </image:image>
     <image:image>
       <image:loc>https://happyyogis.in/ima13.jpeg</image:loc>
       <image:title>The Happy Yogis group photographed together at the beach session</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://happyyogis.in/ima4.jpeg</image:loc>
-      <image:title>Morning batch seated in meditation at the New Perungalathur centre</image:title>
     </image:image>
     <image:image>
       <image:loc>https://happyyogis.in/ima14.jpeg</image:loc>
@@ -390,6 +382,28 @@
     <image:image>
       <image:loc>https://happyyogis.in/ima28.jpeg</image:loc>
       <image:title>The certificate given to everyone who completed the 108 challenge</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/new-yoga-centre-park-63-perungalathur.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima4.jpeg</image:loc>
+      <image:title>Morning batch seated in meditation at the New Perungalathur centre</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://happyyogis.in/early-morning-yoga-batch-park-63.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://happyyogis.in/ima5.jpeg</image:loc>
+      <image:title>Teacher leading a seated breathing practice for a mixed-age group</image:title>
     </image:image>
   </url>
 
