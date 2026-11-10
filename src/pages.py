@@ -142,6 +142,10 @@ def guide_pills():
         ("Back pain", "yoga-for-back-pain-chennai.html"),
         ("Weight loss", "yoga-for-weight-loss-in-chennai.html"),
         ("Your first class", "what-happens-in-your-first-yoga-class.html"),
+        ("Yoga classes near me", "yoga-classes-near-me-questions-to-ask.html"),
+        ("Yoga for women", "yoga-classes-near-me-for-women-chennai.html"),
+        ("Choosing an instructor", "how-to-choose-a-yoga-instructor.html"),
+        ("Online yoga classes", "online-yoga-classes-near-me-how-to-choose.html"),
     ])
 
 
