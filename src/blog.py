@@ -1226,6 +1226,8 @@ TRANSLATED = {"how-often-should-you-do-yoga.html",
 
 import posts_more  # noqa: E402
 POSTS += posts_more.make(para, bullets, photo, qa, cite, DISCLAIMER)
+import posts_local  # noqa: E402
+POSTS += posts_local.make(para, bullets, photo, qa, cite, DISCLAIMER)
 
 
 if __name__ == "__main__":
