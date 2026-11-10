@@ -11,18 +11,20 @@ from html.parser import HTMLParser
 # The site root, derived from this file's location so a clone works
 # wherever it sits. HAPPY_YOGIS_ROOT overrides it if ever needed.
 ROOT = os.environ.get("HAPPY_YOGIS_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ["index.html", "reviews.html", "faq.html",
-         "privacy-policy.html", "terms-of-service.html",
-         "yoga-classes-perungalathur.html", "yoga-classes-tambaram.html",
-         "blog.html", "what-happens-in-your-first-yoga-class.html", "yoga-for-weight-loss-in-chennai.html", "yoga-classes-for-men-perungalathur.html", "yoga-classes-for-children-perungalathur.html", "international-yoga-day-beach.html", "108-suryanamaskar-challenge.html",
-         "new-yoga-centre-park-63-perungalathur.html", "early-morning-yoga-batch-park-63.html",
-         "navaratri-yoga-demonstration-park-63.html",
-         "hatha-yoga-in-chennai.html",
-         "how-often-should-you-do-yoga.html", "yoga-or-gym-which-should-you-pick.html", "morning-or-evening-yoga-class.html", "yoga-for-back-pain-chennai.html",
-         # Tamil mirrors, checked on the same terms as everything else
-         "ta/index.html", "ta/yoga-classes-perungalathur.html",
-         "ta/yoga-classes-tambaram.html",
-         "ta/blog.html", "ta/how-often-should-you-do-yoga.html", "ta/yoga-or-gym-which-should-you-pick.html", "ta/morning-or-evening-yoga-class.html", "ta/yoga-for-back-pain-chennai.html"]
+
+
+def _pages(root):
+    """Every generated page, found on disk. This used to be a hand-kept list,
+    and each new post meant editing it in three files; a post missing from one
+    of them was silently skipped by the sprite sync, which is the check that
+    keeps every icon on a page from rendering blank."""
+    import glob
+    out = sorted(os.path.relpath(p, root) for p in glob.glob(os.path.join(root, "*.html")))
+    out += sorted(os.path.relpath(p, root) for p in glob.glob(os.path.join(root, "ta", "*.html")))
+    return out
+
+
+PAGES = _pages(ROOT)
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
         "meta", "param", "source", "track", "wbr", "path", "circle", "line",
         "rect", "polyline", "polygon", "ellipse", "use", "stop"}

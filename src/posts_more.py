@@ -424,8 +424,7 @@ def make(para, bullets, photo, qa, cite, DISCLAIMER):
       ("How to start",
        para("Message or call Surekha on 90256&nbsp;29706. The 2-day trial "
             "works the same way at Park&nbsp;63 as at SSM Nagar: you come "
-            "for two mornings, do the class, and decide afterwards. Nobody "
-            "is put on a list and nothing is owed for turning up.")
+            "for two mornings, do the class, and decide afterwards.")
        + bullets("<strong>Where</strong> &mdash; yoga room, Tower&nbsp;20, "
                  "Park&nbsp;63, New Perungalathur",
                  "<strong>When</strong> &mdash; 5:30 to 6:30 am, Monday to Friday",
@@ -581,5 +580,352 @@ def make(para, bullets, photo, qa, cite, DISCLAIMER):
      "related": ("new-yoga-centre-park-63-perungalathur.html",
                  "A second centre: the yoga room at Park 63",
                  "What has opened at Tower 20, who teaches it and how to start."),
+    },
+
+    # ------------------------------------------------------------------ 8
+    # Four evergreen posts. Every health claim is either cited to a page that
+    # was checked on 9 November 2026 or left out, and each one says plainly
+    # what yoga does not do. Children practise in the regular batches - there
+    # is no separate children's class - and the posts say so, because the
+    # children's page already does.
+    {
+     "slug": "why-yoga-is-good-for-children.html",
+     "date": "2026-11-09", "date_text": "9 November 2026",
+     "title": "Why yoga is good for children",
+     "standfirst": ("No teams, no score, no ball. What children get from yoga, what "
+                    "the research does and does not show, and what a class "
+                    "actually asks of them."),
+     "meta": ("Why yoga suits children: balance, strength, focus and calm. What the "
+              "research does and does not show, and what a children's class involves."),
+     "photo": "ima22",
+     "short": [
+       "Yoga gives children strength, balance and body awareness with no score.",
+       "Research on children is promising but small, and we say so.",
+       "At Happy Yogis children practise in the regular batches, beside a parent.",
+     ],
+     "body": [
+      ("Movement that is not a sport",
+       para("Plenty of children are not drawn to team games. They are not lazy; "
+            "they just have no interest in being picked last. Yoga offers "
+            "something else: no teams, no score and no ball. A child works "
+            "against their own body weight &mdash; holding a lunge, balancing on "
+            "one leg, taking weight on the hands.",
+            "Be clear about the limit, though. The "
+            + cite("who_pa", "World Health Organization") + " asks children "
+            "and adolescents aged 5 to 17 for an average of 60 minutes a day "
+            "of moderate-to-vigorous activity, mostly aerobic, with "
+            "muscle- and bone-strengthening work on at least three days a "
+            "week. A yoga class is not aerobic exercise and will not meet that "
+            "on its own. It sits alongside running about, cycling and "
+            "playground games. It does not replace them.")
+       + photo("ima8", "Children practising cobra pose in a class at "
+                       "Happy Yogis.")),
+
+      ("Learning to be still, on purpose",
+       para("The unusual thing yoga asks of a child is stillness they have "
+            "chosen. Holding tree pose for ten breaths, or lying quietly for the "
+            "last few minutes of a class, is a skill, and it improves with "
+            "repetition like any other. It is something many children are "
+            "rarely asked to do anywhere else in their day.",
+            "What does the research say? The "
+            + cite("nccih", "US National Center for Complementary and "
+                            "Integrative Health") + " describes a 2020 review of "
+            "27 studies of yoga in children, about 70 percent of which found "
+            "reduced anxiety or depression. It then says, honestly, that the "
+            "quality of those studies was relatively weak and the overall "
+            "result inconclusive. Promising, then, but not settled &mdash; and "
+            "we would rather say that than oversell it.")),
+
+      ("Balance and knowing where your body is",
+       para("Much of a children's class is simple. Standing on one foot. "
+            "Reaching up as tall as possible. Folding forward and finding out "
+            "where the stretch is. None of it needs to look like the picture. "
+            "A child who holds their attention on one shape for half a minute "
+            "has got what the hour is for.",
+            "Children also bend easily, which is the reason a good teacher's "
+            "job is mostly to slow them down. Being able to fold deeply is not "
+            "the same as being ready to, and nobody in the room is graded on it.")
+       + photo("ima20", "A student holding a wide-legged seated forward fold "
+                        "on a mat at the centre.")),
+
+      ("What yoga will not do",
+       para("It will not cure anything, and a yoga class is not a treatment for "
+            "a medical or developmental condition. If your child has a health "
+            "condition, an old injury or anything else the teacher should plan "
+            "around, tell us before the first class &mdash; it changes what "
+            "they are asked to do. Practising under a teacher is "
+            + cite("nccih_safe", "the standard safety advice") + ", "
+            "and we follow it with children too.")),
+
+      ("How it works at Happy Yogis",
+       para("There is no separate children's batch. Children practise in the "
+            "regular morning and evening batches, next to a parent, adjusted to "
+            "whoever is on the mat. Every hour is the same shape: warm-up, "
+            "asanas, pranayama and a short relaxation.",
+            "If you would like to see whether it suits your child, the "
+            "2-day trial lets you both sit in before deciding anything. Read "
+            "<a href=\"yoga-classes-for-children-perungalathur.html\" "
+            "class=\"text-blue font-medium hover:underline\">how children's "
+            "classes work here</a>, or try the "
+            "<a href=\"children-yoga-poses-at-home.html\" "
+            "class=\"text-blue font-medium hover:underline\">six easy poses "
+            "to do at home</a> first.")),
+     ],
+     "related": ("children-yoga-poses-at-home.html",
+                 "Kids yoga: six easy poses to try at home",
+                 "Tree, cat-cow, cobra and three more, with what to leave for "
+                 "a teacher."),
+    },
+
+    # ------------------------------------------------------------------ 9
+    {
+     "slug": "children-yoga-poses-at-home.html",
+     "date": "2026-11-09", "date_text": "9 November 2026",
+     "title": "Kids yoga: six easy poses to try at home",
+     "standfirst": ("Ten minutes, a mat or a rug, and a parent on the next one. Six "
+                    "poses children can try at home, and the ones to leave for a "
+                    "teacher."),
+     "meta": ("Six easy yoga poses for children to try at home with a parent: tree, "
+              "cat-cow, cobra, child's pose, butterfly and down dog."),
+     "photo": "ima8",
+     "short": [
+       "Six gentle poses: tree, cat-cow, cobra, child's pose, butterfly, down dog.",
+       "Ten minutes with a parent. Stop at the first sign of pain.",
+       "Leave inversions and deep backbends for a teacher.",
+     ],
+     "body": [
+      ("Before you start",
+       para("Clear a space, use a mat or a folded rug, and do it with your "
+            "child rather than watching them. Children copy the grown-up, "
+            "and an adult on the next mat is the single best thing you can do "
+            "to make it feel like play. Keep it short &mdash; ten minutes is plenty.",
+            "One rule beats the others: nothing should hurt, and nobody is "
+            "ever pushed or pulled into a pose. If it hurts, stop. A pose done "
+            "gently and held for a few breaths is worth more than a deep one "
+            "done once.")),
+
+      ("Six poses",
+       para("Each is held for three to five slow breaths. Name them as "
+            "animals or trees if that helps; it usually does.")
+       + bullets(
+         "<strong>Tree</strong> &mdash; stand tall on one leg, the other foot "
+         "resting against the ankle or calf, never on the knee. Hands at the "
+         "chest or reaching up. Wobbling is the whole point.",
+         "<strong>Cat&ndash;cow</strong> &mdash; on hands and knees, round the "
+         "back on the breath out and lift the chest on the breath in. "
+         "Slow, and in time with the breath.",
+         "<strong>Cobra</strong> &mdash; lie on the tummy, hands under the "
+         "shoulders, and lift the chest a little, looking forward. Hips stay "
+         "on the floor. Do not push up to straight arms.",
+         "<strong>Child's pose</strong> &mdash; sit back on the heels, fold "
+         "forward and rest the forehead down. This is the rest position; "
+         "go back to it any time.",
+         "<strong>Butterfly</strong> &mdash; sit with the soles of the feet "
+         "together and let the knees fall out. Never press the knees down.",
+         "<strong>Down dog</strong> &mdash; hands and feet on the floor, hips "
+         "high. Knees can bend as much as they like.")
+       + photo("ima22", "Three children folded forward together on one mat.")),
+
+      ("Finish lying down",
+       para("End with a minute or two flat on the back, arms by the sides, "
+            "eyes closed. It is the part children most often say they did not "
+            "expect to like. If a child cannot manage it, that is fine; "
+            "try again next time, and shorten it rather than insisting.")),
+
+      ("What to leave for a teacher",
+       para("Do not try headstands, shoulder stands or deep backbends at home, "
+            "and do not put weight through the neck. They are not forbidden, "
+            "but they are taught slowly, in person, for a reason. Practising "
+            "with a qualified instructor is "
+            + cite("nccih_safe", "the standard advice") + " for starting yoga, "
+            "and children are no exception. The "
+            + cite("nccih", "NCCIH") + " links learning alone with a higher "
+            "risk of injury.",
+            "If your child has a health condition or an old injury, ask first.")
+       + photo("ima6", "Students of all ages holding tree pose together.")),
+
+      ("When you want to see it done properly",
+       para("Come to a class. Children at Happy Yogis practise in the regular "
+            "batches beside a parent, and the 2-day trial lets you both sit "
+            "in before deciding anything. Start with "
+            "<a href=\"why-yoga-is-good-for-children.html\" "
+            "class=\"text-blue font-medium hover:underline\">why yoga is "
+            "good for children</a>, or see "
+            "<a href=\"yoga-classes-for-children-perungalathur.html\" "
+            "class=\"text-blue font-medium hover:underline\">how our "
+            "children's classes work</a>.")),
+     ],
+     "related": ("why-yoga-is-good-for-children.html",
+                 "Why yoga is good for children",
+                 "What children get from it, and what the research does and "
+                 "does not show."),
+    },
+
+    # ------------------------------------------------------------------ 10
+    {
+     "slug": "yoga-for-mind-relaxation.html",
+     "date": "2026-11-09", "date_text": "9 November 2026",
+     "title": "Yoga for mind relaxation: a 10-minute routine",
+     "standfirst": ("You do not need an hour, a mat or a quiet house. Ten minutes of "
+                    "slow breathing, gentle movement and lying still, and an honest "
+                    "word about what it can and cannot do."),
+     "meta": ("A 10-minute yoga routine for mind relaxation - breathing, gentle "
+              "movement and lying still - and what the research does and does not show."),
+     "photo": "ima5",
+     "short": [
+       "Ten minutes: slow breathing, gentle movement, then lying still.",
+       "Make the breath out longer than the breath in.",
+       "It supports good care for stress. It does not replace it.",
+     ],
+     "body": [
+      ("What relaxation actually is",
+       para("Relaxation is not the absence of thoughts. It is the body "
+            "settling: breathing slows, the shoulders drop, the jaw lets go. The "
+            + cite("nccih_relax", "NCCIH describes relaxation techniques") + " as "
+            "practices meant to bring on that response, and lists slow, deep "
+            "breathing among them. Yoga uses it on purpose &mdash; pranayama, "
+            "then a closing relaxation &mdash; which is why every Happy Yogis "
+            "class ends that way.",
+            "What does the evidence say? On stress, NCCIH's yoga summary points "
+            "to a 2020 review of 12 studies in healthy adults that found "
+            "improvements in perceived stress &mdash; while noting that research "
+            "on wider well-being has been inconsistent. For breathing exercises "
+            "on their own, NCCIH calls the stress evidence preliminary. "
+            "Encouraging, in other words, and not a promise.")
+       + photo("ima1", "Adults and children seated in meditation facing "
+                       "their teacher at Happy Yogis.")),
+
+      ("A ten-minute routine",
+       para("Do it at the end of the day, or at your desk with a chair. "
+            "Nothing here needs flexibility.")
+       + bullets(
+         "<strong>Arrive (1 min)</strong> &mdash; sit comfortably, hands on the "
+         "knees, and take five slow breaths.",
+         "<strong>Shoulders and neck (1 min)</strong> &mdash; roll the shoulders "
+         "back, then tilt each ear gently towards its shoulder. Never force it.",
+         "<strong>Cat&ndash;cow (2 min)</strong> &mdash; on hands and knees, "
+         "round and lift the back in time with the breath.",
+         "<strong>Forward fold (1.5 min)</strong> &mdash; seated or standing, "
+         "knees bent as much as you like, head heavy.",
+         "<strong>Child's pose (1.5 min)</strong> &mdash; fold forward over the "
+         "knees and rest the forehead down.",
+         "<strong>Lie still (3 min)</strong> &mdash; flat on the back, arms by "
+         "the sides, eyes closed, and let the breath go.")),
+
+      ("The one breathing change that matters",
+       para("Make the breath out longer than the breath in. Breathe in through "
+            "the nose for a count of four and out for a count of six, without "
+            "straining at either end. Many people find the longer exhale is what "
+            "slows everything down. Keep it gentle: if you feel dizzy, go back "
+            "to ordinary breathing.")
+       + photo("ima4", "A morning batch seated in meditation at the "
+                       "New Perungalathur centre.")),
+
+      ("When it is not the answer",
+       para("Relaxation techniques are generally safe for healthy people, but "
+            "NCCIH notes that some people occasionally become more anxious, or "
+            "have intrusive thoughts, when they sit still with their eyes "
+            "closed, and that they should not replace conventional care for a "
+            "medical problem. If sitting still makes things worse, stop and "
+            "keep your eyes open, or move instead. If anxiety, low mood or poor "
+            "sleep is getting in the way of your days, speak to a doctor. Yoga is "
+            "something to do alongside that, not instead of it.")),
+
+      ("Doing it with a teacher",
+       para("Every batch at Happy Yogis ends with pranayama and a few minutes "
+            "lying still. The 5:30 am batch at Park&nbsp;63 is a quiet one "
+            "&mdash; "
+            "<a href=\"early-morning-yoga-batch-park-63.html\" "
+            "class=\"text-blue font-medium hover:underline\">read about the "
+            "5:30 hour</a>. The 2-day trial is the easiest way to find out "
+            "whether it works for you.")),
+     ],
+     "related": ("yoga-for-good-health.html",
+                 "Yoga for good health: what the evidence says",
+                 "What yoga does well, what it does not do, and how often."),
+    },
+
+    # ------------------------------------------------------------------ 11
+    {
+     "slug": "yoga-for-good-health.html",
+     "date": "2026-11-09", "date_text": "9 November 2026",
+     "title": "Yoga for good health: what the evidence says",
+     "standfirst": ("Strength, mobility, balance and a calmer head are real. A cure for "
+                    "everything is not. An honest account of what yoga does for "
+                    "your health, and how to get the most from it."),
+     "meta": ("What yoga does for your health, what it does not, and how often to "
+              "practise - a plain account of the evidence from NCCIH and the WHO."),
+     "photo": "ima10",
+     "short": [
+       "Yoga builds strength, mobility and balance, and may ease stress and back pain.",
+       "It is not aerobic exercise and it does not replace medical care.",
+       "Little and often beats a heroic session once a month.",
+     ],
+     "body": [
+      ("Start with what good health needs",
+       para("The "
+            + cite("who_pa", "World Health Organization") + " asks adults for "
+            "at least 150 minutes of moderate aerobic activity a week, plus "
+            "muscle-strengthening work on two or more days. Yoga is strong on "
+            "the second and on balance and mobility, and it is not "
+            "mostly aerobic. So the honest framing is that yoga is one very good "
+            "part of an active week, not the whole of it.")
+       + photo("ima3", "A student holding downward dog on a mat at the centre.")),
+
+      ("What yoga does well",
+       para("It builds strength you use &mdash; holding a lunge, a plank, a "
+            "balance &mdash; and it keeps joints moving through their range, "
+            "which matters more with every decade. It also gives you a "
+            "weekly habit that is hard to skip once it is settled.",
+            "On the evidence: the "
+            + cite("nccih", "US National Center for Complementary and "
+                            "Integrative Health") + " describes yoga as "
+            "generally safe for healthy people when practised properly under a "
+            "qualified instructor, and points to research linking it with "
+            "improvements in perceived stress. On pain, NCCIH's summary is "
+            "that "
+            + cite("nccih_pain", "the evidence differs by condition") + ": "
+            "low-back pain is the best supported, while for neck pain, "
+            "headache and arthritis it is limited or mixed. It is worth "
+            "reading as written rather than as a headline. Our posts on "
+            "<a href=\"yoga-for-back-pain-chennai.html\" "
+            "class=\"text-blue font-medium hover:underline\">back pain</a> and "
+            "<a href=\"yoga-for-mind-relaxation.html\" "
+            "class=\"text-blue font-medium hover:underline\">mind relaxation</a> "
+            "go into each.")
+       + photo("ima7", "A yoga teacher demonstrating a seated spinal twist.")),
+
+      ("What it does not do",
+       para("Yoga does not cure disease, and it is not a replacement for "
+            "treatment. It can sit alongside care for conditions like PCOD, a "
+            "thyroid problem or high blood pressure, adjusted by a teacher who "
+            "knows about them, but your doctor makes the medical calls. It is "
+            "also not a fast route to weight loss &mdash; "
+            "<a href=\"yoga-for-weight-loss-in-chennai.html\" "
+            "class=\"text-blue font-medium hover:underline\">we have written "
+            "about that honestly</a>.")),
+
+      ("Little and often",
+       para("Three to four sessions a week is where most people settle and "
+            "start noticing something. Twice a week still counts. Once a week "
+            "maintains rather than builds. The number worth choosing is the "
+            "one you can keep on a bad week &mdash; "
+            "<a href=\"how-often-should-you-do-yoga.html\" "
+            "class=\"text-blue font-medium hover:underline\">we have a whole "
+            "post on how often</a>.")),
+
+      ("Tell your teacher what you are working with",
+       para("A bad knee, a thyroid condition, a first week of yoga, a "
+            "pregnancy &mdash; say so before the class, and the practice "
+            "is adjusted. That is the reason batches here are small. If it is "
+            "your first time, "
+            "<a href=\"what-happens-in-your-first-yoga-class.html\" "
+            "class=\"text-blue font-medium hover:underline\">here is what the "
+            "hour holds</a>, and the 2-day trial lets you find out "
+            "before deciding anything.")),
+     ],
+     "related": ("how-often-should-you-do-yoga.html",
+                 "How many days a week should you do yoga?",
+                 "The honest answer is not the one that sounds most impressive."),
     },
     ]
