@@ -126,6 +126,34 @@ def gallery(limit=None):
     return "\n".join(tiles)
 
 
+def _pills(items):
+    return "\n".join(
+        f'''                    <li><a href="{href}" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-[13.5px] font-medium text-blue border border-line rounded-full bg-paper hover:border-blue transition-colors">{label} {icon('arrow-right', 'w-3.5 h-3.5')}</a></li>'''
+        for label, href in items)
+
+
+def guide_pills():
+    return _pills([
+        ("Yoga for men", "yoga-classes-for-men-perungalathur.html"),
+        ("Yoga for children", "yoga-classes-for-children-perungalathur.html"),
+        ("Why children benefit", "why-yoga-is-good-for-children.html"),
+        ("Yoga for good health", "yoga-for-good-health.html"),
+        ("Mind relaxation", "yoga-for-mind-relaxation.html"),
+        ("Back pain", "yoga-for-back-pain-chennai.html"),
+        ("Weight loss", "yoga-for-weight-loss-in-chennai.html"),
+        ("Your first class", "what-happens-in-your-first-yoga-class.html"),
+    ])
+
+
+def story_pills():
+    return _pills([
+        ("The 108 Suryanamaskar challenge", "108-suryanamaskar-challenge.html"),
+        ("International Yoga Day on the beach", "international-yoga-day-beach.html"),
+        ("Navaratri at Park 63", "navaratri-yoga-demonstration-park-63.html"),
+        ("How Park 63 opened", "new-yoga-centre-park-63-perungalathur.html"),
+    ])
+
+
 def centre_cards():
     """Both centres as cards, for directly under the hero.
 
@@ -564,6 +592,17 @@ def build_index():
             <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 {class_items}
             </ul>
+
+            <!-- Guides for specific people and goals. Several of these pages
+                 had a single link into them from the whole site, which is a
+                 large part of why Google had discovered them without ever
+                 crawling them. -->
+            <div class="mt-10 reveal">
+                <h3 class="text-[13.5px] font-medium text-ink">Looking for something specific?</h3>
+                <ul class="mt-3 flex flex-wrap gap-2">
+{guide_pills()}
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -690,6 +729,13 @@ def build_index():
             </div>
             <div class="mt-8 columns-2 sm:columns-3 lg:columns-4 xl:columns-6 gap-3">
 {gallery(12)}
+            </div>
+
+            <div class="mt-10 reveal">
+                <h3 class="text-[13.5px] font-medium text-ink">The stories behind the photos</h3>
+                <ul class="mt-3 flex flex-wrap gap-2">
+{story_pills()}
+                </ul>
             </div>
         </div>
     </section>
@@ -881,37 +927,70 @@ def build_index():
 LOCATIONS = {
     "yoga-classes-perungalathur.html": {
         "area": "Perungalathur",
-        "title": "Yoga Classes in Perungalathur, Chennai | Happy Yogis",
-        "desc": ("Yoga centre in New Perungalathur, SSM Nagar. Four daily batches for "
-                 "ladies, gents and children, Mon-Fri. 2-day trial available."),
+        # Google chose a different canonical for this page than the one we
+        # declared. The home page now targets "New Perungalathur, Chennai" and
+        # this page was a thin 312 words sharing a third of its phrasing with
+        # the Tambaram page, so it read as a duplicate of one or the other.
+        # It now carries what only it can: both centres, side by side.
+        "title": "Yoga Classes in Perungalathur: Two Centres | Happy Yogis",
+        "desc": ("Happy Yogis has two centres in New Perungalathur: SSM Nagar with "
+                 "four daily batches, and Park 63 at 5:30 am. Ladies-only batch. "
+                 "2-day trial."),
         "h1": "Yoga classes in Perungalathur",
         "lede": ("Happy Yogis has two centres in New Perungalathur &mdash; SSM Nagar and "
                  "the yoga room at Tower 20, Park 63. If you live in "
                  "Perungalathur, this is your local class, not a drive across the city."),
         "body": [
-            ("Where we are",
-             "SSM Nagar, New Perungalathur, close to Perungalathur railway station and "
-             "just off the GST Road stretch running down towards Vandalur. Students "
-             "walk or ride in from New Perungalathur, Old Perungalathur and the "
-             "streets around."),
+            ("Two centres, both in New Perungalathur",
+             "Both are just off the GST Road stretch running down towards Vandalur, "
+             "and students walk or ride in from New Perungalathur, Old Perungalathur "
+             "and the streets around. Which one suits you is mostly a question of "
+             "the hour you want."),
+            ("SSM Nagar: four batches a day",
+             "The original centre, close to Perungalathur railway station, and the "
+             "one that runs all four batches: 5:30 to 6:15 am, 6:15 to 7:15 am, a "
+             "ladies-only 10:00 to 11:00 am and 5:00 to 6:00 pm. Karthika teaches "
+             "every one of them."),
+            ("Park 63: the early morning batch",
+             "The yoga room at Tower&nbsp;20, Park&nbsp;63, open since October, runs "
+             "one batch &mdash; 5:30 to 6:30 am, Monday to Friday &mdash; taught by "
+             "Surekha. If you live in the complex, there is no journey to fail. "
+             "<a href=\"new-yoga-centre-park-63-perungalathur.html\" "
+             "class=\"text-blue font-medium hover:underline\">Read how it opened</a>."),
             ("Who practises here",
              "Genuinely mixed &mdash; school children before class, people fitting a "
              "session in before the commute, women in the mid-morning ladies batch, "
              "retired members there for the joint mobility and the company. Most who "
-             "join have never done yoga before."),
+             "join have never done yoga before. Men often ask whether it is a "
+             "women's class; "
+             "<a href=\"yoga-classes-for-men-perungalathur.html\" "
+             "class=\"text-blue font-medium hover:underline\">it is not</a>."),
             ("What a class looks like",
              "Every batch: warm-up, asanas, pranayama and a closing relaxation, in 45 "
              "or 60 minutes. "
              "If you are working around a knee problem, back pain, PCOD or a thyroid "
              "condition, tell the teacher beforehand and the practice is adjusted for "
-             "you."),
+             "you. "
+             "<a href=\"what-happens-in-your-first-yoga-class.html\" "
+             "class=\"text-blue font-medium hover:underline\">Here is what the hour "
+             "holds</a>."),
+            ("Children and families",
+             "Children practise in the regular batches, next to a parent, rather than "
+             "in a separate class. "
+             "<a href=\"yoga-classes-for-children-perungalathur.html\" "
+             "class=\"text-blue font-medium hover:underline\">How it works for "
+             "children</a>, and "
+             "<a href=\"why-yoga-is-good-for-children.html\" "
+             "class=\"text-blue font-medium hover:underline\">why yoga suits them</a>."),
             ("Getting started",
              "Message us on WhatsApp for a 2-day trial in whichever batch has room. "
              "Bring a mat if you have one; once you join, you can leave it at the "
              "centre."),
         ],
         "photo": "ima1", "og": "og-perungalathur.jpg",
-        "nearby": [("Yoga classes near Tambaram", "yoga-classes-tambaram.html")],
+        "nearby": [("Yoga classes near Tambaram", "yoga-classes-tambaram.html"),
+                   ("A second centre: the yoga room at Park 63",
+                    "new-yoga-centre-park-63-perungalathur.html")],
     },
     "yoga-classes-tambaram.html": {
         "area": "Tambaram",
@@ -920,7 +999,7 @@ LOCATIONS = {
                  "Perungalathur. Morning and evening batches, ladies-only batch, "
                  "online classes."),
         "h1": "Yoga classes near Tambaram",
-        "lede": ("Happy Yogis teaches from a single centre in New Perungalathur &mdash; "
+        "lede": ("Happy Yogis has two centres, both in New Perungalathur &mdash; "
                  "the next stop down the GST Road and the suburban line from Tambaram. "
                  "There is no Tambaram branch, but many of our regulars travel in from "
                  "East Tambaram, West Tambaram and Selaiyur."),
@@ -931,8 +1010,8 @@ LOCATIONS = {
              "south on the GST Road. Students from Selaiyur and East Tambaram usually "
              "come by two-wheeler."),
             ("Which batch suits a Tambaram commute",
-             "Heading into the city afterwards, the 5:30 am and 6:15 am batches work "
-             "best. The 5:00 pm batch is the popular one for school and college "
+             "Heading into the city afterwards, the 5:30 am and 6:15 am batches at "
+             "SSM Nagar work best. The 5:00 pm batch is the popular one for school and college "
              "students travelling back from Tambaram. The 10:00 am batch is women "
              "only."),
             ("Or practise from home",
@@ -982,6 +1061,19 @@ def build_location(slug, cfg):
     nearby = "\n".join(
         f'                <li><a href="{h}" class="inline-block py-1 text-blue font-medium hover:underline">{n}</a></li>'
         for n, h in cfg["nearby"])
+
+    # Both centres, with their own address, teacher, hours and directions. This
+    # block said "All classes are taught at this address - it is our only
+    # centre" on every area page after the second one opened.
+    centres = "\n".join(f"""                <div>
+                    <p class="font-medium text-ink">{c['name']} &middot; {'all four batches' if c['key'] == 'ssm' else '5:30 am'}</p>
+                    <address class="not-italic text-muted mt-1">{c['street']}, Chennai {c['postal']}</address>
+                    <p class="text-muted mt-1.5">Taught by {c['teacher']}</p>
+                    <a href="{c['maps']}" target="_blank" rel="noopener"
+                       class="mt-2 py-1 inline-flex items-center gap-1.5 font-medium text-blue hover:underline">
+                        Get directions {icon('arrow-up-right', 'w-4 h-4')}
+                    </a>
+                </div>""" for c in C.CENTRES)
 
     head_html = head(title=cfg["title"], desc=cfg["desc"], path=slug, schema=schema,
                      og_img=cfg["og"], alt=("ta", f"ta/{slug}"))
@@ -1033,14 +1125,8 @@ def build_location(slug, cfg):
 {rows}
                 <li class="border-t border-line"></li>
             </ul>
-            <div class="mt-6 text-[14px]">
-                <p class="font-medium text-ink">Happy Yogis Yoga Centre</p>
-                <address class="not-italic text-muted mt-1">SSM Nagar, New Perungalathur, Chennai 600063</address>
-                <p class="text-muted mt-2">All classes are taught at this address &mdash; it is our only centre.</p>
-                <a href="{MAPS}" target="_blank" rel="noopener"
-                   class="mt-3 py-1 inline-flex items-center gap-1.5 font-medium text-blue hover:underline">
-                    Get directions {icon('arrow-up-right', 'w-4 h-4')}
-                </a>
+            <div class="mt-6 grid sm:grid-cols-2 gap-6 text-[14px]">
+{centres}
             </div>
         </aside>
 

@@ -14,6 +14,28 @@
   "redirects": [
     {
       "source": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.happyyogis.in"
+        }
+      ],
+      "destination": "https://happyyogis.in/",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.happyyogis.in"
+        }
+      ],
+      "destination": "https://happyyogis.in/$1",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
       "destination": "/",
       "permanent": true
     },

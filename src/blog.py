@@ -73,8 +73,14 @@ def photo(key, caption=None):
 # content, and Google weighs what such a page cites. Every claim in the posts
 # stays inside what these pages actually support - "may help", not "will fix".
 SOURCES = {
-    "nccih":      ("https://www.nccih.nih.gov/health/yoga-effectiveness-and-safety",
+    # The page titled "Yoga: Effectiveness and Safety" lives at
+    # yoga-what-you-need-to-know - the title and the URL do not match, and the
+    # URL this pointed at before was guessed from the title. Checked against
+    # a search of nccih.nih.gov on 9 November 2026.
+    "nccih":      ("https://www.nccih.nih.gov/health/yoga-what-you-need-to-know",
                    "US National Center for Complementary and Integrative Health"),
+    "nccih_relax": ("https://www.nccih.nih.gov/health/relaxation-techniques-what-you-need-to-know",
+                   "NCCIH, relaxation techniques"),
     "nccih_safe": ("https://www.nccih.nih.gov/health/tips/things-you-should-know-about-yoga",
                    "NCCIH, 5 things to know about yoga"),
     "nccih_pain": ("https://www.nccih.nih.gov/health/providers/digest/yoga-for-pain",
@@ -643,8 +649,15 @@ POSTS = [{
 
         ("Coming for a look", para(
             "Batches run Monday to Friday at our hall in SSM Nagar, New Perungalathur, "
-            "with a 2-day trial so you can sit in before deciding anything. We teach "
-            "online as well, for weeks when the road wins.")),
+            "with a 2-day trial so you can sit in before deciding anything. There is "
+            "also a 5:30 am batch in the yoga room at Tower&nbsp;20, Park&nbsp;63 "
+            "(<a href=\"new-yoga-centre-park-63-perungalathur.html\" "
+            "class=\"text-blue font-medium hover:underline\">how it opened</a>). "
+            "We teach online as well, for weeks when the road wins. If you are "
+            "weighing up the evidence first, "
+            "<a href=\"yoga-for-good-health.html\" "
+            "class=\"text-blue font-medium hover:underline\">here is what yoga "
+            "does for your health</a>.")),
     ],
 }, {
     "slug": "yoga-classes-for-children-perungalathur.html",
@@ -732,12 +745,19 @@ POSTS = [{
             "how they take to it before committing to anything.")),
 
         ("Finding us", para(
-            "One hall, in SSM Nagar, New Perungalathur &mdash; just off the "
+            "Our main hall is in SSM Nagar, New Perungalathur &mdash; just off the "
             "GST Road stretch between Tambaram and Vandalur, close to "
             "Perungalathur railway station. Families travel in from Old "
             "Perungalathur, East and West Tambaram, Selaiyur, Chromepet, "
             "Vandalur, Urapakkam, Guduvanchery and Medavakkam.")
             + photo("ima8", "A children's group working through cobra pose at the centre.")
+            + para("New to the idea? Start with "
+                   "<a href=\"why-yoga-is-good-for-children.html\" "
+                   "class=\"text-blue font-medium hover:underline\">why yoga is "
+                   "good for children</a>, or try "
+                   "<a href=\"children-yoga-poses-at-home.html\" "
+                   "class=\"text-blue font-medium hover:underline\">six easy "
+                   "poses at home</a> first.")
             + para('If you have been searching for a yoga class for children near you in '
                    'this part of Chennai, message us on WhatsApp and we will tell you '
                    'which of the batches has room. There are pages on '
