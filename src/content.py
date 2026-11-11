@@ -107,7 +107,8 @@ FAQS = [
      "Flexibility is what the practice builds, not what it asks for."),
     ("I have never done yoga before. Which batch should I join?",
      "Any of them. Every batch is mixed ability and the practice is adjusted "
-     "person by person. Most beginners pick the 6:15 am or the 5:00 pm batch."),
+     "person by person. Most beginners pick the 6:15 am or the 5:00 pm batch. "
+     "<a href=\"what-happens-in-your-first-yoga-class.html\" class=\"text-blue underline\">What happens in your first class</a>."),
     ("Can I try before joining properly?",
      "Yes. A 2-day trial lets you sit in on a batch before committing. "
      "Message us on WhatsApp and we will book you in."),
@@ -125,18 +126,21 @@ FAQS = [
      "Both. Instructions are given in whichever language the batch is comfortable with."),
     ("Do you teach men as well as women?",
      "Yes. The 5:30 am, 6:15 am and 5:00 pm batches are for everyone. The "
-     "10:00 am batch is women only."),
+     "10:00 am batch is women only. See <a href=\"yoga-classes-for-men-perungalathur.html\" class=\"text-blue underline\">yoga for men</a> and <a href=\"yoga-classes-near-me-for-women-chennai.html\" class=\"text-blue underline\">yoga for women</a>."),
     ("Can my child join?",
-     "Yes, children practise alongside their parents in the morning and evening batches."),
+     "Yes, children practise alongside their parents in the morning and evening batches. "
+     "More on <a href=\"yoga-classes-for-children-perungalathur.html\" class=\"text-blue underline\">yoga classes for children</a>."),
     ("I have a knee problem, back pain or PCOD. Can I still practise?",
      "In most cases yes, with the practice adapted. Tell us before you start, "
-     "and check with your doctor if you are under treatment for anything."),
+     "and check with your doctor if you are under treatment for anything. "
+     "See also our guide to <a href=\"yoga-for-back-pain-chennai.html\" class=\"text-blue underline\">yoga for back pain</a>."),
     ("How soon will I notice a difference?",
      "Most students say they sleep better and feel less stiff within the first "
      "two or three weeks of practising regularly. Physical changes take longer."),
     ("How do I join?",
      "Message us on WhatsApp or call. We will tell you which batches have room "
-     "and book you a trial."),
+     "and book you a trial. Not sure where we are? See yoga classes in "
+     "<a href=\"yoga-classes-perungalathur.html\" class=\"text-blue underline\">Perungalathur</a> or near <a href=\"yoga-classes-tambaram.html\" class=\"text-blue underline\">Tambaram</a>."),
 ]
 
 PHOTOS = {
